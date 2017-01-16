@@ -1,0 +1,22 @@
+{
+  "name": "whiteness-e-commerce",
+  "version": "1.0.0",
+  "description": "E-commerce shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FavorSoft/whiteness-e-commerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FavorSoft/whiteness-e-commerce/issues"
+  },
+  "homepage": "https://github.com/FavorSoft/whiteness-e-commerce#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

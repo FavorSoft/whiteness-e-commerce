@@ -13,7 +13,7 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs')  
 app.set('views', path.join(__dirname, 'views'))  
 
-app.get('/', (request, response) => {  
+app.get('/', (request, response) => {
   response.render('home', {
     name: 'Max'
   })

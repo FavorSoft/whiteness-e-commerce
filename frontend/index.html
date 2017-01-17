@@ -90,10 +90,34 @@
         <aside class="col-lg-3 col-md-3">
             <h3 class="side-catalog">Каталог товаров</h3>
                 <div id="accordion">
-                    <h3>First header</h3>
-                    <div>First content panel</div>
-                    <h3>Second header</h3>
-                    <div>Second content panel</div>
+                  <h4>Жінки</h4>
+                  <div>
+                    <ul class="women">
+                        <li>Бюстгалтери</li>
+                        <li>Комплекти</li>
+                        <li>Нічні сорочки</li>
+                        <li>Термобілизна</li>
+                        <li>Труси</li>
+                    </ul>
+                  </div>
+                  <h4>Чоловіки</h4>
+                  <div>
+                    <ul class="men">
+                        <li>Труси</li>
+                        <li>Підштанники</li>
+                        <li>Нічні сорочки</li>
+                        <li>Піжами</li>
+                    </ul>
+                  </div>
+                  <h4>Діти</h4>
+                  <div>
+                    <ul class="children">
+                        <li>Труси</li>
+                        <li>Підштанники</li>
+                        <li>Нічні сорочки</li>
+                        <li>Піжами</li>
+                    </ul>
+                  </div>
                 </div>
         </aside>
     </div>
@@ -102,10 +126,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script
-     src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-     crossorigin="anonymous">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#accordion" ).accordion(
+                {
+                    collapsible: true,
+                    animate: 150,
+                    heightStyle: "content"
+                }
+            );
+        } );
     </script>
 </body>
 </html>

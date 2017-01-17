@@ -9,26 +9,29 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
+    <section class="header">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">WebSiteName</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("She", "She", "Home")</li>
+                        <li>@Html.ActionLink("He", "He", "Home")</li>
+                        <li>@Html.ActionLink("Child", "Child", "Home")</li>
+                        <li>@Html.ActionLink("News", "News", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Sale", "Sale", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Login", "Login", "Home")</li>
+                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Basket", "Basket", "Home")</li>
+                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Search", "Search", "Home")</li>
+                    </ul>
+                </div>
+            </nav>
+    </section>
     <div class="container body-content">
         @RenderBody()
         <hr />

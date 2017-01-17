@@ -1,0 +1,30 @@
+/* Header section */
+.header-line
+{
+    background-color: #C0242A;
+    color: #fff;
+}
+
+.language
+{
+    float: right;
+}
+
+.number
+{
+    float: left;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.number:first-child
+{
+    margin-left: 140px;
+}
+
+.lang-select
+{
+    background-color: #A41A19;
+    height: 33px;
+    border: none;
+}

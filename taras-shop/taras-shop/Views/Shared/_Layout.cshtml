@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <section class="header">
@@ -16,18 +17,18 @@
                         <a class="navbar-brand" href="#">WebSiteName</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("She", "She", "Home")</li>
-                        <li>@Html.ActionLink("He", "He", "Home")</li>
-                        <li>@Html.ActionLink("Child", "Child", "Home")</li>
-                        <li>@Html.ActionLink("News", "News", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Головна", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Вона", "She", "Home")</li>
+                        <li>@Html.ActionLink("Він", "He", "Home")</li>
+                        <li>@Html.ActionLink("Діти", "Child", "Home")</li>
+                        <li>@Html.ActionLink("Новинки", "News", "Home")</li>
+                        <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Sale", "Sale", "Home")</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Login", "Login", "Home")</li>
-                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Basket", "Basket", "Home")</li>
-                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Search", "Search", "Home")</li>
+                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Ввійти", "Login", "Home")</li>
+                        <li><span class="glyphicon glyphicon-log-in"></span>@Html.ActionLink("Корзина", "Basket", "Home")</li>
+                        <li><span class="glyphicon glyphicon-log-in"></span>@Html.ActionLink("Пошук", "Search", "Home")</li>
                     </ul>
                 </div>
             </nav>

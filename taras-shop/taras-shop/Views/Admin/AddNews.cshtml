@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "AddNews";
+}
+<div class="container add-block">
+    <h2>AddNews</h2>
+
+    <div class="form-group">
+        <label for="title">Заголовок:</label>
+        <input type="text" class="form-control" id="title">
+    </div>
+    <div class="form-group">
+        <label for="description">Інформація:</label>
+        <textarea class="form-control" id="description"></textarea>
+    </div>
+    
+
+    <div class="form-group">
+        <label for="filecount">Фото:</label>
+        <input type="file" class="form-control" id="filecount" multiple="multiple">
+    </div>
+    <div class="btn btn-default" onclick="AddNews()">Enter</div>
+</div>

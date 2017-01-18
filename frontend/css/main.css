@@ -64,11 +64,18 @@
     color: #000;
 }
 
+#accordion
+{
+    padding-left: 10px;
+}
+
 #accordion h4
 {
     color: #000;
     cursor: pointer;
     font-size: 20px;
+    background-color: #fff;
+    border: none;
 }
 
 #accordion h4:focus
@@ -80,7 +87,8 @@
 {
     color: #000;
     list-style: none;
-    padding-left: 20px;
+    padding-left: 0px;
+    margin-left: 30px;
     width: 140px;
     border-top: 1px solid rgb(0, 0, 0);
     padding-top: 5px;
@@ -89,4 +97,49 @@
 #accordion ul li
 {
     font-size: 16px;
+}
+
+#accordion div
+{
+    border: none;
+}
+
+.filters-h
+{
+    margin-top: 60px;
+}
+
+.price-h
+{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.filters
+{
+    padding-left: 10px;
+}
+
+#slider .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: 0px solid #c5c5c5;
+    background: #000;
+    font-weight: normal;
+    color: #454545;
+    width: 5px;
+    outline: none;
+}
+
+#slider .ui-slider-handle {
+    top: -.55em;
+    margin-left: 0em;
+}
+
+ .ui-widget.ui-widget-content {
+    border: none;
+    height: 2px;
+    background-color: #000;
+}
+
+#slider > div{
+    background-color: rgb(0, 0, 0);
 }

@@ -5,6 +5,7 @@ create table Roles
     id int not null identity(1,1) ,
     role nvarchar(256) not null
 );
+/*drop table Roles*/
 
 /* alter Roles table*/
 alter table Roles
@@ -24,6 +25,7 @@ create table Users
     role_id int not null,
     reg_date Date not null
 );
+/*drop table Users*/
 
 /* alter Users table*/
 alter table Users
@@ -44,29 +46,12 @@ create table Categories
     type nvarchar not null,
     description nvarchar(2048) null
 );
+/*drop table Categories*/
 
 /* alter Categories table*/
 alter table Categories
 add constraint pk_categories_id
 primary key (id)
-
-/* crate Images table*/
-create table Images
-(
-    id int not null identity(1,1),
-    image nvarchar(2048) not null,
-    owner_id int not null
-)
-
-/* alter Images table*/
-alter table Images
-add constraint pk_images_id
-primary key (id)
- 
-alter table Images
-add constraint fk_owner_id
-foreign key (owner_id)
-references Unit(id)
 
 
 /* create Unit table*/
@@ -84,6 +69,7 @@ create table Unit
     likes int not null,
     description nvarchar(2048) null
 );
+/*drop table Unit*/
 
 /* alter Unit table*/
 alter table Unit
@@ -95,6 +81,25 @@ add constraint fk_category_id
 foreign key (category_id)
 references Categories(id)
 
+/* crate Images table*/
+create table Images
+(
+    id int not null identity(1,1),
+    image nvarchar(2048) not null,
+    owner_id int not null
+)
+/*drop table Images*/
+
+/* alter Images table*/
+alter table Images
+add constraint pk_images_id
+primary key (id)
+ 
+alter table Images
+add constraint fk_owner_id
+foreign key (owner_id)
+references Unit(id)
+
 /* create Basket table*/
 create table Basket
 (
@@ -103,6 +108,7 @@ create table Basket
     unit_id int not null,
     amount int not null
 );
+/*drop table Basket*/
 
 /* alter Basket table*/
 alter table Basket

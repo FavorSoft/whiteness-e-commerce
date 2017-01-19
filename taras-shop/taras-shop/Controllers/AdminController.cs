@@ -10,21 +10,32 @@ namespace taras_shop.Controllers
     
     public class AdminController : Controller
     {
-
         public ActionResult AddNews()
         {
             return View();
         }
-        public ActionResult AddNews(string title, string description, IEnumerable<HttpPostedFileBase> images)
+        [HttpPost]
+        public String AddNewsInfo(string title, string description)
         {
-            Boolean query = false;
             using (Entities db = new Entities())
             {
                 db.News.Add(new News() { title = title, description = description, data_create = new DateTime().ToLocalTime() });
             }
-
-            return PartialView("");
+            //string response = images.ToList().Count.ToString();
+            return "True";
         }
+        [HttpPost]
+        public String AddNewsFoto()
+        {
+            //    using (Entities db = new Entities())
+            //    {
+            //        db.News.Add(new News() { title = title, description = description, data_create = new DateTime().ToLocalTime() });
+            //    }
+            //    //string response = images.ToList().Count.ToString();
+            string count = Request.Files.Count.ToString();
+            return count;
+        }
+
         public ActionResult AddContent()
         {
             return View();

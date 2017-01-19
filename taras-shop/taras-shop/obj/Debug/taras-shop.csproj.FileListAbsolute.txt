@@ -133,6 +133,5 @@ C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\obj\Debug\taras-shop.csprojResolveAssemblyReference.cache
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\obj\Debug\taras-shop.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\obj\Debug\taras-shop.pdb

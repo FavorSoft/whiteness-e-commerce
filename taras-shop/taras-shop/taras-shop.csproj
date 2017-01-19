@@ -311,7 +311,6 @@
     <Content Include="Views\Admin\AddNews.cshtml" />
     <Content Include="Views\Admin\AddContent.cshtml" />
     <Content Include="Views\Admin\AddSale.cshtml" />
-    <Content Include="Views\Home\Wrong.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

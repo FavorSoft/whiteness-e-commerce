@@ -11,14 +11,51 @@ namespace DAL
             entities = new SqlEntities();
         }
 
-        public IEnumerable<Basket> GetAllBasket()
+        public void AddBasket(Basket basket)
         {
-            return entities.Basket;
+            entities.Basket.Add(basket);
+            entities.SaveChanges();
+        }
+
+        public void AddCategories(Categories category)
+        {
+            entities.Categories.Add(category);
+            entities.SaveChanges();
+        }
+
+        public void AddNews(News news)
+        {
+            entities.News.Add(news);
+            entities.SaveChanges();
+        }
+
+        public void AddNewsImage(News_image newsImage)
+        {
+            entities.NewsImage.Add(newsImage);
+            entities.SaveChanges();
+        }
+
+        public void AddRole(Roles role)
+        {
+            entities.Roles.Add(role);
+            entities.SaveChanges();
+        }
+
+        public void AddUnit(Unit unit)
+        {
+            entities.Unit.Add(unit);
+            entities.SaveChanges();
+        }
+
+        public void AddUser(Users user)
+        {
+            entities.Users.Add(user);
+            entities.SaveChanges();
         }
 
         public IEnumerable<Basket> GetAllBaskets()
         {
-            throw new NotImplementedException();
+            return entities.Basket.;
         }
 
         public IEnumerable<Categories> GetAllCategories()
@@ -33,7 +70,7 @@ namespace DAL
 
         public IEnumerable<News_image> GetAllNewsImages()
         {
-            return entities.News_image;
+            return entities.NewsImage;
         }
 
         public IEnumerable<Roles> GetAllRoles()
@@ -49,6 +86,41 @@ namespace DAL
         public IEnumerable<Users> GetAllUsers()
         {
             return entities.Users;
+        }
+
+        public Basket GetBasketById(int id)
+        {
+            return entities.Basket.Find();
+        }
+
+        public Categories GetCategoriesById(int id)
+        {
+            return 
+        }
+
+        public News GetNewsById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public News_image GetNewsImageById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Roles GetRoleById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Unit GetUnitById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Users GetUserById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

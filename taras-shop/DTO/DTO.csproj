@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Categories.cs" />
     <Compile Include="Helpers\Images.cs" />
     <Compile Include="Helpers\News_images.cs" />
     <Compile Include="Helpers\Users.cs" />

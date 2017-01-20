@@ -29,7 +29,7 @@ namespace DAL
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<News_image> News_image { get; set; }
+        public virtual DbSet<News_image> NewsImage { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<Users> Users { get; set; }

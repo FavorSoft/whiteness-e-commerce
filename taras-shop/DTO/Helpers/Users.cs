@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Helpers
 {
-    class Users
+    public class Users
     {
         public int Id { get; set; }
         public string Email { get; set; }

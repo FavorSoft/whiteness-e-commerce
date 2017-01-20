@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Helpers
 {
-    class Basket
+    public class Basket
     {
         public int Id { get; set; }
         public int User_id { get; set; }

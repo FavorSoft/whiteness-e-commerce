@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Helpers
 {
-    class Images
+    public class Images
     {
         public int Id { get; set; }
         public string Image { get; set; }

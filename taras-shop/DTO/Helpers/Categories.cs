@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace DTO.Helpers
 {
-    public class News_images
+    public class Categories
     {
         public int Id { get; set; }
-        public string Image { get; set; }
-        public int Owner_id { get; set; }
+        public string Category { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
     }
 }

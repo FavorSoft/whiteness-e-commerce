@@ -29,12 +29,12 @@ function AddNews() {
         var filesData = new FormData();
 
         for (var i = 0; i < $filesUpload.get(0).files.length; i++) {
-            filesData.append("file" + i, $filesUpload[i]);
+            filesData.append("file" + i, $filesUpload.get(0).files[i]);
         }
         $.ajax(
                    {
                        type: "Post",
-                       url: '@Url.Action("AddNewsFoto", "Admin")',
+                       url: "/Admin/AddNewsFoto",
                        data: filesData,
                        success:
                            function (data) {

@@ -88,7 +88,7 @@
     </div>
 
     <div class="container">
-        <aside class="col-lg-3 col-md-3">
+        <aside class="col-lg-2 col-md-2 sidebar">
             <h3 class="side-catalog">Каталог товарів</h3>
             <div id="accordion" data-theme="none">
                 <h4>Жінки</h4>
@@ -124,13 +124,11 @@
             <div class="filters">
                 <h4 class="price-h">Ціна</h4>
                 <p>
-                    <label for="amount">Price range:</label>
-                    <input type="text" id="amount" readonly style="border:0;
-                     color:#f6931f; font-weight:bold;">
+                    <input type="text" readonly id="amount">
                 </p>
                 <div id="slider"></div>
                 <h4 class="size-h">Розмір</h4>
-                  <ul class="radio-list">
+                <ul class="radio-list">
                     <li>
                         <input type="checkbox" id="xs-option" name="selector">
                         <label for="xs-option">Xs</label>
@@ -165,9 +163,33 @@
                         
                         <div class="check"><div class="inside"></div></div>
                     </li>
-                  </ul>
+                </ul>
             </div>
         </aside>
+        <section class="main">
+            <div class="col-md-1"></div>
+            <div class="col-md-4 her">
+                <div class="her-img">
+                    <div class="her-text">
+                        <h3>Для Нее</h3>
+                        <h5>Комфортная женственность</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-4 he">
+                <div class="he-img">
+                    <div class="he-text">
+                        <h3>Для Него</h3>
+                        <h5>Практичность на каждий день</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 news">
+                <h1 class="news-h"></h1>
+                <h2 class="news-time"></h2>
+            </div>
+        </section>
     </div>
 
     <!-- jQuery library -->

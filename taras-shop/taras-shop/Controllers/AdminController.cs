@@ -17,23 +17,19 @@ namespace taras_shop.Controllers
         [HttpPost]
         public String AddNewsInfo(string title, string description)
         {
+            /*
             using (Entities db = new Entities())
             {
                 db.News.Add(new News() { title = title, description = description, data_create = new DateTime().ToLocalTime() });
             }
             //string response = images.ToList().Count.ToString();
+            */
             return "True";
         }
         [HttpPost]
         public String AddNewsFoto()
         {
-            //    using (Entities db = new Entities())
-            //    {
-            //        db.News.Add(new News() { title = title, description = description, data_create = new DateTime().ToLocalTime() });
-            //    }
-            //    //string response = images.ToList().Count.ToString();
-            string count = Request.Files.Count.ToString();
-            return count;
+            return "none";
         }
 
         public ActionResult AddContent()

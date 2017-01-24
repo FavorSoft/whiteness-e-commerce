@@ -3,7 +3,7 @@
 create table Roles
 (
     id int not null identity(1,1) ,
-    role nvarchar(256) not null
+    [role] nvarchar(256) not null
 );
 /*drop table Roles*/
 
@@ -18,7 +18,7 @@ create table Users
 (
     id int not null identity(1,1),
     email nvarchar(256) not null,
-    password nvarchar(256) not null,
+    [password] nvarchar(256) not null,
     [number] nvarchar(64) null,
     name nvarchar(256) not null,
     surname nvarchar(256) not null,
@@ -42,9 +42,8 @@ create table Categories
 (
     id int not null identity(1,1),
     category nvarchar(256) not null,
-    category_img nvarchar(2048) not null,
-    type nvarchar not null,
-    description nvarchar(2048) null
+    [type] nvarchar not null,
+    [description] nvarchar(2048) null
 );
 /*drop table Categories*/
 
@@ -59,7 +58,7 @@ create table Unit
 (
     id int not null identity(1,1),
     title nvarchar(256) not null,
-    Producer nvarchar(256),
+    producer nvarchar(256),
     price int null,
     category_id int not null,
     amount int not null,
@@ -67,7 +66,7 @@ create table Unit
     material nvarchar(64) not null,
     [color] nvarchar(64) not null,
     likes int not null,
-    description nvarchar(2048) null
+    [description] nvarchar(2048) null
 );
 /*drop table Unit*/
 
@@ -103,7 +102,7 @@ references Unit(id)
 /* create Basket table*/
 create table Basket
 (
-    id int not null identity(1,1) ,
+    id int not null identity(1,1),
     user_id int not null,
     unit_id int not null,
     amount int not null
@@ -124,3 +123,38 @@ alter table Basket
 add constraint fk_unit_id
 foreign key (unit_id)
 references Unit(id)
+
+/* create News table */
+create table News
+(
+	id int not null identity(1,1),
+	title nvarchar(1024) not null,
+	data_create smalldatetime not null,
+	[description] nvarchar(max) not null
+)
+/*drop table News*/
+
+/* alter News table */
+alter table News
+add constraint pk_news_id
+primary key (id)
+
+
+/* create News_image table */
+create table News_image
+(
+	id int not null identity(1,1),
+	[image] nvarchar(2048) not null,
+	owner_id int not null
+)
+/*drop table News_image*/
+
+/* alter News table */
+alter table News_image
+add constraint pk_news_image_id
+primary key (id)
+
+alter table News_image
+add constraint fk_news_image_owner_id
+foreign key (owner_id)
+references News(id)

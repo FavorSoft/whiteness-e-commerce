@@ -7,42 +7,72 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <section class="header">
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">WebSiteName</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Головна", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Вона", "She", "Home")</li>
-                        <li>@Html.ActionLink("Він", "He", "Home")</li>
-                        <li>@Html.ActionLink("Діти", "Child", "Home")</li>
-                        <li>@Html.ActionLink("Новинки", "News", "Home")</li>
-                        <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Sale", "Sale", "Home")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Ввійти", "Login", "Home")</li>
-                        <li><span class="glyphicon glyphicon-log-in"></span>@Html.ActionLink("Корзина", "Basket", "Home")</li>
-                        <li><span class="glyphicon glyphicon-log-in"></span>@Html.ActionLink("Пошук", "Search", "Home")</li>
-                    </ul>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Content/Images/lorem.jpg" alt="Logo" class="logo">
+                    </a>
                 </div>
-            </nav>
+                <ul class="nav navbar-nav nav-left">
+
+                    <li>@Html.ActionLink("Головна", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Вона", "She", "Home")</li>
+                    <li>@Html.ActionLink("Він", "He", "Home")</li>
+                    <li>@Html.ActionLink("Діти", "Child", "Home")</li>
+                    <li>@Html.ActionLink("Новинки", "News", "Home")</li>
+                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Sale", "Sale", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="@Url.Action("Login", "Account")" class="sign-in">
+                            <img src="~/Content/Images/register.jpg" alt="sign">
+                            <span>Ввійти</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Home", "Basket")" class="basket">
+                            <img src="~/Content/Images/basket.jpg" alt="basket">
+                            <span>Корзина</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Home", "Search")" class="search">
+                            <img src="~/Content/Images/search.jpg" alt="search">
+                            <span>Пошук</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </section>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="container">
+            <p>&copy; @DateTime.Now.Year - Volinets shop</p>
         </footer>
     </div>
+    
+    <!--@Scripts.Render("~/bundles/jquery")-->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <!--@Scripts.Render("~/bundles/bootstrap")-->
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/admin_scripts.js")
 </body>
 </html>

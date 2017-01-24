@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/jquery-ui.css">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 </head>
 <body>
@@ -122,29 +123,63 @@
             <h3 class="filters-h">Фільтри</h3>
             <div class="filters">
                 <h4 class="price-h">Ціна</h4>
+                <p>
+                    <label for="amount">Price range:</label>
+                    <input type="text" id="amount" readonly style="border:0;
+                     color:#f6931f; font-weight:bold;">
+                </p>
                 <div id="slider"></div>
                 <h4 class="size-h">Розмір</h4>
-                <div class="radio-list">
-                    <input id="xs-ch" type="radio">
-                    <label for="xs-ch" class="xs-label">xs</label>
-                    <input id="s-ch" type="radio">
-                    <label for="s-ch" class="s-label">s</label>
-                    <input id="m-ch" type="radio">
-                    <label for="m-ch" class="m-label">m</label>
-                    <input id="l-ch" type="radio">
-                    <label for="l-ch" class="l-label">l</label>
-                    <input id="xl-ch" type="radio">
-                    <label for="xl-ch" class="xl-label">xl</label>
-                </div>
+                  <ul class="radio-list">
+                    <li>
+                        <input type="checkbox" id="xs-option" name="selector">
+                        <label for="xs-option">Xs</label>
+                        
+                        <div class="check"></div>
+                    </li>
+                    
+                    <li>
+                        <input type="checkbox" id="s-option" name="selector">
+                        <label for="s-option">S</label>
+                        
+                        <div class="check"><div class="inside"></div></div>
+                    </li>
+                    
+                    <li>
+                        <input type="checkbox" id="m-option" name="selector">
+                        <label for="m-option">M</label>
+                        
+                        <div class="check"><div class="inside"></div></div>
+                    </li>
+                    
+                    <li>
+                        <input type="checkbox" id="l-option" name="selector">
+                        <label for="l-option">L</label>
+                        
+                        <div class="check"><div class="inside"></div></div>
+                    </li>
+                    
+                    <li>
+                        <input type="checkbox" id="xl-option" name="selector">
+                        <label for="xl-option">Xl</label>
+                        
+                        <div class="check"><div class="inside"></div></div>
+                    </li>
+                  </ul>
             </div>
         </aside>
     </div>
 
     <!-- jQuery library -->
-    <script src="./js/jquery.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+    <script
+    src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
+    integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
+    crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

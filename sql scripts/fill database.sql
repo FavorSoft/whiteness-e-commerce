@@ -1,41 +1,19 @@
-﻿
-/* create Roles table */
-create table Roles
-(
-    id int not null identity(1,1) ,
-    [role] nvarchar(256) not null
-);
-/*drop table Roles*/
 
-/* alter Roles table*/
-alter table Roles
-add constraint pk_role_id
-primary key (id)
+/* fill Roles table */
+insert into Roles(role)
+values
+('Admin'),
+('Moderator'), 
+('User'), 
+('Banned')
 
-
-/* create Users table*/
-create table Users
-(
-    id int not null identity(1,1),
-    email nvarchar(256) not null,
-    [password] nvarchar(256) not null,
-    [number] nvarchar(64) null,
-    name nvarchar(256) not null,
-    surname nvarchar(256) not null,
-    role_id int not null,
-    reg_date Date not null
-);
-/*drop table Users*/
-
-/* alter Users table*/
-alter table Users
-add constraint pk_user_id
-primary key (id)
-
-alter table Users
-add constraint fk_role_id
-foreign key (role_id)
-references Roles(id)
+/* fill Users table*/
+insert into Users(email, [password], number, name, surname, role_id, reg_date)
+values('pinoplastiks@gmail.com', '1111', '0673553394', 'Andrii', 'Kolomys', 1, '2017-01-25'),
+('dendendengrebenets@gmail.com', '1111', '0673455599', 'Denny', 'Greb', 1, '2017-01-25'),
+('pinoplastiks@gmail.com', '1111', '0673553394', 'Andrii', 'Kolomys', 1, '2007-05-08'),
+('pinoplastiks@gmail.com', '1111', '0673553394', 'Andrii', 'Kolomys', 1, '2007-05-08'),
+('pinoplastiks@gmail.com', '1111', '0673553394', 'Andrii', 'Kolomys', 1, '2007-05-08')
 
 /* create Categories table*/
 create table Categories
@@ -93,43 +71,18 @@ create table Images
 alter table Images
 add constraint pk_images_id
 primary key (id)
-
+ 
 alter table Images
 add constraint fk_owner_id
 foreign key (owner_id)
 references Unit(id)
 
 /* create Basket table*/
-create table Basket_items
-(
-	id int not null identity(1,1),
-	basket_id int not null,
-	unit_id int not null,
-	amount int not null
-)
-/*drop table Basket*/
-
-/* alter Images table*/
-alter table Basket_items
-add constraint pk_basket_items_id
-primary key (id)
- 
-alter table Basket_items
-add constraint fk_unit_id
-foreign key (unit_id)
-references Unit(id)
-
-alter table Basket_items
-add constraint fk_basket_id
-foreign key (Basket_id)
-references Basket(id)
-
-/* create Basket table*/
 create table Basket
 (
     id int not null identity(1,1),
     user_id int not null,
-	basket_id int not null,
+    unit_id int not null,
     amount int not null
 );
 /*drop table Basket*/
@@ -144,49 +97,10 @@ add constraint fk_user_id
 foreign key (user_id)
 references Users(id)
 
-alter table Basket_items
-add constraint fk_basket_items_id
-foreign key (basket_id )
-references Basket(id)
-
-/* create Order table*/
-create table [Order]
-(
-    id int not null identity(1,1),
-    user_id int not null,
-	order_date datetime not null
-);
-/* drop table Order */
-
-/* alter Order table*/
-alter table [Order]
-add constraint pk_order_id
-primary key (id)
-
-alter table [Order]
-add constraint fk_user_id
-foreign key (user_id)
-references Users(id)
-
-/* create [Order_items] table*/
-create table [Order_items]
-(
-    id int not null identity(1,1),
-    unit_id int not null,
-	amount int not null,
-	price int not null
-);
-/*drop table [Order_items]*/
-
-/* alter [Order_items] table*/
-alter table [Order_items]
-add constraint pk_order_items_id
-primary key (id)
-
-alter table [Order_items]
+alter table Basket
 add constraint fk_unit_id
 foreign key (unit_id)
-references Units(id)
+references Unit(id)
 
 /* create News table */
 create table News

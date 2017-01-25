@@ -254,6 +254,14 @@ input[type=checkbox]:checked ~ label{
     margin-top: 30px;
 }
 
+.main .he,
+.main .her
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    transition: opacity .15s ease-in;
+}
+
 .he-img,
 .her-img
 {
@@ -278,6 +286,7 @@ input[type=checkbox]:checked ~ label{
     background-color: #fff;
     position: relative;
     top: 355px;
+    color: #000;
 }
 
 .her-text h3,
@@ -328,6 +337,8 @@ input[type=checkbox]:checked ~ label{
     transition: opacity .15s ease-in;
 }
 
+.main .he:hover,
+.main .her:hover,
 .main .news:hover
 {
     opacity: .7;
@@ -387,3 +398,28 @@ input[type=checkbox]:checked ~ label{
     position: relative;
     bottom: 20px;
 }
+
+.main .womant
+{
+    background-image: url("../images/womant.jpg");
+    background-position: 50%;
+    height: 280px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.main .mant
+{
+    background-image: url("../images/mant.jpg");
+    background-position: 50%;
+    height: 280px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/*div.topsale
+{
+    width: 77px;
+    height: 77px;
+    background-image: url("../images/topsalenew.jpg");
+}*/

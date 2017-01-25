@@ -271,13 +271,6 @@ input[type=checkbox]:checked ~ label{
     background-image: url("../images/he.jpg");
 }
 
-.main > .her,
-.main > .he
-{
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
 .her-text,
 .he-text
 {
@@ -301,4 +294,96 @@ input[type=checkbox]:checked ~ label{
     padding-bottom: 20px;
     color: #a3a2a2;
     margin-top: 3px;
+}
+
+@media screen and (min-width: 1200px)
+{
+    .divide
+    {
+        /*display: none;*/
+    }
+
+    .her-img
+    {
+        margin: 0 auto;
+    }
+
+    .he-img
+    {
+        margin: 0 auto;
+    }
+
+    .main .news
+    {
+        margin-right: 0px;
+    }
+}
+
+.main .news
+{
+    background-image: url("../images/news.jpg");
+    height: 280px;
+    margin-right: -6px;
+    cursor: pointer;
+    transition: opacity .15s ease-in;
+}
+
+.main .news:hover
+{
+    opacity: .7;
+}
+
+.text-news
+{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.news h1,
+.news h3
+{
+    color: #fff;
+    text-align: center;
+}
+
+.news h1
+{
+    margin-bottom: 0px;
+    font-size: 50px;
+}
+
+.news h3
+{
+    margin-top: 0px;
+    font-size: 30px;
+}
+
+.main .popular-units
+{
+    float: right;
+    text-align: center;
+    margin-top: 45px;
+}
+
+.popular-units .left-line
+{
+    border-top: 1px solid;
+    display: inline-block;
+    float: left;
+}
+
+.popular-units .right-line
+{
+    border-top: 1px solid;
+    display: inline-block;
+    float: right;
+}
+
+.popular-units-h
+{
+    display: inline-block;
+    position: relative;
+    bottom: 20px;
 }

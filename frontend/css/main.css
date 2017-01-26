@@ -399,27 +399,82 @@ input[type=checkbox]:checked ~ label{
     bottom: 20px;
 }
 
-.main .womant
+.main .womant,
+.main .mant
 {
-    background-image: url("../images/womant.jpg");
     background-position: 50%;
     height: 280px;
     padding-right: 0px;
     padding-left: 0px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.main .womant
+{
+    background-image: url("../images/womant.jpg");
 }
 
 .main .mant
 {
     background-image: url("../images/mant.jpg");
-    background-position: 50%;
-    height: 280px;
-    padding-right: 0px;
-    padding-left: 0px;
 }
 
-/*div.topsale
+.womant img
 {
-    width: 77px;
-    height: 77px;
-    background-image: url("../images/topsalenew.jpg");
-}*/
+    float: left;
+    margin: 15px 0px 0px 25px;
+}
+
+.mant img
+{
+    float: left;
+    margin: 15px 0px 0px 45px;
+}
+
+@media screen and (max-width: 1199px)
+{
+    .womant img
+    {
+        float: left;
+        margin: 15px 0px 0px 0px;
+    }
+
+    .mant img
+    {
+        float: left;
+        margin: 15px 0px 0px 20px;
+    }
+}
+
+.text-unit-part
+{
+    position: absolute;
+    width: 225px;
+    top: 255px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.company-maker
+{
+    font-size: 19px;
+}
+
+.item-type
+{
+    font-size: 17px
+}
+
+.price-now
+{
+    font-size: 21px;
+    color: #c32f3d;
+}
+
+.price-was
+{
+    font-size: 17px;
+    text-decoration: line-through;
+    margin-left: 10px;
+}

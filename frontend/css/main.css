@@ -371,28 +371,29 @@ input[type=checkbox]:checked ~ label{
     font-size: 30px;
 }
 
-.main .popular-units
+.main .popular-units,
+.main .recommend-units
 {
     float: right;
     text-align: center;
     margin-top: 45px;
 }
 
-.popular-units .left-line
+.main .title-lines .left-line
 {
     border-top: 1px solid;
     display: inline-block;
     float: left;
 }
 
-.popular-units .right-line
+.main .title-lines .right-line
 {
     border-top: 1px solid;
     display: inline-block;
     float: right;
 }
 
-.popular-units-h
+.title-lines-h
 {
     display: inline-block;
     position: relative;

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0F7A999-F467-42D0-91E6-6833FCD4F162}</ProjectGuid>
+    <ProjectGuid>{5C4439CB-F143-480E-8E12-FF2F9A86CE99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DTO</RootNamespace>
-    <AssemblyName>DTO</AssemblyName>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,19 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Basket.cs" />
-    <Compile Include="Helpers\BasketItems.cs" />
-    <Compile Include="Helpers\Categories.cs" />
-    <Compile Include="Helpers\CategoryType.cs" />
-    <Compile Include="Helpers\Images.cs" />
-    <Compile Include="Helpers\News.cs" />
-    <Compile Include="Helpers\NewsImage.cs" />
-    <Compile Include="Helpers\Order.cs" />
-    <Compile Include="Helpers\OrderItems.cs" />
+    <Compile Include="IProviders\ICategoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\Roles.cs" />
-    <Compile Include="Helpers\Unit.cs" />
-    <Compile Include="Helpers\Users.cs" />
+    <Compile Include="Providers\CategoryProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{1b85d963-f61a-4005-b76e-25a15f1cf55c}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{f0f7a999-f467-42d0-91e6-6833fcd4f162}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

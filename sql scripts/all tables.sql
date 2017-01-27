@@ -1,11 +1,22 @@
-﻿
+﻿drop table News_image
+drop table News
+drop table [Order_items]
+drop table [Order]
+drop table Basket_items
+drop table Basket
+drop table Images
+drop table Unit
+drop table Categories
+drop table Users
+drop table Roles
+
 /* create Roles table */
 create table Roles
 (
     id int not null identity(1,1) ,
     [role] nvarchar(256) not null
 );
-/*drop table Roles*/
+/**/
 
 /* alter Roles table*/
 alter table Roles
@@ -25,7 +36,7 @@ create table Users
     role_id int not null,
     reg_date Date not null
 );
-/*drop table Users*/
+/**/
 
 /* alter Users table*/
 alter table Users
@@ -45,7 +56,7 @@ create table Categories
     [type] nvarchar not null,
     [description] nvarchar(2048) null
 );
-/*drop table Categories*/
+/**/
 
 /* alter Categories table*/
 alter table Categories
@@ -68,7 +79,7 @@ create table Unit
     likes int not null,
     [description] nvarchar(2048) null
 );
-/*drop table Unit*/
+/**/
 
 /* alter Unit table*/
 alter table Unit
@@ -87,7 +98,7 @@ create table Images
     image nvarchar(2048) not null,
     owner_id int not null
 )
-/*drop table Images*/
+/**/
 
 /* alter Images table*/
 alter table Images
@@ -100,6 +111,25 @@ foreign key (owner_id)
 references Unit(id)
 
 /* create Basket table*/
+create table Basket
+(
+    id int not null identity(1,1),
+    user_id int not null
+);
+/**/
+
+/* alter Basket table*/
+alter table Basket
+add constraint pk_basket_id
+primary key (id)
+
+alter table Basket
+add constraint fk_user_id
+foreign key (user_id)
+references Users(id)
+
+
+/* create Basket table*/
 create table Basket_items
 (
 	id int not null identity(1,1),
@@ -107,7 +137,7 @@ create table Basket_items
 	unit_id int not null,
 	amount int not null
 )
-/*drop table Basket*/
+/**/
 
 /* alter Images table*/
 alter table Basket_items
@@ -121,32 +151,7 @@ references Unit(id)
 
 alter table Basket_items
 add constraint fk_basket_id
-foreign key (Basket_id)
-references Basket(id)
-
-/* create Basket table*/
-create table Basket
-(
-    id int not null identity(1,1),
-    user_id int not null,
-	basket_id int not null,
-    amount int not null
-);
-/*drop table Basket*/
-
-/* alter Basket table*/
-alter table Basket
-add constraint pk_basket_id
-primary key (id)
-
-alter table Basket
-add constraint fk_user_id
-foreign key (user_id)
-references Users(id)
-
-alter table Basket_items
-add constraint fk_basket_items_id
-foreign key (basket_id )
+foreign key (basket_id)
 references Basket(id)
 
 /* create Order table*/
@@ -156,7 +161,7 @@ create table [Order]
     user_id int not null,
 	order_date datetime not null
 );
-/* drop table Order */
+/*  */
 
 /* alter Order table*/
 alter table [Order]
@@ -164,7 +169,7 @@ add constraint pk_order_id
 primary key (id)
 
 alter table [Order]
-add constraint fk_user_id
+add constraint fk_o_user_id
 foreign key (user_id)
 references Users(id)
 
@@ -172,11 +177,12 @@ references Users(id)
 create table [Order_items]
 (
     id int not null identity(1,1),
+	order_id int not null,
     unit_id int not null,
 	amount int not null,
 	price int not null
 );
-/*drop table [Order_items]*/
+/**/
 
 /* alter [Order_items] table*/
 alter table [Order_items]
@@ -184,9 +190,14 @@ add constraint pk_order_items_id
 primary key (id)
 
 alter table [Order_items]
-add constraint fk_unit_id
+add constraint fk_order_id
+foreign key (order_id)
+references [Order](id)
+
+alter table [Order_items]
+add constraint fk_o_unit_id
 foreign key (unit_id)
-references Units(id)
+references Unit(id)
 
 /* create News table */
 create table News
@@ -196,7 +207,7 @@ create table News
 	data_create smalldatetime not null,
 	[description] nvarchar(max) not null
 )
-/*drop table News*/
+/**/
 
 /* alter News table */
 alter table News
@@ -211,10 +222,11 @@ create table News_image
 	[image] nvarchar(2048) not null,
 	owner_id int not null
 )
-/*drop table News_image*/
+/**/
 
 /* alter News table */
 alter table News_image
+
 add constraint pk_news_image_id
 primary key (id)
 

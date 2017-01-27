@@ -7,6 +7,7 @@ drop table Basket
 drop table Images
 drop table Unit
 drop table Categories
+drop table Category_type
 drop table Users
 drop table Roles
 
@@ -48,12 +49,25 @@ add constraint fk_role_id
 foreign key (role_id)
 references Roles(id)
 
+/* create Category_type table*/
+create table Category_type
+(
+	id int not null identity(1,1),
+	[type] nvarchar(256) not null
+)
+
+/* alter Category_type table*/
+alter table Category_type
+add constraint pk_category_type_id
+primary key (id)
+
 /* create Categories table*/
 create table Categories
 (
     id int not null identity(1,1),
     category nvarchar(256) not null,
-    [type] nvarchar not null,
+	[type_id] int not null,
+	category_img nvarchar(2048) not null,
     [description] nvarchar(2048) null
 );
 /**/
@@ -63,6 +77,10 @@ alter table Categories
 add constraint pk_categories_id
 primary key (id)
 
+alter table Categories
+add constraint fk_category_type_id
+foreign key ([type_id])
+references Category_type(id)
 
 /* create Unit table*/
 create table Unit
@@ -73,7 +91,7 @@ create table Unit
     price int null,
     category_id int not null,
     amount int not null,
-    size int not null,
+    size nvarchar(2) not null,
     material nvarchar(64) not null,
     [color] nvarchar(64) not null,
     likes int not null,

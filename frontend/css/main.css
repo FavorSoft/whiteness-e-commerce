@@ -400,8 +400,7 @@ input[type=checkbox]:checked ~ label{
     bottom: 20px;
 }
 
-.main .womant,
-.main .mant
+.main .unit
 {
     background-position: 50%;
     height: 280px;
@@ -411,48 +410,28 @@ input[type=checkbox]:checked ~ label{
     margin-bottom: 30px;
 }
 
-.main .womant
+.main .unit
 {
     background-image: url("../images/womant.jpg");
 }
 
-.main .mant
-{
-    background-image: url("../images/mant.jpg");
-}
-
-.womant img
+.unit img
 {
     float: left;
     margin: 15px 0px 0px 25px;
 }
 
-.mant img
+.unit img
 {
     float: left;
-    margin: 15px 0px 0px 45px;
-}
-
-@media screen and (max-width: 1199px)
-{
-    .womant img
-    {
-        float: left;
-        margin: 15px 0px 0px 0px;
-    }
-
-    .mant img
-    {
-        float: left;
-        margin: 15px 0px 0px 20px;
-    }
+    margin: 15px 0px 0px 25px;
 }
 
 .text-unit-part
 {
     position: absolute;
     width: 225px;
-    top: 255px;
+    top: 285px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -478,4 +457,271 @@ input[type=checkbox]:checked ~ label{
     font-size: 17px;
     text-decoration: line-through;
     margin-left: 10px;
+}
+
+/*------------------------*/
+
+.main .recommend-row .unit
+{
+    background-position: 50%;
+    height: 170px;
+    padding-right: 0px;
+    padding-left: 0px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.main .recommend-row .unit:nth-child(1)
+{
+    float: left;
+}
+
+.main .recommend-row .unit:nth-child(3)
+{
+    float: right;
+}
+
+.main .recommend-row .unit:nth-child(2)
+{
+    position: absolute;
+    top: 125px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main .recommend-row .unit
+{
+    background-image: url("../images/small-womant.jpg");
+}
+
+.recommend-row .unit img
+{
+    float: left;
+    margin: 15px 0px 0px 25px;
+}
+
+.recommend-row .unit img
+{
+    float: left;
+    margin: 15px 0px 0px 45px;
+}
+
+.recommend-row .text-unit-part
+{
+    position: absolute;
+    width: 225px;
+    top: 190px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.recommend-row .company-maker
+{
+    font-size: 14px;
+}
+
+.recommend-row .item-type
+{
+    font-size: 12px
+}
+
+.recommend-row .price-now
+{
+    font-size: 16px;
+    color: #c32f3d;
+}
+
+.recommend-row .price-was
+{
+    font-size: 12px;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+/*------------------------------*/
+.main .about
+{
+    float: right;
+    text-align: center;
+    margin-top: 45px;
+}
+
+.about-text-block
+{
+    text-align: left;
+}
+
+.about-text-block p
+{
+    margin-bottom: 30px;
+}
+
+footer .subscribe
+{
+    background-color: #c22529;
+    height: 70px;
+}
+
+.input-block
+{
+    float: left;
+}
+
+#footer-input
+{
+    height: 40px;
+    display: inline-block;
+    width: calc(100% - 130px);
+    border-radius: 0px;
+}
+
+#footer-input:focus
+{
+    outline: none;
+    box-shadow: none;
+}
+
+.form-group .footer-btn,
+#footer-input
+{
+    border-radius: 0px;
+    border: none;
+    float: left;
+}
+
+.form-group .footer-btn
+{
+    height: 40px;
+    width: 125px;
+    background-color: #000;
+    color: #fff;
+}
+
+.form-group .footer-btn:focus
+{
+    outline: none;
+    color: #fff;
+    border: none;
+}
+
+.social-block
+{
+    height: 200px;
+    text-align: center;
+}
+
+.social-block a div
+{
+    display: inline-block;
+    font-size: 70px;
+    margin: 30px;
+    padding: 20px;
+    border: 1px solid #c22529;
+    color: #c22529;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.icon-facebook:hover
+{
+    background-color: #4867AA;
+    color: #fff;
+    border: 1px solid #4867AA;
+}
+
+.icon-vkontakte:hover
+{
+    background-color: #507299;
+    color: #fff;
+    border: 1px solid #507299;
+}
+
+.icon-youtube:hover
+{
+    background-color: #E62117;
+    color: #fff;
+    border: 1px solid #E62117;
+}
+
+.icon-instagram:hover
+{
+    background-color: #2E5E86;
+    color: #fff;
+    border: 1px solid #2E5E86;
+}
+
+.contacts
+{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    height: 170px;
+}
+
+.contacts div
+{
+    display: inline-block;
+    text-align: center;
+}
+
+.num-block
+{
+    padding: 51px;
+}
+
+.email-block
+{
+    padding: 60px;
+}
+
+.num-block .number,
+.num-block span
+{
+    display: inline-block;
+}
+
+.num-block span,
+.email-block span:first-child
+{
+    font-size: 40px;
+}
+
+.num-block .number,
+.email-block span:nth-child(2)
+{
+    font-size: 20px;
+    position: relative;
+}
+
+.email-block span:nth-child(2)
+{
+    bottom: 13px;
+}
+
+.num-block .number
+{
+    width: 170px;
+    top: 2px;
+}
+
+.row .last-footer
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 12px;
+}
+
+.last-footer span:first-child
+{
+    float: left;
+}
+
+.last-footer span:nth-child(2)
+{
+    float: right;
+}
+
+.last-footer span
+{
+    padding: 15px 0px;
 }

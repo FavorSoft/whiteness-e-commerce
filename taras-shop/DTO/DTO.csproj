@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E9238B44-DD16-4A53-BFB0-BF200C7137CD}</ProjectGuid>
+    <ProjectGuid>{F0F7A999-F467-42D0-91E6-6833FCD4F162}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DTO</RootNamespace>
@@ -40,15 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Categories.cs" />
-    <Compile Include="Helpers\Images.cs" />
-    <Compile Include="Helpers\News_images.cs" />
-    <Compile Include="Helpers\Users.cs" />
-    <Compile Include="Helpers\Unit.cs" />
-    <Compile Include="Helpers\Roles.cs" />
     <Compile Include="Helpers\Basket.cs" />
+    <Compile Include="Helpers\BasketItems.cs" />
+    <Compile Include="Helpers\Categories.cs" />
+    <Compile Include="Helpers\CategoryType.cs" />
+    <Compile Include="Helpers\Images.cs" />
     <Compile Include="Helpers\News.cs" />
+    <Compile Include="Helpers\NewsImage.cs" />
+    <Compile Include="Helpers\Order.cs" />
+    <Compile Include="Helpers\OrderItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helpers\Roles.cs" />
+    <Compile Include="Helpers\Unit.cs" />
+    <Compile Include="Helpers\Users.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

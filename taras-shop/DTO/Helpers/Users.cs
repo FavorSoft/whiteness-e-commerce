@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.Helpers
+namespace DTO
 {
     public class Users
     {
@@ -14,7 +14,7 @@ namespace DTO.Helpers
         public string Number { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int Role_id { get; set; }
-        public DateTime Reg_date { get; set; }
+        public int RoleId { get; set; }
+        public System.DateTime RegDate { get; set; }
     }
 }

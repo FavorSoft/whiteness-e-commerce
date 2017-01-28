@@ -26,25 +26,5 @@ namespace taras_shop.Controllers
 
             return View();
         }
-
-        public ActionResult He()
-        {
-            return View();
-        }
-
-        public ActionResult She()
-        {
-            return View();
-        }
-
-        public ActionResult Child()
-        {
-            return View();
-        }
-
-        public ActionResult News()
-        {
-            return View();
-        }
     }
 }

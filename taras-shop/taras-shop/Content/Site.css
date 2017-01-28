@@ -1,92 +1,24 @@
-﻿/* Header section */
-.sign-in
-{
-    width: 69px;
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
-.sign-in img
-{
-    margin: 0 auto;
-    display: block;
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.basket
-{
-    width: 83px;
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
 }
 
-.basket img
-{
-    margin: 0 auto;
-    display: block;
-}
-
-.search
-{
-    width: 73px;
-}
-
-.search img
-{
-    margin: 0 auto;
-    display: block;
-}
-
-.logo
-{
-    padding: 15px 0px;
-}
-
-.nav-left
-{
-    padding: 14px;
-    font-size: 20px;
-}
-
-.header .navbar-default
-{
-    box-shadow: none;
-    border: none;
-    background-color: #fff;
-    background-image: none;
-    margin-bottom: 0;
-}
-
-.header .navbar-default .navbar-nav>li>a {
-    color: #000;
-}
-
-.header .navbar-default .navbar-nav>li>a:hover {
-    color: #000;
-}
-
-.header .navbar-default .navbar-nav>li>a:link {
-    color: #000;
-}
-
-#accordion h4
-{
-    color: #000;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-#accordion h4:focus
-{
-    outline: none;
-}
-
-#accordion ul
-{
-    color: #000;
-    list-style: none;
-    padding-left: 20px;
-    width: 140px;
-    border-top: 1px solid rgb(0, 0, 0);
-    padding-top: 5px;
-}
-
-#accordion ul li
-{
-    font-size: 16px;
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
 }

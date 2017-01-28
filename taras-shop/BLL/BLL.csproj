@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B702C67-38AD-47AC-9A14-18DD62FAD61A}</ProjectGuid>
+    <ProjectGuid>{5C4439CB-F143-480E-8E12-FF2F9A86CE99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BLL</RootNamespace>
@@ -40,18 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL.cs" />
-    <Compile Include="Converter.cs" />
-    <Compile Include="IBLL.cs" />
+    <Compile Include="IProviders\ICategoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CategoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{a981537e-5d8a-4185-8a37-3748eb3d83e0}</Project>
+      <Project>{1b85d963-f61a-4005-b76e-25a15f1cf55c}</Project>
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{e9238b44-dd16-4a53-bfb0-bf200c7137cd}</Project>
+      <Project>{f0f7a999-f467-42d0-91e6-6833fcd4f162}</Project>
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>

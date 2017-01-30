@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BBF7B417-B3F5-4614-AC3D-A6BA0DAF1EEB}</ProjectGuid>
+    <ProjectGuid>{461EFDB1-3DF1-4536-B724-EB3EA56218AC}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -281,11 +281,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{5c4439cb-f143-480e-8e12-ff2f9a86ce99}</Project>
+      <Project>{05041b0b-693f-4ad5-b630-0c232dbefb35}</Project>
       <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{f0f7a999-f467-42d0-91e6-6833fcd4f162}</Project>
+      <Project>{10e0e204-9006-4e0a-bf02-a0dc78de667e}</Project>
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
@@ -305,9 +305,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64545</DevelopmentServerPort>
+          <DevelopmentServerPort>50315</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64545/</IISUrl>
+          <IISUrl>http://localhost:50315/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class RoleRepository : IRoleRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public RoleRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Roles item)
         {

@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class BasketItemsRepository : IBasketItemsRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public BasketItemsRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Basket_items item)
         {

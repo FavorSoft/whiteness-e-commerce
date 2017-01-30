@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class ImagesRepository : IImagesRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public ImagesRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Images item)
         {

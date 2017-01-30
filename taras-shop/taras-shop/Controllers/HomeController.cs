@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using BLL.Providers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,12 @@ namespace taras_shop.Controllers
     {
         public ActionResult Index()
         {
+            ICategoryProvider _provider = new CategoryProvider();
+            ViewBag.Message = "";
+            foreach (var i in _provider.GetAll())
+            {
+                ViewBag.Message += i.Category + "\n";
+            }
             return View();
         }
 

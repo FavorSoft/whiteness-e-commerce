@@ -32,7 +32,7 @@ namespace DAL.Repositories
 
         public IQueryable<Categories> GetAll()
         {
-            return entities.Categories;
+            return entities.Categories.AsQueryable();
         }
 
         public Categories GetById(int id)

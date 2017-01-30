@@ -13,11 +13,7 @@ namespace taras_shop.Controllers
         public ActionResult Index()
         {
             ICategoryProvider _provider = new CategoryProvider();
-            ViewBag.Message = "";
-            foreach (var i in _provider.GetAll())
-            {
-                ViewBag.Message += i.Category + "\n";
-            }
+            ViewBag.Message = _provider.GetById(1).Category;
             return View();
         }
 

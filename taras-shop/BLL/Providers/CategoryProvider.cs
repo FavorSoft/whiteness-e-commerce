@@ -48,7 +48,16 @@ namespace BLL.Providers
 
         public Categories GetById(int id)
         {
-            throw new NotImplementedException();
+            var tmp = _repo.GetById(id);
+            DTO.Categories category = new Categories()
+            {
+                Category = tmp.category,
+                CategoryImg = tmp.category_img,
+                Id = tmp.id,
+                Description = tmp.description,
+                TypeId = tmp.type_id
+            };
+            return category;
         }
     }
 }

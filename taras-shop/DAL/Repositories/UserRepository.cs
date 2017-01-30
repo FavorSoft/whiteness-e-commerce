@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class UserRepository : IUserRepositiry
     {
-        SqlEntities entities;
+        Entities entities;
         public UserRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Users item)
         {

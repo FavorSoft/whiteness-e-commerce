@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public OrderRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Order item)
         {

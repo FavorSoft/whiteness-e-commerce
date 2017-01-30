@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class NewsRepository : INewsRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public NewsRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(News item)
         {

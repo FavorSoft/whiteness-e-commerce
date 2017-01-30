@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class CategoriesRepository : ICategoriesRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public CategoriesRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Categories item)
         {

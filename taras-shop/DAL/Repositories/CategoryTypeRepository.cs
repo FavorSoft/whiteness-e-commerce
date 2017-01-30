@@ -8,10 +8,10 @@ namespace DAL.Repositories
 {
     public class CategoryTypeRepository : ICategoryTypeRepository
     {
-        SqlEntities entities;
+        Entities entities;
         public CategoryTypeRepository()
         {
-            entities = new SqlEntities();
+            entities = new Entities();
         }
         public void AddItem(Category_type item)
         {

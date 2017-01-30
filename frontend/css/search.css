@@ -39,7 +39,7 @@
 
 .nav-left
 {
-    padding: 18px;
+    padding: 14px;
     font-size: 18px;
 }
 
@@ -303,7 +303,7 @@ input[type=checkbox]:checked ~ label{
 
 #dropdowns
 {
-    display: inline-block;
+    float: left;
     padding: 20px 0px;
 }
 
@@ -316,6 +316,13 @@ input[type=checkbox]:checked ~ label{
 {
     border: none;
     outline: none;
+}
+
+#dropdowns label
+{
+    color: #606060;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 #dropdowns .btn:active
@@ -332,8 +339,9 @@ input[type=checkbox]:checked ~ label{
 
 #dropdowns .dropdown-menu
 {
-    left: 104px;
-    top: 51px;
+    width: 185px;
+    left: 96px;
+    top: 34px;
     border-radius: 0px;
     border: none;
     background-color: #ebebeb;
@@ -356,7 +364,7 @@ input[type=checkbox]:checked ~ label{
 #dropdowns .dropdown-menu li a
 {
     padding: 7px 13px;
-    padding-right: 34px;
+    padding-right: 33px;
     font-size: 16px;
     font-weight: 500;
 }
@@ -375,19 +383,63 @@ input[type=checkbox]:checked ~ label{
 
 #view-dropdown label
 {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 #view-dropdown button
 {
-    width: 60px;
+    width: 64px;
 }
 
 #view-dropdown .dropdown-menu
 {
-
+    left: 82px;
+    min-width: 0px;
+    width: 64px;
 }
 
+.how-many
+{
+    font-size: 12px;
+    color: #a5a5a5;
+}
+
+.pagination-block
+{
+    float: right;
+    position: relative;
+    top: 10px;
+}
+
+.pagination-block .material-icons
+{
+    font-size: 34px;
+}
+
+.pagination-block input
+{
+    width: 32px;
+    height: 32px;
+    padding-left: 10px;
+}
+
+.left-pg,
+.right-pg
+{
+    display: inline-block;
+    background-color: #e1e1e1;
+    width: 34px;
+    height: 34px;
+    position: relative;
+    top: 11px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.find-filters-bottom
+{
+    padding-top: 40px;
+}
 /* Sort block end*/
 
 /* Units block */
@@ -461,7 +513,6 @@ input[type=checkbox]:checked ~ label{
     text-decoration: line-through;
     margin-left: 10px;
 }
-
 /* Units block end */
 
 /*Footer block*/
@@ -556,9 +607,9 @@ footer .subscribe
 
 .icon-instagram:hover
 {
-    background-color: #2E5E86;
     color: #fff;
-    border: 1px solid #2E5E86;
+    border: 1px solid #d9317a;
+    background-color: #d9317a;
 }
 
 .contacts

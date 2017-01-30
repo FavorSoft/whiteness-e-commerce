@@ -267,6 +267,8 @@ input[type=checkbox]:checked ~ label{
     background-image: url("../images/news.jpg");
 }
 
+/* Sort block */
+
 .main .found-units
 {
     float: right;
@@ -293,7 +295,7 @@ input[type=checkbox]:checked ~ label{
 {
     border-radius: 0px;
     background-color: #ebebeb;
-    min-width: 185px;
+    width: 185px;
     text-align: left;
     font-size: 16px;
     font-weight: 500;
@@ -330,7 +332,6 @@ input[type=checkbox]:checked ~ label{
 
 #dropdowns .dropdown-menu
 {
-    min-width: 121px;
     left: 104px;
     top: 51px;
     border-radius: 0px;
@@ -372,6 +373,25 @@ input[type=checkbox]:checked ~ label{
     margin-top: 8px;
 }
 
+#view-dropdown label
+{
+    margin-left: 20px;
+}
+
+#view-dropdown button
+{
+    width: 60px;
+}
+
+#view-dropdown .dropdown-menu
+{
+
+}
+
+/* Sort block end*/
+
+/* Units block */
+
 .main .title-lines .left-line
 {
     border-top: 1px solid;
@@ -401,17 +421,7 @@ input[type=checkbox]:checked ~ label{
     padding-left: 0px;
     position: relative;
     margin-bottom: 30px;
-}
-
-.main .unit
-{
     background-image: url("../images/womant.jpg");
-}
-
-.unit img
-{
-    float: left;
-    margin: 15px 0px 0px 25px;
 }
 
 .unit img
@@ -452,23 +462,9 @@ input[type=checkbox]:checked ~ label{
     margin-left: 10px;
 }
 
-/*------------------------------*/
-.main .about
-{
-    float: right;
-    text-align: center;
-    margin-top: 45px;
-}
+/* Units block end */
 
-.about-text-block
-{
-    text-align: left;
-}
-
-.about-text-block p
-{
-    margin-bottom: 30px;
-}
+/*Footer block*/
 
 footer .subscribe
 {
@@ -639,3 +635,5 @@ footer .subscribe
 {
     padding: 15px 0px;
 }
+
+/*Footer block end*/

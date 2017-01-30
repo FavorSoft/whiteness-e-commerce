@@ -1,0 +1,6 @@
+E:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll.config
+E:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.dll
+E:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.xml
+E:\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+E:\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.dll
+E:\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb

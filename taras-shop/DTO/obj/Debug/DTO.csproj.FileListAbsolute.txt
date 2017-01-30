@@ -2,3 +2,4 @@ E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\bin\Debug\DTO.dll
 E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\bin\Debug\DTO.pdb
 E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.dll
 E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.pdb
+E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache

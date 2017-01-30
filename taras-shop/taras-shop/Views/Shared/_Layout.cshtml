@@ -4,41 +4,128 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="~/Content/css/main.css" />
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/css/fontello.css" />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <section class="header">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Content/images/lorem.jpg" alt="Logo" class="logo">
+                    </a>
+                </div>
+                <ul class="nav navbar-nav nav-left">
+                    <li><a href="#">Головна</a></li>
+                    <li><a href="#">Вона</a></li>
+                    <li><a href="#">Він</a></li>
+                    <li><a href="#">Діти</a></li>
+                    <li><a href="#">Новинки</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="#">SALE</a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="" class="sign-in" data-toggle="modal" data-target="#registration-modal">
+                            <img src="~/Content/images/register.jpg" alt="sign">
+                            <span>Ввійти</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="basket">
+                            <img src="~/Content/images/basket.jpg" alt="basket">
+                            <span>Корзина</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="search">
+                            <img src="~/Content/images/search.jpg" alt="search">
+                            <span>Пошук</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+        </nav>
+    </section>
+
+    <div class="body-content">
         @RenderBody()
-        <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="subscribe">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-6 input-block">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="footer-input" placeholder="E-MAIL...">
+                                    <button type="submit" class="footer-btn">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 social-block">
+                        <a href="#">
+                            <div class="icon-facebook"></div>
+                        </a>
+                        <a href="#">
+                            <div class="icon-instagram"></div>
+                        </a>
+                        <a href="#">
+                            <div class="icon-vkontakte"></div>
+                        </a>
+                        <a href="#">
+                            <div class="icon-youtube"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 contacts">
+                        <div class="col-md-6 num-block">
+                            <span class="material-icons">headset_mic</span>
+                            <p class="number">+38 097 777 888 +38 095 555 333</p>
+                        </div>
+                        <div class="col-md-6 email-block">
+                            <span class="material-icons">email</span>
+                            <span class="footer-email">NASHEMAIL@GMAIL.COM</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 last-footer">
+                        <span>Интернет-магазин нижнего белья Lorem.ua</span>
+                        <span>Copyright © @DateTime.Now.Year Lorem.ua. Создано FavorSoft</span>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)*@
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
+            integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
+            crossorigin="anonymous"></script>
+    <script src="~/Scripts/main.js"></script>
 </body>
 </html>

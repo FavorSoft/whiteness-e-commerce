@@ -62,6 +62,57 @@
 
     <div class="body-content">
         @RenderBody()
+        <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 block-test">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-md-6">
+                                        <form class="login" action="">
+                                            <h3 class="login-h">
+                                                У меня уже есть аккаунт</h1>
+                                                <div class="form-group">
+                                                    <label for="login-email-input" class="login-email-label">E-Mail:</label>
+                                                    <input type="email" class="login-email-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pass-email-input" class="pass-email-label">Пароль:</label>
+                                                    <input type="password" class="pass-email-input">
+                                                </div>
+                                                <button class="submit-log">Войти</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form class="registration" action="">
+                                            <h3 class="reg-h">
+                                                У меня уже есть аккаунт</h1>
+                                                <p class="reg-p">
+                                                    Делайте заказы без регистрации
+                                                    вибирая функцию "Быстрые покупки" или создайте аккаунт
+                                                </p>
+                                                <button class="reg-log">Создать аккаунт</button>
+                                                <span class="why-reg">
+                                                    Почему стоит зарегистрироваться
+                                                    на Lorem.ua?
+                                                </span>
+                                                <div class="reg-line"></div>
+                                                <button class="facebook-reg">Регистация с помощью facebook</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer>
             <div class="subscribe">
                 <div class="container">

@@ -14,7 +14,6 @@ namespace DAL
     
     public partial class News
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public News()
         {
             this.News_image = new HashSet<News_image>();
@@ -25,7 +24,6 @@ namespace DAL
         public System.DateTime data_create { get; set; }
         public string description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<News_image> News_image { get; set; }
     }
 }

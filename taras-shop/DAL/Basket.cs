@@ -14,7 +14,6 @@ namespace DAL
     
     public partial class Basket
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Basket()
         {
             this.Basket_items = new HashSet<Basket_items>();
@@ -23,7 +22,6 @@ namespace DAL
         public int id { get; set; }
         public int user_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basket_items> Basket_items { get; set; }
         public virtual Users Users { get; set; }
     }

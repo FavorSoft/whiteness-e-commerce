@@ -14,7 +14,6 @@ namespace DAL
     
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
             this.Order_items = new HashSet<Order_items>();
@@ -25,7 +24,6 @@ namespace DAL
         public System.DateTime order_date { get; set; }
     
         public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_items> Order_items { get; set; }
     }
 }

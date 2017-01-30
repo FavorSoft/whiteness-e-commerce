@@ -14,7 +14,6 @@ namespace DAL
     
     public partial class Categories
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Categories()
         {
             this.Unit = new HashSet<Unit>();
@@ -26,7 +25,6 @@ namespace DAL
         public string category_img { get; set; }
         public string description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unit> Unit { get; set; }
         public virtual Category_type Category_type { get; set; }
     }

@@ -12,9 +12,14 @@ namespace taras_shop.Controllers
 {
     public class HomeController : Controller
     {
+        ICategoryProvider _categoryProvider;
+        public HomeController(ICategoryProvider categoryProvider)
+        {
+            _categoryProvider = categoryProvider;
+        }
         public ActionResult Index()
         {
-            ICategoryProvider _categoryProvider = new CategoryProvider();
+            
             ICategoryTypeProvider _categoryTypeProvider = new CategoryTypeProvider();
             IUnitProvider _unitProvider = new UnitProvider();
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()

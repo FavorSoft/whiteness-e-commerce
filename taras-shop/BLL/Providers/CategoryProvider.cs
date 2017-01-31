@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL.Repositories;
+using DAL;
 namespace BLL.Providers
 {
     public class CategoryProvider : ICategoryProvider
     {
         DAL.ICategoriesRepository _repo;
-        public CategoryProvider()
+        public CategoryProvider(ICategoriesRepository di)
         {
-            _repo = new DAL.Repositories.CategoriesRepository();
+            _repo = di;
         }
-        public void AddItem(Categories category)
+        public void AddItem(DTO.Categories category)
         {
             _repo.AddItem(new DAL.Categories()
             {
@@ -25,17 +26,17 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<Categories> GetAll()
+        public IEnumerable<DTO.Categories> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<Categories> ConvertModeltoDTO(IQueryable<DAL.Categories> repo)
+        List<DTO.Categories> ConvertModeltoDTO(IQueryable<DAL.Categories> repo)
         {
-            List<Categories> res = new List<Categories>();
+            List<DTO.Categories> res = new List<DTO.Categories>();
             foreach(var i in repo)
             {
-                res.Add(new Categories()
+                res.Add(new DTO.Categories()
                 {
                     Id = i.id,
                     Category = i.category,
@@ -47,10 +48,10 @@ namespace BLL.Providers
             return res;
         }
 
-        public Categories GetById(int id)
+        public DTO.Categories GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            DTO.Categories category = new Categories()
+            DTO.Categories category = new DTO.Categories()
             {
                 Category = tmp.category,
                 CategoryImg = tmp.category_img,

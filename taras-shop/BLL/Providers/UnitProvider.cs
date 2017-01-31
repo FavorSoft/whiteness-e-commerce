@@ -60,14 +60,9 @@ namespace BLL.Providers
             return ConvertModeltoDTO(list);
         }
 
-        List<DTO.Unit> ConvertModeltoDTO(IQueryable<DAL.Unit> repo)
+        IEnumerable<DTO.Unit> ConvertModeltoDTO(IQueryable<DAL.Unit> repo)
         {
-            List<DTO.Unit> res = new List<DTO.Unit>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Unit()
-                {
-                    Id = i.id,
+            IEnumerable<DTO.Unit> res = repo.Select(i=>new DTO.Unit() { Id = i.id,
                     Amount = i.amount,
                     Size = i.size,
                     CategoryId = i.category_id,
@@ -77,9 +72,8 @@ namespace BLL.Providers
                     Material = i.material, 
                     Price = i.price,
                     Producer = i.producer,
-                    Title = i.title
-                });
-            }
+                    Title = i.title });
+           
             return res;
         }
 

@@ -695,7 +695,7 @@ input[type=checkbox]:checked ~ label{
 .main .unit
 {
     background-position: 50%;
-    height: 280px;
+    height: 300px;
     padding-right: 0px;
     padding-left: 0px;
     position: relative;
@@ -722,8 +722,8 @@ input[type=checkbox]:checked ~ label{
 .text-unit-part
 {
     position: absolute;
-    width: 225px;
-    top: 285px;
+    width: 95%;
+    top: 270px;
     left: 50%;
     transform: translate(-50%, -50%);
 }

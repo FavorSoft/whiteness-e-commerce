@@ -208,12 +208,32 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animation.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\fontello.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\images\basket.jpg" />
+    <Content Include="Content\images\he.jpg" />
+    <Content Include="Content\images\her.jpg" />
+    <Content Include="Content\images\logo-Vol.jpg" />
+    <Content Include="Content\images\lorem.jpg" />
+    <Content Include="Content\images\mant.jpg" />
+    <Content Include="Content\images\news.jpg" />
+    <Content Include="Content\images\register.jpg" />
+    <Content Include="Content\images\search.jpg" />
+    <Content Include="Content\images\slider.jpg" />
+    <Content Include="Content\images\small-womant.jpg" />
+    <Content Include="Content\images\topsale.jpg" />
+    <Content Include="Content\images\topsale.png" />
+    <Content Include="Content\images\topsalenew.jpg" />
+    <Content Include="Content\images\womant.jpg" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontello.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -221,6 +241,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\fontello.woff2" />
+    <Content Include="fonts\fontello.eot" />
+    <Content Include="fonts\fontello.ttf" />
+    <Content Include="fonts\fontello.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -229,6 +253,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -267,6 +292,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

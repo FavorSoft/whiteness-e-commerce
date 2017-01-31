@@ -138,25 +138,6 @@
             <section class="main">
                 <div class="col-md-9 search-img"></div>
                 <div class="col-md-9 col-md-offset-1 find-filters">
-                    <!--<form id="filters-form" class="form-inline">
-                        <div class="form-group">
-                            <label for="sort-select">Сортировать: </label>
-                            <select class="form-control" id="sort-select">
-                                <option value="sale">Со скидками</option>
-                                <option value="new">Сначала новые</option>
-                                <option value="cheap">Сначала дешевые</option>
-                                <option value="expencive">Сначала дорогие</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="view-select">Показать: </label>
-                            <select class="form-control" id="view-select">
-                                <option class="view-option" value="14">14</option>
-                                <option value="32">32</option>
-                            </select>
-                        </div>
-                        <span class="how-many">14 из 300</span>
-                    </form>-->
                     <div id="dropdowns">
                         <div id="sort-dropdown" class="dropdown">
                             <label for="sort-dropdown">Сортировать:</label>
@@ -181,7 +162,19 @@
                                 <li><a href="#">14</a></li>
                                 <li><a href="#">32</a></li>
                             </ul>
+                            <span class="how-many">14 из 300</span>
                         </div>
+                    </div>
+                    <div class="pagination-block">
+                            <div class="left-pg">
+                                <span class="material-icons">keyboard_arrow_left</span>
+                            </div>
+                            <span class="page-pg">Страница</span>
+                            <input type="text" class="pg-input">
+                            <span class="how-many-pg">из 21</span>
+                            <div class="right-pg">
+                                <span class="material-icons">keyboard_arrow_right</span>
+                            </div>
                     </div>
                 </div>
                 <div class="col-md-9 found-units">
@@ -348,6 +341,46 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-9 col-md-offset-3 find-filters find-filters-bottom">
+                    <div id="dropdowns">
+                        <div id="sort-dropdown" class="dropdown">
+                            <label for="sort-dropdown">Сортировать:</label>
+                            <button class="btn dropdown-toggle" 
+                            type="button" data-toggle="dropdown">
+                            Сортировать
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Со скидками</a></li>
+                                <li><a href="#">Сначала новые</a></li>
+                                <li><a href="#">Сначала дешевые</a></li>
+                                <li><a href="#">Сначала дорогие</a></li>
+                            </ul>
+                        </div>
+                        <div id="view-dropdown" class="dropdown">
+                            <label for="sort-dropdown">Показать:</label>
+                            <button class="btn dropdown-toggle" 
+                            type="button" data-toggle="dropdown">
+                            14
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">14</a></li>
+                                <li><a href="#">32</a></li>
+                            </ul>
+                            <span class="how-many">14 из 300</span>
+                        </div>
+                    </div>
+                    <div class="pagination-block">
+                            <div class="left-pg">
+                                <span class="material-icons">keyboard_arrow_left</span>
+                            </div>
+                            <span class="page-pg">Страница</span>
+                            <input type="text" class="pg-input">
+                            <span class="how-many-pg">из 21</span>
+                            <div class="right-pg">
+                                <span class="material-icons">keyboard_arrow_right</span>
+                            </div>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
@@ -373,13 +406,13 @@
                         <div class="icon-facebook"></div>
                     </a>
                     <a href="#">
+                        <div class="icon-instagram"></div>
+                    </a>
+                    <a href="#">
                         <div class="icon-vkontakte"></div>
                     </a>
                     <a href="#">
                         <div class="icon-youtube"></div>
-                    </a>
-                    <a href="#">
-                        <div class="icon-instagram"></div>
                     </a>
                 </div>
             </div>

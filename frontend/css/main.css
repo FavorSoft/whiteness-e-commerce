@@ -39,7 +39,7 @@
 
 .nav-left
 {
-    padding: 18px;
+    padding: 14px;
     font-size: 18px;
 }
 
@@ -62,6 +62,7 @@
 
 .header .navbar-default .navbar-nav>li>a:link {
     color: #000;
+    outline: none;
 }
 
 .navbar-right > li > a > span
@@ -69,6 +70,110 @@
     font-size: 15px;
 }
 
+/* Header section end*/
+
+/* Registration modal */
+
+#registration-modal
+{
+    margin: 0 auto;
+}
+
+#registration-modal .modal-content
+{
+    border-radius: 0;
+}
+
+#registration-modal .close span:focus
+{
+    outline: none;
+}
+
+#registration-modal .modal-header
+{
+    border: none;
+}
+
+#registration-modal .modal-footer
+{
+    border: none;
+}
+
+#registration-modal .modal-dialog
+{
+    width: 100%;
+}
+
+#registration-modal label
+{
+    display: block;
+    text-align: left;
+}
+
+#registration-modal input
+{
+    width: calc(100% - 10px);
+    height: 50px;
+    border: none;
+    background-color: #ebebeb;
+    outline: none;
+    box-sizing: content-box;
+    padding-left: 10px;
+}
+
+.reg-h,
+.login-h
+{
+    margin-bottom: 20px;
+}
+
+.login,
+.registration
+{
+    text-align: center;
+}
+
+.submit-log,
+.reg-log,
+.facebook-reg
+{
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    background-color: #000;
+}
+
+.reg-p
+{
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.why-reg
+{
+    margin: 20px 0px;
+    display: block;
+    font-size: 15px;
+}
+
+.reg-line
+{
+    width: 100%;
+    border-top: 1px solid #bfbfbf;
+    margin: 25px 0px 40px 0px;
+}
+
+.facebook-reg
+{
+    background-color: #5972a8;
+}
+/* Registration modal end */
+
+/* Sidebar section */
 .sidebar
 {
     color: #000;
@@ -249,6 +354,12 @@ input[type=checkbox]:checked ~ label{
   color: #000;
 }
 
+/* Sidebar section end */
+
+/* Main section */
+
+/* News and them blocks */
+
 .main
 {
     margin-top: 30px;
@@ -307,11 +418,6 @@ input[type=checkbox]:checked ~ label{
 
 @media screen and (min-width: 1200px)
 {
-    .divide
-    {
-        /*display: none;*/
-    }
-
     .her-img
     {
         margin: 0 auto;
@@ -370,6 +476,10 @@ input[type=checkbox]:checked ~ label{
     margin-top: 0px;
     font-size: 30px;
 }
+
+/* News and them blocks end */
+
+/* Unit block */
 
 .main .popular-units,
 .main .recommend-units
@@ -459,7 +569,9 @@ input[type=checkbox]:checked ~ label{
     margin-left: 10px;
 }
 
-/*------------------------*/
+/* Unit block end */
+
+/* Recommend block */
 
 .main .recommend-row .unit
 {
@@ -538,7 +650,10 @@ input[type=checkbox]:checked ~ label{
     margin-left: 10px;
 }
 
-/*------------------------------*/
+/* Recommend block end */
+
+/* About block */
+
 .main .about
 {
     float: right;
@@ -555,6 +670,12 @@ input[type=checkbox]:checked ~ label{
 {
     margin-bottom: 30px;
 }
+
+/* Info block end */
+
+/* Main section end */
+
+/* Footer section */
 
 footer .subscribe
 {
@@ -646,9 +767,9 @@ footer .subscribe
 
 .icon-instagram:hover
 {
-    background-color: #2E5E86;
     color: #fff;
-    border: 1px solid #2E5E86;
+    border: 1px solid #d9317a;
+    background-color: #d9317a;
 }
 
 .contacts
@@ -725,3 +846,5 @@ footer .subscribe
 {
     padding: 15px 0px;
 }
+
+/* Footer section end */

@@ -25,10 +25,11 @@ namespace BLL.Providers
             });
         }
 
-        public List<Categories> GetAll()
+        public IEnumerable<Categories> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
+
         List<Categories> ConvertModeltoDTO(IQueryable<DAL.Categories> repo)
         {
             List<Categories> res = new List<Categories>();

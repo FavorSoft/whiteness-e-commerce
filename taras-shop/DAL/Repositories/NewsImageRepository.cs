@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class NewsImage : INewsImageRepository
+    public class NewsImageRepository : INewsImageRepository
     {
         Entities entities;
-        public NewsImage()
+        public NewsImageRepository()
         {
             entities = new Entities();
         }

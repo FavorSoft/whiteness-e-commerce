@@ -1,6 +1,7 @@
-﻿@{
+﻿@model taras_shop.Models.HomeIndexViewModels
+@{
     ViewBag.Title = "Home Page";
-    
+
 }
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -40,29 +41,28 @@
                 <h4>Жінки</h4>
                 <div>
                     <ul class="women">
-                        <li>Бюстгалтери</li>
-                        <li>Комплекти</li>
-                        <li>Нічні сорочки</li>
-                        <li>Термобілизна</li>
-                        <li>Труси</li>
+                        @foreach (var i in Model.categories.Where(x => x.TypeId == 1))
+                        {
+                            <li>@i.Category</li>
+                        }
                     </ul>
                 </div>
                 <h4>Чоловіки</h4>
                 <div>
                     <ul class="men">
-                        <li>Труси</li>
-                        <li>Підштанники</li>
-                        <li>Нічні сорочки</li>
-                        <li>Піжами</li>
+                        @foreach (var i in Model.categories.Where(x => x.TypeId == 2))
+                        {
+                            <li>@i.Category</li>
+                        }
                     </ul>
                 </div>
                 <h4>Діти</h4>
                 <div>
                     <ul class="children">
-                        <li>Труси</li>
-                        <li>Підштанники</li>
-                        <li>Нічні сорочки</li>
-                        <li>Піжами</li>
+                        @foreach (var i in Model.categories.Where(x => x.TypeId == 3))
+                        {
+                            <li>@i.Category</li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -141,6 +141,7 @@
                     </div>
                 </div>
             </a>
+            @*Popular articles*@
             <div class="col-md-9 popular-units">
                 <div class="title-lines">
                     <div class="col-md-4 left-line"></div>
@@ -148,21 +149,37 @@
                     <div class="col-md-4 right-line"></div>
                 </div>
                 <div class="unit-block">
-                    <div class="col-md-5 col-lg-5 unit">
-                        <img src="~/Content/images/topsale.png" alt="topsale">
-                        <div class="text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
+                    @{ 
+                        int count = 0;
+                        foreach (var i in Model.popular)
+                        {
+
+                            string cssClass = "";
+                            if (count % 2 == 0)
+                            {
+                                cssClass = "col-md-5 col-lg-5 unit";
+                            }
+                            else
+                            {
+                                cssClass = "col-md-offset-2 col-md-5 col-lg-5 unit";
+                            }
+                            count++;
+                            <div class="@cssClass">
+                                <img src="~/Content/images/topsale.png" alt="topsale">
+                                <div class="text-unit-part">
+                                    <div class="title-unit-part">
+                                        <span class="company-maker">@i.Title</span>
+                                        <span class="item-type">/ @Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</span>
+                                    </div>
+                                    <div class="price-unit-part">
+                                        <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0))/100)) грн</span>
+                                        <span class="price-was">79.90 грн</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-5 col-lg-5 unit">
+                        }
+                    }
+                    @*<div class="col-md-offset-2 col-md-5 col-lg-5 unit">
                         <img src="~/Content/images/topsale.png" alt="topsale">
                         <div class="text-unit-part">
                             <div class="title-unit-part">
@@ -174,7 +191,7 @@
                                 <span class="price-was">79.90 грн</span>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="unit-block">
                     <div class="col-md-5 col-lg-5 unit">
@@ -190,8 +207,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-5 col-lg-5 unit">
+                    @*<div class="col-md-2"></div>*@
+                    <div class="col-md-offset-2 col-md-5 col-lg-5 unit">
                         <img src="~/Content/images/topsale.png" alt="topsale">
                         <div class="text-unit-part">
                             <div class="title-unit-part">

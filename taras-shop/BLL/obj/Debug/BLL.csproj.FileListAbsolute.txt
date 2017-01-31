@@ -9,3 +9,14 @@ E:\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\DTO.pdb
 E:\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\EntityFramework.xml
 E:\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.dll
 E:\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.pdb
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\BLL.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\BLL.pdb
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\DAL.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\DTO.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\EntityFramework.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\DAL.pdb
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\DTO.pdb
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\EntityFramework.xml
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.pdb

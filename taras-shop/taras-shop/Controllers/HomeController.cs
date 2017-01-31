@@ -1,4 +1,6 @@
 ﻿using BLL;
+using DTO;
+using BLL.IProviders;
 using BLL.Providers;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,18 @@ namespace taras_shop.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ICategoryProvider _categoryProvider = new CategoryProvider();
+            ICategoryTypeProvider _categoryTypeProvider = new CategoryTypeProvider();
+            IUnitProvider _unitProvider = new UnitProvider();
+            Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
+            {
+                categories = _categoryProvider.GetAll(),
+                categoryTypes = _categoryTypeProvider.GetAll(),
+                popular = _unitProvider.GetPopular(4),
+                recommended = _unitProvider.GetRecommends()
+            };
+
+            return View(model);
         }
 
         public ActionResult About()
@@ -34,4 +47,5 @@ namespace taras_shop.Controllers
             return View();
         }
     }
+    
 }

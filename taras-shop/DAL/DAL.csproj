@@ -119,7 +119,7 @@
     <Compile Include="Repositories\CategoriesRepository.cs" />
     <Compile Include="Repositories\CategoryTypeRepository.cs" />
     <Compile Include="Repositories\ImagesRepository.cs" />
-    <Compile Include="Repositories\NewsImage.cs" />
+    <Compile Include="Repositories\NewsImageRepository.cs" />
     <Compile Include="Repositories\NewsRepository.cs" />
     <Compile Include="Repositories\OrderItemsRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />

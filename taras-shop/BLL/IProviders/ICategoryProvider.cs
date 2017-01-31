@@ -9,7 +9,7 @@ namespace BLL
     public interface ICategoryProvider
     {
         void AddItem(DTO.Categories category);
-        List<DTO.Categories> GetAll();
+        IEnumerable<DTO.Categories> GetAll();
         DTO.Categories GetById(int id);
     }
 }

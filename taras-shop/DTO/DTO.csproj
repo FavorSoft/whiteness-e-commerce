@@ -33,7 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -47,6 +46,7 @@
     <Compile Include="Helpers\Images.cs" />
     <Compile Include="Helpers\News.cs" />
     <Compile Include="Helpers\NewsImage.cs" />
+    <Compile Include="Helpers\NewsImages.cs" />
     <Compile Include="Helpers\Order.cs" />
     <Compile Include="Helpers\OrderItems.cs" />
     <Compile Include="Helpers\Roles.cs" />

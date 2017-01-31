@@ -40,9 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProviders\IBasketItemsProvider.cs" />
+    <Compile Include="IProviders\IBasketProvider.cs" />
     <Compile Include="IProviders\ICategoryProvider.cs" />
+    <Compile Include="IProviders\ICategoryTypeProvider.cs" />
+    <Compile Include="IProviders\IImagesProvider.cs" />
+    <Compile Include="IProviders\INewsImagesProvider.cs" />
+    <Compile Include="IProviders\INewsProvider.cs" />
+    <Compile Include="IProviders\IOrderProvider.cs" />
+    <Compile Include="IProviders\IOrderItemsProvider.cs" />
+    <Compile Include="IProviders\IRoleProvider.cs" />
+    <Compile Include="IProviders\IUnitProvider.cs" />
+    <Compile Include="IProviders\IUserProvider.cs" />
+    <Compile Include="Providers\NewsImagesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BasketItemsProvider.cs" />
+    <Compile Include="Providers\BasketProvider.cs" />
     <Compile Include="Providers\CategoryProvider.cs" />
+    <Compile Include="Providers\CategoryTypeProvider.cs" />
+    <Compile Include="Providers\OrderProvider.cs" />
+    <Compile Include="Providers\OrderItemsProvider.cs" />
+    <Compile Include="Providers\ImagesProvider.cs" />
+    <Compile Include="Providers\NewsProvider.cs" />
+    <Compile Include="Providers\RoleProvider.cs" />
+    <Compile Include="Providers\UnitProvider.cs" />
+    <Compile Include="Providers\UserProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

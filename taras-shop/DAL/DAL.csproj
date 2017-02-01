@@ -85,7 +85,7 @@
     <Compile Include="IRepositories\IOrder_itemsRepository.cs" />
     <Compile Include="IRepositories\IRoleRepository.cs" />
     <Compile Include="IRepositories\IUnitRepository.cs" />
-    <Compile Include="IRepositories\IUserRepositiry.cs" />
+    <Compile Include="IRepositories\IUserRepository.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

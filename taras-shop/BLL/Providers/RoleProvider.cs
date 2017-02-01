@@ -12,42 +12,38 @@ namespace BLL.Providers
 {
     public class RoleProvider : IRoleProvider
     {
-        IRoleRepository _repo;
-        public RoleProvider()
+        readonly IRoleRepository _repo;
+        public RoleProvider(IRoleRepository di)
         {
-            _repo = new RoleRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.Roles role)
+        public void AddItem(RolesDto role)
         {
-            _repo.AddItem(new DAL.Roles()
+            _repo.AddItem(new Roles()
             {
                 role = role.Role
             });
         }
 
-        public IEnumerable<DTO.Roles> GetAll()
+        public IEnumerable<RolesDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Roles> ConvertModeltoDTO(IQueryable<DAL.Roles> repo)
+        IEnumerable<RolesDto> ConvertModeltoDTO(IQueryable<Roles> repo)
         {
-            List<DTO.Roles> res = new List<DTO.Roles>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Roles()
+            List<RolesDto> res = repo.Select(i => new RolesDto()
                 {
                     Id = i.id,
                     Role = i.role
-                });
-            }
+                }).ToList();
             return res;
         }
 
-        public DTO.Roles GetById(int id)
+        public RolesDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new DTO.Roles()
+            return new RolesDto()
             {
                 Id = tmp.id,
                 Role = tmp.role

@@ -12,44 +12,40 @@ namespace BLL.Providers
 {
     public class ImagesProvider : IImagesProvider
     {
-        IImagesRepository _repo;
-        public ImagesProvider()
+        readonly IImagesRepository _repo;
+        public ImagesProvider(IImagesRepository di)
         {
-            _repo = new ImagesRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.Images images)
+        public void AddItem(ImagesDto images)
         {
-            _repo.AddItem(new DAL.Images()
+            _repo.AddItem(new Images()
             {
                 image = images.Image,
                 owner_id = images.OwnerId
             });
         }
 
-        public IEnumerable<DTO.Images> GetAll()
+        public IEnumerable<ImagesDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Images> ConvertModeltoDTO(IQueryable<DAL.Images> repo)
+        IEnumerable<ImagesDto> ConvertModeltoDTO(IQueryable<Images> repo)
         {
-            List<DTO.Images> res = new List<DTO.Images>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Images()
+            IEnumerable<ImagesDto> res = repo.Select(i => new ImagesDto()
                 {
                     Id = i.id,
                     Image = i.image,
                     OwnerId = i.owner_id
                 });
-            }
             return res;
         }
 
-        public DTO.Images GetById(int id)
+        public ImagesDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new DTO.Images()
+            return new ImagesDto()
             {
                 Id = tmp.id,
                 Image = tmp.image,

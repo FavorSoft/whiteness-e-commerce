@@ -12,12 +12,12 @@ namespace BLL.Providers
 {
     public class OrderItemsProvider : IOrderItemsProvider
     {
-        IOrderItemsRepository _repo;
-        public OrderItemsProvider()
+        readonly IOrderItemsRepository _repo;
+        public OrderItemsProvider(IOrderItemsRepository di)
         {
-            _repo = new OrderItemsRepository();
+            _repo = di;
         }
-        public void AddItem(OrderItems orderItems)
+        public void AddItem(OrderItemsDto orderItems)
         {
             _repo.AddItem(new Order_items()
             {
@@ -28,17 +28,14 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<OrderItems> GetAll()
+        public IEnumerable<OrderItemsDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.OrderItems> ConvertModeltoDTO(IQueryable<DAL.Order_items> repo)
+        IEnumerable<OrderItemsDto> ConvertModeltoDTO(IQueryable<Order_items> repo)
         {
-            List<DTO.OrderItems> res = new List<DTO.OrderItems>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.OrderItems()
+            IEnumerable<OrderItemsDto> res = repo.Select(i => new OrderItemsDto()
                 {
                     Id = i.id,
                     Amount = i.amount,
@@ -46,14 +43,13 @@ namespace BLL.Providers
                     Price = i.price,
                     UnitId = i.unit_id
                 });
-            }
             return res;
         }
 
-        public OrderItems GetById(int id)
+        public OrderItemsDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new OrderItems()
+            return new OrderItemsDto()
             {
                 Amount = tmp.amount,
                 Id = tmp.id,

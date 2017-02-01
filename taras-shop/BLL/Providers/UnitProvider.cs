@@ -12,14 +12,14 @@ namespace BLL.Providers
 {
     public class UnitProvider : IUnitProvider
     {
-        IUnitRepository _repo;
-        public UnitProvider()
+        readonly IUnitRepository _repo;
+        public UnitProvider(IUnitRepository di)
         {
-            _repo = new UnitRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.Unit unit)
+        public void AddItem(UnitDto unit)
         {
-            _repo.AddItem(new DAL.Unit()
+            _repo.AddItem(new Unit()
             {
                 amount = unit.Amount,
                 category_id = unit.CategoryId,
@@ -34,35 +34,36 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<DTO.Unit> GetAll()
+        public IEnumerable<UnitDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        public IEnumerable<DTO.Unit> GetSomeUnits(int start, int amount)
+        public IEnumerable<UnitDto> GetSomeUnits(int start, int amount)
         {
-            IQueryable<DAL.Unit> list;
+            IQueryable<Unit> list;
             list = _repo.GetAll().Skip(start).Take(amount);
             return ConvertModeltoDTO(list);
         }
 
-        public IEnumerable<DTO.Unit> GetPopular(int amount)
+        public IEnumerable<UnitDto> GetPopular(int amount)
         {
-            IQueryable<DAL.Unit> list;
+            IQueryable<Unit> list;
             list = _repo.GetAll().OrderBy(x => x.likes).Take(amount);
             return ConvertModeltoDTO(list);
         }
 
-        public IEnumerable<DTO.Unit> GetRecommends()
+        public IEnumerable<UnitDto> GetRecommends()
         {
-            IQueryable<DAL.Unit> list;
+            IQueryable<Unit> list;
             list = _repo.GetAll().Take(3);
             return ConvertModeltoDTO(list);
         }
 
-        IEnumerable<DTO.Unit> ConvertModeltoDTO(IQueryable<DAL.Unit> repo)
+        IEnumerable<UnitDto> ConvertModeltoDTO(IQueryable<Unit> repo)
         {
-            IEnumerable<DTO.Unit> res = repo.Select(i=>new DTO.Unit() { Id = i.id,
+            IEnumerable<UnitDto> res = repo.Select(i=>new UnitDto() {
+                    Id = i.id,
                     Amount = i.amount,
                     Size = i.size,
                     CategoryId = i.category_id,
@@ -77,10 +78,10 @@ namespace BLL.Providers
             return res;
         }
 
-        public DTO.Unit GetById(int id)
+        public UnitDto GetById(int id)
         {
             var i = _repo.GetById(id);
-            return new DTO.Unit()
+            return new UnitDto()
             {
                 Id = i.id,
                 Amount = i.amount,

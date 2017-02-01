@@ -8,8 +8,8 @@ namespace BLL.IProviders
 {
     public interface INewsImagesProvider
     {
-        void AddItem(DTO.Helpers.NewsImages images);
-        IEnumerable<DTO.Helpers.NewsImages> GetAll();
-        DTO.Helpers.NewsImages GetById(int id);
+        void AddItem(DTO.Helpers.NewsImagesDto images);
+        IEnumerable<DTO.Helpers.NewsImagesDto> GetAll();
+        DTO.Helpers.NewsImagesDto GetById(int id);
     }
 }

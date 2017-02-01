@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UserRepository : IUserRepositiry
+    public class UserRepository : IUserRepository
     {
         Entities entities;
         public UserRepository()

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DTO;
 namespace BLL.IProviders
 {
     public interface ICategoryTypeProvider
     {
-        void AddItem(DTO.CategoryType categoryType);
-        IEnumerable<DTO.CategoryType> GetAll();
-        DTO.CategoryType GetById(int id);
+        void AddItem(CategoryTypeDto categoryType);
+        IEnumerable<CategoryTypeDto> GetAll();
+        DTO.CategoryTypeDto GetById(int id);
     }
 }

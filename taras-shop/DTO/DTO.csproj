@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Basket.cs" />
+    <Compile Include="Helpers\BasketDto.cs" />
     <Compile Include="Helpers\BasketItems.cs" />
     <Compile Include="Helpers\Categories.cs" />
     <Compile Include="Helpers\CategoryType.cs" />

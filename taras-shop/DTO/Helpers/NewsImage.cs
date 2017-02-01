@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class NewsImage
+    class NewsImageDto
     {
         public int Id { get; set; }
         public string Image { get; set; }

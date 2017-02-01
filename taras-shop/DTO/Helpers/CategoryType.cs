@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class CategoryType
+    public class CategoryTypeDto
     {
         public int Id { get; set; }
         public string Type { get; set; }

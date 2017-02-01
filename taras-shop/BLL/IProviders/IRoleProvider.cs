@@ -8,8 +8,8 @@ namespace BLL.IProviders
 {
     public interface IRoleProvider
     {
-        void AddItem(DTO.Roles category);
-        IEnumerable<DTO.Roles> GetAll();
-        DTO.Roles GetById(int id);
+        void AddItem(DTO.RolesDto category);
+        IEnumerable<DTO.RolesDto> GetAll();
+        DTO.RolesDto GetById(int id);
     }
 }

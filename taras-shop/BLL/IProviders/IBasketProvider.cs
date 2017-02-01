@@ -8,8 +8,8 @@ namespace BLL.IProviders
 {
     public interface IBasketProvider
     {
-        void AddItem(DTO.Basket basket);
-        List<DTO.Basket> GetAll();
-        DTO.Basket GetById(int id);
+        void AddItem(DTO.BasketDto basket);
+        IEnumerable<DTO.BasketDto> GetAll();
+        DTO.BasketDto GetById(int id);
     }
 }

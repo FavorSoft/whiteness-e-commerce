@@ -12,12 +12,12 @@ namespace BLL.Providers
 {
     public class BasketItemsProvider : IBasketItemsProvider
     {
-        IBasketItemsRepository _repo;
-        public BasketItemsProvider()
+        readonly IBasketItemsRepository _repo;
+        public BasketItemsProvider(IBasketItemsRepository di)
         {
-            _repo = new BasketItemsRepository();
+            _repo = di;
         }
-        public void AddItem(BasketItems basketItems)
+        public void AddItem(BasketItemsDto basketItems)
         {
             _repo.AddItem(new Basket_items()
             {
@@ -27,31 +27,26 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<BasketItems> GetAll()
+        public IEnumerable<BasketItemsDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
-        List<BasketItems> ConvertModeltoDTO(IQueryable<DAL.Basket_items> repo)
+        IEnumerable<BasketItemsDto> ConvertModeltoDTO(IQueryable<Basket_items> repo)
         {
-            List<BasketItems> res = new List<BasketItems>();
-            foreach (var i in repo)
-            {
-                res.Add(new BasketItems()
+            IEnumerable<BasketItemsDto> res = repo.Select(i => new BasketItemsDto()
                 {
                     Id = i.id,
                     Amount = i.amount,
                     BasketId = i.basket_id,
                     UnitId = i.unit_id
                 });
-            }
             return res;
         }
 
-        public BasketItems GetById(int id)
+        public BasketItemsDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-
-            return new BasketItems()
+            return new BasketItemsDto()
             {
                 Id = tmp.id,
                 Amount = tmp.amount,

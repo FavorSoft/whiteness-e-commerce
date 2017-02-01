@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using DTO;
 using DAL.Repositories;
 using DAL;
+using BLL.IProviders;
+
 namespace BLL.Providers
 {
     public class CategoryProvider : ICategoryProvider
     {
-        DAL.ICategoriesRepository _repo;
+        readonly ICategoriesRepository _repo;
         public CategoryProvider(ICategoriesRepository di)
         {
             _repo = di;
         }
-        public void AddItem(DTO.Categories category)
+        public void AddItem(CategoriesDto category)
         {
-            _repo.AddItem(new DAL.Categories()
+            _repo.AddItem(new Categories()
             {
                 category = category.Category,
                 category_img = category.CategoryImg,
@@ -26,17 +28,14 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<DTO.Categories> GetAll()
+        public IEnumerable<CategoriesDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Categories> ConvertModeltoDTO(IQueryable<DAL.Categories> repo)
+        IEnumerable<CategoriesDto> ConvertModeltoDTO(IQueryable<Categories> repo)
         {
-            List<DTO.Categories> res = new List<DTO.Categories>();
-            foreach(var i in repo)
-            {
-                res.Add(new DTO.Categories()
+            IEnumerable<CategoriesDto> res = repo.Select(i => new CategoriesDto()
                 {
                     Id = i.id,
                     Category = i.category,
@@ -44,14 +43,13 @@ namespace BLL.Providers
                     Description = i.description,
                     TypeId = i.type_id
                 });
-            }
             return res;
         }
 
-        public DTO.Categories GetById(int id)
+        public CategoriesDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            DTO.Categories category = new DTO.Categories()
+            CategoriesDto category = new CategoriesDto()
             {
                 Category = tmp.category,
                 CategoryImg = tmp.category_img,

@@ -8,12 +8,12 @@ namespace BLL.IProviders
 {
     public interface IUnitProvider
     {
-        void AddItem(DTO.Unit category);
-        IEnumerable<DTO.Unit> GetAll();
-        IEnumerable<DTO.Unit> GetSomeUnits(int start, int amount);
-        IEnumerable<DTO.Unit> GetPopular(int amount);
-        IEnumerable<DTO.Unit> GetRecommends();
-        DTO.Unit GetById(int id);
+        void AddItem(DTO.UnitDto category);
+        IEnumerable<DTO.UnitDto> GetAll();
+        IEnumerable<DTO.UnitDto> GetSomeUnits(int start, int amount);
+        IEnumerable<DTO.UnitDto> GetPopular(int amount);
+        IEnumerable<DTO.UnitDto> GetRecommends();
+        DTO.UnitDto GetById(int id);
         
     }
 }

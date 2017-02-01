@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class BasketItems
+    public class BasketItemsDto
     {
         public int Id { get; set; }
         public int BasketId { get; set; }

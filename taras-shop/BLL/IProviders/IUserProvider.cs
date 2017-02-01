@@ -8,8 +8,8 @@ namespace BLL.IProviders
 {
     public interface IUserProvider
     {
-        void AddItem(DTO.Users category);
-        IEnumerable<DTO.Users> GetAll();
-        DTO.Users GetById(int id);
+        void AddItem(DTO.UsersDto category);
+        IEnumerable<DTO.UsersDto> GetAll();
+        DTO.UsersDto GetById(int id);
     }
 }

@@ -12,15 +12,15 @@ namespace BLL.Providers
 {
     public class NewsProvider : INewsProvider
     {
-        INewsRepository _repo;
-        public NewsProvider()
+        readonly INewsRepository _repo;
+        public NewsProvider(INewsRepository di)
         {
-            _repo = new NewsRepository();
+            _repo = di;
         }
 
-        public void AddItem(DTO.News category)
+        public void AddItem(NewsDto category)
         {
-            _repo.AddItem(new DAL.News()
+            _repo.AddItem(new News()
             {
                 data_create = category.DataCreate,
                 description = category.Description,
@@ -28,31 +28,27 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<DTO.News> GetAll()
+        public IEnumerable<NewsDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.News>ConvertModeltoDTO(IQueryable<DAL.News> repo)
+        IEnumerable<NewsDto>ConvertModeltoDTO(IQueryable<News> repo)
         {
-            List<DTO.News> res = new List<DTO.News>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.News()
+            IEnumerable<NewsDto> res = repo.Select(i => new NewsDto()
                 {
                     Id = i.id,
                     DataCreate = i.data_create,
                     Title = i.title,
                     Description = i.description
                 });
-            }
             return res;
         }
 
-        public DTO.News GetById(int id)
+        public NewsDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new DTO.News()
+            return new NewsDto()
             {
                 Id = tmp.id,
                 DataCreate = tmp.data_create,

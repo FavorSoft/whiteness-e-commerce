@@ -8,8 +8,8 @@ namespace BLL.IProviders
 {
     public interface IOrderProvider
     {
-        void AddItem(DTO.Order category);
-        IEnumerable<DTO.Order> GetAll();
-        DTO.Order GetById(int id);
+        void AddItem(DTO.OrderDto category);
+        IEnumerable<DTO.OrderDto> GetAll();
+        DTO.OrderDto GetById(int id);
     }
 }

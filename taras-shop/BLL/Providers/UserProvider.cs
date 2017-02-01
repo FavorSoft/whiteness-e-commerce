@@ -12,14 +12,14 @@ namespace BLL.Providers
 {
     public class UserProvider : IUserProvider
     {
-        IUserRepositiry _repo;
-        public UserProvider()
+        readonly IUserRepository _repo;
+        public UserProvider(IUserRepository di)
         {
-            _repo = new UserRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.Users user)
+        public void AddItem(UsersDto user)
         {
-            _repo.AddItem(new DAL.Users()
+            _repo.AddItem(new Users()
             {
                 email = user.Email,
                 name = user.Name,
@@ -31,17 +31,14 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<DTO.Users> GetAll()
+        public IEnumerable<UsersDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Users> ConvertModeltoDTO(IQueryable<DAL.Users> repo)
+        IEnumerable<UsersDto> ConvertModeltoDTO(IQueryable<Users> repo)
         {
-            List<DTO.Users> res = new List<DTO.Users>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Users()
+            List<UsersDto> res = repo.Select(i => new UsersDto()
                 {
                     Id = i.id,
                     Email = i.email,
@@ -51,14 +48,14 @@ namespace BLL.Providers
                     RegDate = i.reg_date,
                     RoleId = i.role_id,
                     Surname = i.surname
-                });
-            }
+                }).ToList();
+            
             return res;
         }
-        public DTO.Users GetById(int id)
+        public UsersDto GetById(int id)
         {
             var i = _repo.GetById(id);
-            return new DTO.Users()
+            return new UsersDto()
             {
                 Id = i.id,
                 Email = i.email,

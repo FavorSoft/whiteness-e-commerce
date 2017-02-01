@@ -8,8 +8,8 @@ namespace BLL.IProviders
 {
     public interface INewsProvider
     {
-        void AddItem(DTO.News category);
-        IEnumerable<DTO.News> GetAll();
-        DTO.News GetById(int id);
+        void AddItem(DTO.NewsDto category);
+        IEnumerable<DTO.NewsDto> GetAll();
+        DTO.NewsDto GetById(int id);
     }
 }

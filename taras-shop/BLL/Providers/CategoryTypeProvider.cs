@@ -12,12 +12,12 @@ namespace BLL.Providers
 {
     public class CategoryTypeProvider : ICategoryTypeProvider
     {
-        ICategoryTypeRepository _repo;
-        public CategoryTypeProvider()
+        readonly ICategoryTypeRepository _repo;
+        public CategoryTypeProvider(ICategoryTypeRepository di)
         {
-            _repo = new CategoryTypeRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.CategoryType category)
+        public void AddItem(CategoryTypeDto category)
         {
             _repo.AddItem(new Category_type()
             {
@@ -25,29 +25,25 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<DTO.CategoryType> GetAll()
+        public IEnumerable<CategoryTypeDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<CategoryType> ConvertModeltoDTO(IQueryable<DAL.Category_type> repo)
+        IEnumerable<CategoryTypeDto> ConvertModeltoDTO(IQueryable<Category_type> repo)
         {
-            List<CategoryType> res = new List<CategoryType>();
-            foreach (var i in repo)
-            {
-                res.Add(new CategoryType()
+            IEnumerable<CategoryTypeDto> res = repo.Select(i => new CategoryTypeDto()
                 {
                     Id = i.id,
                     Type = i.type
                 });
-            }
             return res;
         }
 
-        public DTO.CategoryType GetById(int id)
+        public CategoryTypeDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new CategoryType()
+            return new CategoryTypeDto()
             {
                 Id = tmp.id,
                 Type = tmp.type

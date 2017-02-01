@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public interface IUserRepositiry
+    public interface IUserRepository
     {
         void AddItem(Users item);
         IQueryable<Users> GetAll();

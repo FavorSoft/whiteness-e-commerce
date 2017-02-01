@@ -12,42 +12,38 @@ namespace BLL.Providers
 {
     public class BasketProvider : IBasketProvider
     {
-        IBasketRepository _repo;
-        public BasketProvider()
+        readonly IBasketRepository _repo;
+        public BasketProvider(IBasketRepository di)
         {
-            _repo = new BasketRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.Basket basket)
+        public void AddItem(BasketDto basket)
         {
-            _repo.AddItem(new DAL.Basket()
+            _repo.AddItem(new Basket()
             {
                 user_id = basket.UserId
             });
         }
 
-        public List<DTO.Basket> GetAll()
+        public IEnumerable<BasketDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Basket> ConvertModeltoDTO(IQueryable<DAL.Basket> repo)
+        IEnumerable<BasketDto> ConvertModeltoDTO(IQueryable<DAL.Basket> repo)
         {
-            List<DTO.Basket> res = new List<DTO.Basket>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Basket()
+            IEnumerable<BasketDto> res = repo.Select(i => new DTO.BasketDto()
                 {
                     Id = i.id,
                     UserId = i.user_id
                 });
-            }
             return res;
         }
 
-        public DTO.Basket GetById(int id)
+        public DTO.BasketDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new DTO.Basket()
+            return new DTO.BasketDto()
             {
                 Id = tmp.id,
                 UserId = tmp.user_id

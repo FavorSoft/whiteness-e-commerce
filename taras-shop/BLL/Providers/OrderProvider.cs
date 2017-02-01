@@ -12,44 +12,40 @@ namespace BLL.Providers
 {
     public class OrderProvider : IOrderProvider
     {
-        IOrderRepository _repo;
-        public OrderProvider()
+        readonly IOrderRepository _repo;
+        public OrderProvider(IOrderRepository di)
         {
-            _repo = new OrderRepository();
+            _repo = di;
         }
-        public void AddItem(DTO.Order order)
+        public void AddItem(OrderDto order)
         {
-            _repo.AddItem(new DAL.Order()
+            _repo.AddItem(new Order()
             {
                 order_date = order.OrderDate,
                 user_id = order.UserId
             });
         }
 
-        public IEnumerable<DTO.Order> GetAll()
+        public IEnumerable<OrderDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Order> ConvertModeltoDTO(IQueryable<DAL.Order> repo)
+        IEnumerable<OrderDto> ConvertModeltoDTO(IQueryable<Order> repo)
         {
-            List<DTO.Order> res = new List<DTO.Order>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Order()
+            IEnumerable<OrderDto> res = repo.Select(i => new OrderDto()
                 {
                     Id = i.id,
                     UserId = i.user_id,
                     OrderDate = i.order_date
-                });
-            }
+                }).ToList();
             return res;
         }
 
-        public DTO.Order GetById(int id)
+        public OrderDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new DTO.Order()
+            return new OrderDto()
             {
                 Id = tmp.id,
                 OrderDate = tmp.order_date,

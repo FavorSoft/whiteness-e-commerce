@@ -11,12 +11,12 @@ namespace BLL.IProviders
 {
     public class NewsImagesProvider : INewsImagesProvider
     {
-        INewsImageRepository _repo;
-        public NewsImagesProvider()
+        readonly INewsImageRepository _repo;
+        public NewsImagesProvider(INewsImageRepository di)
         {
-            _repo = new NewsImageRepository();
+            _repo = di;
         }
-        public void AddItem(NewsImages images)
+        public void AddItem(NewsImagesDto images)
         {
             _repo.AddItem(new News_image()
             {
@@ -25,30 +25,26 @@ namespace BLL.IProviders
             });
         }
 
-        public IEnumerable<NewsImages> GetAll()
+        public IEnumerable<NewsImagesDto> GetAll()
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        List<DTO.Helpers.NewsImages> ConvertModeltoDTO(IQueryable<DAL.News_image> repo)
+        IEnumerable<NewsImagesDto> ConvertModeltoDTO(IQueryable<News_image> repo)
         {
-            List<DTO.Helpers.NewsImages> res = new List<DTO.Helpers.NewsImages>();
-            foreach (var i in repo)
-            {
-                res.Add(new DTO.Helpers.NewsImages()
+            IEnumerable<NewsImagesDto> res = repo.Select(i => new NewsImagesDto()
                 {
                     Id = i.id,
                     Image = i.image,
                     OwnerId = i.owner_id
                 });
-            }
             return res;
         }
 
-        public NewsImages GetById(int id)
+        public NewsImagesDto GetById(int id)
         {
             var tmp = _repo.GetById(id);
-            return new NewsImages()
+            return new NewsImagesDto()
             {
                 Id = tmp.id,
                 Image = tmp.image,

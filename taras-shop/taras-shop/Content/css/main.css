@@ -43,6 +43,15 @@ table {
 	border-spacing: 0;
 }
 
+/* Fonts */
+
+@font-face {
+    font-family: Calibri;
+    src: url(../../fonts/Calibri.ttf);
+}
+
+/* Fonts end*/
+
 /* Header section */
 .sign-in
 {
@@ -95,6 +104,7 @@ table {
     background-color: #fff;
     background-image: none;
     margin-bottom: 0;
+    font-family: Calibri;
 }
 
 .header .navbar-default .navbar-nav>li>a {
@@ -115,7 +125,7 @@ table {
     font-size: 15px;
 }
 
-/* Header section end*/
+/* Header section end
 
 /* Registration modal */
 
@@ -248,7 +258,12 @@ table {
     color: #fff;
     font-weight: 600;
     font-size: 1.1em;
-    background-color: #000;
+    background-color: #c22529;
+}
+
+.reg-log
+{
+    margin-bottom: 1em;
 }
 
 .reg-p
@@ -281,12 +296,13 @@ table {
 /* Registration modal end */
 
 /* Sidebar section */
-.sidebar
+#sidebar
 {
     color: #000;
+    font-family: Calibri;
 }
 
-.sidebar > h3
+#sidebar > h3
 {
     font-size: 21px;
     margin-bottom: 14px;
@@ -387,14 +403,15 @@ table {
     font-size: 20px
 }
 
-.radio-list li{
+.radio-list li
+{
   color: #000;
   display: block;
   position: relative;
   float: left;
   width: 100%;
   height: 35px;
-  right: 60px;
+  right: 20px;
   bottom: 30px;
 }
 
@@ -470,6 +487,7 @@ input[type=checkbox]:checked ~ label{
 .main
 {
     margin-top: 30px;
+    font-family: Calibri;
 }
 
 .main .he,
@@ -585,6 +603,188 @@ input[type=checkbox]:checked ~ label{
 }
 
 /* News and them blocks end */
+
+/* Sort block */
+
+.main .search-img
+{
+    height: 170px;
+    float: right;
+    background-image: url("../images/news.jpg");
+}
+
+.main .found-units
+{
+    float: right;
+    text-align: center;
+}
+
+.main .find-filters
+{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.main .find-filters .form-group
+{
+    padding: 15px 10px;
+}
+
+.main .find-filters .form-group:first-child
+{
+    padding-left: 0px;
+}
+
+#dropdowns button
+{
+    border-radius: 0px;
+    background-color: #ebebeb;
+    width: 185px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#dropdowns
+{
+    float: left;
+    padding: 20px 0px;
+}
+
+#dropdowns div
+{
+    display: inline-block;
+}
+
+#dropdowns:focus
+{
+    border: none;
+    outline: none;
+}
+
+#dropdowns label
+{
+    color: #606060;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#dropdowns .btn:active
+{
+    -webkit-box-shadow: inset 0px 0px 6px 1px rgba(0,0,0,.125);
+    box-shadow: inset 0px 0px 6px 1px rgba(0,0,0,.125);
+}
+
+#dropdowns .btn:focus
+{
+    -webkit-box-shadow: inset 0px 0px 7px 3px rgba(0,0,0,.125);
+    box-shadow: inset 0px 0px 7px 3px rgba(0,0,0,.125);
+}
+
+#dropdowns .dropdown-menu
+{
+    width: 185px;
+    left: 97px;
+    top: 34px;
+    border-radius: 0px;
+    border: none;
+    background-color: #ebebeb;
+    box-shadow: none;
+    padding-top: 0px;
+}
+
+#dropdowns:active
+{
+    border: none;
+    outline: none;
+}
+
+#dropdowns .dropdown-menu li a:hover
+{
+    background-color: #ccc;
+    background-image: none;
+}
+
+#dropdowns .dropdown-menu li a
+{
+    padding: 7px 13px;
+    padding-right: 33px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#dropdowns .btn.active.focus, #dropdowns .btn.active:focus,
+#dropdowns .btn.focus, #dropdowns .btn:active.focus,
+#dropdowns .btn:active:focus, #dropdowns .btn:focus {
+    outline: none;
+}
+
+.caret
+{
+    float: right;
+    margin-top: 8px;
+}
+
+#view-dropdown label
+{
+    margin-left: 10px;
+}
+
+#view-dropdown button
+{
+    width: 64px;
+}
+
+#view-dropdown .dropdown-menu
+{
+    left: 82px;
+    min-width: 0px;
+    width: 64px;
+}
+
+.how-many
+{
+    font-size: 12px;
+    color: #a5a5a5;
+}
+
+.pagination-block
+{
+    float: right;
+    position: relative;
+    top: 10px;
+}
+
+.pagination-block .material-icons
+{
+    font-size: 34px;
+}
+
+.pagination-block input
+{
+    width: 32px;
+    height: 32px;
+    padding-left: 10px;
+}
+
+.left-pg,
+.right-pg
+{
+    display: inline-block;
+    background-color: #e1e1e1;
+    width: 34px;
+    height: 34px;
+    position: relative;
+    top: 11px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.find-filters-bottom
+{
+    padding-top: 40px;
+}
+/* Sort block end*/
 
 /* Unit block */
 

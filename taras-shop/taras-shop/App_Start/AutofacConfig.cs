@@ -18,8 +18,7 @@ namespace taras_shop.App_Start
             
             // Register dependencies in controllers
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
-
-            builder.RegisterType<HomeController>().InstancePerRequest();
+            
 
             // Register dependencies in filter attributes
             builder.RegisterFilterProvider();

@@ -8,7 +8,7 @@ $( function() {
     );
 } );
 
-$( function() {
+$(function () {
     $( "#slider" ).slider({
       range: true,
       min: 0,

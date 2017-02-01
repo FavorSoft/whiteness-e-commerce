@@ -57,3 +57,15 @@ $(document).ready(function () {
         $(ulToAppend).appendTo(".why-reg-block");
     });
 });
+
+var clickSpan = function(){
+    console.log("Hello");
+    var ulToAppend = "<h5>После регистрации:</h5>"
+        + "<ul class='after-reg'>"
+            + "<li>Вы используете привилегии (VIP-скидки, ночные распродажи и т.д.)</li>"
+            + "<li>Для зарегистрированных Клиентов есть возможность бесплатной доставки</li>"
+            + "<li>Вы имеете доступ к истории своих покупок и хранению избранных товаров</li>"
+        + "</ul>";
+
+    $(ulToAppend).appendTo(".why-reg-block");
+}

@@ -20,3 +20,5 @@ C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\E
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\BLL\obj\Debug\BLL.pdb
+E:\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\Autofac.dll
+E:\taras-shop\whiteness-e-commerce\taras-shop\BLL\bin\Debug\Autofac.xml

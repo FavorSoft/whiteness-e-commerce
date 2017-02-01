@@ -174,3 +174,7 @@ C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\obj\Debug\taras-shop.csprojResolveAssemblyReference.cache
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\obj\Debug\taras-shop.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\obj\Debug\taras-shop.pdb
+E:\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Autofac.dll
+E:\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Autofac.Integration.Mvc.dll
+E:\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Autofac.xml
+E:\taras-shop\whiteness-e-commerce\taras-shop\taras-shop\bin\Autofac.Integration.Mvc.xml

@@ -1,3 +1,48 @@
+/* Css Reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 /* Header section */
 .sign-in
 {
@@ -121,16 +166,75 @@
     padding-left: 10px;
 }
 
+#registration-modal label,
+#registration-modal h3,
+#registration-modal button,
+#registration-modal .why-reg,
+#registration-modal .forgot-pass
+{
+    text-transform: uppercase;
+}
+
+#registration-modal .form-group
+{
+    margin-top: 25px;
+}
+
+.modal-content .modal-body
+{
+    padding-top: 0px;
+    text-align: center;
+}
+
+.modal-body .login-block
+{
+    float: left;
+    margin-left: 3em;
+}
+
+.modal-body .reg-block
+{
+    float: right;
+    margin-right: 3em;
+}
+
+
+@media screen and (max-width: 993px)
+{
+    .modal-body .reg-block,
+    .modal-body .login-block
+    {
+        margin-right: 0em;
+        margin-left: 0em;
+    }
+}
+
+.forgot-pass
+{
+    display: block;
+    color: #000;
+    font-size: 1em;
+    margin-top: 1em;
+}
+
+.forgot-pass:hover
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.forgot-pass:focus
+{
+    text-decoration: none;
+    color: #000;
+}
+
 .reg-h,
 .login-h
 {
     margin-bottom: 20px;
-}
-
-.login,
-.registration
-{
-    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
 }
 
 .submit-log,
@@ -142,7 +246,8 @@
     border: none;
     outline: none;
     color: #fff;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 1.1em;
     background-color: #000;
 }
 
@@ -155,9 +260,11 @@
 
 .why-reg
 {
+    user-select: none;
+    cursor: pointer;
     margin: 20px 0px;
     display: block;
-    font-size: 15px;
+    font-size: 1em;
 }
 
 .reg-line

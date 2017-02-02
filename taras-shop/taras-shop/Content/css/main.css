@@ -282,6 +282,17 @@ table {
     font-size: 1em;
 }
 
+.after-reg
+{
+    text-align: left;
+    line-height: 1.5;
+}
+
+.after-reg li
+{
+    padding: 10px;
+}
+
 .reg-line
 {
     width: 100%;

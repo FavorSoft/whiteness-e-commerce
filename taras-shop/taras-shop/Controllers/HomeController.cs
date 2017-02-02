@@ -72,6 +72,13 @@ namespace taras_shop.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public List<UnitDto> Load()
+        {
+            return _unit.GetPopular(4).ToList();
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

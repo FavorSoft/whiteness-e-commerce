@@ -43,5 +43,39 @@
                 $(".why-reg-content").html("");
             }
         });
+
+        $("#create").click(function AddUnit() {
+            var title = $("#title").val();
+            var producer = $("#producer").val();
+            var categoryType = $('#category-type option:selected').val();
+            var category = $('#category option:selected').val();
+            var price = $("#price").val();
+            var amount = $("#count").val();
+            var size = $("#size").val();
+            var material = $("#material").val();
+            var description = $("#description").val();
+            console.log(category);
+            
+            $.ajax({
+                method: "post",
+                url: "AddUnit",
+                data: {
+                    title: title,
+                    producer: producer,
+                    categoryType: categoryType,
+                    category: category,
+                    price: price,
+                    amount: amount,
+                    size: size,
+                    material: material,
+                    description: description
+                }
+
+            }).done(function (data) {
+                console.log(data);
+            });
+        });
+
+
 });
 

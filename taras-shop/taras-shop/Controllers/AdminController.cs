@@ -74,6 +74,9 @@ namespace taras_shop.Controllers
                 Material = material,
                 Description = description
             };
+            
+            //unitOfWork.Unit.AddItem(unit);
+            
             return Json(unit, JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)

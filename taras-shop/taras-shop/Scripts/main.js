@@ -28,7 +28,12 @@
         $('#accordion').removeClass('ui-accordion');
     });
 
-
+    $.ajax({
+        method: "get",
+        url: "Load"
+    }).done(function (data) {
+        console.log(data);
+    });
         $(".why-reg").click(function () {
             if ($(".why-reg-content").html() == "") {
                 var ulToAppend = "<h5>После регистрации:</h5>"

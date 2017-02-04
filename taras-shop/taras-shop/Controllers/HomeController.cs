@@ -36,9 +36,9 @@ namespace taras_shop.Controllers
         }
 
         [HttpGet]
-        public List<UnitDto> Load()
+        public JsonResult Load()
         {
-            return unitOfWork.Unit.GetPopular(4).ToList();
+            return Json(unitOfWork.Unit.GetPopular(4).ToList(), JsonRequestBehavior.AllowGet);
         }
 
 

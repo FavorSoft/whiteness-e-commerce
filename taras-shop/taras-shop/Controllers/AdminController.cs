@@ -1,4 +1,4 @@
-﻿using BLL.IProviders;
+﻿using BLL.UnitOfWork;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -11,49 +11,14 @@ namespace taras_shop.Controllers
     public class AdminController : Controller
     {
         #region PARAMETERS
-        readonly IBasketItemsProvider _basketItems;
-        readonly IBasketProvider _basket;
-        readonly ICategoryProvider _category;
-        readonly ICategoryTypeProvider _categoryType;
-        readonly IImagesProvider _images;
-        readonly INewsImagesProvider _newsImages;
-        readonly INewsProvider _news;
-        readonly IOrderItemsProvider _orderItems;
-        readonly IOrderProvider _order;
-        readonly IRoleProvider _role;
-        readonly IUnitProvider _unit;
-        readonly IUserProvider _user;
+        readonly IUnitOfWork unitOfWork;
         #endregion
 
         #region CTOR
-        public AdminController(
-            IBasketItemsProvider basketItems,
-            IBasketProvider basket,
-            ICategoryProvider category,
-            ICategoryTypeProvider categoryType,
-            IImagesProvider images,
-            INewsImagesProvider newsImages,
-            INewsProvider news,
-            IOrderItemsProvider orderItems,
-            IOrderProvider order,
-            IRoleProvider role,
-            IUnitProvider unit,
-            IUserProvider user
-            )
+        public AdminController(IUnitOfWork uow)
         {
             // Dependency Injection
-            _basketItems = basketItems;
-            _basket = basket;
-            _category = category;
-            _categoryType = categoryType;
-            _images = images;
-            _newsImages = newsImages;
-            _news = news;
-            _orderItems = orderItems;
-            _order = order;
-            _role = role;
-            _unit = unit;
-            _user = user;
+            unitOfWork = uow;
         }
         #endregion
 
@@ -67,8 +32,8 @@ namespace taras_shop.Controllers
         {
             Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()
             {
-                categories = _category.GetAll(),
-                categoryTypes = _categoryType.GetAll()
+                categories = unitOfWork.Category.GetAll(),
+                categoryTypes = unitOfWork.CategoryType.GetAll()
             };
 
             return View(model);
@@ -96,7 +61,6 @@ namespace taras_shop.Controllers
             string size,
             string material,
             string description
-
             )
         {
             var unit = new UnitDto()
@@ -112,6 +76,10 @@ namespace taras_shop.Controllers
             };
             return Json(unit, JsonRequestBehavior.AllowGet);
         }
-
+        protected override void Dispose(bool disposing)
+        {
+            unitOfWork.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

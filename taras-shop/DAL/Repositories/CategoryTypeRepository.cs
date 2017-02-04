@@ -16,13 +16,11 @@ namespace DAL.Repositories
         public void AddItem(Category_type item)
         {
             entities.Category_type.Add(item);
-            entities.SaveChanges();
         }
 
         public void DeleteItem(int id)
         {
             entities.Category_type.Remove(new Category_type() { id = id });
-            entities.SaveChanges();
         }
 
         public void EditItem(Category_type item)

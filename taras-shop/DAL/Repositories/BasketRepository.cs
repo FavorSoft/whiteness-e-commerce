@@ -16,13 +16,11 @@ namespace DAL.Repositories
         public void AddItem(Basket item)
         {
             entities.Basket.Add(item);
-            entities.SaveChanges();
         }
 
         public void DeleteItem(int id)
         {
             entities.Basket.Remove(new Basket() { id = id });
-            entities.SaveChanges();
         }
 
         public void EditItem(Basket item)

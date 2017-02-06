@@ -50,6 +50,28 @@ namespace taras_shop.Controllers
          material: material,
          description: description
          */
+
+        [HttpPost]
+        public JsonResult UploadPhoto()
+        {
+            foreach(string file in Request.Files)
+            {
+                var fileContent = Request.Files[file];
+                if (fileContent != null && fileContent.ContentLength > 0)
+                {
+                    Bitmap imageSave = WorkImage.CreateImage(model.UploadImage, 600, 400);
+                    if (imageSave != null)
+                    {
+                        string path = Server.MapPath(ConfigurationManager.AppSettings["ImageProductPath"]);
+                        Guid imageName = Guid.NewGuid();
+                        string fileName = path + imageName + System.IO.Path.GetExtension(model.UploadImage.FileName);
+                        imageSave.Save(fileName, ImageFormat.Jpeg);
+                    }
+                }
+            }
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
+    
         [HttpPost]
         public JsonResult AddUnit(
             string title,
@@ -60,9 +82,11 @@ namespace taras_shop.Controllers
             int amount,
             string size,
             string material,
-            string description
+            string description,
+            IEnumerable<object> images
             )
         {
+
             var unit = new UnitDto()
             {
                 Title = title,

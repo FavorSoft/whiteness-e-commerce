@@ -16,6 +16,7 @@ namespace BLL.DI
         protected override void Load(ContainerBuilder builder)
         {
             #region Providers
+            builder.RegisterType<UnitOfWork.UnitOfWork>().As<UnitOfWork.IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<CategoryProvider>().As<ICategoryProvider>().InstancePerRequest();
             builder.RegisterType<CategoryTypeProvider>().As<ICategoryTypeProvider>().InstancePerRequest();
             builder.RegisterType<BasketItemsProvider>().As<IBasketItemsProvider>().InstancePerRequest();

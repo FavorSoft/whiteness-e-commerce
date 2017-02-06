@@ -16,13 +16,11 @@ namespace DAL.Repositories
         public void AddItem(Order_items item)
         {
             entities.Order_items.Add(item);
-            entities.SaveChanges();
         }
 
         public void DeleteItem(int id)
         {
             entities.Order_items.Remove(new Order_items() { id = id });
-            entities.SaveChanges();
         }
 
         public void EditItem(Order_items item)

@@ -60,7 +60,10 @@
     </section>
 
     <div class="body-content">
+
         @RenderBody()
+
+        <!--Registration & Login modal-->
         <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="container">
                 <div class="row">
@@ -71,7 +74,27 @@
                                     <div type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></div>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="col-md-5 col-sm-12 col-xs-12 login-block login" action="">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                                        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                                        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <h3>HOME</h3>
+                                            <p>Some content.</p>
+                                        </div>
+                                        <div id="menu1" class="tab-pane fade">
+                                            <h3>Menu 1</h3>
+                                            <p>Some content in menu 1.</p>
+                                        </div>
+                                        <div id="menu2" class="tab-pane fade">
+                                            <h3>Menu 2</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                    </div>
+                                    <!--<form class="col-md-5 col-sm-12 col-xs-12 login-block login" action="">
                                         <h3 class="login-h">
                                             У меня уже есть аккаунт
                                         </h3>
@@ -83,7 +106,7 @@
                                             <label for="pass-email-input" class="pass-email-label">Пароль:</label>
                                             <input type="password" class="pass-email-input">
                                         </div>
-                                        <button class="submit-log">Войти</button>
+                                        <button class="frequent-button submit-log">Войти</button>
                                         <a href="#" class="forgot-pass">Забыли пароль?</a>
                                     </form>
                                     <div class="col-md-5 col-sm-12 col-xs-12 reg-block registration" action="">
@@ -94,7 +117,7 @@
                                             Делайте заказы без регистрации
                                             вибирая функцию "Быстрые покупки" или создайте аккаунт
                                         </p>
-                                        <button class="reg-log">Создать аккаунт</button>
+                                        <button class="frequent-button reg-log">Создать аккаунт</button>
                                         <div class="why-reg-block">
                                             <span class="why-reg">
                                                 Почему стоит зарегистрироваться
@@ -103,8 +126,8 @@
                                             <div class="why-reg-content"></div>
                                         </div>
                                         <div class="reg-line"></div>
-                                        <button class="facebook-reg">Регистрация с помощью facebook</button>
-                                    </div>
+                                        <button class="frequent-button facebook-reg">Регистрация с помощью facebook</button>
+                                    </div>-->
                                 </div>
                                 <div class="modal-footer">
                                 </div>
@@ -114,6 +137,7 @@
                 </div>
             </div>
         </div>
+        <!--Basket modal-->
         <div class="modal fade" id="basket-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
             <div class="container">
                 <div class="row">
@@ -125,11 +149,34 @@
                                     <div type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></div>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="col-md-5 col-sm-12 col-xs-12 right-basket" action="">
-                                        <button class="submit-log">Войти</button>
+                                    <div class="col-md-5 col-sm-12 col-xs-12 left-basket">
+                                        <img src="~/Content/images/item-preview.png" />
+                                        <div class="text-basket-preview">
+                                            <h4>Anabel Arto</h4>
+                                            <span>Цвет: бежевый</span>
+                                            <span>Размер:</span>
+                                            <span>S</span>
+                                        </div>
+                                        <button class="frequent-button submit-log">Продолжить покупки</button>
                                     </div>
-                                    <div class="col-md-5 col-sm-12 col-xs-12 left-basket" action="">
-                                        <button class="facebook-reg">Регистрация с помощью facebook</button>
+                                    <div class="col-md-5 col-sm-12 col-xs-12 right-basket">
+                                        <div class="text-basket-preview-right">
+                                            <h4>Ваша Корзина(1)</h4>
+                                            <a href="#">Просмотреть выбраные товары</a>
+                                            <div class="overall-cost">
+                                                <span>Общая стоимость товаров: </span>
+                                                <span class="basket-preview-prices">234.85 грн</span>
+                                            </div>
+                                            <div class="delivery-cost">
+                                                <span>Доставка: </span>
+                                                <span class="basket-preview-prices">30.00 грн</span>
+                                            </div>
+                                            <div class="main-prices">
+                                                <h4 class="basket-sum">Сумма: </h4>
+                                                <span class="basket-preview-prices">264.85 грн</span>
+                                            </div>
+                                        </div>
+                                        <button class="frequent-button facebook-reg">Оформить заказ</button>
                                     </div>
                                 </div>
                                 <div class="modal-footer"></div>

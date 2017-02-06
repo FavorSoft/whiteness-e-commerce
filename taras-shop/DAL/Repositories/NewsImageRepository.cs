@@ -16,13 +16,11 @@ namespace DAL.Repositories
         public void AddItem(News_image item)
         {
             entities.News_image.Add(item);
-            entities.SaveChanges();
         }
 
         public void DeleteItem(int id)
         {
             entities.News_image.Remove(new News_image() { id = id });
-            entities.SaveChanges();
         }
 
         public void EditItem(News_image item)

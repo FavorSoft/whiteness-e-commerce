@@ -50,13 +50,14 @@ table {
     src: url(../../fonts/Calibri.ttf);
 }
 
+@font-face {
+    font-family: BebasNeueBold;
+    src: url(../../fonts/bebas_neue/BebasNeueBold.otf);
+}
+
 /* Fonts end*/
 
 /* Header section */
-.sign-in
-{
-    width: 74px;
-}
 
 .sign-in img
 {
@@ -64,20 +65,10 @@ table {
     display: block;
 }
 
-.basket
-{
-    width: 85px;
-}
-
 .basket img
 {
     margin: 0 auto;
     display: block;
-}
-
-.search
-{
-    width: 75px;
 }
 
 .search img
@@ -222,6 +213,42 @@ table {
         margin-right: 0em;
         margin-left: 0em;
     }
+
+    #basket-modal .left-basket,
+    body #basket-modal .right-basket
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #basket-modal .text-basket-preview-right 
+    {
+        margin-top: 30px;
+    }
+
+    #basket-modal .left-basket img 
+    {
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    #basket-modal .text-basket-preview 
+    {
+       text-align: center;
+       float: none;
+       margin-left: 0px;
+    }
+
+    #basket-modal .text-basket-preview h4 
+    {
+        width: 100%;
+        text-align: center;
+    }
+
+    #basket-modal .text-basket-preview span:nth-child(4) 
+    {
+        margin-bottom: 20px;
+    }
 }
 
 .forgot-pass
@@ -252,9 +279,7 @@ table {
     font-weight: 600;
 }
 
-.submit-log,
-.reg-log,
-.facebook-reg
+.frequent-button
 {
     width: 100%;
     height: 50px;
@@ -262,8 +287,9 @@ table {
     outline: none;
     color: #fff;
     font-weight: 600;
-    font-size: 1.1em;
-    background-color: #c22529;
+    font-family: BebasNeueBold;
+    font-size: 23px;
+    background-color: #000;
 }
 
 .reg-log
@@ -313,6 +339,11 @@ table {
 
 /* Basket modal */
 
+#basket-modal
+{
+    font-family: Calibri;
+}
+
 #basket-modal .modal-header
 {
     border: none;
@@ -326,8 +357,105 @@ table {
     float: left;
     margin: 0px;
     padding: 9px;
+    font-family: BebasNeueBold;
+    font-size: 30px;
+    font-weight: 600;
 }
 
+#basket-modal .modal-body
+{
+    margin-top: 30px;
+}
+
+.left-basket
+{
+    margin-left: 5%;
+}
+
+.left-basket img
+{
+    float: left;
+    margin-bottom: 80px;
+}
+
+.text-basket-preview
+{
+    text-align: left;
+    float: left;
+    margin-left: 5%;
+}
+
+.text-basket-preview h4
+{
+    color: #c22529;
+    font-weight: 600;
+}
+
+.text-basket-preview span
+{
+    display: block;
+    color: #a1a0a0;
+    margin-top: 5px;
+}
+
+.text-basket-preview span:nth-child(4)
+{
+    color: #000;
+}
+
+.text-basket-preview h4 
+{
+    color: #cb5456;
+    margin-top: 0px;
+    width: 107px;
+    text-align: justify;
+}
+
+#basket-modal .right-basket
+{
+    float: right;
+    margin-right: 5%;
+    text-align: left;
+    line-height: 2;
+}
+
+#basket-modal .text-basket-preview-right
+{
+    margin-bottom: 161px;
+}
+
+.text-basket-preview-right h4
+{
+    margin: 0px;
+    font-weight: 600;
+}
+
+.basket-sum
+{
+    display: inline-block;
+    padding: 7px 0px;
+}
+
+.text-basket-preview-right a
+{
+    color: rgb(161, 160, 160);
+    font-size: 15px;
+}
+
+.text-basket-preview-right span
+{
+    font-size: 15px;
+}
+
+.main-price
+{
+    font-weight: 600;
+}
+
+.basket-preview-prices
+{
+    float: right;
+}
 /* Basket modal end */
 
 /* Sidebar section */

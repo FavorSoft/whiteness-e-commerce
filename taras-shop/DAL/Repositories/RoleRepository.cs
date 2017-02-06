@@ -16,13 +16,11 @@ namespace DAL.Repositories
         public void AddItem(Roles item)
         {
             entities.Roles.Add(item);
-            entities.SaveChanges();
         }
 
         public void DeleteItem(int id)
         {
             entities.Roles.Remove(new Roles() { id = id });
-            entities.SaveChanges();
         }
 
         public void EditItem(Roles item)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@*@ViewBag.Title*@ - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")*@
     <!-- Latest compiled and minified CSS -->
@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="~/Content/css/jquery-ui.css" />
     <link rel="stylesheet" href="~/Content/css/fontello.css" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 </head>
 <body>
     <section class="header">
@@ -44,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="basket">
+                        <a href="" class="basket" data-toggle="modal" data-target="#basket-modal">
                             <img src="~/Content/images/basket.jpg" alt="basket">
                             <span>Корзина</span>
                         </a>
@@ -65,7 +64,7 @@
         <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1 block-test">
+                    <div class="col-md-10 col-md-offset-1">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -74,39 +73,66 @@
                                 <div class="modal-body">
                                     <form class="col-md-5 col-sm-12 col-xs-12 login-block login" action="">
                                         <h3 class="login-h">
-                                            У меня уже есть аккаунт</h3>
-                                            <div class="form-group">
-                                                <label for="login-email-input" class="login-email-label">E-Mail:</label>
-                                                <input type="email" class="login-email-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="pass-email-input" class="pass-email-label">Пароль:</label>
-                                                <input type="password" class="pass-email-input">
-                                            </div>
-                                            <button class="submit-log">Войти</button>
-                                            <a href="#" class="forgot-pass">Забыли пароль?</a>
+                                            У меня уже есть аккаунт
+                                        </h3>
+                                        <div class="form-group">
+                                            <label for="login-email-input" class="login-email-label">E-Mail:</label>
+                                            <input type="email" class="login-email-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pass-email-input" class="pass-email-label">Пароль:</label>
+                                            <input type="password" class="pass-email-input">
+                                        </div>
+                                        <button class="submit-log">Войти</button>
+                                        <a href="#" class="forgot-pass">Забыли пароль?</a>
                                     </form>
-                                    <form class="col-md-5 col-sm-12 col-xs-12 reg-block registration" action="">
+                                    <div class="col-md-5 col-sm-12 col-xs-12 reg-block registration" action="">
                                         <h3 class="reg-h">
-                                            Регистрация</h3>
-                                            <p class="reg-p">
-                                                Делайте заказы без регистрации
-                                                вибирая функцию "Быстрые покупки" или создайте аккаунт
-                                            </p>
-                                            <button class="reg-log">Создать аккаунт</button>
-                                            <div class="why-reg-block">
-                                                <span class="why-reg">
-                                                    Почему стоит зарегистрироваться
-                                                    на Lorem.ua?
-                                                </span>
-                                                <div class="why-reg-content"></div>
-                                            </div>
-                                            <div class="reg-line"></div>
-                                            <button class="facebook-reg">Регистрация с помощью facebook</button>
-                                    </form>
+                                            Регистрация
+                                        </h3>
+                                        <p class="reg-p">
+                                            Делайте заказы без регистрации
+                                            вибирая функцию "Быстрые покупки" или создайте аккаунт
+                                        </p>
+                                        <button class="reg-log">Создать аккаунт</button>
+                                        <div class="why-reg-block">
+                                            <span class="why-reg">
+                                                Почему стоит зарегистрироваться
+                                                на Lorem.ua?
+                                            </span>
+                                            <div class="why-reg-content"></div>
+                                        </div>
+                                        <div class="reg-line"></div>
+                                        <button class="facebook-reg">Регистрация с помощью facebook</button>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="basket-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="basket-header">Товар добавлен в корзину!</h3>
+                                    <div type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-md-5 col-sm-12 col-xs-12 right-basket" action="">
+                                        <button class="submit-log">Войти</button>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-xs-12 left-basket" action="">
+                                        <button class="facebook-reg">Регистрация с помощью facebook</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"></div>
                             </div>
                         </div>
                     </div>
@@ -158,7 +184,7 @@
                     </div>
                     <div class="col-md-12 last-footer">
                         <span>Интернет-магазин нижнего белья Lorem.ua</span>
-                        <span>Copyright © @DateTime.Now.Year Lorem.ua. Создано FavorSoft</span>
+                        <span>Copyright © @*@DateTime.Now.Year*@ Lorem.ua. Создано FavorSoft</span>
                     </div>
                 </div>
             </div>
@@ -169,11 +195,9 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)*@
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
             integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
             crossorigin="anonymous"></script>

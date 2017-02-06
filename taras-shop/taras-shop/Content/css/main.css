@@ -120,6 +120,16 @@ table {
 
 /* Registration modal */
 
+#registration-modal .nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+
+#registration-modal .nav-tabs,
+#registration-modal .nav-pills {
+    text-align:center;
+}
+
 #registration-modal,
 #basket-modal
 {

@@ -1,4 +1,4 @@
-/* Css Reset*/
+﻿/* Css Reset*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -1043,17 +1043,21 @@ input[type=checkbox]:checked ~ label{
     margin-top: 45px;
 }
 
-.main .title-lines .left-line
+.main .title-lines .left-line,
+.main .title-lines .right-line
 {
     border-top: 1px solid;
     display: inline-block;
+    width: 35%;
+}
+
+.main .title-lines .left-line
+{
     float: left;
 }
 
 .main .title-lines .right-line
 {
-    border-top: 1px solid;
-    display: inline-block;
     float: right;
 }
 
@@ -1066,48 +1070,84 @@ input[type=checkbox]:checked ~ label{
 
 .main .unit
 {
-    background-position: 50%;
-    height: 300px;
+    cursor: pointer;
+    height: 400px;
     padding-right: 0px;
     padding-left: 0px;
     position: relative;
     margin-bottom: 30px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
 }
 
-.main .unit
+.main .unit:hover
 {
-    background-image: url("../images/womant.jpg");
+    border: 1px solid #b8b8b8;
 }
 
-.unit img
+.main .img-unit-div
+{
+    height: 240px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url(../../Content/images/woman.png);
+}
+
+.main .img-unit-div img
 {
     float: left;
-    margin: 15px 0px 0px 25px;
 }
 
-.unit img
-{
-    float: left;
-    margin: 15px 0px 0px 25px;
-}
-
-.text-unit-part
+.main .img-unit-div img + div
 {
     position: absolute;
-    width: 95%;
-    top: 270px;
+    visibility: hidden;
+    width: 100%;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    transition: all .1s ease-in;
+    background-color: #b6b6b6;
 }
 
-.company-maker
+.main .img-unit-div img + div img
 {
-    font-size: 19px;
+    padding: 10px;
+    float: none;
 }
 
-.item-type
+.main .img-unit-div:hover img + div
 {
-    font-size: 17px
+    visibility: visible;
+}
+
+.main .img-unit-div:hover img + div:active
+{
+    background-color: #999999;
+}
+
+.main .text-unit-part
+{
+    border-top: 1px solid #b8b8b8;
+    margin-top: 30px;
+    padding-top: 10px;
+    text-align: left;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-overflow: ellipsis;
+}
+
+.main .company-maker
+{
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+
+.main .item-type
+{
+    font-size: 16px;
+    color: #7d7d7d;
+    margin-bottom: 5px;
 }
 
 .price-now
@@ -1130,7 +1170,8 @@ input[type=checkbox]:checked ~ label{
 .main .recommend-row .unit
 {
     background-position: 50%;
-    height: 170px;
+    height: 280px;
+    background-repeat: no-repeat;
     padding-right: 0px;
     padding-left: 0px;
     position: relative;
@@ -1150,9 +1191,8 @@ input[type=checkbox]:checked ~ label{
 .main .recommend-row .unit:nth-child(2)
 {
     position: absolute;
-    top: 125px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 
 .main .recommend-row .unit

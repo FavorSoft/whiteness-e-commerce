@@ -114,7 +114,7 @@
         </aside>
         <section class="main">
             <a href="#" class="her-a">
-                <div class="col-md-4 col-md-offset-1 her">
+                <div class="col-md-4 col-md-offset-1 col-sm-offset-4 her">
                     <div class="her-img">
                         <div class="her-text">
                             <h3>Для Нее</h3>
@@ -124,7 +124,7 @@
                 </div>
             </a>
             <a href="#" class="he-a">
-                <div class="col-md-4 col-md-offset-1 he">
+                <div class="col-md-4 col-md-offset-1 col-sm-offset-4 he">
                     <div class="he-img">
                         <div class="he-text">
                             <h3>Для Него</h3>
@@ -148,43 +148,136 @@
                     <h4 class="title-lines-h">Популярные товары</h4>
                     <div class="col-md-4 right-line"></div>
                 </div>
-                <div class="unit-block">
-                    @{ 
-                        int count = 0;
-                        foreach (var i in Model.popular)
-                        {
+                @{ 
+                    int count = 0;
+                    foreach (var i in Model.popular)
+                    {
 
-                            string cssClass = "";
-                            if (count % 2 == 0)
-                            {
-                                cssClass = "col-md-5 col-lg-5 unit";
-                            }
-                            else
-                            {
-                                cssClass = "col-md-offset-2 col-md-5 col-lg-5 unit";
-                            }
-                            count++;
-                            <div class="@cssClass">
-                                <img src="~/Content/images/topsale.png" alt="topsale">
-                                <div class="text-unit-part">
-                                    <div class="title-unit-part">
-                                        <span class="company-maker">@i.Title</span>
-                                        <span class="item-type">/ @Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</span>
-                                    </div>
-                                    <div class="price-unit-part">
-                                        <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0))/100)) грн</span>
-                                        <span class="price-was">79.90 грн</span>
-                                    </div>
+                        string cssClass = "";
+                        if (count % 2 == 0)
+                        {
+                            cssClass = "col-md-6 col-lg-6 col-sm-6 unit";
+                        }
+                        else
+                        {
+                            cssClass = "col-md-6 col-lg-6 col-sm-6 unit";
+                        }
+                        count++;
+                        <div class="@cssClass">
+                            <div class="col-md-8 col-md-offset-2 img-unit-div">
+                                <img src="~/Content/images/sale.png" alt="topsale">
+                                <div>
+                                    <img src="~/Content/images/eye.png" alt="eye" />
+                                    <span>Быстрый просмотр</span>
                                 </div>
                             </div>
-                        }
+                            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                                <div class="title-unit-part">
+                                    <p class="company-maker">@i.Title</p>
+                                    <p class="item-type">@Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</p>
+                                </div>
+                                <div class="price-unit-part">
+                                    <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0))/100)) грн</span>
+                                    <span class="price-was">79.90 грн</span>
+                                </div>
+                            </div>
+                        </div>
                     }
-                    @*<div class="col-md-offset-2 col-md-5 col-lg-5 unit">
-                        <img src="~/Content/images/topsale.png" alt="topsale">
+                }
+                @*<div class="col-md-offset-2 col-md-5 col-lg-5 unit">
+                    <img src="~/Content/images/topsale.png" alt="topsale">
+                    <div class="text-unit-part">
+                        <div class="title-unit-part">
+                            <span class="company-maker">Alla Boune</span>
+                            <span class="item-type">/ Трусы мужские</span>
+                        </div>
+                        <div class="price-unit-part">
+                            <span class="price-now">59,90 грн</span>
+                            <span class="price-was">79.90 грн</span>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="col-md-12 recommend-units">
+                <div class="title-lines">
+                    <div class="col-md-4 left-line"></div>
+                    <h4 class="title-lines-h">Рекомендуем</h4>
+                    <div class="col-md-4 right-line"></div>
+                </div>
+                <div class="recommend-row">
+                    <div class="col-md-3 col-lg-3 col-sm-6 unit">
+                        <div class="col-md-3 col-md-offset-2 img-unit-div">
+                            <img src="/Content/images/sale.png" alt="topsale">
+                            <div>
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Модна колекція бюстгальтерів</p>
+                                <p class="item-type">Нічні сорочки</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">83.70 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-6 unit">
+                        <div class="col-md-3 col-md-offset-2 img-unit-div">
+                            <img src="/Content/images/sale.png" alt="topsale">
+                            <div>
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Модна колекція бюстгальтерів</p>
+                                <p class="item-type">Нічні сорочки</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">83.70 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-6 unit">
+                        <div class="col-md-3 col-md-offset-2 img-unit-div">
+                            <img src="/Content/images/sale.png" alt="topsale">
+                            <div>
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Модна колекція бюстгальтерів</p>
+                                <p class="item-type">Нічні сорочки</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">83.70 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-md-3 unit">
+                        <div class="col-md-3 text-unit-part">
+                            <div class="title-unit-part">
+                                <span class="company-maker">Alla Boune</span>
+                                <span class="item-type">/ Трусы женские</span>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">59,90 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 unit">
                         <div class="text-unit-part">
                             <div class="title-unit-part">
                                 <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы мужские</span>
+                                <span class="item-type">/ Трусы женские</span>
                             </div>
                             <div class="price-unit-part">
                                 <span class="price-now">59,90 грн</span>
@@ -193,81 +286,8 @@
                         </div>
                     </div>*@
                 </div>
-                <div class="unit-block">
-                    <div class="col-md-5 col-lg-5 unit">
-                        <img src="~/Content/images/topsale.png" alt="topsale">
-                        <div class="text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-offset-2 col-md-5 col-lg-5 unit">
-                        <img src="~/Content/images/topsale.png" alt="topsale">
-                        <div class="text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы мужские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="col-md-9 recommend-units">
-                <div class="title-lines">
-                    <div class="col-md-4 left-line"></div>
-                    <h4 class="title-lines-h">Рекомендуем</h4>
-                    <div class="col-md-4 right-line"></div>
-                </div>
-                <div class="recommend-row">
-                    <div class="col-md-3 unit">
-                        <div class="col-md-3 text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 unit">
-                        <div class="col-md-3 text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 unit">
-                        <div class="text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9 about">
+            <div class="col-md-12 about">
                 <div class="title-lines">
                     <div class="col-md-4 left-line"></div>
                     <h4 class="title-lines-h">О нас</h4>

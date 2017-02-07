@@ -33,40 +33,11 @@
         console.log(data);
     });
 
-    $(".why-reg").click(function () {
-        if ($(".why-reg-content").html() == "") {
-            var ulToAppend = "<h5>После регистрации:</h5>"
-                + "<ul class='after-reg'>"
-                    + "<li>Вы используете привилегии (VIP-скидки, ночные распродажи и т.д.)</li>"
-                    + "<li>Для зарегистрированных Клиентов есть возможность бесплатной доставки</li>"
-                    + "<li>Вы имеете доступ к истории своих покупок и хранению избранных товаров</li>"
-                + "</ul>";
-            $(ulToAppend).appendTo(".why-reg-content");
-        }
-        else {
-            $(".why-reg-content").html("");
-        }
-    });
-
     $.ajax({
         method: "get",
         url: "Load"
     }).done(function (data) {
         console.log(data);
-    });
-    $(".why-reg").click(function () {
-        if ($(".why-reg-content").html() == "") {
-            var ulToAppend = "<h5>После регистрации:</h5>"
-                + "<ul class='after-reg'>"
-                    + "<li>Вы используете привилегии (VIP-скидки, ночные распродажи и т.д.)</li>"
-                    + "<li>Для зарегистрированных Клиентов есть возможность бесплатной доставки</li>"
-                    + "<li>Вы имеете доступ к истории своих покупок и хранению избранных товаров</li>"
-                + "</ul>";
-            $(ulToAppend).appendTo(".why-reg-content");
-        }
-        else {
-            $(".why-reg-content").html("");
-        }
     });
 
     $("#create").click(function AddUnit() {

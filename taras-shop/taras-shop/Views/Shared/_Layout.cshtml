@@ -67,7 +67,7 @@
         <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-10 col-sm-10 col-sm-offset-1 col-md-offset-1">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -81,48 +81,61 @@
 
                                     <div class="tab-content">
                                         <div id="sign-in-tab" class="tab-pane fade in active">
-                                            <h3>Войти</h3>
-                                            <p>Some content.</p>
+                                            <form class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" action="">
+                                                <div class="form-group">
+                                                    <label for="login-email-input" class="login-email-label">E-Mail:</label>
+                                                    <input type="email" class="login-email-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pass-email-input" class="pass-email-label">Пароль:</label>
+                                                    <input type="password" class="pass-email-input">
+                                                </div>
+                                                <button type="submit" class="frequent-button submit-log">Войти</button>
+                                                <a href="#" class="forgot-pass">Забыли пароль?</a>
+                                            </form>
                                         </div>
                                         <div id="reg-tab" class="tab-pane fade">
-                                            <h3>Регистрация</h3>
-                                            <p>Some content in menu 1.</p>
+                                            <form class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" action="">
+                                                <div class="form-group">
+                                                    <label for="reg-name-input">Имя:</label>
+                                                    <input type="text" class="reg-name-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="reg-surname-input">Фамилия:</label>
+                                                    <input type="text" class="reg-surname-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="login-email-input">E-Mail:</label>
+                                                    <input type="email" class="login-email-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="reg-pass-input">Пароль:</label>
+                                                    <input type="password" class="reg-pass-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="reg-phone-input">Телефон:</label>
+                                                    <input type="text" class="reg-phone-input">
+                                                </div>
+                                                <ul class="radio-list">
+                                                    <li class="man-li">
+                                                        <input type="radio" id="man-option" name="selector">
+                                                        <label for="man-option">Мужчина</label>
+                                                        <div class="check"></div>
+                                                    </li>
+
+                                                    <li class="woman-li">
+                                                        <input type="radio" id="woman-option" name="selector">
+                                                        <label for="woman-option">Женщина</label>
+                                                        <div class="check"><div class="inside"></div></div>
+                                                    </li>
+                                               </ul>
+                                                <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
+                                                <div></div>
+                                                <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
+                                                <a href="#" class="forgot-pass">Забыли пароль?</a>
+                                            </form>
                                         </div>
                                     </div>
-                                    <!--<form class="col-md-5 col-sm-12 col-xs-12 login-block login" action="">
-                                        <h3 class="login-h">
-                                            У меня уже есть аккаунт
-                                        </h3>
-                                        <div class="form-group">
-                                            <label for="login-email-input" class="login-email-label">E-Mail:</label>
-                                            <input type="email" class="login-email-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pass-email-input" class="pass-email-label">Пароль:</label>
-                                            <input type="password" class="pass-email-input">
-                                        </div>
-                                        <button class="frequent-button submit-log">Войти</button>
-                                        <a href="#" class="forgot-pass">Забыли пароль?</a>
-                                    </form>
-                                    <div class="col-md-5 col-sm-12 col-xs-12 reg-block registration" action="">
-                                        <h3 class="reg-h">
-                                            Регистрация
-                                        </h3>
-                                        <p class="reg-p">
-                                            Делайте заказы без регистрации
-                                            вибирая функцию "Быстрые покупки" или создайте аккаунт
-                                        </p>
-                                        <button class="frequent-button reg-log">Создать аккаунт</button>
-                                        <div class="why-reg-block">
-                                            <span class="why-reg">
-                                                Почему стоит зарегистрироваться
-                                                на Lorem.ua?
-                                            </span>
-                                            <div class="why-reg-content"></div>
-                                        </div>
-                                        <div class="reg-line"></div>
-                                        <button class="frequent-button facebook-reg">Регистрация с помощью facebook</button>
-                                    </div>-->
                                 </div>
                                 <div class="modal-footer">
                                 </div>

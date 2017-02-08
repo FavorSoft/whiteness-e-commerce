@@ -59,6 +59,28 @@ table {
 
 /* Media queries */
 
+@media screen and (min-width: 1200px)
+{
+    .her-img
+    {
+        margin: 0 auto;
+    }
+
+    .he-img
+    {
+        margin: 0 auto;
+    }
+
+    .main .news
+    {
+        margin-right: 0px;
+    }
+
+    .main .quick-view
+    {
+        width: calc(100% - 30px);
+    }
+}
 
 @media screen and (max-width: 994px)
 {
@@ -97,6 +119,11 @@ table {
     {
         margin-bottom: 20px;
     }
+
+    .main .quick-view
+    {
+        width: calc(100% - 36px);
+    }
 }
 
 @media screen and (max-width: 768px)
@@ -106,6 +133,31 @@ table {
     {
         float: none;
         margin: 0 auto;
+    }
+
+    .main .img-unit-div,
+    .main .text-unit-part,
+    .unit
+    {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .main .quick-view 
+    {
+        width: 100%;
+    }
+
+    .main .img-unit-div
+    {
+        background-size: cover;
+    }
+
+    .row .main .unit
+    {
+        height: inherit;
+        min-height: 450px;
     }
 }
 
@@ -267,24 +319,6 @@ table {
 .login-block
 {
     margin-top: 25px;
-}
-
-@media screen and (min-width: 1200px)
-{
-    .her-img
-    {
-        margin: 0 auto;
-    }
-
-    .he-img
-    {
-        margin: 0 auto;
-    }
-
-    .main .news
-    {
-        margin-right: 0px;
-    }
 }
 
 .forgot-pass
@@ -1054,6 +1088,8 @@ input[type=checkbox]:checked ~ label{
 .main .title-lines .left-line
 {
     float: left;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .main .title-lines .right-line
@@ -1071,7 +1107,7 @@ input[type=checkbox]:checked ~ label{
 .main .unit
 {
     cursor: pointer;
-    height: 400px;
+    height: 450px;
     padding-right: 0px;
     padding-left: 0px;
     position: relative;
@@ -1088,6 +1124,7 @@ input[type=checkbox]:checked ~ label{
 .main .img-unit-div
 {
     height: 240px;
+    margin-top: 25px;
     background-repeat: no-repeat;
     background-position: 50%;
     background-image: url(../../Content/images/woman.png);
@@ -1096,9 +1133,10 @@ input[type=checkbox]:checked ~ label{
 .main .img-unit-div img
 {
     float: left;
+    padding-left: 2%;
 }
 
-.main .img-unit-div img + div
+.quick-view
 {
     position: absolute;
     visibility: hidden;
@@ -1110,7 +1148,7 @@ input[type=checkbox]:checked ~ label{
     background-color: #b6b6b6;
 }
 
-.main .img-unit-div img + div img
+.main .quick-view img
 {
     padding: 10px;
     float: none;

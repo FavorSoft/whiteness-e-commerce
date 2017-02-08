@@ -156,22 +156,22 @@
                         string cssClass = "";
                         if (count % 2 == 0)
                         {
-                            cssClass = "col-md-6 col-lg-6 col-sm-6 unit";
+                            cssClass = "col-md-6 col-lg-6 col-sm-6 col-xs-8 unit";
                         }
                         else
                         {
-                            cssClass = "col-md-6 col-lg-6 col-sm-6 unit";
+                            cssClass = "col-md-6 col-lg-6 col-sm-6 col-xs-8 unit";
                         }
                         count++;
                         <div class="@cssClass">
-                            <div class="col-md-8 col-md-offset-2 img-unit-div">
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
                                 <img src="~/Content/images/sale.png" alt="topsale">
-                                <div>
+                                <div class="quick-view">
                                     <img src="~/Content/images/eye.png" alt="eye" />
                                     <span>Быстрый просмотр</span>
                                 </div>
                             </div>
-                            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                                 <div class="title-unit-part">
                                     <p class="company-maker">@i.Title</p>
                                     <p class="item-type">@Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</p>

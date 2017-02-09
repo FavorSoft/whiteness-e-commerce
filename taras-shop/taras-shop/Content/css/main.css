@@ -75,11 +75,6 @@ table {
     {
         margin-right: 0px;
     }
-
-    .main .quick-view
-    {
-        width: calc(100% - 30px);
-    }
 }
 
 @media screen and (max-width: 994px)
@@ -126,7 +121,15 @@ table {
     }
 }
 
-@media screen and (max-width: 768px)
+@media screen and (min-width: 992px)
+{
+    .row .main .img-unit-div
+    {
+        background-size: cover;
+    }
+}
+
+@media screen and (max-width: 767px)
 {
     #registration-modal .radio-list .woman-li,
     #registration-modal .radio-list .man-li
@@ -154,10 +157,36 @@ table {
         background-size: cover;
     }
 
+    .row .main .unit .img-unit-div .sale-img
+    {
+        padding-left: 0px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .row .main .unit
     {
         height: inherit;
         min-height: 450px;
+    }
+
+    .row .main .title-lines
+    {
+        margin-bottom: 50px
+    }
+
+    .row .main .title-lines div
+    {
+        width: 100%;
+        float: none;
+    }
+
+    .row .main .title-lines-h
+    {
+        display: block;
+        bottom: 0px;
+        margin-top: 15px;
     }
 }
 
@@ -1070,7 +1099,8 @@ input[type=checkbox]:checked ~ label{
 /* Unit block */
 
 .main .popular-units,
-.main .recommend-units
+.main .recommend-units,
+.main .about
 {
     float: right;
     text-align: center;
@@ -1130,7 +1160,7 @@ input[type=checkbox]:checked ~ label{
     background-image: url(../../Content/images/woman.png);
 }
 
-.main .img-unit-div img
+.main .img-unit-div .sale-img
 {
     float: left;
     padding-left: 2%;
@@ -1154,12 +1184,12 @@ input[type=checkbox]:checked ~ label{
     float: none;
 }
 
-.main .img-unit-div:hover img + div
+.main .img-unit-div:hover .quick-view
 {
     visibility: visible;
 }
 
-.main .img-unit-div:hover img + div:active
+.main .img-unit-div:hover .quick-view:active
 {
     background-color: #999999;
 }
@@ -1285,13 +1315,6 @@ input[type=checkbox]:checked ~ label{
 /* Recommend block end */
 
 /* About block */
-
-.main .about
-{
-    float: right;
-    text-align: center;
-    margin-top: 45px;
-}
 
 .about-text-block
 {

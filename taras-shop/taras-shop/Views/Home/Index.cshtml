@@ -148,7 +148,7 @@
                     <h4 class="title-lines-h">Популярные товары</h4>
                     <div class="col-md-4 right-line"></div>
                 </div>
-                @{ 
+                @{
                     int count = 0;
                     foreach (var i in Model.popular)
                     {
@@ -165,7 +165,7 @@
                         count++;
                         <div class="@cssClass">
                             <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                                <img src="~/Content/images/sale.png" alt="topsale">
+                                <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
                                 <div class="quick-view">
                                     <img src="~/Content/images/eye.png" alt="eye" />
                                     <span>Быстрый просмотр</span>
@@ -177,159 +177,118 @@
                                     <p class="item-type">@Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</p>
                                 </div>
                                 <div class="price-unit-part">
-                                    <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0))/100)) грн</span>
+                                    <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</span>
                                     <span class="price-was">79.90 грн</span>
                                 </div>
                             </div>
                         </div>
                     }
                 }
-                @*<div class="col-md-offset-2 col-md-5 col-lg-5 unit">
-                    <img src="~/Content/images/topsale.png" alt="topsale">
-                    <div class="text-unit-part">
-                        <div class="title-unit-part">
-                            <span class="company-maker">Alla Boune</span>
-                            <span class="item-type">/ Трусы мужские</span>
-                        </div>
-                        <div class="price-unit-part">
-                            <span class="price-now">59,90 грн</span>
-                            <span class="price-was">79.90 грн</span>
-                        </div>
+                <div class="col-md-12 recommend-units">
+                    <div class="title-lines">
+                        <div class="col-md-4 left-line"></div>
+                        <h4 class="title-lines-h">Рекомендуем</h4>
+                        <div class="col-md-4 right-line"></div>
                     </div>
-                </div>*@
-            <div class="col-md-12 recommend-units">
-                <div class="title-lines">
-                    <div class="col-md-4 left-line"></div>
-                    <h4 class="title-lines-h">Рекомендуем</h4>
-                    <div class="col-md-4 right-line"></div>
-                </div>
-                <div class="recommend-row">
-                    <div class="col-md-3 col-lg-3 col-sm-6 unit">
-                        <div class="col-md-3 col-md-offset-2 img-unit-div">
-                            <img src="/Content/images/sale.png" alt="topsale">
-                            <div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <div class="quick-view">
                                 <img src="/Content/images/eye.png" alt="eye">
                                 <span>Быстрый просмотр</span>
                             </div>
                         </div>
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                             <div class="title-unit-part">
-                                <p class="company-maker">Модна колекція бюстгальтерів</p>
-                                <p class="item-type">Нічні сорочки</p>
+                                <p class="company-maker">Стара колекція бюстгальтерів</p>
+                                <p class="item-type">Комплекти</p>
                             </div>
                             <div class="price-unit-part">
-                                <span class="price-now">83.70 грн</span>
+                                <span class="price-now">43.50 грн</span>
                                 <span class="price-was">79.90 грн</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-lg-3 col-sm-6 unit">
-                        <div class="col-md-3 col-md-offset-2 img-unit-div">
-                            <img src="/Content/images/sale.png" alt="topsale">
-                            <div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <div class="quick-view">
                                 <img src="/Content/images/eye.png" alt="eye">
                                 <span>Быстрый просмотр</span>
                             </div>
                         </div>
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                             <div class="title-unit-part">
-                                <p class="company-maker">Модна колекція бюстгальтерів</p>
-                                <p class="item-type">Нічні сорочки</p>
+                                <p class="company-maker">Стара колекція бюстгальтерів</p>
+                                <p class="item-type">Комплекти</p>
                             </div>
                             <div class="price-unit-part">
-                                <span class="price-now">83.70 грн</span>
+                                <span class="price-now">43.50 грн</span>
                                 <span class="price-was">79.90 грн</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-lg-3 col-sm-6 unit">
-                        <div class="col-md-3 col-md-offset-2 img-unit-div">
-                            <img src="/Content/images/sale.png" alt="topsale">
-                            <div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <div class="quick-view">
                                 <img src="/Content/images/eye.png" alt="eye">
                                 <span>Быстрый просмотр</span>
                             </div>
                         </div>
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-unit-part">
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                             <div class="title-unit-part">
-                                <p class="company-maker">Модна колекція бюстгальтерів</p>
-                                <p class="item-type">Нічні сорочки</p>
+                                <p class="company-maker">Стара колекція бюстгальтерів</p>
+                                <p class="item-type">Комплекти</p>
                             </div>
                             <div class="price-unit-part">
-                                <span class="price-now">83.70 грн</span>
+                                <span class="price-now">43.50 грн</span>
                                 <span class="price-was">79.90 грн</span>
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-md-3 unit">
-                        <div class="col-md-3 text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-md-12 about">
+                    <div class="title-lines">
+                        <div class="col-md-4 left-line"></div>
+                        <h4 class="title-lines-h">О нас</h4>
+                        <div class="col-md-4 right-line"></div>
                     </div>
-                    <div class="col-md-3 unit">
-                        <div class="text-unit-part">
-                            <div class="title-unit-part">
-                                <span class="company-maker">Alla Boune</span>
-                                <span class="item-type">/ Трусы женские</span>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">59,90 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>*@
-                </div>
-            </div>
-            <div class="col-md-12 about">
-                <div class="title-lines">
-                    <div class="col-md-4 left-line"></div>
-                    <h4 class="title-lines-h">О нас</h4>
-                    <div class="col-md-4 right-line"></div>
-                </div>
-                <div class="about-text-block">
-                    <h4 class="first-about-h3">Большой выбор товаров</h4>
-                    <p class="first-about-p">
-                        Lorem.ua — крупнейший онлайн-магазин модной одежды, обуви и аксессуаров в Украине.
-                        Здесь Вы можете купить все модные новинки с доставкой на дом.
-                        В каталоге интернет-магазина Lorem.ua более 1000 брендов мужской,
-                        женской и детской обуви и одежды разных ценовых категорий, всего более 2 000 000 товаров.
-                        Наш ассортимент постоянно пополняется новыми товарами и брендами, в числе которых есть как
-                        всемирно известные производители (Mango, Incity, SAVAGE, Tom Tailor, Adidas и другие),
-                        так и дизайнерские марки, эксклюзивно представленные на Lorem.ua.
-                        Мы сотрудничаем только с официальными представителями марок. Все товары,
-                        поступающие к нам, имеют необходимые сертификаты.
-                    </p>
-                    <h4 class="second-about-h3">Доставка по всей Украине</h4>
-                    <p class="second-about-p">
-                        Lorem.ua — это европейский уровень сервиса.
-                        Мы обеспечиваем быструю доставку товаров по всей стране.
-                        Ваш заказ будет доставлен в любую точку Украины в течение 4-6 рабочих дней.
-                        Вместе с ведущими логистическими операторами по доставке товаров в Украине
-                        — Meest Express и Нова Пошта— мы постоянно улучшаем наш сервис и делаем
-                        все возможное, чтобы Вы получили Ваш заказ как можно скорее.
-                        Доставка по всей Украине бесплатная при сумме заказа от 750 гривен.
-                        Если сумма заказа менее 750 гривен, стоимость доставки составит 49
-                        гривен при заказе через Meest Express и 39 грн при заказе на отделение службы доставки Нова Пошта.
-                        Подпишитесь на нашу рассылку, чтобы первыми узнавать о новостях доставки,
-                        а также о скидках и акциях на сайте Lorem.ua.
-                    </p>
-                    <h4 class="third-about-h3">Оплата и возврат</h4>
-                    <p class="third-about-p">
-                        Мы развиваемся и улучшаем наш сервис. На данный момент оплатить заказ можно наличными в момент доставки или банковской картой.
-                        В ближайшее время мы представим и другие способы оплаты заказов.
-                        Если доставленный товар вам не подошел, не понравился или имеет заводской брак, в течение 14 дней
-                        (Все товары, купленные до 10 мая 2016 года,
-                        можно вернуть в течение 60 дней с момента покупки) после доставки заказа вы можете вернуть его по почте.
-                        Мы перечислим вам деньги в минимально возможные сроки после получения вашей посылки.
-                        Благодаря Lamoda.ua покупать модные вещи стало проще, быстрее и комфортнее. Приятного шопинга!
-                    </p>
+                    <div class="about-text-block">
+                        <h4 class="first-about-h3">Большой выбор товаров</h4>
+                        <p class="first-about-p">
+                            Lorem.ua — крупнейший онлайн-магазин модной одежды, обуви и аксессуаров в Украине.
+                            Здесь Вы можете купить все модные новинки с доставкой на дом.
+                            В каталоге интернет-магазина Lorem.ua более 1000 брендов мужской,
+                            женской и детской обуви и одежды разных ценовых категорий, всего более 2 000 000 товаров.
+                            Наш ассортимент постоянно пополняется новыми товарами и брендами, в числе которых есть как
+                            всемирно известные производители (Mango, Incity, SAVAGE, Tom Tailor, Adidas и другие),
+                            так и дизайнерские марки, эксклюзивно представленные на Lorem.ua.
+                            Мы сотрудничаем только с официальными представителями марок. Все товары,
+                            поступающие к нам, имеют необходимые сертификаты.
+                        </p>
+                        <h4 class="second-about-h3">Доставка по всей Украине</h4>
+                        <p class="second-about-p">
+                            Lorem.ua — это европейский уровень сервиса.
+                            Мы обеспечиваем быструю доставку товаров по всей стране.
+                            Ваш заказ будет доставлен в любую точку Украины в течение 4-6 рабочих дней.
+                            Вместе с ведущими логистическими операторами по доставке товаров в Украине
+                            — Meest Express и Нова Пошта— мы постоянно улучшаем наш сервис и делаем
+                            все возможное, чтобы Вы получили Ваш заказ как можно скорее.
+                            Доставка по всей Украине бесплатная при сумме заказа от 750 гривен.
+                            Если сумма заказа менее 750 гривен, стоимость доставки составит 49
+                            гривен при заказе через Meest Express и 39 грн при заказе на отделение службы доставки Нова Пошта.
+                            Подпишитесь на нашу рассылку, чтобы первыми узнавать о новостях доставки,
+                            а также о скидках и акциях на сайте Lorem.ua.
+                        </p>
+                        <h4 class="third-about-h3">Оплата и возврат</h4>
+                        <p class="third-about-p">
+                            Мы развиваемся и улучшаем наш сервис. На данный момент оплатить заказ можно наличными в момент доставки или банковской картой.
+                            В ближайшее время мы представим и другие способы оплаты заказов.
+                            Если доставленный товар вам не подошел, не понравился или имеет заводской брак, в течение 14 дней
+                            (Все товары, купленные до 10 мая 2016 года,
+                            можно вернуть в течение 60 дней с момента покупки) после доставки заказа вы можете вернуть его по почте.
+                            Мы перечислим вам деньги в минимально возможные сроки после получения вашей посылки.
+                            Благодаря Lamoda.ua покупать модные вещи стало проще, быстрее и комфортнее. Приятного шопинга!
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

@@ -131,6 +131,12 @@ table {
 
 @media screen and (max-width: 767px)
 {
+    .her .her-img,
+    .he .he-img
+    {
+        margin: auto;
+    }
+
     #registration-modal .radio-list .woman-li,
     #registration-modal .radio-list .man-li
     {
@@ -188,6 +194,32 @@ table {
         bottom: 0px;
         margin-top: 15px;
     }
+
+    .container .row .last-footer span
+    {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+
+    .contacts
+    {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 320px)
+{
+    .navbar .navbar-collapse.in li,
+    .navbar .navbar-collapse.collapsing li 
+    {
+        display: block;
+    }
+
+    .navbar-collapse .nav-left
+    {
+        padding: 0px;
+    }
 }
 
 /* Media queries end */
@@ -221,6 +253,19 @@ table {
 {
     padding: 14px;
     font-size: 18px;
+    text-align: center;
+}
+
+.navbar-collapse.in li,
+.navbar-collapse.collapsing li
+{
+    text-align: center;
+    display: inline-block;
+}
+
+.header .navbar .container .navbar-collapse
+{
+    max-height: none;
 }
 
 .header .navbar-default
@@ -249,6 +294,16 @@ table {
 .navbar-right > li > a > span
 {
     font-size: 15px;
+}
+
+.header .navbar-header button.navbar-toggle
+{
+    margin: 22px;
+}
+
+.navbar-right
+{
+    text-align: center;
 }
 
 /* Header section end
@@ -608,6 +663,7 @@ body .modal-content .modal-body .frequent-button:hover
 /* Basket modal end */
 
 /* Sidebar section */
+
 #sidebar
 {
     color: #000;
@@ -714,6 +770,11 @@ body .modal-content .modal-body .frequent-button:hover
     color: #000;
     font-weight: bold;
     font-size: 20px
+}
+
+.radio-list
+{
+    min-height: 200px;
 }
 
 .radio-list li
@@ -1382,7 +1443,6 @@ footer .subscribe
 
 .social-block
 {
-    height: 200px;
     text-align: center;
 }
 
@@ -1431,7 +1491,6 @@ footer .subscribe
 {
     border-top: 1px solid;
     border-bottom: 1px solid;
-    height: 170px;
 }
 
 .contacts div

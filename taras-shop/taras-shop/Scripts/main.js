@@ -7,6 +7,13 @@
                 heightStyle: "content"
             }
         );
+        $('#accordion').removeClass('ui-widget');
+        $('#accordion').removeClass('ui-helper-reset');
+        $('#accordion').removeClass('ui-accordion');
+    });
+
+    $("#size-toggle").click(function () {
+        $(".append-radio").toggleClass("radio-show")
     });
 
     $(function () {
@@ -23,9 +30,6 @@
           " - $" + $("#slider").slider("values", 1));
         $("#amount").val("$" + $("#slider").slider("values", 0) +
           " - $" + $("#slider").slider("values", 1));
-        $('#accordion').removeClass('ui-widget');
-        $('#accordion').removeClass('ui-helper-reset');
-        $('#accordion').removeClass('ui-accordion');
     });
 
     $.get("home/load", function (data, status) {
@@ -99,9 +103,5 @@
         }).done(function (data) {
             console.log(data);
         });
-    });
-    $("#wrapper-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
     });
 });

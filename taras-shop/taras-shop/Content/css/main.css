@@ -138,7 +138,8 @@ table {
     }
 
     #registration-modal .radio-list .woman-li,
-    #registration-modal .radio-list .man-li
+    #registration-modal .radio-list .man-li,
+    #item-preview-modal .radio-list li
     {
         float: none;
         margin: 0 auto;
@@ -308,6 +309,79 @@ table {
 
 /* Header section end
 
+/* Main modal styles */
+
+#registration-modal,
+#basket-modal,
+#item-preview-modal
+{
+    margin: 0 auto;
+}
+
+#registration-modal .modal-content,
+#basket-modal .modal-content,
+#item-preview-modal .modal-content
+{
+    border-radius: 0;
+    background-color: #fff;
+    font-family: Calibri;
+}
+
+#registration-modal .close span:focus,
+#basket-modal .close span:focus,
+#item-preview-modal .close span:focus
+{
+    outline: none;
+}
+
+#registration-modal .modal-header,
+#basket-modal .modal-header,
+#item-preview-modal .modal-header
+{
+    border: none;
+}
+
+#registration-modal .modal-footer,
+#basket-modal .modal-footer,
+#item-preview-modal .modal-footer
+{
+    border: none;
+}
+
+#registration-modal .modal-dialog,
+#basket-modal .modal-dialog,
+#item-preview-modal .modal-dialog
+{
+    width: 100%;
+}
+
+.frequent-button
+{
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+    font-family: BebasNeueBold;
+    font-size: 23px;
+    background-color: #000;
+    transition: all .3s ease;
+}
+
+.frequent-button.submit-log
+{
+    border: 3px solid #fff;
+}
+
+body .modal-content .modal-body .frequent-button:hover
+{
+    background-color: #c22529;
+    border: none;
+    color: #fff;
+}
+/* Main modal styles end */
+
 /* Registration modal */
 
 #registration-modal .nav-tabs > li, .nav-pills > li {
@@ -325,20 +399,6 @@ table {
     text-align:center;
 }
 
-#registration-modal,
-#basket-modal
-{
-    margin: 0 auto;
-}
-
-#registration-modal .modal-content,
-#basket-modal .modal-content
-{
-    border-radius: 0;
-    background-color: #fff;
-    font-family: Calibri;
-}
-
 #registration-modal .modal-content
 {
     background-color: #000;
@@ -348,29 +408,6 @@ table {
 {
     opacity: 1;
     color: #fff;
-}
-
-#registration-modal .close span:focus,
-#basket-modal .close span:focus
-{
-    outline: none;
-}
-
-#registration-modal .modal-header
-{
-    border: none;
-}
-
-#registration-modal .modal-footer,
-#basket-modal .modal-footer
-{
-    border: none;
-}
-
-#registration-modal .modal-dialog,
-#basket-modal .modal-dialog
-{
-    width: 100%;
 }
 
 #registration-modal label
@@ -434,32 +471,6 @@ table {
 {
     text-decoration: none;
     color: #000;
-}
-
-.frequent-button
-{
-    width: 100%;
-    height: 50px;
-    border: none;
-    outline: none;
-    color: #fff;
-    font-weight: 600;
-    font-family: BebasNeueBold;
-    font-size: 23px;
-    background-color: #000;
-    transition: all .3s ease;
-}
-
-.frequent-button.submit-log
-{
-    border: 3px solid #fff;
-}
-
-body .modal-content .modal-body .frequent-button:hover
-{
-    background-color: #c22529;
-    border: none;
-    color: #fff;
 }
 
 #registration-modal a[href="#sign-in-tab"],
@@ -526,7 +537,7 @@ body .modal-content .modal-body .frequent-button:hover
     color: #000;
 }
 
-.submit-reg + div
+.line
 {
     width: 80%;
     margin: 0 auto;
@@ -662,6 +673,162 @@ body .modal-content .modal-body .frequent-button:hover
 }
 /* Basket modal end */
 
+/* Item-preview modal */
+
+#carousel-custom
+{
+    padding: 0px;
+}
+
+#carousel-custom .carousel-inner
+{
+    position: relative;
+    width: 75%;
+    height: 500px;
+    float: right;
+    overflow: hidden;
+}
+
+#carousel-custom .carousel-inner > .item > img
+{
+    height: 490px;
+}
+
+#carousel-example-generic {
+    margin: 20px auto;
+    width: 100%;
+}
+
+#carousel-custom .carousel-indicators {
+    position: static;
+    float: left;
+    height: 500px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    width: 20%;
+}
+
+#carousel-custom .carousel-indicators li {
+    display: block;
+    margin: 0px;
+    height: 25%;
+    width: 100%;
+    border: none;
+}
+
+#carousel-custom .carousel-indicators li img {
+    display: block;
+    opacity: 0.5;
+}
+
+/*#carousel-custom .carousel-indicators li .third-slider-img,
+#carousel-custom .carousel-indicators li .fourth-slider-img {
+    position: relative;
+    top: 10px;
+}*/
+
+#carousel-custom .carousel-indicators li.active img {
+    opacity: 1;
+}
+
+#carousel-custom .carousel-indicators li:hover img {
+    opacity: 0.75;
+}
+
+.carousel-indicators li img {
+    height: 115px;
+    max-width: 100%;
+}
+
+.details-modal-part button:last-child
+{
+    margin-top: 10px;
+}
+
+.details-modal-part button:last-child
+{
+    background-color: #ebebeb;
+    color: #000;
+}
+
+.details-modal-part .line
+{
+    border-color: #bfbfbf;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+#item-preview-modal .text-details-part
+{
+    padding: 0px;
+}
+
+#size-toggle
+{
+    margin-bottom: 30px;
+    float: left;
+    cursor: pointer;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+    user-select: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}  
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+.append-radio
+{
+    display: none;
+}
+
+.radio-show
+{
+    display: block;
+    animation: fadeIn .4s;
+}
+
+#item-preview-modal .radio-list li .check
+{
+    border: 2px solid #000;
+    width: 15px;
+    height: 15px;
+    top: 12px;
+    left: 20px;
+}
+
+#item-preview-modal .radio-list li .check::before
+{
+    top: 2px;
+    left: 2px;
+    width: 7px;
+    height: 7px;
+}
+
+#item-preview-modal .radio-list li:hover .check
+{
+    border: 2px solid #000;
+}
+
+#item-preview-modal .radio-list label
+{
+    font-size: 15px;
+    float: left;
+    padding-left: 40px;
+    padding-top: 0px;
+    margin: 10px auto;
+}
+/* Item-preview modal end */
+
 /* Sidebar section */
 
 #sidebar
@@ -772,7 +939,7 @@ body .modal-content .modal-body .frequent-button:hover
     font-size: 20px
 }
 
-.radio-list
+#sidebar .radio-list
 {
     min-height: 200px;
 }
@@ -784,7 +951,7 @@ body .modal-content .modal-body .frequent-button:hover
     position: relative;
     float: left;
     width: 100%;
-    height: 35px;
+    height: 25px;
     right: 20px;
     bottom: 30px;
 }
@@ -844,15 +1011,21 @@ body .modal-content .modal-body .frequent-button:hover
 	-webkit-transition: background 0.25s ease-in;
 }
 
-input[type=checkbox]:checked ~ .check {
+input[type=checkbox]:checked ~ .check,
+input[type=radio]:checked ~ .check
+{
     border: 2px solid #000;
 }
 
-input[type=checkbox]:checked ~ .check::before{
+input[type=checkbox]:checked ~ .check::before,
+input[type=radio]:checked ~ .check::before
+{
     background: #000;
 }
 
-input[type=checkbox]:checked ~ label{
+input[type=checkbox]:checked ~ label,
+input[type=radio]:checked ~ label
+{
     color: #000;
 }
 
@@ -1266,13 +1439,13 @@ input[type=checkbox]:checked ~ label{
     text-overflow: ellipsis;
 }
 
-.main .company-maker
+.company-maker
 {
     font-size: 17px;
     margin-bottom: 0px;
 }
 
-.main .item-type
+.item-type
 {
     font-size: 16px;
     color: #7d7d7d;

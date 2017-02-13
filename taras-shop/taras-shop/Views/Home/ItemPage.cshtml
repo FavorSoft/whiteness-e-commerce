@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h5 class="routing-h"><a>Главная страница</a> > <a>Женское белье</a> > <a>Трусы</a> > <a>Anabel Arto</a></h5>
+        <div id="item-page-block">
+            <div id='item-carousel-custom' class='col-md-8 carousel slide' data-ride='carousel'>
+                <div class='carousel-outer'>
+                    <!-- thumb -->
+                    <ol class='carousel-indicators mCustomScrollbar meartlab'>
+                        <li data-target='#carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
+                        <li data-target='#carousel-custom' data-slide-to='1'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='2' /></li>
+                        <li data-target='#carousel-custom' data-slide-to='2'><img class="third-slider-img" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='3' /></li>
+                        <li data-target='#carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>
+                    </ol>
+                    <!-- me art lab slider -->
+                    <div class='carousel-inner '>
+                        <div class='item active'>
+                            <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='' id="zoom_05" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg" />
+                        </div>
+                        <div class='item' id="zoom_05">
+                            <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg" />
+                        </div>
+                        <div class='item'>
+                            <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg" />
+                        </div>
+
+                        <div class='item'>
+                            <img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 details-modal-part">
+                <div class="col-md-12 text-details-part">
+                    <div class="title-unit-part">
+                        <p class="company-maker">Стара колекція жіноччих комплектів</p>
+                        <p class="item-type">Труси</p>
+                    </div>
+                    <div class="price-unit-part">
+                        <span class="price-now">43.50 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <div class="colors"></div>
+                <div class="choose-size">
+                    <h4 id="size-toggle">Выбрать размер</h4>
+                    <div class="append-radio">
+                        <ul class="radio-list">
+                            <li>
+                                <input type="radio" id="xs-option2" name="selector">
+                                <label for="xs-option2">Xs</label>
+
+                                <div class="check"></div>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="s-option2" name="selector">
+                                <label for="s-option2">S</label>
+
+                                <div class="check"><div class="inside"></div></div>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="m-option2" name="selector">
+                                <label for="m-option2">M</label>
+
+                                <div class="check"><div class="inside"></div></div>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="l-option2" name="selector">
+                                <label for="l-option2">L</label>
+
+                                <div class="check"><div class="inside"></div></div>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="xl-option2" name="selector">
+                                <label for="xl-option2">Xl</label>
+
+                                <div class="check"><div class="inside"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="frequent-button">Добавить в корзину</button>
+                <div id="item-accordion" data-theme="none">
+                    <h4><span>+</span>Описание товара</h4>
+                    <div>
+                        <p>
+                            Трусы Anabel Arto выполнены из гладкого трикотажа.<br />
+                            <br />
+                            - эластичный пояс<br />
+                            - эластичный пояс<br />
+                            - эластичный пояс<br />
+                            <br />
+                            <span class="consist">Состав: </span><span>Полиамид - 85%, Эластан - 15%</span><br />
+                            <span class="item-code">Код товара: </span>45987-B<span>
+                        </p>
+                    </div>
+                    <h4><span>+</span>Доставка</h4>
+                    <div>
+                        <p>
+                            Lorem.ua предоставляет своим клиентам следующие способы доставки:<br />
+                            <br />
+                            - новая почта<br />
+                            - деливери<br />
+                            - Адресная доставка по Ровно
+                        </p>
+                    </div>
+                    <h4><span>+</span>Оплата</h4>
+                    <div>
+                        <p>
+                            Lorem.ua предоставляет своим клиентам следующие виды оплаты:<br />
+                            <br />
+                            - наличный<br />
+                            - безналичный<br />
+                            - Visa и MasterCard
+                        </p>
+                    </div>
+                    <h4></h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

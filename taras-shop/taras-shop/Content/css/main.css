@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+    font-family: Calibri;
 }
 ol, ul {
 	list-style: none;
@@ -41,6 +42,22 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+body a
+{
+    color: #000;
+}
+
+body a:hover
+{
+    color: #000;
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6,
+body p, body span
+{
+    font-family: Calibri;
 }
 
 /* Fonts */
@@ -369,6 +386,13 @@ table {
     transition: all .3s ease;
 }
 
+.frequent-button:hover
+{
+    background-color: #c22529;
+    border: none;
+    color: #fff;
+}
+
 .frequent-button.submit-log
 {
     border: 3px solid #fff;
@@ -675,12 +699,14 @@ body .modal-content .modal-body .frequent-button:hover
 
 /* Item-preview modal */
 
-#carousel-custom
+#carousel-custom,
+#item-carousel-custom
 {
     padding: 0px;
 }
 
-#carousel-custom .carousel-inner
+#carousel-custom .carousel-inner,
+#item-carousel-custom .carousel-inner
 {
     position: relative;
     width: 75%;
@@ -689,17 +715,14 @@ body .modal-content .modal-body .frequent-button:hover
     overflow: hidden;
 }
 
-#carousel-custom .carousel-inner > .item > img
+#carousel-custom .carousel-inner > .item > img,
+#item-carousel-custom .carousel-inner > .item > img
 {
     height: 490px;
 }
 
-#carousel-example-generic {
-    margin: 20px auto;
-    width: 100%;
-}
-
-#carousel-custom .carousel-indicators {
+#carousel-custom .carousel-indicators,
+#item-carousel-custom .carousel-indicators {
     position: static;
     float: left;
     height: 500px;
@@ -708,7 +731,8 @@ body .modal-content .modal-body .frequent-button:hover
     width: 20%;
 }
 
-#carousel-custom .carousel-indicators li {
+#carousel-custom .carousel-indicators li,
+#item-carousel-custom .carousel-indicators li {
     display: block;
     margin: 0px;
     height: 25%;
@@ -716,22 +740,19 @@ body .modal-content .modal-body .frequent-button:hover
     border: none;
 }
 
-#carousel-custom .carousel-indicators li img {
+#carousel-custom .carousel-indicators li img,
+#item-carousel-custom .carousel-indicators li img {
     display: block;
     opacity: 0.5;
 }
 
-/*#carousel-custom .carousel-indicators li .third-slider-img,
-#carousel-custom .carousel-indicators li .fourth-slider-img {
-    position: relative;
-    top: 10px;
-}*/
-
-#carousel-custom .carousel-indicators li.active img {
+#carousel-custom .carousel-indicators li.active img,
+#item-carousel-custom .carousel-indicators li.active img {
     opacity: 1;
 }
 
-#carousel-custom .carousel-indicators li:hover img {
+#carousel-custom .carousel-indicators li:hover img,
+#item-carousel-custom .carousel-indicators li:hover img {
     opacity: 0.75;
 }
 
@@ -759,6 +780,7 @@ body .modal-content .modal-body .frequent-button:hover
 }
 
 #item-preview-modal .text-details-part
+
 {
     padding: 0px;
 }
@@ -1339,6 +1361,7 @@ input[type=radio]:checked ~ label
     float: right;
     text-align: center;
     margin-top: 45px;
+    color: #000;
 }
 
 .main .title-lines .left-line,
@@ -1443,6 +1466,7 @@ input[type=radio]:checked ~ label
 {
     font-size: 17px;
     margin-bottom: 0px;
+    font-weight: bold;
 }
 
 .item-type
@@ -1563,6 +1587,86 @@ input[type=radio]:checked ~ label
 /* Info block end */
 
 /* Main section end */
+
+/* ItemPage block */
+
+#item-page-block
+{
+    padding: 0px 15px;
+}
+
+#item-page-block .text-details-part
+{
+    padding: 0px;
+}
+
+.routing-h
+{
+    padding: 30px 0px;
+    border-top: 1px solid #ccc;
+    color: #c7c7c7;
+    text-transform: uppercase;
+    cursor: pointer
+}
+
+.routing-h a
+{
+    color: #c7c7c7;
+    padding: 0px 15px;
+}
+
+.routing-h a:hover
+{
+    color: #c7c7c7;
+}
+
+#item-accordion h4
+{
+    color: #000;
+    font-family: BebasNeueBold;
+    cursor: pointer;
+    font-size: 23px;
+    padding: 15px 0px 5px 0px;
+    user-select: none;
+    background-color: #fff;
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    line-height: 0.8;
+}
+
+#item-accordion .ui-accordion-header-icon
+{
+    display: none;
+}
+
+#item-accordion h4 > span
+{
+    font-size: 40px;
+    float: left;
+    position: relative;
+    bottom: 7px;
+    margin-right: 5px;
+}
+
+#item-accordion h4:focus
+{
+    outline: none;
+}
+
+#item-accordion div
+{
+    border: none;
+    margin-left: 21px;
+}
+
+.consist,
+.item-code
+{
+    color: #999898;
+}
+
+/* ItemPage block end */
 
 /* Footer section */
 

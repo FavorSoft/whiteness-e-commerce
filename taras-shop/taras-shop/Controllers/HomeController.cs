@@ -56,6 +56,11 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        public ActionResult ItemPage()
+        {
+            return View();
+        }
+
         public ActionResult Search()
         {
             return View();
@@ -66,5 +71,4 @@ namespace taras_shop.Controllers
             base.Dispose(disposing);
         }
     }
-    
 }

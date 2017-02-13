@@ -164,23 +164,25 @@
                         }
                         count++;
                         <div class="@cssClass">
-                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                                <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
-                                <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
-                                    <img src="~/Content/images/eye.png" alt="eye" />
-                                    <span>Быстрый просмотр</span>
+                            <a href="/Home/ItemPage">
+                                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                                    <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
+                                    <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
+                                        <img src="~/Content/images/eye.png" alt="eye" />
+                                        <span>Быстрый просмотр</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
-                                <div class="title-unit-part">
-                                    <p class="company-maker">@i.Title</p>
-                                    <p class="item-type">@Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</p>
+                                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                                    <div class="title-unit-part">
+                                        <p class="company-maker">@i.Title</p>
+                                        <p class="item-type">@Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</p>
+                                    </div>
+                                    <div class="price-unit-part">
+                                        <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                                        <span class="price-was">79.90 грн</span>
+                                    </div>
                                 </div>
-                                <div class="price-unit-part">
-                                    <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</span>
-                                    <span class="price-was">79.90 грн</span>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     }
                 }

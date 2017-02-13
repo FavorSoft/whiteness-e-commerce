@@ -12,6 +12,19 @@
         $('#accordion').removeClass('ui-accordion');
     });
 
+    $(function () {
+        $("#item-accordion").accordion(
+            {
+                collapsible: true,
+                animate: 150,
+                heightStyle: "content"
+            }
+        );
+        $('#item-accordion').removeClass('ui-widget');
+        $('#item-accordion').removeClass('ui-helper-reset');
+        $('#item-accordion').removeClass('ui-accordion');
+    });
+
     $("#size-toggle").click(function () {
         $(".append-radio").toggleClass("radio-show")
     });

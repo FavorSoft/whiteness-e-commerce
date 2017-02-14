@@ -1625,6 +1625,11 @@ input[type=radio]:checked ~ label
     color: #c7c7c7;
 }
 
+#item-carousel-custom
+{
+    margin-bottom: 110px;
+}
+
 #item-accordion h4
 {
     color: #000;
@@ -1669,6 +1674,54 @@ input[type=radio]:checked ~ label
 .item-code
 {
     color: #999898;
+}
+
+.watch-also h4
+{
+    font-family: BebasNeueBold;
+}
+
+#item-page-block .watch-also-item
+{
+    padding-left: 0px;
+    padding-bottom: 10px;
+}
+
+#item-page-block .watch-also-item span,
+#item-page-block .watch-also-item p
+{
+    font-size: 16px;
+    text-align: center;
+}
+
+#item-page-block .watch-also-item span:last-child
+{
+    margin: 0px;
+    font-size: 14px;
+}
+
+.watch-also-item img
+{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.watch-also-item img:hover
+{
+    opacity: 1;
+}
+
+.watch-also-item .price-unit-part,
+.last-view .price-unit-part
+{
+    text-align: center;
+}
+
+.last-view
+{
+    margin-bottom: 50px;
 }
 
 /* ItemPage block end */

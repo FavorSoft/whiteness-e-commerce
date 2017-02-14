@@ -819,7 +819,8 @@ body .modal-content .modal-body .frequent-button:hover
     animation: fadeIn .4s;
 }
 
-#item-preview-modal .radio-list li .check
+#item-preview-modal .radio-list li .check,
+#item-page-block .radio-list li .check
 {
     border: 2px solid #000;
     width: 15px;
@@ -828,7 +829,8 @@ body .modal-content .modal-body .frequent-button:hover
     left: 20px;
 }
 
-#item-preview-modal .radio-list li .check::before
+#item-preview-modal .radio-list li .check::before,
+#item-page-block .radio-list li .check::before
 {
     top: 2px;
     left: 2px;
@@ -836,12 +838,14 @@ body .modal-content .modal-body .frequent-button:hover
     height: 7px;
 }
 
-#item-preview-modal .radio-list li:hover .check
+#item-preview-modal .radio-list li:hover .check,
+#item-page-block .radio-list li:hover .check
 {
     border: 2px solid #000;
 }
 
-#item-preview-modal .radio-list label
+#item-preview-modal .radio-list label,
+#item-page-block .radio-list label
 {
     font-size: 15px;
     float: left;

@@ -25,6 +25,28 @@
         $('#item-accordion').removeClass('ui-accordion');
     });
 
+    var $window = $(window);
+
+    function resizeSidebar() {
+        console.log("My size is " + $window.width());
+        if ($window.width() < 994) {
+            $(".sidebar-mobile-accordion").accordion(
+                {
+                    collapsible: true,
+                    animate: 150,
+                    heightStyle: "content"
+                }
+            );
+            $('.sidebar-mobile-accordion').removeClass('ui-widget');
+            $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
+            $('.sidebar-mobile-accordion').removeClass('ui-accordion');
+        }
+    }
+
+    resizeSidebar();
+    $(window).resize(consle.log("resizee!!!"));
+    $(window).resize(resizeSidebar());
+
     $("#size-toggle").click(function () {
         $(".append-radio").toggleClass("radio-show")
     });

@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+
+    /*
+     * Provide jquery ui accordion on sidebar categories.
+     */
     $(function () {
         $("#accordion").accordion(
             {
@@ -12,6 +16,9 @@
         $('#accordion').removeClass('ui-accordion');
     });
 
+    /*
+     * Provide jquery ui accordion on item page.
+     */
     $(function () {
         $("#item-accordion").accordion(
             {
@@ -25,32 +32,39 @@
         $('#item-accordion').removeClass('ui-accordion');
     });
 
-    var $window = $(window);
+    /*
+     * Adds jquery ui accordion to sidebar, when size of screen is small.
+     */
+    $(function () {
+        var $window = $(window);
+        var width = $window.width();
 
-    function resizeSidebar() {
-        console.log("My size is " + $window.width());
-        if ($window.width() < 994) {
-            $(".sidebar-mobile-accordion").accordion(
-                {
-                    collapsible: true,
-                    animate: 150,
-                    heightStyle: "content"
+        setInterval(function () {
+            if ((width != $window.width())) {
+                width = $window.width();
+                console.log("resized!");
+                if (width < 994) {
+                    $(".sidebar-mobile-accordion").accordion(
+                        {
+                            collapsible: true,
+                            animate: 150,
+                            heightStyle: "content"
+                        }
+                    );
+                    $('.sidebar-mobile-accordion').removeClass('ui-widget');
+                    $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
+                    $('.sidebar-mobile-accordion').removeClass('ui-accordion');
                 }
-            );
-            $('.sidebar-mobile-accordion').removeClass('ui-widget');
-            $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
-            $('.sidebar-mobile-accordion').removeClass('ui-accordion');
-        }
-    }
-
-    resizeSidebar();
-    $(window).resize(consle.log("resizee!!!"));
-    $(window).resize(resizeSidebar());
-
-    $("#size-toggle").click(function () {
-        $(".append-radio").toggleClass("radio-show")
+                else {
+                    $('.sidebar-mobile-accordion').accordion('destroy');
+                }
+            }
+        }, 100);
     });
 
+    /*
+     * Function provide jquery ui range slider.
+     */
     $(function () {
         $("#slider").slider({
             range: true,
@@ -66,6 +80,18 @@
         $("#amount").val("$" + $("#slider").slider("values", 0) +
           " - $" + $("#slider").slider("values", 1));
     });
+
+    /*
+     * Show or hide radio buttons on item page or preview.
+     */
+    $("#size-toggle").click(function () {
+        $(".append-radio").toggleClass("radio-show")
+    });
+
+    /*
+     * Andrew? write comments!!!!
+     */
+
 
     $.get("home/load", function (data, status) {
         console.log(status);

@@ -56,33 +56,75 @@
     }).done(function (data) {
         console.log(data);
     });
-
+    
     $("#create").click(function AddUnit() {
-        var title = $("#title").val();
-        var producer = $("#producer").val();
-        var categoryType = $('#category-type option:selected').val();
-        var category = $('#category option:selected').val();
-        var price = $("#price").val();
-        var amount = $("#count").val();
-        var size = $("#size").val();
-        var material = $("#material").val();
-        var description = $("#description").val();
-
+        
+        var images = [];
         
         if (window.FormData !== undefined) {
             var files = document.getElementById('images').files;
-            var data = new FormData();
+            var sendData= new FormData();
             for (var x = 0; x < files.length; x++) {
-                data.append("file" + x, files[x]);
+                sendData.append("file" + x, files[x]);
             }
             $.ajax({
                 type: "POST",
                 url: "UploadPhoto",
                 contentType: false,
                 processData: false,
-                data: data,
+                data: sendData,
                 success: function (result) {
-                    console.log(result);
+                    for (var i in result) {
+                        $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
+                        images += result[i];
+                    }
+                    console.log(images);
+
+                    for (var i in result) {
+                        $("#carousel-on-modal").append('<div class=\'item active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'\' /></div>');
+                    }
+                    $('#item-preview-modal').modal();
+
+
+                    var title = $("#title").val();
+                    var producer = $("#producer").val();
+                    var categoryType = $('#category-type option:selected').val();
+                    var category = $('#category option:selected').val();
+                    var price = $("#price").val();
+                    var amount = $("#count").val();
+                    var size = $("#size").val();
+                    var material = $("#material").val();
+                    var description = $("#description").val();
+
+
+                    $("#title-on-modal").text(title);
+                    $("#item-type-on-modal").text($('#category option:selected').text());
+                    $("#price-now-on-modal").text(price + " грн");
+                    $("#carousel-on-modal").html("");
+
+                    console.log(images);
+                    $.ajax({
+                        method: "post",
+                        processData: false,
+                        url: "AddUnit",
+                        data: {
+                            title: title,
+                            producer: producer,
+                            categoryType: categoryType,
+                            category: category,
+                            price: price,
+                            amount: amount,
+                            size: size,
+                            material: material,
+                            description: description,
+                            images: images
+                        }
+
+                    }).done(function (data) {
+                        console.log(data);
+                    });
+
+
                 },
                 error: function (xhr, status, p3, p4) {
                     var err = "Error " + " " + status + " " + p3 + " " + p4;
@@ -96,25 +138,7 @@
 
         }
 
+        
 
-        $.ajax({
-            method: "post",
-            processData: false,
-            url: "AddUnit",
-            data: {
-                title: title,
-                producer: producer,
-                categoryType: categoryType,
-                category: category,
-                price: price,
-                amount: amount,
-                size: size,
-                material: material,
-                description: description
-            }
-
-        }).done(function (data) {
-            console.log(data);
-        });
     });
 });

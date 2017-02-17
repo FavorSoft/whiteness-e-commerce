@@ -2,6 +2,9 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -54,26 +57,31 @@ namespace taras_shop.Controllers
         [HttpPost]
         public JsonResult UploadPhoto()
         {
-            foreach(string file in Request.Files)
+            List<string> tmpName = new List<string>();
+            foreach (string file in Request.Files)
             {
                 var fileContent = Request.Files[file];
                 if (fileContent != null && fileContent.ContentLength > 0)
                 {
-                    //Bitmap imageSave = WorkImage.CreateImage(model.UploadImage, 600, 400);
-                    //if (imageSave != null)
-                   // {
-                    ////    string path = Server.MapPath(ConfigurationManager.AppSettings["ImageProductPath"]);
-                    //    Guid imageName = Guid.NewGuid();
-                    //    string fileName = path + imageName + System.IO.Path.GetExtension(model.UploadImage.FileName);
-                    //    imageSave.Save(fileName, ImageFormat.Jpeg);
-                   // }
+
+                    Bitmap imageSave = WorkImage.WorkImage.CropImage(fileContent, 600, 400);
+                    if (imageSave != null)
+                    {
+                        string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
+                        Guid imageName = Guid.NewGuid();
+                        
+                        string fileName = path + "Units\\" + imageName + System.IO.Path.GetExtension(fileContent.FileName);
+                        imageSave.Save(fileName, ImageFormat.Jpeg);
+                        tmpName.Add(imageName.ToString());
+                    }
                 }
             }
-            return Json("Success", JsonRequestBehavior.AllowGet);
+            return Json(tmpName, JsonRequestBehavior.AllowGet);
         }
-    
+
         [HttpPost]
         public JsonResult AddUnit(
+            
             string title,
             string producer,
             int categoryType,
@@ -83,25 +91,38 @@ namespace taras_shop.Controllers
             string size,
             string material,
             string description,
-            IEnumerable<object> images
+            IEnumerable<string> images
             )
         {
+            try {
+                var unit = new UnitDto()
+                {
+                    Title = title,
+                    Producer = producer,
+                    CategoryId = category,
+                    Price = Convert.ToInt32(price * 100),
+                    Amount = amount,
+                    Size = size,
+                    Material = material,
+                    Description = description
+                };
 
-            var unit = new UnitDto()
+                unitOfWork.Unit.AddItem(unit);
+                foreach (string img in images) {
+                    unitOfWork.Images.AddItem(new ImagesDto()
+                    {
+                        Image = img,
+                        OwnerId = unit.Id
+                    });
+                }
+                unitOfWork.Commit();
+            }
+            catch (Exception e)
             {
-                Title = title,
-                Producer = producer,
-                CategoryId = category,
-                Price = Convert.ToInt32(price * 100),
-                Amount = amount,
-                Size = size,
-                Material = material,
-                Description = description
-            };
-            
-            //unitOfWork.Unit.AddItem(unit);
-            
-            return Json(unit, JsonRequestBehavior.AllowGet);
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)
         {

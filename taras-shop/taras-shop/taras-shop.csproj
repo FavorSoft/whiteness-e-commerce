@@ -220,25 +220,28 @@
   <ItemGroup>
     <Content Include="Content\css\animation.css" />
     <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\images\basket.jpg" />
+    <Content Include="Content\images\eye.png" />
     <Content Include="Content\images\he.jpg" />
     <Content Include="Content\images\her.jpg" />
+    <Content Include="Content\images\item-preview.png" />
     <Content Include="Content\images\logo-Vol.jpg" />
     <Content Include="Content\images\lorem.jpg" />
     <Content Include="Content\images\mant.jpg" />
     <Content Include="Content\images\news.jpg" />
     <Content Include="Content\images\register.jpg" />
+    <Content Include="Content\images\sale.png" />
     <Content Include="Content\images\search.jpg" />
     <Content Include="Content\images\slider.jpg" />
     <Content Include="Content\images\small-womant.jpg" />
     <Content Include="Content\images\topsale.jpg" />
     <Content Include="Content\images\topsale.png" />
     <Content Include="Content\images\topsalenew.jpg" />
+    <Content Include="Content\images\woman.png" />
     <Content Include="Content\images\womant.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontello.svg" />
@@ -255,6 +258,7 @@
     <Content Include="fonts\fontello.eot" />
     <Content Include="fonts\fontello.ttf" />
     <Content Include="fonts\fontello.woff" />
+    <Content Include="fonts\Calibri.ttf" />
     <None Include="Properties\PublishProfiles\taras-shop.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -269,7 +273,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -326,6 +332,10 @@
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{10e0e204-9006-4e0a-bf02-a0dc78de667e}</Project>
       <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Image\WorkImage.csproj">
+      <Project>{28805f6c-a6df-4031-867d-561f0201370b}</Project>
+      <Name>WorkImage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

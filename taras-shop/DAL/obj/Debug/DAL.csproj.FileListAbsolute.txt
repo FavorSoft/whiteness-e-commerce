@@ -34,6 +34,6 @@ C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debu
 C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.xml
 C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServerCompact.xml
-C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.dll
 C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
+C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

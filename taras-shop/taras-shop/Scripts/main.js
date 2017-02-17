@@ -92,7 +92,7 @@
      * Andrew? write comments!!!!
      */
 
-
+    //ohhh, i'm sorry, not now
     $.get("home/load", function (data, status) {
         console.log(status);
         console.log(data);
@@ -105,16 +105,21 @@
         console.log(data);
     });
     
+    /*
+    * Function for send unit to server
+    */
     $("#create").click(function AddUnit() {
-        
+        //  variable for saving photo names
         var images = [];
         
         if (window.FormData !== undefined) {
+            // Getting files from form
             var files = document.getElementById('images').files;
             var sendData= new FormData();
             for (var x = 0; x < files.length; x++) {
                 sendData.append("file" + x, files[x]);
             }
+            // ajax for upload photos
             $.ajax({
                 type: "POST",
                 url: "UploadPhoto",
@@ -122,6 +127,7 @@
                 processData: false,
                 data: sendData,
                 success: function (result) {
+                    //this result - photo names, that was uploaded
                     for (var i in result) {
                         $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
                         images += result[i];
@@ -133,7 +139,7 @@
                     }
                     $('#item-preview-modal').modal();
 
-
+                    //getting values other parameters of unit from form
                     var title = $("#title").val();
                     var producer = $("#producer").val();
                     var categoryType = $('#category-type option:selected').val();
@@ -145,12 +151,13 @@
                     var description = $("#description").val();
 
 
+                    //work with modal window
                     $("#title-on-modal").text(title);
                     $("#item-type-on-modal").text($('#category option:selected').text());
                     $("#price-now-on-modal").text(price + " грн");
                     $("#carousel-on-modal").html("");
 
-                    console.log(images);
+                    //sending all data to server
                     $.ajax({
                         method: "post",
                         processData: false,
@@ -167,12 +174,9 @@
                             description: description,
                             images: images
                         }
-
                     }).done(function (data) {
                         console.log(data);
                     });
-
-
                 },
                 error: function (xhr, status, p3, p4) {
                     var err = "Error " + " " + status + " " + p3 + " " + p4;
@@ -183,10 +187,6 @@
             });
         } else {
             alert("This browser doesn't support HTML5 file uploads!");
-
         }
-
-        
-
     });
 });

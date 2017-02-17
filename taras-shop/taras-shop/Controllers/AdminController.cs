@@ -81,13 +81,12 @@ namespace taras_shop.Controllers
 
         [HttpPost]
         public JsonResult AddUnit(
-            
             string title,
             string producer,
-            int categoryType,
-            int category,
-            float price,
-            int amount,
+            string categoryType,
+            string category,
+            string price,
+            string amount,
             string size,
             string material,
             string description,
@@ -99,14 +98,14 @@ namespace taras_shop.Controllers
                 {
                     Title = title,
                     Producer = producer,
-                    CategoryId = category,
-                    Price = Convert.ToInt32(price * 100),
-                    Amount = amount,
+                    CategoryId = Int32.Parse(category),
+                    Price = Convert.ToInt32(Int32.Parse(price) * 100),
+                    Amount = Int32.Parse(amount),
                     Size = size,
                     Material = material,
                     Description = description
                 };
-
+            
                 unitOfWork.Unit.AddItem(unit);
                 foreach (string img in images) {
                     unitOfWork.Images.AddItem(new ImagesDto()
@@ -121,7 +120,7 @@ namespace taras_shop.Controllers
             {
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
-
+            
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)

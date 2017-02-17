@@ -35,14 +35,13 @@
     /*
      * Adds jquery ui accordion to sidebar, when size of screen is small.
      */
-    $(function () {
+    $(function isAccordeon() {
         var $window = $(window);
         var width = $window.width();
 
         setInterval(function () {
             if ((width != $window.width())) {
                 width = $window.width();
-                console.log("resized!");
                 if (width < 994) {
                     $(".sidebar-mobile-accordion").accordion(
                         {
@@ -54,6 +53,7 @@
                     $('.sidebar-mobile-accordion').removeClass('ui-widget');
                     $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
                     $('.sidebar-mobile-accordion').removeClass('ui-accordion');
+
                 }
                 else {
                     $('.sidebar-mobile-accordion').accordion('destroy');
@@ -158,12 +158,13 @@
                     $("#carousel-on-modal").html("");
 
                     //sending all data to server
+                    console.log("hello ajax");
                     $.ajax({
                         method: "post",
                         processData: false,
                         url: "AddUnit",
                         data: {
-                            title: title,
+                            title: title    ,
                             producer: producer,
                             categoryType: categoryType,
                             category: category,
@@ -173,10 +174,14 @@
                             material: material,
                             description: description,
                             images: images
+                        },
+                        success:function(data){
+                            console.log(data);
                         }
                     }).done(function (data) {
                         console.log(data);
                     });
+                    console.log("good bye ajax");
                 },
                 error: function (xhr, status, p3, p4) {
                     var err = "Error " + " " + status + " " + p3 + " " + p4;

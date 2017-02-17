@@ -52,6 +52,7 @@ body a
 body a:hover
 {
     color: #000;
+    text-decoration: none;
 }
 
 body h1, body h2, body h3, body h4, body h5, body h6,
@@ -136,6 +137,63 @@ body p, body span
     {
         width: calc(100% - 36px);
     }
+
+    aside.sidebar-nav 
+    {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #mobile-sidebar > #accordion > h4
+    {
+        font-size: 30px;
+    }
+
+    #mobile-sidebar > #accordion > h4 + div > ul
+    {
+        width: 100%;
+        margin: 0px;
+    }
+
+    #mobile-sidebar > #accordion > h4 + div > ul > li
+    {
+        font-size: 22px;
+    }
+
+    .filters p,
+    .filters #amount
+    {
+        text-align: center;
+    }
+
+    #mobile-sidebar #slider 
+    {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .price-h,
+    .size-h
+    {
+        padding: 30px 0px 16px 20px;
+        font-size: 30px;
+    }
+
+    #mobile-sidebar .filters
+    {
+        border: none;
+    }
+
+    #mobile-sidebar .size-h
+    {
+        padding-botom: 15px;
+    }
+
+    #mobile-sidebar .radio-list
+    {
+        padding: 20px;
+    }
+
 }
 
 @media screen and (min-width: 992px)
@@ -857,13 +915,32 @@ body .modal-content .modal-body .frequent-button:hover
 
 /* Sidebar section */
 
+/* Sidebar-wrapper block */
+
+#mobile-sidebar > h3.ui-accordion-header
+{
+    margin: 0;
+    padding: 10px;
+    border-radius: 0px;
+    border-color: #EDEDED;
+}
+
+#mobile-sidebar h3.ui-state-active{
+    border: 1px solid #EDEDED;
+    background: #EDEDED;
+    color: #000;
+}
+
+/* Sidebar-wrapper block end */
+
 #sidebar
 {
     color: #000;
     font-family: Calibri;
 }
 
-#sidebar > h3
+#sidebar > h3,
+#mobile-sidebar > h3
 {
     font-size: 21px;
     margin-bottom: 14px;
@@ -877,12 +954,16 @@ body .modal-content .modal-body .frequent-button:hover
     user-select: none;
     background-color: #fff;
     border: none;
-    width: 30px;
     line-height: 0.8;
-    margin-left: 8px;
+    width: 100%;
+    border-bottom: 2px solid #000;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 10px 10px 10px 0px;
 }
 
-#accordion h4:focus
+#accordion h4:focus,
+#mobile-sidebar > h3:focus
 {
     outline: none;
 }
@@ -894,7 +975,6 @@ body .modal-content .modal-body .frequent-button:hover
     padding-left: 0px;
     margin-left: 7px;
     width: 135px;
-    border-top: 1px solid rgb(0, 0, 0);
     padding-top: 5px;
 }
 
@@ -903,6 +983,8 @@ body .modal-content .modal-body .frequent-button:hover
     font-size: 15px;
     margin-left: 15px;
     line-height: 1.7;
+    user-select: none;
+    cursor: pointer;
 }
 
 #accordion div
@@ -919,6 +1001,7 @@ body .modal-content .modal-body .frequent-button:hover
 .size-h
 {
     font-size: 18px;
+    text-transform: uppercase;
 }
 
 .price-h
@@ -995,9 +1078,9 @@ body .modal-content .modal-body .frequent-button:hover
     font-weight: 600;
     font-size: 21px;
     text-transform: uppercase;
-    padding: 12px 25px 25px 45px;
+    padding: 0px 25px 25px 45px;
     margin: 10px auto;
-    height: 30px;
+    height: 0px;
     z-index: 9;
     cursor: pointer;
     user-select: none;
@@ -1011,7 +1094,7 @@ body .modal-content .modal-body .frequent-button:hover
     border-radius: 100%;
     height: 18px;
     width: 18px;
-    top: 30px;
+    top: 14px;
     left: 20px;
 	z-index: 5;
 	transition: border .25s linear;

@@ -33,31 +33,39 @@
     });
 
     /*
+     * Contain accordion condition check and provide fucntionality or delete.
+     */
+    function accordionCondition(width) {
+        if (width < 975) {
+            $(".sidebar-mobile-accordion").accordion(
+                {
+                    collapsible: true,
+                    animate: 150,
+                    heightStyle: "content"
+                }
+            );
+            $('.sidebar-mobile-accordion').removeClass('ui-widget');
+            $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
+            $('.sidebar-mobile-accordion').removeClass('ui-accordion');
+        }
+        else if($(".side-catalog").hasClass("ui-accordion-header")) {
+            $('.sidebar-mobile-accordion').accordion('destroy');
+        }
+    }
+
+    /*
      * Adds jquery ui accordion to sidebar, when size of screen is small.
      */
-    $(function isAccordeon() {
+    $(function isAccordion() {
         var $window = $(window);
         var width = $window.width();
-
+        // Call func to check size and add or not accordion functionality when page loaded
+        accordionCondition(width);
+        // Call func to check size and add or not accordion functionality while resizing
         setInterval(function () {
             if ((width != $window.width())) {
                 width = $window.width();
-                if (width < 994) {
-                    $(".sidebar-mobile-accordion").accordion(
-                        {
-                            collapsible: true,
-                            animate: 150,
-                            heightStyle: "content"
-                        }
-                    );
-                    $('.sidebar-mobile-accordion').removeClass('ui-widget');
-                    $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
-                    $('.sidebar-mobile-accordion').removeClass('ui-accordion');
-
-                }
-                else {
-                    $('.sidebar-mobile-accordion').accordion('destroy');
-                }
+                accordionCondition(width);
             }
         }, 100);
     });

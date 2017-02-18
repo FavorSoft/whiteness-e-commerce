@@ -1738,6 +1738,19 @@ input[type=radio]:checked ~ label
     font-size: 16px;
 }
 
+.cart-table .text-basket-preview a
+{
+    text-transform: uppercase;
+    color: #a1a0a0;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cart-table .text-basket-preview span
+{
+    color: #000;
+}
+
 #cart-dropdown .dropdown-menu
 {
     width: 70px;
@@ -1753,6 +1766,28 @@ input[type=radio]:checked ~ label
 #cart-dropdown button.btn 
 {
     width: 70px;
+}
+
+.buy-button
+{
+    background-color: #c22529;
+    margin: 20px 0px;
+}
+
+.buy-button:hover
+{
+    color: #000;
+}
+
+.buy-button+button
+{
+    margin-bottom: 50px;
+}
+
+.cart-sum-block .basket-sum+span
+{
+    padding-top: 7px;
+    font-weight: bold;
 }
 
 /* Shopping Cart block end */

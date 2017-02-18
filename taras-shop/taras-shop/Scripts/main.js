@@ -118,7 +118,7 @@
     */
     $("#create").click(function AddUnit() {
         //  variable for saving photo names
-        var images = [];
+        
         
         if (window.FormData !== undefined) {
             // Getting files from form
@@ -135,6 +135,7 @@
                 processData: false,
                 data: sendData,
                 success: function (result) {
+                    var images = [];
                     //this result - photo names, that was uploaded
                     for (var i in result) {
                         $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
@@ -163,16 +164,16 @@
                     $("#title-on-modal").text(title);
                     $("#item-type-on-modal").text($('#category option:selected').text());
                     $("#price-now-on-modal").text(price + " грн");
-                    $("#carousel-on-modal").html("");
+                    $("#carousel-on-modal").html("");   
 
                     //sending all data to server
                     console.log("hello ajax");
                     $.ajax({
-                        method: "post",
-                        processData: false,
+                        method: "POST",
                         url: "AddUnit",
-                        data: {
-                            title: title    ,
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            title: title,
                             producer: producer,
                             categoryType: categoryType,
                             category: category,
@@ -182,7 +183,7 @@
                             material: material,
                             description: description,
                             images: images
-                        },
+                        }),
                         success:function(data){
                             console.log(data);
                         }

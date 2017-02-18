@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
-using DAL.Repositories;
+using DAL.Repository;
 using BLL.IProviders;
 
 namespace BLL.Providers

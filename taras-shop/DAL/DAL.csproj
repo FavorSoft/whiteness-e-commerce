@@ -90,18 +90,7 @@
     <Compile Include="Images.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="IRepositories\IBasketRepository.cs" />
-    <Compile Include="IRepositories\IBasket_itemsRepository.cs" />
-    <Compile Include="IRepositories\ICategoriesRepository.cs" />
-    <Compile Include="IRepositories\ICategory_typeRepository.cs" />
-    <Compile Include="IRepositories\IImagesRepository.cs" />
-    <Compile Include="IRepositories\INewsRepository.cs" />
-    <Compile Include="IRepositories\INews_imageRepository.cs" />
-    <Compile Include="IRepositories\IOrderRepository.cs" />
-    <Compile Include="IRepositories\IOrder_itemsRepository.cs" />
-    <Compile Include="IRepositories\IRoleRepository.cs" />
-    <Compile Include="IRepositories\IUnitRepository.cs" />
-    <Compile Include="IRepositories\IUserRepository.cs" />
+    <Compile Include="IRepository\IRepository.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

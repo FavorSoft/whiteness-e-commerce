@@ -17,11 +17,19 @@ namespace DAL
     
     public partial class Entities : DbContext
     {
-        public Entities()
+        private static Entities entity;
+        private Entities()
             : base("name=EntitiesAzure")
         {
         }
-    
+        public static Entities getInstance()
+        {
+            if (entity == null)
+            {
+                entity = new Entities();
+            }
+            return entity;
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

@@ -21,7 +21,7 @@ namespace BLL.UnitOfWork
         IRoleProvider Role { get; }
         IUnitProvider Unit { get; }
         IUserProvider User { get; }
-        void Commit();
+        int Commit();
         void Dispose();
     }
 }

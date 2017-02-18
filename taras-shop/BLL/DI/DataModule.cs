@@ -2,7 +2,7 @@
 using BLL.IProviders;
 using BLL.Providers;
 using DAL;
-using DAL.Repositories;
+using DAL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

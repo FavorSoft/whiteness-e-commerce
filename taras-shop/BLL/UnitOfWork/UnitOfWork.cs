@@ -42,7 +42,7 @@ namespace BLL.UnitOfWork
             IUserProvider user
             )
         {
-            context = new Entities();
+            context = Entities.getInstance();
             // Dependency Injection
             _basketItems = basketItems;
             _basket = basket;
@@ -154,9 +154,9 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public void Commit()
+        public int Commit()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
         public void Dispose()

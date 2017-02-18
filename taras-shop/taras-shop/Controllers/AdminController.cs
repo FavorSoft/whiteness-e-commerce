@@ -103,9 +103,17 @@ namespace taras_shop.Controllers
                     Amount = Int32.Parse(amount),
                     Size = size,
                     Material = material,
-                    Description = description
+                    Description = description,
+                    Color = "default",
+                    Likes = 0
                 };
-            
+                unitOfWork.Category.AddItem(new CategoriesDto()
+                {
+                    Category = "abc",
+                    CategoryImg = "abc",
+                    Description = "test",
+                    TypeId = 1
+                });
                 unitOfWork.Unit.AddItem(unit);
                 foreach (string img in images) {
                     unitOfWork.Images.AddItem(new ImagesDto()
@@ -114,7 +122,9 @@ namespace taras_shop.Controllers
                         OwnerId = unit.Id
                     });
                 }
-                unitOfWork.Commit();
+
+                int a = unitOfWork.Commit();
+
             }
             catch (Exception e)
             {

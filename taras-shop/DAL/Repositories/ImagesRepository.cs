@@ -1,21 +1,23 @@
-﻿using System;
+﻿using DAL.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repository
 {
-    public class ImagesRepository : IImagesRepository
+    public class ImagesRepository : IRepository<Images>
     {
         Entities entities;
-        public ImagesRepository()
+        public ImagesRepository(Entities db)
         {
-            entities = new Entities();
+            entities = db;
         }
         public void AddItem(Images item)
         {
             entities.Images.Add(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Added;
         }
 
         public void DeleteItem(int id)

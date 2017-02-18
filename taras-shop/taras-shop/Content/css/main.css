@@ -282,6 +282,11 @@ body p, body span
     {
         text-align: center;
     }
+
+    button.frequent-button
+    {
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width: 320px)
@@ -290,6 +295,12 @@ body p, body span
     .navbar .navbar-collapse.collapsing li 
     {
         display: block;
+    }
+
+    .navbar .navbar-collapse.in .navbar-right li,
+    .navbar .navbar-collapse.collapsing .navbar-right li 
+    {
+        display: inline-block;
     }
 
     .navbar-collapse .nav-left
@@ -302,22 +313,37 @@ body p, body span
 
 /* Header section */
 
-.sign-in img
+.header .navbar-header button.navbar-toggle
 {
-    margin: 0 auto;
-    display: block;
+    border: none;
+    padding: 10px 9px;
+    outline: none;
+    background-color: #4B4B4B;
 }
 
-.basket img
+.header .navbar-header button.navbar-toggle.collapsed 
 {
-    margin: 0 auto;
-    display: block;
+    background-color: #fff;
 }
 
+.header nav.navbar .navbar-header .navbar-toggle .icon-bar
+{
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+}
+
+.header nav.navbar .navbar-header .navbar-toggle.collapsed .icon-bar 
+{
+    background-color: #4B4B4B;
+}
+
+.sign-in img,
+.basket img,
 .search img
 {
-    margin: 0 auto;
     display: block;
+    margin: 0px auto;
 }
 
 .logo
@@ -923,6 +949,8 @@ body .modal-content .modal-body .frequent-button:hover
     padding: 10px;
     border-radius: 0px;
     border-color: #EDEDED;
+    cursor: pointer;
+    user-select: none;
 }
 
 #mobile-sidebar h3.ui-state-active{

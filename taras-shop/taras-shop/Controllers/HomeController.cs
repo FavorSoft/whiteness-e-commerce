@@ -61,6 +61,11 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+
         public ActionResult Search()
         {
             return View();

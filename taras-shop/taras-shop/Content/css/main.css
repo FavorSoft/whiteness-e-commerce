@@ -1317,7 +1317,8 @@ input[type=radio]:checked ~ label
     padding-left: 0px;
 }
 
-#dropdowns button
+#dropdowns button,
+#cart-dropdown button
 {
     border-radius: 0px;
     background-color: #ebebeb;
@@ -1338,7 +1339,8 @@ input[type=radio]:checked ~ label
     display: inline-block;
 }
 
-#dropdowns:focus
+#dropdowns:focus,
+#cart-dropdown:focus
 {
     border: none;
     outline: none;
@@ -1351,13 +1353,15 @@ input[type=radio]:checked ~ label
     font-weight: 500;
 }
 
-#dropdowns .btn:active
+#dropdowns .btn:active,
+#cart-dropdown .btn:active
 {
     -webkit-box-shadow: inset 0px 0px 6px 1px rgba(0,0,0,.125);
     box-shadow: inset 0px 0px 6px 1px rgba(0,0,0,.125);
 }
 
-#dropdowns .btn:focus
+#dropdowns .btn:focus,
+#cart-dropdown .btn:focus
 {
     -webkit-box-shadow: inset 0px 0px 7px 3px rgba(0,0,0,.125);
     box-shadow: inset 0px 0px 7px 3px rgba(0,0,0,.125);
@@ -1375,19 +1379,22 @@ input[type=radio]:checked ~ label
     padding-top: 0px;
 }
 
-#dropdowns:active
+#dropdowns:active,
+#cart-dropdown:active
 {
     border: none;
     outline: none;
 }
 
-#dropdowns .dropdown-menu li a:hover
+#dropdowns .dropdown-menu li a:hover,
+#cart-dropdown .dropdown-menu li a:hover
 {
     background-color: #ccc;
     background-image: none;
 }
 
-#dropdowns .dropdown-menu li a
+#dropdowns .dropdown-menu li a,
+#cart-dropdown .dropdown-menu li a
 {
     padding: 7px 13px;
     padding-right: 33px;
@@ -1703,6 +1710,52 @@ input[type=radio]:checked ~ label
 /* Info block end */
 
 /* Main section end */
+
+/* Shopping Cart block */
+
+.cart-table-header
+{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: BebasNeueBold;
+}
+
+.cart-table tr td:first-child img
+{
+    width: 150px;
+}
+
+.cart-table .cart-price-p,
+.cart-table .cart-sum-p
+{
+    font-size: 18px;
+}
+
+.cart-table thead > tr > th
+{
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#cart-dropdown .dropdown-menu
+{
+    width: 70px;
+    min-width: 50px;
+    margin-top: 0px;
+    border-radius: 0px;
+    border: none;
+    background-color: #ebebeb;
+    box-shadow: none;
+    padding-top: 0px;
+}
+
+#cart-dropdown button.btn 
+{
+    width: 70px;
+}
+
+/* Shopping Cart block end */
 
 /* ItemPage block */
 

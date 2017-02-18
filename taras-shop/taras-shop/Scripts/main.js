@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     /*
-     * Privide carousel functionality.
+     * Privide main page carousel functionality.
      */
     $('.owl-carousel').owlCarousel({
         items: 1,

@@ -5,7 +5,6 @@ E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.pdb
 E:\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DTO\bin\Debug\DTO.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DTO\bin\Debug\DTO.pdb
-C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DTO\obj\Debug\DTO.pdb
 C:\Users\User-PC\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DTO\bin\Debug\DTO.dll

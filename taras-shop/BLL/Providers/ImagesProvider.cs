@@ -6,16 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
-using DAL.Repositories;
+using DAL.Repository;
+using DAL.IRepository;
 
 namespace BLL.Providers
 {
     public class ImagesProvider : IImagesProvider
     {
-        readonly IImagesRepository _repo;
-        public ImagesProvider(IImagesRepository di)
+        readonly IRepository<Images> _repo;
+        public ImagesProvider(Entities db)
         {
-            _repo = di;
+            _repo = new ImagesRepository(db);
         }
         public void AddItem(ImagesDto images)
         {
@@ -51,6 +52,19 @@ namespace BLL.Providers
                 Image = tmp.image,
                 OwnerId = tmp.owner_id
             };
+        }
+        public IEnumerable<ImagesDto> GetByOwner(int id)
+        {
+            return ConvertModeltoDTO(_repo.GetAll().Where(x => x.owner_id == id)); ;
+        }
+        public IEnumerable<ImagesDto> GetByOwners(int[] id)
+        {
+            List<ImagesDto> res = new List<ImagesDto>();
+            foreach (int i in id)
+            {
+                res.AddRange(ConvertModeltoDTO(_repo.GetAll().Where(x => x.owner_id == i)));
+            }
+            return res;
         }
     }
 }

@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DAL.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repository
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository : IRepository<Order>
     {
         Entities entities;
-        public OrderRepository()
+        public OrderRepository(Entities db)
         {
-            entities = new Entities();
+            entities = db;
         }
         public void AddItem(Order item)
         {

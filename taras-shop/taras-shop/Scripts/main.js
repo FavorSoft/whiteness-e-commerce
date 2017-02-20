@@ -1,6 +1,22 @@
 ﻿$(document).ready(function () {
 
     /*
+     * Privide main page carousel functionality.
+     */
+    $('.owl-carousel').owlCarousel({
+        items: 1,
+        margin: 10,
+        autoHeight: true,
+        nav: true,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplaySpeed: 1000,
+        navSpeed: 1000,
+        dotsSpeed: 1000
+    });
+
+    /*
      * Provide jquery ui accordion on sidebar categories.
      */
     $(function () {
@@ -8,7 +24,8 @@
             {
                 collapsible: true,
                 animate: 150,
-                heightStyle: "content"
+                heightStyle: "content",
+                active: false
             }
         );
         $('#accordion').removeClass('ui-widget');
@@ -24,7 +41,8 @@
             {
                 collapsible: true,
                 animate: 150,
-                heightStyle: "content"
+                heightStyle: "content",
+                active: false
             }
         );
         $('#item-accordion').removeClass('ui-widget');
@@ -41,7 +59,8 @@
                 {
                     collapsible: true,
                     animate: 150,
-                    heightStyle: "content"
+                    heightStyle: "content",
+                    active: false
                 }
             );
             $('.sidebar-mobile-accordion').removeClass('ui-widget');
@@ -118,7 +137,7 @@
     */
     $("#create").click(function AddUnit() {
         //  variable for saving photo names
-        var images = [];
+        
         
         if (window.FormData !== undefined) {
             // Getting files from form
@@ -138,7 +157,6 @@
                     //this result - photo names, that was uploaded
                     for (var i in result) {
                         $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
-                        images += result[i];
                     }
                     console.log(images);
 
@@ -163,16 +181,16 @@
                     $("#title-on-modal").text(title);
                     $("#item-type-on-modal").text($('#category option:selected').text());
                     $("#price-now-on-modal").text(price + " грн");
-                    $("#carousel-on-modal").html("");
+                    $("#carousel-on-modal").html("");   
 
                     //sending all data to server
                     console.log("hello ajax");
                     $.ajax({
-                        method: "post",
-                        processData: false,
+                        method: "POST",
                         url: "AddUnit",
-                        data: {
-                            title: title    ,
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            title: title,
                             producer: producer,
                             categoryType: categoryType,
                             category: category,
@@ -181,8 +199,8 @@
                             size: size,
                             material: material,
                             description: description,
-                            images: images
-                        },
+                            images: result
+                        }),
                         success:function(data){
                             console.log(data);
                         }

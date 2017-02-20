@@ -4,159 +4,184 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.IProviders;
+using BLL.Providers;
 using DAL;
+using DTO;
 
 namespace BLL.UnitOfWork
 {
     class UnitOfWork : IUnitOfWork
     {
         #region PARAMETERS
-        readonly IBasketItemsProvider _basketItems;
-        readonly IBasketProvider _basket;
-        readonly ICategoryProvider _category;
-        readonly ICategoryTypeProvider _categoryType;
-        readonly IImagesProvider _images;
-        readonly INewsImagesProvider _newsImages;
-        readonly INewsProvider _news;
-        readonly IOrderItemsProvider _orderItems;
-        readonly IOrderProvider _order;
-        readonly IRoleProvider _role;
-        readonly IUnitProvider _unit;
-        readonly IUserProvider _user;
+        IProvider<BasketItemsDto> _basketItems;
+        IProvider<BasketDto> _basket;
+        IProvider<CategoriesDto> _category;
+        IProvider<CategoryTypeDto> _categoryType;
+        IImagesProvider _images;
+        IProvider<NewsImagesDto> _newsImages;
+        IProvider<NewsDto> _news;
+        IProvider<OrderItemsDto> _orderItems;
+        IProvider<OrderDto> _order;
+        IProvider<RolesDto> _role;
+        IUnitProvider _unit;
+        IProvider<UsersDto> _user;
         Entities context;
         #endregion
 
         #region CTOR
         public UnitOfWork(
-            IBasketItemsProvider basketItems,
-            IBasketProvider basket,
-            ICategoryProvider category,
-            ICategoryTypeProvider categoryType,
-            IImagesProvider images,
-            INewsImagesProvider newsImages,
-            INewsProvider news,
-            IOrderItemsProvider orderItems,
-            IOrderProvider order,
-            IRoleProvider role,
-            IUnitProvider unit,
-            IUserProvider user
             )
         {
             context = new Entities();
-            // Dependency Injection
-            _basketItems = basketItems;
-            _basket = basket;
-            _category = category;
-            _categoryType = categoryType;
-            _images = images;
-            _newsImages = newsImages;
-            _news = news;
-            _orderItems = orderItems;
-            _order = order;
-            _role = role;
-            _unit = unit;
-            _user = user;   
         }
         #endregion
 
-        public IBasketProvider Basket{
+        public IProvider<BasketDto> getBasket{
             get
             {
+                if (_basket == null)
+                {
+                    _basket = new BasketProvider(context);
+                }
                 return _basket;
             }
         }
 
-        public IBasketItemsProvider BasketItems
+        public IProvider<BasketItemsDto> getBasketItems
         {
             get
             {
+                if (_basketItems == null)
+                {
+                    _basketItems = new BasketItemsProvider(context);
+                }
                 return _basketItems;
             }
         }
 
-        public ICategoryProvider Category
+        public IProvider<CategoriesDto> getCategory
         {
             get
             {
+                if (_category == null)
+                {
+                    _category = new CategoryProvider(context);
+                }
                 return _category;
             }
         }
 
-        public ICategoryTypeProvider CategoryType
+        public IProvider<CategoryTypeDto> getCategoryType
         {
             get
             {
+                if (_categoryType == null)
+                {
+                    _categoryType = new CategoryTypeProvider(context);
+                }
                 return _categoryType;
             }
         }
 
-        public IImagesProvider Images
+        public IImagesProvider getImages
         {
             get
             {
+                if (_images == null)
+                {
+                    _images = new ImagesProvider(context);
+                }
                 return _images;
             }
         }
 
-        public INewsProvider News
+        public IProvider<NewsDto> getNews
         {
             get
             {
+                if (_news == null)
+                {
+                    _news = new NewsProvider(context);
+                }
                 return _news;
             }
         }
 
-        public INewsImagesProvider NewsImages
+        public IProvider<NewsImagesDto> getNewsImages
         {
             get
             {
+                if (_newsImages == null)
+                {
+                    _newsImages = new NewsImagesProvider(context);
+                }
                 return _newsImages;
             }
         }
 
-        public IOrderProvider Order
+        public IProvider<OrderDto> getOrder
         {
             get
             {
+                if (_order == null)
+                {
+                    _order = new OrderProvider(context);
+                }
                 return _order;
             }
         }
 
-        public IOrderItemsProvider OrderItems
+        public IProvider<OrderItemsDto> getOrderItems
         {
             get
             {
+                if (_orderItems == null)
+                {
+                    _orderItems = new OrderItemsProvider(context);
+                }
                 return _orderItems;
             }
         }
 
-        public IRoleProvider Role
+        public IProvider<RolesDto> getRole
         {
             get
             {
+                if (_role == null)
+                {
+                    _role = new RoleProvider(context);
+                }
                 return _role;
             }
         }
 
-        public IUnitProvider Unit
+        public IUnitProvider getUnit
         {
             get
             {
+                if (_unit == null)
+                {
+                    _unit = new UnitProvider(context);
+                }
                 return _unit;
             }
         }
 
-        public IUserProvider User
+        public IProvider<UsersDto> getUser
         {
             get
             {
+                if (_user == null)
+                {
+                    _user = new UserProvider(context);
+                }
                 return _user;
             }
         }
 
-        public void Commit()
+        public int Commit()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
         public void Dispose()

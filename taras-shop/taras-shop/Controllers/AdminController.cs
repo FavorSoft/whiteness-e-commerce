@@ -1,4 +1,6 @@
-﻿using BLL.UnitOfWork;
+﻿using BLL.Facade;
+using BLL.IFacade;
+using BLL.UnitOfWork;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -14,14 +16,13 @@ namespace taras_shop.Controllers
     public class AdminController : Controller
     {
         #region PARAMETERS
-        readonly IUnitOfWork unitOfWork;
+        readonly Facade facade;
         #endregion
 
         #region CTOR
         public AdminController(IUnitOfWork uow)
         {
-            // Dependency Injection
-            unitOfWork = uow;
+            facade = new Facade(uow);
         }
         #endregion
 
@@ -35,8 +36,8 @@ namespace taras_shop.Controllers
         {
             Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()
             {
-                categories = unitOfWork.Category.GetAll(),
-                categoryTypes = unitOfWork.CategoryType.GetAll()
+                categories = facade.getBasicFunctionality().getCategory.GetAll(),
+                categoryTypes = facade.getBasicFunctionality().getCategoryType.GetAll()
             };
 
             return View(model);
@@ -103,18 +104,27 @@ namespace taras_shop.Controllers
                     Amount = Int32.Parse(amount),
                     Size = size,
                     Material = material,
-                    Description = description
+                    Description = description,
+                    Color = "default",
+                    Likes = 0
                 };
-            
-                unitOfWork.Unit.AddItem(unit);
+                facade.getBasicFunctionality().getCategory.AddItem(new CategoriesDto()
+                {
+                    Category = "abc",
+                    CategoryImg = "abc",
+                    Description = "test",
+                    TypeId = 1
+                });
+                facade.getBasicFunctionality().getUnit.AddItem(unit);
                 foreach (string img in images) {
-                    unitOfWork.Images.AddItem(new ImagesDto()
+                    facade.getBasicFunctionality().getImages.AddItem(new ImagesDto()
                     {
                         Image = img,
                         OwnerId = unit.Id
                     });
                 }
-                unitOfWork.Commit();
+                facade.getBasicFunctionality().Commit();
+
             }
             catch (Exception e)
             {
@@ -125,7 +135,7 @@ namespace taras_shop.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            unitOfWork.Dispose();
+            facade.getBasicFunctionality().Dispose();
             base.Dispose(disposing);
         }
     }

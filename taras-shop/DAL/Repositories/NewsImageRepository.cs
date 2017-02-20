@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DAL.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repository
 {
-    public class NewsImageRepository : INewsImageRepository
+    public class NewsImageRepository : IRepository<News_image>
     {
         Entities entities;
-        public NewsImageRepository()
+        public NewsImageRepository(Entities db)
         {
-            entities = new Entities();
+            entities = db;
         }
         public void AddItem(News_image item)
         {

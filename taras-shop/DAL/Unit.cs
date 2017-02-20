@@ -32,6 +32,8 @@ namespace DAL
         public string color { get; set; }
         public int likes { get; set; }
         public string description { get; set; }
+        public System.DateTime add_date { get; set; }
+        public Nullable<int> old_price { get; set; }
     
         public virtual ICollection<Basket_items> Basket_items { get; set; }
         public virtual Categories Categories { get; set; }

@@ -223,6 +223,8 @@
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\owl.theme.default.min.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\images\basket.jpg" />
     <Content Include="Content\images\eye.png" />
@@ -244,6 +246,7 @@
     <Content Include="Content\images\woman.png" />
     <Content Include="Content\images\womant.jpg" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\bully\Bully\FREE FONT LICENSE.txt" />
     <Content Include="fonts\fontello.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -259,6 +262,22 @@
     <Content Include="fonts\fontello.ttf" />
     <Content Include="fonts\fontello.woff" />
     <Content Include="fonts\Calibri.ttf" />
+    <Content Include="fonts\baron\Baron Neue Black Italic.otf" />
+    <Content Include="fonts\baron\Baron Neue Black.otf" />
+    <Content Include="fonts\baron\Baron Neue Bold Italic.otf" />
+    <Content Include="fonts\baron\Baron Neue Bold.otf" />
+    <Content Include="fonts\baron\Baron Neue Italic.otf" />
+    <Content Include="fonts\baron\Baron Neue.otf" />
+    <Content Include="fonts\baron\Baron Personal_EULA_license.pdf" />
+    <Content Include="fonts\baron\Baron_Specimen.pdf" />
+    <Content Include="fonts\bebas_neue\Bebas Neue - SIL Open Font License 1.1.pdf" />
+    <Content Include="fonts\bebas_neue\BebasNeue Book.otf" />
+    <Content Include="fonts\bebas_neue\BebasNeue Light.otf" />
+    <Content Include="fonts\bebas_neue\BebasNeue Regular.otf" />
+    <Content Include="fonts\bebas_neue\BebasNeue Thin.otf" />
+    <Content Include="fonts\bebas_neue\BebasNeueBold.otf" />
+    <Content Include="fonts\bully\Bully\.DS_Store" />
+    <Content Include="fonts\bully\Bully\Bully.otf" />
     <None Include="Properties\PublishProfiles\taras-shop.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -312,9 +331,11 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Admin\AddUnitPage.cshtml" />
     <Content Include="Views\Home\ItemPage.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fonts\bully\__MACOSX\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

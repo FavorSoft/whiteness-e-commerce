@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DAL.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repositories
+namespace DAL.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IRepository<Users>
     {
         Entities entities;
-        public UserRepository()
+        public UserRepository(Entities db)
         {
-            entities = new Entities();
+            entities = db;
         }
         public void AddItem(Users item)
         {

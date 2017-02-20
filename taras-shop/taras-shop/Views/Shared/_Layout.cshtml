@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="~/Content/css/jquery-ui.css" />
     <link rel="stylesheet" href="~/Content/css/fontello.css" />
     <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
     <!-- Optional theme -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
@@ -21,7 +23,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/Home">
+                    <a class="navbar-brand" href="/">
                         <img src="~/Content/images/lorem.jpg" alt="Logo" class="logo">
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -33,7 +35,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav nav-left">
-                        <li><a href="/Home">Головна</a></li>
+                        <li><a href="/">Головна</a></li>
                         <li><a href="#">Вона</a></li>
                         <li><a href="#">Він</a></li>
                         <li><a href="#">Діти</a></li>
@@ -48,7 +50,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" class="basket">
+                            <a href="Home/ShoppingCart" class="basket">
                                 <img src="~/Content/images/basket.jpg" alt="basket">
                                 <span>Корзина</span>
                             </a>
@@ -216,14 +218,14 @@
                                             <!-- thumb -->
                                             <ol id="calousel-indicators-on-modal" class='carousel-indicators mCustomScrollbar meartlab'>
                                                 
-                                                    @*<li data-target='#carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
+                                                    <li data-target='#carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
             <li data-target='#carousel-custom' data-slide-to='1'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='2' /></li>
             <li data-target='#carousel-custom' data-slide-to='2'><img class="third-slider-img" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='3' /></li>
-            <li data-target='#carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>*@
+            <li data-target='#carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>
                                                 </ol>
                                             <!-- me art lab slider -->
                                             <div id="carousel-on-modal" class='carousel-inner '>
-                                                @*<div class='item active'>
+                                                <div class='item active'>
                                                     <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='' id="zoom_05" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg" />
                                                 </div>
                                                 <div class='item' id="zoom_05">
@@ -235,7 +237,7 @@
 
                                                 <div class='item'>
                                                     <img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05" />
-                                                </div>*@
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -367,6 +369,7 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
             integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
             crossorigin="anonymous"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
     <script src="~/Scripts/main.js"></script>
 </body>
 </html>

@@ -6,19 +6,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL.UnitOfWork;
+using taras_shop.Models;
+using BLL.Facade;
+using BLL.IFacade;
 
 namespace taras_shop.Controllers
 {
     public class HomeController : Controller
     {
         #region PARAMETERS
-        readonly IUnitOfWork unitOfWork;
+        readonly Facade facade;
         #endregion
 
         #region CTOR
         public HomeController(IUnitOfWork uow)
         {
-            unitOfWork = uow;
+            facade = new Facade(uow);
         }
         #endregion
 
@@ -26,10 +29,12 @@ namespace taras_shop.Controllers
         {
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
             {
-                categories = unitOfWork.Category.GetAll(),
-                categoryTypes = unitOfWork.CategoryType.GetAll(),
-                popular = unitOfWork.Unit.GetPopular(4),
-                recommended = unitOfWork.Unit.GetRecommends()
+                categories = facade.getBasicFunctionality().getCategory.GetAll(),
+                categoryTypes = facade.getBasicFunctionality().getCategoryType.GetAll(),
+                popular = facade.getBasicFunctionality().getUnit.GetPopular(4),
+                recommended = facade.getBasicFunctionality().getUnit.GetRecommends()
+                //popular = facade.getPopularArticles(3),
+                //recommended = facade.getRecommendsArticles(4)
             };
 
             return View(model);
@@ -38,7 +43,7 @@ namespace taras_shop.Controllers
         [HttpGet]
         public JsonResult Load()
         {
-            return Json(unitOfWork.Unit.GetPopular(4).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(facade.getBasicFunctionality().getUnit.GetPopular(4).ToList(), JsonRequestBehavior.AllowGet);
         }
 
 
@@ -61,13 +66,18 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+
         public ActionResult Search()
         {
             return View();
         }
         protected override void Dispose(bool disposing)
         {
-            unitOfWork.Dispose();
+            facade.getBasicFunctionality().Dispose();
             base.Dispose(disposing);
         }
     }

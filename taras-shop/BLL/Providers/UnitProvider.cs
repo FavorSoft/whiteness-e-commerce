@@ -6,16 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
-using DAL.Repositories;
+using DAL.Repository;
+using DAL.IRepository;
 
 namespace BLL.Providers
 {
     public class UnitProvider : IUnitProvider
     {
-        readonly IUnitRepository _repo;
-        public UnitProvider(IUnitRepository di)
+        readonly IRepository<Unit> _repo;
+        public UnitProvider(Entities db)
         {
-            _repo = di;
+            _repo = new UnitRepository(db);
         }
         public void AddItem(UnitDto unit)
         {
@@ -27,10 +28,12 @@ namespace BLL.Providers
                 description = unit.Description,
                 likes = unit.Likes,
                 price = unit.Price,
+                old_price = unit.OldPrice,
                 material = unit.Material,
                 producer = unit.Producer,
                 title = unit.Title,
-                size = unit.Size
+                size = unit.Size,
+                add_date = unit.AddUnitDate
             });
         }
 
@@ -48,21 +51,19 @@ namespace BLL.Providers
 
         public IEnumerable<UnitDto> GetPopular(int amount)
         {
-            IQueryable<Unit> list;
-            list = _repo.GetAll().OrderBy(x => x.likes).Take(amount);
+            IQueryable<Unit> list = _repo.GetAll().OrderBy(x => x.likes).Take(amount);
             return ConvertModeltoDTO(list);
         }
 
         public IEnumerable<UnitDto> GetRecommends()
         {
-            IQueryable<Unit> list;
-            list = _repo.GetAll().Take(3);
+            IQueryable<Unit> list = _repo.GetAll().OrderBy(x => x.add_date).Take(3);
             return ConvertModeltoDTO(list);
         }
 
         IEnumerable<UnitDto> ConvertModeltoDTO(IQueryable<Unit> repo)
         {
-            IEnumerable<UnitDto> res = repo.Select(i=>new UnitDto() {
+            IEnumerable<UnitDto> res = repo.Select(i => new UnitDto() {
                     Id = i.id,
                     Amount = i.amount,
                     Size = i.size,
@@ -72,8 +73,11 @@ namespace BLL.Providers
                     Likes = i.likes,
                     Material = i.material, 
                     Price = i.price,
+                    OldPrice = i.old_price,
                     Producer = i.producer,
-                    Title = i.title });
+                    Title = i.title,
+                    AddUnitDate = i.add_date
+            });
            
             return res;
         }
@@ -92,8 +96,10 @@ namespace BLL.Providers
                 Likes = i.likes,
                 Material = i.material,
                 Price = i.price,
+                OldPrice = i.old_price,
                 Producer = i.producer,
-                Title = i.title
+                Title = i.title,
+                AddUnitDate = i.add_date
             };
         }
 

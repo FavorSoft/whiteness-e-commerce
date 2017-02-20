@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace DAL.Repositories
+using DAL.IRepository;
+namespace DAL.Repository
 {
-    public class BasketItemsRepository : IBasketItemsRepository
+    public class BasketItemsRepository : IRepository<Basket_items>
     {
         Entities entities;
-        public BasketItemsRepository()
+        public BasketItemsRepository(Entities db)
         {
-            entities = new Entities();
+            entities = db;
         }
         public void AddItem(Basket_items item)
         {

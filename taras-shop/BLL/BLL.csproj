@@ -49,18 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DI\DataModule.cs" />
-    <Compile Include="IProviders\IBasketItemsProvider.cs" />
-    <Compile Include="IProviders\IBasketProvider.cs" />
-    <Compile Include="IProviders\ICategoryProvider.cs" />
-    <Compile Include="IProviders\ICategoryTypeProvider.cs" />
+    <Compile Include="Facade\Facade.cs" />
+    <Compile Include="Facade\IFacade.cs" />
     <Compile Include="IProviders\IImagesProvider.cs" />
-    <Compile Include="IProviders\INewsImagesProvider.cs" />
-    <Compile Include="IProviders\INewsProvider.cs" />
-    <Compile Include="IProviders\IOrderProvider.cs" />
-    <Compile Include="IProviders\IOrderItemsProvider.cs" />
-    <Compile Include="IProviders\IRoleProvider.cs" />
+    <Compile Include="IProviders\IProvider.cs" />
     <Compile Include="IProviders\IUnitProvider.cs" />
-    <Compile Include="IProviders\IUserProvider.cs" />
     <Compile Include="Providers\NewsImagesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BasketItemsProvider.cs" />

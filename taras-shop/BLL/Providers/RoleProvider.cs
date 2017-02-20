@@ -6,16 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
-using DAL.Repositories;
+using DAL.Repository;
+using DAL.IRepository;
 
 namespace BLL.Providers
 {
-    public class RoleProvider : IRoleProvider
+    public class RoleProvider : IProvider<RolesDto>
     {
-        readonly IRoleRepository _repo;
-        public RoleProvider(IRoleRepository di)
+        readonly IRepository<Roles> _repo;
+        public RoleProvider(Entities db)
         {
-            _repo = di;
+            _repo = new RoleRepository(db);
         }
         public void AddItem(RolesDto role)
         {

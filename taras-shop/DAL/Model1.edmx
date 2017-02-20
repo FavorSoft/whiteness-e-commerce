@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -96,12 +96,14 @@
           <Property Name="title" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="producer" Type="nvarchar" MaxLength="256" />
           <Property Name="price" Type="int" />
+          <Property Name="old_price" Type="int" />
           <Property Name="category_id" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
           <Property Name="size" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="material" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="color" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="likes" Type="int" Nullable="false" />
+          <Property Name="add_date" Type="date" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="2048" />
         </EntityType>
         <EntityType Name="Users">
@@ -307,8 +309,7 @@
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -429,6 +430,8 @@
           <NavigationProperty Name="Categories" Relationship="Self.fk_category_id" FromRole="Unit" ToRole="Categories" />
           <NavigationProperty Name="Images" Relationship="Self.fk_owner_id" FromRole="Unit" ToRole="Images" />
           <NavigationProperty Name="Order_items" Relationship="Self.fk_o_unit_id" FromRole="Unit" ToRole="Order_items" />
+          <Property Name="add_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="old_price" Type="Int32" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -738,6 +741,8 @@
           <EntitySetMapping Name="Unit">
             <EntityTypeMapping TypeName="Model.Unit">
               <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="old_price" ColumnName="old_price" />
+                <ScalarProperty Name="add_date" ColumnName="add_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="producer" ColumnName="producer" />

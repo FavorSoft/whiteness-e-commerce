@@ -1,4 +1,5 @@
 ﻿using BLL.IProviders;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,19 @@ namespace BLL.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IBasketItemsProvider BasketItems { get; }
-        IBasketProvider Basket { get; }
-        ICategoryProvider Category { get; }
-        ICategoryTypeProvider CategoryType { get; }
-        IImagesProvider Images { get; }
-        INewsImagesProvider NewsImages { get; }
-        INewsProvider News { get; }
-        IOrderItemsProvider OrderItems { get; }
-        IOrderProvider Order { get; }
-        IRoleProvider Role { get; }
-        IUnitProvider Unit { get; }
-        IUserProvider User { get; }
-        void Commit();
+        IProvider<BasketItemsDto> getBasketItems { get; }
+        IProvider<BasketDto> getBasket { get; }
+        IProvider<CategoriesDto> getCategory { get; }
+        IProvider<CategoryTypeDto> getCategoryType { get; }
+        IImagesProvider getImages { get; }
+        IProvider<NewsImagesDto> getNewsImages { get; }
+        IProvider<NewsDto> getNews { get; }
+        IProvider<OrderItemsDto> getOrderItems { get; }
+        IProvider<OrderDto> getOrder { get; }
+        IProvider<RolesDto> getRole { get; }
+        IUnitProvider getUnit { get; }
+        IProvider<UsersDto> getUser { get; }
+        int Commit();
         void Dispose();
     }
 }

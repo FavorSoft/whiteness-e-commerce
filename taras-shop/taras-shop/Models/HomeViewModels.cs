@@ -11,5 +11,7 @@ namespace taras_shop.Models
         public IEnumerable<CategoryTypeDto> categoryTypes { get; set; }
         public IEnumerable<UnitDto> popular { get; set; }
         public IEnumerable<UnitDto> recommended { get; set; }
+        
     }
+
 }

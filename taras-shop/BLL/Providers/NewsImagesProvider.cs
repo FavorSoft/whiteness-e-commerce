@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO.Helpers;
 using DAL;
-using DAL.Repositories;
+using DAL.Repository;
+using DAL.IRepository;
+using DTO;
 
 namespace BLL.IProviders
 {
-    public class NewsImagesProvider : INewsImagesProvider
+    public class NewsImagesProvider : IProvider<NewsImagesDto>
     {
-        readonly INewsImageRepository _repo;
-        public NewsImagesProvider(INewsImageRepository di)
+        readonly IRepository<News_image> _repo;
+        public NewsImagesProvider(Entities db)
         {
-            _repo = di;
+            _repo = new NewsImageRepository(db);
         }
         public void AddItem(NewsImagesDto images)
         {

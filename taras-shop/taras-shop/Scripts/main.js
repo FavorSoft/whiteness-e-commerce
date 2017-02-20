@@ -1,6 +1,22 @@
 ﻿$(document).ready(function () {
 
     /*
+     * Privide main page carousel functionality.
+     */
+    $('.owl-carousel').owlCarousel({
+        items: 1,
+        margin: 10,
+        autoHeight: true,
+        nav: true,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplaySpeed: 1000,
+        navSpeed: 1000,
+        dotsSpeed: 1000
+    });
+
+    /*
      * Provide jquery ui accordion on sidebar categories.
      */
     $(function () {
@@ -8,7 +24,8 @@
             {
                 collapsible: true,
                 animate: 150,
-                heightStyle: "content"
+                heightStyle: "content",
+                active: false
             }
         );
         $('#accordion').removeClass('ui-widget');
@@ -24,7 +41,8 @@
             {
                 collapsible: true,
                 animate: 150,
-                heightStyle: "content"
+                heightStyle: "content",
+                active: false
             }
         );
         $('#item-accordion').removeClass('ui-widget');
@@ -41,7 +59,8 @@
                 {
                     collapsible: true,
                     animate: 150,
-                    heightStyle: "content"
+                    heightStyle: "content",
+                    active: false
                 }
             );
             $('.sidebar-mobile-accordion').removeClass('ui-widget');

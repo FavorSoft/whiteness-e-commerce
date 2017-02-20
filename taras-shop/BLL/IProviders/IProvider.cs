@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BLL.IProviders
 {
-    public interface INewsProvider
+    public interface IProvider<T>
     {
-        void AddItem(DTO.NewsDto category);
-        IEnumerable<DTO.NewsDto> GetAll();
-        DTO.NewsDto GetById(int id);
+        void AddItem(T category);
+        IEnumerable<T> GetAll();
+        T GetById(int id);
     }
 }

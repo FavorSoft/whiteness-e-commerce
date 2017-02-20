@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL.Repository;
+using DAL.IRepository;
 using DAL;
 using BLL.IProviders;
 
 namespace BLL.Providers
 {
-    public class CategoryProvider : ICategoryProvider
+    public class CategoryProvider : IProvider<CategoriesDto>
     {
-        readonly ICategoriesRepository _repo;
-        public CategoryProvider(ICategoriesRepository di)
+        readonly IRepository<Categories> _repo;
+        public CategoryProvider(Entities db)
         {
-            _repo = di;
+            _repo = new CategoriesRepository(db);
         }
         public void AddItem(CategoriesDto category)
         {

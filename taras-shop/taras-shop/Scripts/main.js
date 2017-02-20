@@ -135,11 +135,9 @@
                 processData: false,
                 data: sendData,
                 success: function (result) {
-                    var images = [];
                     //this result - photo names, that was uploaded
                     for (var i in result) {
                         $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
-                        images += result[i];
                     }
                     console.log(images);
 
@@ -182,7 +180,7 @@
                             size: size,
                             material: material,
                             description: description,
-                            images: images
+                            images: result
                         }),
                         success:function(data){
                             console.log(data);

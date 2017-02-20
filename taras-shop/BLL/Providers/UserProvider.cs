@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using DTO;
 using DAL;
 using DAL.Repository;
+using DAL.IRepository;
 
 namespace BLL.Providers
 {
-    public class UserProvider : IUserProvider
+    public class UserProvider : IProvider<UsersDto>
     {
-        readonly IUserRepository _repo;
-        public UserProvider(IUserRepository di)
+        readonly IRepository<Users> _repo;
+        public UserProvider(Entities db)
         {
-            _repo = di;
+            _repo = new UserRepository(db);
         }
         public void AddItem(UsersDto user)
         {

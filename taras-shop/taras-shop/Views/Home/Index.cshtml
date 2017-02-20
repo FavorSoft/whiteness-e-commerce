@@ -151,21 +151,10 @@
                     <div class="col-md-4 right-line"></div>
                 </div>
                 @{
-                    int count = 0;
                     foreach (var i in Model.popular)
                     {
-
-                        string cssClass = "";
-                        if (count % 2 == 0)
-                        {
-                            cssClass = "col-md-6 col-lg-6 col-sm-6 col-xs-8 unit";
-                        }
-                        else
-                        {
-                            cssClass = "col-md-6 col-lg-6 col-sm-6 col-xs-8 unit";
-                        }
-                        count++;
-                        <div class="@cssClass">
+                        
+                        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
                             <a href="/Home/ItemPage">
                                 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
                                     <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">

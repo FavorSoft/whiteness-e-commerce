@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using DTO;
 using DAL;
 using DAL.Repository;
+using DAL.IRepository;
 using BLL.IProviders;
 
 namespace BLL.Providers
 {
-    public class CategoryTypeProvider : ICategoryTypeProvider
+    public class CategoryTypeProvider : IProvider<CategoryTypeDto>
     {
-        readonly ICategoryTypeRepository _repo;
-        public CategoryTypeProvider(ICategoryTypeRepository di)
+        readonly IRepository<Category_type> _repo;
+        public CategoryTypeProvider(Entities db)
         {
-            _repo = di;
+            _repo = new CategoryTypeRepository(db);
         }
         public void AddItem(CategoryTypeDto category)
         {

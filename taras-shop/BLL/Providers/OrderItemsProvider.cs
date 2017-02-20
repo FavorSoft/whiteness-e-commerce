@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using DTO;
 using DAL;
 using DAL.Repository;
+using DAL.IRepository;
 
 namespace BLL.Providers
 {
-    public class OrderItemsProvider : IOrderItemsProvider
+    public class OrderItemsProvider : IProvider<OrderItemsDto>
     {
-        readonly IOrderItemsRepository _repo;
-        public OrderItemsProvider(IOrderItemsRepository di)
+        readonly IRepository<Order_items> _repo;
+        public OrderItemsProvider(Entities db)
         {
-            _repo = di;
+            _repo = new OrderItemsRepository(db);
         }
         public void AddItem(OrderItemsDto orderItems)
         {

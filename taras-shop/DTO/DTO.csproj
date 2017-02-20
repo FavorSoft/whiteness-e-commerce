@@ -39,13 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Article.cs" />
     <Compile Include="Helpers\BasketDto.cs" />
     <Compile Include="Helpers\BasketItems.cs" />
     <Compile Include="Helpers\Categories.cs" />
     <Compile Include="Helpers\CategoryType.cs" />
     <Compile Include="Helpers\Images.cs" />
     <Compile Include="Helpers\News.cs" />
-    <Compile Include="Helpers\NewsImage.cs" />
     <Compile Include="Helpers\NewsImages.cs" />
     <Compile Include="Helpers\Order.cs" />
     <Compile Include="Helpers\OrderItems.cs" />

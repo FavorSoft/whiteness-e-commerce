@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using DTO;
 using DAL;
 using DAL.IRepository;
+using DAL.Repository;
 
 namespace BLL.Providers
 {
-    public class BasketItemsProvider : IBasketItemsProvider
+    public class BasketItemsProvider : IProvider<BasketItemsDto>
     {
         readonly IRepository<Basket_items> _repo;
-        public BasketItemsProvider(IRepository<Basket_items> di)
-        {
-            _repo = di;
+        public BasketItemsProvider(Entities db)
+        {   
+            _repo = new BasketItemsRepository(db);
         }
         public void AddItem(BasketItemsDto basketItems)
         {

@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using DTO;
 using DAL;
 using DAL.Repository;
+using DAL.IRepository;
 
 namespace BLL.Providers
 {
-    public class NewsProvider : INewsProvider
+    public class NewsProvider : IProvider<NewsDto>
     {
-        readonly INewsRepository _repo;
-        public NewsProvider(INewsRepository di)
+        readonly IRepository<News> _repo;
+        public NewsProvider(Entities db)
         {
-            _repo = di;
+            _repo = new NewsRepository(db);
         }
 
         public void AddItem(NewsDto category)

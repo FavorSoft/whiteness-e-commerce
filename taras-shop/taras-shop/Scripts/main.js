@@ -17,10 +17,28 @@
     });
 
     /*
+     * Search sliding and hiding function.
+     */
+    $(function () {
+        $(".search").click(function () {
+            $(".search-input").animate({ width: 'toggle' }, 400);
+        })
+    });
+
+    /*
+     * History back on button click on 404 page.
+     */
+    //(function () {
+    //    $("#go-back").on("click", function () {
+    //        window.history.back();
+    //    });
+    //});
+
+    /*
      * Provide jquery ui accordion on sidebar categories.
      */
     $(function () {
-        $("#accordion").accordion(
+        $(".accordion").accordion(
             {
                 collapsible: true,
                 animate: 150,
@@ -28,16 +46,16 @@
                 active: false
             }
         );
-        $('#accordion').removeClass('ui-widget');
-        $('#accordion').removeClass('ui-helper-reset');
-        $('#accordion').removeClass('ui-accordion');
+        $('.accordion').removeClass('ui-widget');
+        $('.accordion').removeClass('ui-helper-reset');
+        $('.accordion').removeClass('ui-accordion');
     });
 
     /*
      * Provide jquery ui accordion on item page.
      */
     $(function () {
-        $("#item-accordion").accordion(
+        $(".item-accordion").accordion(
             {
                 collapsible: true,
                 animate: 150,
@@ -45,9 +63,9 @@
                 active: false
             }
         );
-        $('#item-accordion').removeClass('ui-widget');
-        $('#item-accordion').removeClass('ui-helper-reset');
-        $('#item-accordion').removeClass('ui-accordion');
+        $('.item-accordion').removeClass('ui-widget');
+        $('.item-accordion').removeClass('ui-helper-reset');
+        $('.item-accordion').removeClass('ui-accordion');
     });
 
     /*

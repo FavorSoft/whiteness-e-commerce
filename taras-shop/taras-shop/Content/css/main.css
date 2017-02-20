@@ -73,6 +73,11 @@ body p, body span
     src: url(../../fonts/bebas_neue/BebasNeueBold.otf);
 }
 
+@font-face {
+    font-family: BebasNeueRegular;
+    src: url(../../fonts/bebas_neue/BebasNeueRegular.otf);
+}
+
 /* Fonts end*/
 
 /* Media queries */
@@ -133,7 +138,7 @@ body p, body span
         margin-bottom: 20px;
     }
 
-    .main .quick-view
+    .container.quick-view
     {
         width: calc(100% - 36px);
     }
@@ -144,18 +149,18 @@ body p, body span
         padding-right: 0px;
     }
 
-    #mobile-sidebar > #accordion > h4
+    .mobile-sidebar > .accordion > h4
     {
         font-size: 30px;
     }
 
-    #mobile-sidebar > #accordion > h4 + div > ul
+    .mobile-sidebar > .accordion > h4 + div > ul
     {
         width: 100%;
         margin: 0px;
     }
 
-    #mobile-sidebar > #accordion > h4 + div > ul > li
+    .mobile-sidebar > .accordion > h4 + div > ul > li
     {
         font-size: 22px;
     }
@@ -166,7 +171,7 @@ body p, body span
         text-align: center;
     }
 
-    #mobile-sidebar #slider 
+    .mobile-sidebar #slider 
     {
         margin: 0 auto;
         width: 80%;
@@ -179,17 +184,17 @@ body p, body span
         font-size: 30px;
     }
 
-    #mobile-sidebar .filters
+    .mobile-sidebar .filters
     {
         border: none;
     }
 
-    #mobile-sidebar .size-h
+    .mobile-sidebar .size-h
     {
         padding-botom: 15px;
     }
 
-    #mobile-sidebar .radio-list
+    .mobile-sidebar .radio-list
     {
         padding: 20px;
     }
@@ -198,7 +203,7 @@ body p, body span
 
 @media screen and (min-width: 992px)
 {
-    .row .main .img-unit-div
+    .container .img-unit-div
     {
         background-size: cover;
     }
@@ -220,26 +225,26 @@ body p, body span
         margin: 0 auto;
     }
 
-    .main .img-unit-div,
-    .main .text-unit-part,
-    .unit
+    .container .row .img-unit-div,
+    .container .row .text-unit-part,
+    .container .row .unit
     {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
     }
 
-    .main .quick-view 
+    .container .row .quick-view 
     {
         width: 100%;
     }
 
-    .main .img-unit-div
+    .container .row .img-unit-div
     {
         background-size: cover;
     }
 
-    .row .main .unit .img-unit-div .sale-img
+    .container .row .unit .img-unit-div .sale-img
     {
         padding-left: 0px;
         position: relative;
@@ -247,24 +252,24 @@ body p, body span
         transform: translateX(-50%);
     }
 
-    .row .main .unit
+    .container .row .unit
     {
         height: inherit;
         min-height: 450px;
     }
 
-    .row .main .title-lines
+    .container .row .title-lines
     {
         margin-bottom: 50px
     }
 
-    .row .main .title-lines div
+    .container .row .title-lines div
     {
         width: 100%;
         float: none;
     }
 
-    .row .main .title-lines-h
+    .container .row .title-lines-h
     {
         display: block;
         bottom: 0px;
@@ -286,6 +291,17 @@ body p, body span
     button.frequent-button
     {
         font-size: 15px;
+    }
+
+    h3.basket-header
+    {
+        font-size: 21px;
+    }
+
+    ul.navbar-right > li:last-child
+    {
+        position: relative;
+        top: 16px;
     }
 }
 
@@ -336,6 +352,27 @@ body p, body span
 .header nav.navbar .navbar-header .navbar-toggle.collapsed .icon-bar 
 {
     background-color: #4B4B4B;
+}
+
+a.search
+{
+    float: right;
+}
+
+.search-input
+{
+    width: 200px;
+    background-color: #ebebeb;
+    height: 60px;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    position: absolute;
+    right: 60px;
+    display: none;
 }
 
 .sign-in img,
@@ -943,7 +980,7 @@ body .modal-content .modal-body .frequent-button:hover
 
 /* Sidebar-wrapper block */
 
-#mobile-sidebar > h3.ui-accordion-header
+.mobile-sidebar > h3.ui-accordion-header
 {
     margin: 0;
     padding: 10px;
@@ -953,7 +990,7 @@ body .modal-content .modal-body .frequent-button:hover
     user-select: none;
 }
 
-#mobile-sidebar h3.ui-state-active{
+.mobile-sidebar h3.ui-state-active{
     border: 1px solid #EDEDED;
     background: #EDEDED;
     color: #000;
@@ -961,20 +998,20 @@ body .modal-content .modal-body .frequent-button:hover
 
 /* Sidebar-wrapper block end */
 
-#sidebar
+.sidebar
 {
     color: #000;
     font-family: Calibri;
 }
 
-#sidebar > h3,
-#mobile-sidebar > h3
+.sidebar > h3,
+.mobile-sidebar > h3
 {
     font-size: 21px;
     margin-bottom: 14px;
 }
 
-#accordion h4
+.accordion h4
 {
     color: #000;
     cursor: pointer;
@@ -990,13 +1027,13 @@ body .modal-content .modal-body .frequent-button:hover
     padding: 10px 10px 10px 0px;
 }
 
-#accordion h4:focus,
-#mobile-sidebar > h3:focus
+.accordion h4:focus,
+.mobile-sidebar > h3:focus
 {
     outline: none;
 }
 
-#accordion ul
+.accordion ul
 {
     color: #000;
     list-style: none;
@@ -1006,7 +1043,7 @@ body .modal-content .modal-body .frequent-button:hover
     padding-top: 5px;
 }
 
-#accordion ul li
+.accordion ul li
 {
     font-size: 15px;
     margin-left: 15px;
@@ -1015,7 +1052,7 @@ body .modal-content .modal-body .frequent-button:hover
     cursor: pointer;
 }
 
-#accordion div
+.accordion div
 {
     border: none;
 }
@@ -1076,7 +1113,7 @@ body .modal-content .modal-body .frequent-button:hover
     font-size: 20px
 }
 
-#sidebar .radio-list
+.sidebar .radio-list
 {
     min-height: 200px;
 }
@@ -1370,13 +1407,14 @@ input[type=radio]:checked ~ label
 #dropdowns .dropdown-menu
 {
     width: 185px;
-    left: 97px;
+    left: 88px;
     top: 34px;
     border-radius: 0px;
     border: none;
     background-color: #ebebeb;
     box-shadow: none;
     padding-top: 0px;
+    margin-top: 0px;
 }
 
 #dropdowns:active,
@@ -1426,7 +1464,7 @@ input[type=radio]:checked ~ label
 
 #view-dropdown .dropdown-menu
 {
-    left: 82px;
+    left: 75px;
     min-width: 0px;
     width: 64px;
 }
@@ -1477,9 +1515,9 @@ input[type=radio]:checked ~ label
 
 /* Unit block */
 
-.main .popular-units,
-.main .recommend-units,
-.main .about
+.row .popular-units,
+.row .recommend-units,
+.row .about
 {
     float: right;
     text-align: center;
@@ -1487,22 +1525,22 @@ input[type=radio]:checked ~ label
     color: #000;
 }
 
-.main .title-lines .left-line,
-.main .title-lines .right-line
+.title-lines .left-line,
+.title-lines .right-line
 {
     border-top: 1px solid;
     display: inline-block;
     width: 35%;
 }
 
-.main .title-lines .left-line
+.title-lines .left-line
 {
     float: left;
     padding-right: 0px;
     padding-left: 0px;
 }
 
-.main .title-lines .right-line
+.title-lines .right-line
 {
     float: right;
 }
@@ -1514,7 +1552,7 @@ input[type=radio]:checked ~ label
     bottom: 20px;
 }
 
-.main .unit
+.row .unit
 {
     cursor: pointer;
     height: 450px;
@@ -1526,12 +1564,12 @@ input[type=radio]:checked ~ label
     border: 1px solid #fff;
 }
 
-.main .unit:hover
+.unit:hover
 {
     border: 1px solid #b8b8b8;
 }
 
-.main .img-unit-div
+.img-unit-div
 {
     height: 240px;
     margin-top: 25px;
@@ -1540,7 +1578,7 @@ input[type=radio]:checked ~ label
     background-image: url(../../Content/images/woman.png);
 }
 
-.main .img-unit-div .sale-img
+.img-unit-div .sale-img
 {
     float: left;
     padding-left: 2%;
@@ -1558,23 +1596,23 @@ input[type=radio]:checked ~ label
     background-color: #b6b6b6;
 }
 
-.main .quick-view img
+.quick-view img
 {
     padding: 10px;
     float: none;
 }
 
-.main .img-unit-div:hover .quick-view
+.img-unit-div:hover .quick-view
 {
     visibility: visible;
 }
 
-.main .img-unit-div:hover .quick-view:active
+.img-unit-div:hover .quick-view:active
 {
     background-color: #999999;
 }
 
-.main .text-unit-part
+.text-unit-part
 {
     border-top: 1px solid #b8b8b8;
     margin-top: 30px;
@@ -1720,9 +1758,21 @@ input[type=radio]:checked ~ label
     font-family: BebasNeueBold;
 }
 
-.cart-table tr td:first-child img
+.image-td
+{
+    padding-left: 0px;
+}
+
+td.image-td img
 {
     width: 150px;
+}
+
+td.image-td a
+{
+    color: #a1a0a0;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .cart-table .cart-price-p,
@@ -1791,6 +1841,39 @@ input[type=radio]:checked ~ label
 }
 
 /* Shopping Cart block end */
+
+/* 404 page */
+
+.main-404
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 50px;
+}
+
+.main-404 h1
+{
+    font-size: 100px;
+}
+
+.main-404 p
+{
+    font-size: 30px;
+}
+
+.main-404 h1, .main-404 p
+{
+    text-align: center;
+    font-family: BebasNeueRegular;
+}
+
+.main-404 button
+{
+    background-color: #c22529;
+}
+
+/* 404 page end */
 
 /* ItemPage block */
 

@@ -10,85 +10,85 @@
 </div>
 <div class="container">
     <div class="row">
-                <aside class="col-lg-2 col-md-2 sidebar-nav" id="sidebar">
-                    <div id="mobile-sidebar" class="sidebar-mobile-accordion">
-                        <h3 class="side-catalog">Каталог товарів</h3>
-                        <div id="accordion" data-theme="none">
-                            <h4>Жінки</h4>
-                            <div>
-                                <ul class="women">
-                                    @foreach (var i in Model.categories.Where(x => x.TypeId == 1))
-                                    {
-                                        <li>@i.Category</li>
-                                    }
-                                </ul>
-                            </div>
-                            <h4>Чоловіки</h4>
-                            <div>
-                                <ul class="men">
-                                    @foreach (var i in Model.categories.Where(x => x.TypeId == 2))
-                                    {
-                                        <li>@i.Category</li>
-                                    }
-                                </ul>
-                            </div>
-                            <h4>Діти</h4>
-                            <div>
-                                <ul class="children">
-                                    @foreach (var i in Model.categories.Where(x => x.TypeId == 3))
-                                    {
-                                        <li>@i.Category</li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                        <h3 class="filters-h">Фильтры</h3>
-                        <div class="filters">
-                            <h4 class="price-h">Цена</h4>
-                            <p>
-                                <input type="text" readonly id="amount">
-                            </p>
-                            <div id="slider"></div>
-                            <h4 class="size-h">Розмір</h4>
-                            <ul class="radio-list">
-                                <li>
-                                    <input type="checkbox" id="xs-option" name="selector">
-                                    <label for="xs-option">Xs</label>
-
-                                    <div class="check"></div>
-                                </li>
-
-                                <li>
-                                    <input type="checkbox" id="s-option" name="selector">
-                                    <label for="s-option">S</label>
-
-                                    <div class="check"><div class="inside"></div></div>
-                                </li>
-
-                                <li>
-                                    <input type="checkbox" id="m-option" name="selector">
-                                    <label for="m-option">M</label>
-
-                                    <div class="check"><div class="inside"></div></div>
-                                </li>
-
-                                <li>
-                                    <input type="checkbox" id="l-option" name="selector">
-                                    <label for="l-option">L</label>
-
-                                    <div class="check"><div class="inside"></div></div>
-                                </li>
-
-                                <li>
-                                    <input type="checkbox" id="xl-option" name="selector">
-                                    <label for="xl-option">Xl</label>
-
-                                    <div class="check"><div class="inside"></div></div>
-                                </li>
-                            </ul>
-                        </div>
+        <aside class="col-lg-2 col-md-2 sidebar-nav sidebar">
+            <div class="sidebar-mobile-accordion mobile-sidebar">
+                <h3 class="side-catalog">Каталог товарів</h3>
+                <div class="accordion" data-theme="none">
+                    <h4>Жінки</h4>
+                    <div>
+                        <ul class="women">
+                            @foreach (var i in Model.categories.Where(x => x.TypeId == 1))
+                            {
+                                <li>@i.Category</li>
+                            }
+                        </ul>
                     </div>
-                </aside>
+                    <h4>Чоловіки</h4>
+                    <div>
+                        <ul class="men">
+                            @foreach (var i in Model.categories.Where(x => x.TypeId == 2))
+                            {
+                                <li>@i.Category</li>
+                            }
+                        </ul>
+                    </div>
+                    <h4>Діти</h4>
+                    <div>
+                        <ul class="children">
+                            @foreach (var i in Model.categories.Where(x => x.TypeId == 3))
+                            {
+                                <li>@i.Category</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="filters-h">Фильтры</h3>
+                <div class="filters">
+                    <h4 class="price-h">Цена</h4>
+                    <p>
+                        <input type="text" readonly id="amount">
+                    </p>
+                    <div id="slider"></div>
+                    <h4 class="size-h">Розмір</h4>
+                    <ul class="radio-list">
+                        <li>
+                            <input type="checkbox" id="xs-option" name="selector">
+                            <label for="xs-option">Xs</label>
+
+                            <div class="check"></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="s-option" name="selector">
+                            <label for="s-option">S</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="m-option" name="selector">
+                            <label for="m-option">M</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="l-option" name="selector">
+                            <label for="l-option">L</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="xl-option" name="selector">
+                            <label for="xl-option">Xl</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
         <section class="main">
             <a href="#" class="her-a">
                 <div class="col-md-4 col-md-offset-1 col-sm-offset-4 her">

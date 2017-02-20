@@ -273,7 +273,7 @@
     <Content Include="fonts\bebas_neue\Bebas Neue - SIL Open Font License 1.1.pdf" />
     <Content Include="fonts\bebas_neue\BebasNeue Book.otf" />
     <Content Include="fonts\bebas_neue\BebasNeue Light.otf" />
-    <Content Include="fonts\bebas_neue\BebasNeue Regular.otf" />
+    <Content Include="fonts\bebas_neue\BebasNeueRegular.otf" />
     <Content Include="fonts\bebas_neue\BebasNeue Thin.otf" />
     <Content Include="fonts\bebas_neue\BebasNeueBold.otf" />
     <Content Include="fonts\bully\Bully\.DS_Store" />
@@ -332,6 +332,7 @@
     <Content Include="Views\Admin\AddUnitPage.cshtml" />
     <Content Include="Views\Home\ItemPage.cshtml" />
     <Content Include="Views\Home\ShoppingCart.cshtml" />
+    <Content Include="Views\Home\Page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

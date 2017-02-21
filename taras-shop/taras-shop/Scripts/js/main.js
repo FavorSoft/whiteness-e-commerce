@@ -55,7 +55,8 @@
      * Provide jquery ui accordion on item page.
      */
     $(function () {
-        $(".item-accordion").accordion(
+        console.log("Item accordin");
+        $("#item-accordion").accordion(
             {
                 collapsible: true,
                 animate: 150,
@@ -63,9 +64,9 @@
                 active: false
             }
         );
-        $('.item-accordion').removeClass('ui-widget');
-        $('.item-accordion').removeClass('ui-helper-reset');
-        $('.item-accordion').removeClass('ui-accordion');
+        $('#item-accordion').removeClass('ui-widget');
+        $('#item-accordion').removeClass('ui-helper-reset');
+        $('#item-accordion').removeClass('ui-accordion');
     });
 
     /*

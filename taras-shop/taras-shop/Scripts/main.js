@@ -84,6 +84,10 @@
             $('.sidebar-mobile-accordion').removeClass('ui-widget');
             $('.sidebar-mobile-accordion').removeClass('ui-helper-reset');
             $('.sidebar-mobile-accordion').removeClass('ui-accordion');
+            $('.sidebar-mobile-accordion h4').removeClass('ui-accordion-header');
+            $('.sidebar-mobile-accordion h4').removeClass('ui-state-default');
+            $('.sidebar-mobile-accordion h4').removeClass('ui-corner-all');
+            $('.sidebar-mobile-accordion h4').removeClass('ui-accordion-icons');
         }
         else if($(".side-catalog").hasClass("ui-accordion-header")) {
             $('.sidebar-mobile-accordion').accordion('destroy');

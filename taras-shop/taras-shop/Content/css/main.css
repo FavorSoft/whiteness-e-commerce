@@ -152,6 +152,10 @@ body p, body span
     .mobile-sidebar > .accordion > h4
     {
         font-size: 30px;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        border-bottom: 2px solid #000;
     }
 
     .mobile-sidebar > .accordion > h4 + div > ul
@@ -197,6 +201,12 @@ body p, body span
     .mobile-sidebar .radio-list
     {
         padding: 20px;
+    }
+
+    .main .find-filters,
+    .main .search-img
+    {
+        float: none;
     }
 
 }
@@ -302,6 +312,51 @@ body p, body span
     {
         position: relative;
         top: 16px;
+    }
+
+    #dropdowns
+    {
+        width: 100%;
+        float: right;
+    }
+
+    #dropdowns label
+    {
+        display: block;
+    }
+
+    #dropdowns #sort-dropdown,
+    .main .pagination-block
+    {
+        padding-bottom: 30px;
+    }
+
+    #dropdowns #sort-dropdown,
+    #dropdowns #view-dropdown,
+    .main .pagination-block
+    {
+        display: block;
+        text-align: center;
+        float: right;
+        position: static;
+        width: 100%;
+    }
+
+    #dropdowns ul.dropdown-menu
+    {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 80px;
+    }
+
+    #dropdowns ul.dropdown-menu.small-dropdown
+    {
+        top: 170px;
+    }
+
+    .main .how-many
+    {
+        display: block;
     }
 }
 
@@ -1325,7 +1380,7 @@ input[type=radio]:checked ~ label
 
 /* Sort block */
 
-.main .search-img
+div.search-img
 {
     height: 170px;
     float: right;
@@ -1342,6 +1397,7 @@ input[type=radio]:checked ~ label
 {
     padding-left: 0px;
     padding-right: 0px;
+    padding: 0px;
 }
 
 .main .find-filters .form-group
@@ -1363,6 +1419,7 @@ input[type=radio]:checked ~ label
     text-align: left;
     font-size: 16px;
     font-weight: 500;
+    border: none;
 }
 
 #dropdowns

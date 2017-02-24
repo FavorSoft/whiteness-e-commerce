@@ -142,17 +142,19 @@
      * Andrew? write comments!!!!
      */
 
+
+    /* Do you need sidebar information ?
+     * url: "Home/LoadSideBar". You can try: http://localhost:port(default = 50315)/Home/LoadSideBar
+     */
+
+    /* Do you need data of index ?
+     * url: "Home/LoadIndex". You can try: http://localhost:port(default = 50315)/Home/LoadIndex
+     * if you need help - call me, my number = 067 355 33 94 :)
+     */
+
+
     //Getting data of Home/Index
-    $.ajax({
-        method: "get",
-        url: "Home/Load"
-    }).done(function (data) {
-        console.log(data);
-    });
-    
-
-
-
+        
     /*
     * Function for send unit to server
     */

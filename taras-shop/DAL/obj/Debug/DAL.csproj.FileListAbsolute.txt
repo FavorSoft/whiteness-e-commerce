@@ -37,3 +37,7 @@ C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\E
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -19,6 +19,7 @@ namespace DAL
             this.Basket_items = new HashSet<Basket_items>();
             this.Images = new HashSet<Images>();
             this.Order_items = new HashSet<Order_items>();
+            this.UnitInfo = new HashSet<UnitInfo>();
         }
     
         public int id { get; set; }
@@ -26,8 +27,6 @@ namespace DAL
         public string producer { get; set; }
         public Nullable<int> price { get; set; }
         public int category_id { get; set; }
-        public int amount { get; set; }
-        public string size { get; set; }
         public string material { get; set; }
         public string color { get; set; }
         public int likes { get; set; }
@@ -39,5 +38,6 @@ namespace DAL
         public virtual Categories Categories { get; set; }
         public virtual ICollection<Images> Images { get; set; }
         public virtual ICollection<Order_items> Order_items { get; set; }
+        public virtual ICollection<UnitInfo> UnitInfo { get; set; }
     }
 }

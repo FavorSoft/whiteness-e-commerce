@@ -1,4 +1,5 @@
 ﻿using DTO;
+using DTO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace DTO
     {
         public UnitDto unit { get; set; }
         public IEnumerable<ImagesDto> images { get; set; }
+        public IEnumerable<UnitInfo> sizes { get; set; }
     }
-
-
 }

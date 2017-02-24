@@ -28,19 +28,13 @@ namespace BLL.Providers
 
         public IEnumerable<RolesDto> GetAll()
         {
-            return ConvertModeltoDTO(_repo.GetAll());
+            return _repo.GetAll().Select(i => new RolesDto()
+            {
+                Id = i.id,
+                Role = i.role
+            }).ToList();
         }
-
-        IEnumerable<RolesDto> ConvertModeltoDTO(IQueryable<Roles> repo)
-        {
-            List<RolesDto> res = repo.Select(i => new RolesDto()
-                {
-                    Id = i.id,
-                    Role = i.role
-                }).ToList();
-            return res;
-        }
-
+        
         public RolesDto GetById(int id)
         {
             var tmp = _repo.GetById(id);

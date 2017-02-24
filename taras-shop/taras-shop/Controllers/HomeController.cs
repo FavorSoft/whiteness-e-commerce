@@ -33,17 +33,23 @@ namespace taras_shop.Controllers
                 categoryTypes = facade.getBasicFunctionality().getCategoryType.GetAll(),
                 popular = facade.getBasicFunctionality().getUnit.GetPopular(4),
                 recommended = facade.getBasicFunctionality().getUnit.GetRecommends()
-                //popular = facade.getPopularArticles(3),
-                //recommended = facade.getRecommendsArticles(4)
             };
 
             return View(model);
         }
 
         [HttpGet]
-        public JsonResult Load()
+        public JsonResult LoadSideBar()
         {
-            return Json(facade.getBasicFunctionality().getUnit.GetPopular(4).ToList(), JsonRequestBehavior.AllowGet);
+            var res = new {category_types = facade.getBasicFunctionality().getCategoryType.GetAll(), categories = facade.getBasicFunctionality().getCategory.GetAll(), sizes = facade.getBasicFunctionality().getSizes.GetAll()};
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult LoadIndex()
+        {
+            var res = new { popular = facade.getPopularArticles(4), recommends = facade.getRecommendsArticles(4) };
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
 

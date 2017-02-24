@@ -14,8 +14,6 @@ namespace DTO
         public Nullable<int> Price { get; set; }
         public Nullable<int> OldPrice { get; set; }
         public int CategoryId { get; set; }
-        public int Amount { get; set; }
-        public string Size { get; set; }
         public string Material { get; set; }
         public string Color { get; set; }
         public int Likes { get; set; }

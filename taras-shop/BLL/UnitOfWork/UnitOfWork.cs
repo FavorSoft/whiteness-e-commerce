@@ -23,6 +23,7 @@ namespace BLL.UnitOfWork
         IProvider<OrderItemsDto> _orderItems;
         IProvider<OrderDto> _order;
         IProvider<RolesDto> _role;
+        IProvider<SizesDto> _sizes;
         IUnitProvider _unit;
         IProvider<UsersDto> _user;
         Entities context;
@@ -44,6 +45,18 @@ namespace BLL.UnitOfWork
                     _basket = new BasketProvider(context);
                 }
                 return _basket;
+            }
+        }
+
+        public IProvider<SizesDto> getSizes
+        {
+            get
+            {
+                if (_sizes == null)
+                {
+                    _sizes = new SizesProvider(context);
+                }
+                return _sizes;
             }
         }
 

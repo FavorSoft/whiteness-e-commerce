@@ -101,8 +101,6 @@ namespace taras_shop.Controllers
                     Producer = producer,
                     CategoryId = Int32.Parse(category),
                     Price = Convert.ToInt32(Int32.Parse(price) * 100),
-                    Amount = Int32.Parse(amount),
-                    Size = size,
                     Material = material,
                     Description = description,
                     Color = "default",

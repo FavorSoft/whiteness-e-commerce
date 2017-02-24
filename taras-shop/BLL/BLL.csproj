@@ -65,6 +65,7 @@
     <Compile Include="Providers\ImagesProvider.cs" />
     <Compile Include="Providers\NewsProvider.cs" />
     <Compile Include="Providers\RoleProvider.cs" />
+    <Compile Include="Providers\SizesProvider.cs" />
     <Compile Include="Providers\UnitProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />

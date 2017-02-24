@@ -142,19 +142,17 @@
      * Andrew? write comments!!!!
      */
 
-    //ohhh, i'm sorry, not now
-    $.get("home/load", function (data, status) {
-        console.log(status);
-        console.log(data);
-    });
-
+    //Getting data of Home/Index
     $.ajax({
         method: "get",
-        url: "Load"
+        url: "Home/Load"
     }).done(function (data) {
         console.log(data);
     });
     
+
+
+
     /*
     * Function for send unit to server
     */

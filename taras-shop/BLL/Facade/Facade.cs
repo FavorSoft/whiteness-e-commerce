@@ -24,19 +24,18 @@ namespace BLL.Facade
                 article.Add(new Article()
                 {
                     unit = units[i],
-                    images = images.Where(x => x.OwnerId == units[i].Id)
+                    images = images.Where(x => x.OwnerId == units[i].Id).ToList()
                 });
             }
             return article;
         }
 
         public IEnumerable<Article> getPopularArticles(int count)
-        {
-            List<Article> res = new List<Article>();
+        { 
             var units = uow.getUnit.GetPopular(count);
-            res = ConvertUnitsToArticles(units.ToList(), uow.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
-            return res;
+            return ConvertUnitsToArticles(units.ToList(), uow.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
+
 
         public IEnumerable<Article> getRecommendsArticles(int count)
         {

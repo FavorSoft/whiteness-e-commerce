@@ -22,7 +22,6 @@ namespace BLL.Providers
         {
             _repo.AddItem(new Unit()
             {
-                amount = unit.Amount,
                 category_id = unit.CategoryId,
                 color = unit.Color,
                 description = unit.Description,
@@ -32,7 +31,6 @@ namespace BLL.Providers
                 material = unit.Material,
                 producer = unit.Producer,
                 title = unit.Title,
-                size = unit.Size,
                 add_date = unit.AddUnitDate
             });
         }
@@ -65,8 +63,6 @@ namespace BLL.Providers
         {
             IEnumerable<UnitDto> res = repo.Select(i => new UnitDto() {
                     Id = i.id,
-                    Amount = i.amount,
-                    Size = i.size,
                     CategoryId = i.category_id,
                     Color = i.color,
                     Description = i.description,
@@ -88,8 +84,6 @@ namespace BLL.Providers
             return new UnitDto()
             {
                 Id = i.id,
-                Amount = i.amount,
-                Size = i.size,
                 CategoryId = i.category_id,
                 Color = i.color,
                 Description = i.description,

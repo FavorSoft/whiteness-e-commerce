@@ -50,7 +50,9 @@
     <Compile Include="Helpers\Order.cs" />
     <Compile Include="Helpers\OrderItems.cs" />
     <Compile Include="Helpers\Roles.cs" />
+    <Compile Include="Helpers\SizesDto.cs" />
     <Compile Include="Helpers\Unit.cs" />
+    <Compile Include="Helpers\UnitInfo.cs" />
     <Compile Include="Helpers\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

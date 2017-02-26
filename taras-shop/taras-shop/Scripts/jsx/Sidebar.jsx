@@ -3,8 +3,8 @@
         return (
          <aside className="col-lg-2 col-md-2 sidebar-nav sidebar">
             <div className="sidebar-mobile-accordion mobile-sidebar">
-                <SideCatalog/>
-                <SideFilters/>
+                <SideCatalog />
+                <SideFilters />
             </div>
          </aside>
       );

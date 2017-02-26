@@ -57,7 +57,10 @@ class PopularUnits extends React.Component {
                     <h4 className="title-lines-h">Популярные товары</h4>
                     <div className="col-md-4 right-line"></div>
                 </div>
-                <Unit сompanyMaker="Anbelichka" itemType="Tryci" priceWas="100.90" priceNow="23.78" />
+                <Unit imgLink="backgroundImage: url(../Content/images/mant.jpg)" сompanyMaker="Anbelichka" itemType="Tryci" priceWas="100.90" priceNow="23.78" />
+                <Unit imgLink="backgroundImage: url(../Content/images/mant.jpg)" сompanyMaker="Anbelichka" itemType="Tryci" priceWas="100.90" priceNow="23.78" />
+                <Unit imgLink="backgroundImage: url(../Content/images/mant.jpg)" сompanyMaker="Anbelichka" itemType="Tryci" priceWas="100.90" priceNow="23.78" />
+                <Unit imgLink="backgroundImage: url(../Content/images/mant.jpg)" сompanyMaker="Anbelichka" itemType="Tryci" priceWas="100.90" priceNow="23.78" />
             </div>
         );
     }
@@ -88,7 +91,7 @@ class Unit extends React.Component {
             <div className="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
                     <a href="/Home/ItemPage">
                         <div style={ this.props.imgLink } className="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                            <img className="sale-img" src="~/Content/images/sale.png" alt="topsale" />
+                            <img className="sale-img" src={this.props.sale} alt="topsale" />
                             <div className="quick-view" data-target="#item-preview-modal" data-toggle="modal">
                                 <img src="~/Content/images/eye.png" alt="eye" />
                                 <span>Быстрый просмотр</span>

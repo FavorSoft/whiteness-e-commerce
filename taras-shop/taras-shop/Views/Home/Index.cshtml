@@ -128,11 +128,19 @@
                 @{
                     foreach (var i in Model.popular)
                     {
-                        
+                        bool isSale = false;
+                        if (!i.unit.OldPrice.Equals(null))
+                        {
+                            isSale = true;
+                        }
                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
-                            <a href="/Home/ItemPage">
+                            <a href="/Home/ItemPage/@i.unit.Id">
                                 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                                    <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
+                                    @if (isSale)
+                                    {
+                                        <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
+                                    }
+                                    @*src="~/Content/images/Units/@i.images.FirstOrDefault().Image" - i's image *@ 
                                     <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
                                         <img src="~/Content/images/eye.png" alt="eye" />
                                         <span>Быстрый просмотр</span>
@@ -140,12 +148,15 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                                     <div class="title-unit-part">
-                                        <p class="company-maker">@i.Title</p>
-                                        <p class="item-type">@Model.categories.Where(x => x.Id == i.Id).SingleOrDefault().Category</p>
+                                        <p class="company-maker">@i.unit.Title</p>
+                                        <p class="item-type">@Model.categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
                                     </div>
                                     <div class="price-unit-part">
-                                        <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</span>
-                                        <span class="price-was">79.90 грн</span>
+                                        <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                                        @if (isSale)
+                                        {
+                                            <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                                        }
                                     </div>
                                 </div>
                             </a>
@@ -158,60 +169,36 @@
                         <h4 class="title-lines-h">Рекомендуем</h4>
                         <div class="col-md-4 right-line"></div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
-                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                            <div class="quick-view">
-                                <img src="/Content/images/eye.png" alt="eye">
-                                <span>Быстрый просмотр</span>
+                    @foreach (var i in Model.recommended)
+                    {
+                        bool isSale = false;
+                        if (!i.unit.OldPrice.Equals(null))
+                        {
+                            isSale = true;
+                        }
+                        <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                                <div class="quick-view">
+                                    <img src="/Content/images/eye.png" alt="eye">
+                                    @*src="~/Content/images/Units/@i.images.FirstOrDefault().Image" - i's image *@ 
+                                    <span>Быстрый просмотр</span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                                <div class="title-unit-part">
+                                    <p class="company-maker">@i.unit.Title</p>
+                                    <p class="item-type">@Model.categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
+                                </div>
+                                <div class="price-unit-part">
+                                    <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                                    @if (isSale)
+                                    {
+                                        <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
-                            <div class="title-unit-part">
-                                <p class="company-maker">Стара колекція бюстгальтерів</p>
-                                <p class="item-type">Комплекти</p>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">43.50 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
-                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                            <div class="quick-view">
-                                <img src="/Content/images/eye.png" alt="eye">
-                                <span>Быстрый просмотр</span>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
-                            <div class="title-unit-part">
-                                <p class="company-maker">Стара колекція бюстгальтерів</p>
-                                <p class="item-type">Комплекти</p>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">43.50 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
-                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                            <div class="quick-view">
-                                <img src="/Content/images/eye.png" alt="eye">
-                                <span>Быстрый просмотр</span>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
-                            <div class="title-unit-part">
-                                <p class="company-maker">Стара колекція бюстгальтерів</p>
-                                <p class="item-type">Комплекти</p>
-                            </div>
-                            <div class="price-unit-part">
-                                <span class="price-now">43.50 грн</span>
-                                <span class="price-was">79.90 грн</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <div class="col-md-12 about">
                     <div class="title-lines">

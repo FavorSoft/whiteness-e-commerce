@@ -9,8 +9,8 @@ namespace taras_shop.Models
     {
         public IEnumerable<CategoriesDto> categories { get; set; }
         public IEnumerable<CategoryTypeDto> categoryTypes { get; set; }
-        public IEnumerable<UnitDto> popular { get; set; }
-        public IEnumerable<UnitDto> recommended { get; set; }
+        public IEnumerable<Article> popular { get; set; }
+        public IEnumerable<Article> recommended { get; set; }
         
     }
 

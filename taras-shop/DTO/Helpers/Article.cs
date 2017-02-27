@@ -1,5 +1,4 @@
 ﻿using DTO;
-using DTO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,8 @@ namespace DTO
     public class Article
     {
         public UnitDto unit { get; set; }
+        public CategoriesDto category { get; set; }
         public IEnumerable<ImagesDto> images { get; set; }
-        public IEnumerable<UnitInfo> sizes { get; set; }
+        public IDictionary<SizesDto, UnitInfoDto> sizes { get; set; }
     }
 }

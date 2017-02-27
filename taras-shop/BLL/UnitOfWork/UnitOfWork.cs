@@ -26,6 +26,7 @@ namespace BLL.UnitOfWork
         IProvider<SizesDto> _sizes;
         IUnitProvider _unit;
         IProvider<UsersDto> _user;
+        IUnitInfoProvider _unitInfo;
         Entities context;
         #endregion
 
@@ -189,6 +190,18 @@ namespace BLL.UnitOfWork
                     _user = new UserProvider(context);
                 }
                 return _user;
+            }
+        }
+
+        public IUnitInfoProvider getUnitInfo
+        {
+            get
+            {
+                if (_unitInfo == null)
+                {
+                    _unitInfo = new UnitInfoProvider(context);
+                }
+                return _unitInfo;
             }
         }
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.Helpers
+namespace DTO
 {
-    class UnitInfoDto
+    public class UnitInfoDto
     {
         public int Id { get; set; }
         public int SizeId { get; set; }

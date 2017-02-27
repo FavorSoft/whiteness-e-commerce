@@ -12,6 +12,7 @@ namespace BLL.IFacade
     {
         IUnitOfWork getBasicFunctionality();
         IEnumerable<Article> getPopularArticles(int count);
+        IEnumerable<Article> getArticleById(int id);
         IEnumerable<Article> getRecommendsArticles(int count);
     }
 }

@@ -29,7 +29,12 @@ namespace BLL.Providers
 
         public IEnumerable<ImagesDto> GetAll()
         {
-            return ConvertModeltoDTO(_repo.GetAll());
+            return _repo.GetAll().Select(x => new ImagesDto()
+            {
+                Id = x.id,
+                Image = x.image,
+                OwnerId = x.owner_id
+            });
         }
 
         IEnumerable<ImagesDto> ConvertModeltoDTO(IQueryable<Images> repo)
@@ -55,14 +60,24 @@ namespace BLL.Providers
         }
         public IEnumerable<ImagesDto> GetByOwner(int id)
         {
-            return ConvertModeltoDTO(_repo.GetAll().Where(x => x.owner_id == id)); ;
+            return _repo.GetAll().Where(x => x.owner_id == id).Select(i => new ImagesDto()
+            {
+                Id = i.id,
+                Image = i.image,
+                OwnerId = i.owner_id
+            }).ToList();
         }
         public IEnumerable<ImagesDto> GetByOwners(int[] id)
         {
             List<ImagesDto> res = new List<ImagesDto>();
-            foreach (int i in id)
+            foreach (int ids in id)
             {
-                res.AddRange(ConvertModeltoDTO(_repo.GetAll().Where(x => x.owner_id == i)));
+                res.AddRange(_repo.GetAll().Where(x => x.owner_id == ids).Select(i => new ImagesDto()
+                {
+                    Id = i.id,
+                    Image = i.image,
+                    OwnerId = i.owner_id
+                }));
             }
             return res;
         }

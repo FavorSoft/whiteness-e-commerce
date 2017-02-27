@@ -62,6 +62,7 @@
     <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="IProviders\IImagesProvider.cs" />
     <Compile Include="IProviders\IProvider.cs" />
+    <Compile Include="IProviders\IUnitInfoProvider.cs" />
     <Compile Include="IProviders\IUnitProvider.cs" />
     <Compile Include="IProviders\IUserProvider.cs" />
     <Compile Include="Providers\NewsImagesProvider.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Providers\NewsProvider.cs" />
     <Compile Include="Providers\RoleProvider.cs" />
     <Compile Include="Providers\SizesProvider.cs" />
+    <Compile Include="Providers\UnitInfoProvider.cs" />
     <Compile Include="Providers\UnitProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />

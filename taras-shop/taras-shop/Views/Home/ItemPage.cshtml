@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DTO.Article
+@{
     ViewBag.Title = "Item";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,13 +12,42 @@
                 <div class='carousel-outer'>
                     <!-- thumb -->
                     <ol class='carousel-indicators mCustomScrollbar meartlab'>
+                        @{
+                            int itemAmount = 0;
+                            foreach (var i in Model.images)
+                            {
+                                itemAmount++;
+                                string imgClass = ""; 
+                                if (itemAmount==1)
+                                {
+                                    imgClass = "active";
+                                }
+                                @*<li data-target='#item-carousel-custom' data-slide-to='0' class='@imgClass'><img src='~/Content/images/Units/@i.Image' alt='@itemAmount' /></li>*@
+                            }
+                        }
                         <li data-target='#item-carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
                         <li data-target='#item-carousel-custom' data-slide-to='1'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='2' /></li>
                         <li data-target='#item-carousel-custom' data-slide-to='2'><img class="third-slider-img" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='3' /></li>
                         <li data-target='#item-carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>
+
                     </ol>
                     <!-- me art lab slider -->
                     <div class='carousel-inner '>
+                        @{
+                            int imgAmount = 0;
+                            foreach (var i in Model.images)
+                            {
+                                itemAmount++;
+                                string imgClass = "";
+                                if (itemAmount == 1)
+                                {
+                                    imgClass = "active";
+                                }
+                                @*<div class='item @imgClass'>
+                                    <img src='~/Content/images/Units/@i.Image' alt='' id="zoom_05" data-zoom-image='~/Content/images/Units/@i.Image' />
+                                </div>*@
+                            }
+                        }
                         <div class='item active'>
                             <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='' id="zoom_05" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg" />
                         </div>
@@ -37,12 +67,21 @@
             <div class="col-md-4 details-modal-part">
                 <div class="col-md-12 text-details-part">
                     <div class="title-unit-part">
-                        <p class="company-maker">Стара колекція жіноччих комплектів</p>
-                        <p class="item-type">Труси</p>
+                        <p class="company-maker">@Model.unit.Title</p>
+                        <p class="item-type">@Model.category.Category</p>
                     </div>
                     <div class="price-unit-part">
-                        <span class="price-now">43.50 грн</span>
-                        <span class="price-was">79.90 грн</span>
+                        @if (!@Model.unit.Price.Equals(null)){
+                            <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                        }
+                        else
+                        {
+                            <span class="price-now">Цены нет</span>
+                        }
+                        @if (!Model.unit.OldPrice.Equals(null))
+                        {
+                            <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                        }
                     </div>
                     <div class="line"></div>
                 </div>
@@ -51,40 +90,15 @@
                     <h4 id="size-toggle">Выбрать размер</h4>
                     <div class="append-radio">
                         <ul class="radio-list">
-                            <li>
-                                <input type="radio" id="xs-option2" name="selector">
-                                <label for="xs-option2">Xs</label>
-
-                                <div class="check"></div>
-                            </li>
-
-                            <li>
-                                <input type="radio" id="s-option2" name="selector">
-                                <label for="s-option2">S</label>
-
-                                <div class="check"><div class="inside"></div></div>
-                            </li>
-
-                            <li>
-                                <input type="radio" id="m-option2" name="selector">
-                                <label for="m-option2">M</label>
-
-                                <div class="check"><div class="inside"></div></div>
-                            </li>
-
-                            <li>
-                                <input type="radio" id="l-option2" name="selector">
-                                <label for="l-option2">L</label>
-
-                                <div class="check"><div class="inside"></div></div>
-                            </li>
-
-                            <li>
-                                <input type="radio" id="xl-option2" name="selector">
-                                <label for="xl-option2">Xl</label>
-
-                                <div class="check"><div class="inside"></div></div>
-                            </li>
+                            @foreach (var i in Model.sizes)
+                            {
+                                <li>
+                                    <input type="radio" id="@i.Key.Size.ToLower()-option2" name="selector">
+                                    <label for="@i.Key.Size.ToLower()-option2">@i.Key.Size.ToLower()</label>
+                                    <div class="check"></div>
+                                    <p>Осталось - @i.Value.Amount</p>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -93,14 +107,10 @@
                     <h4><span>+</span>Описание товара</h4>
                     <div>
                         <p>
-                            Трусы Anabel Arto выполнены из гладкого трикотажа.<br />
+                            @Model.unit.Description
                             <br />
-                            - эластичный пояс<br />
-                            - эластичный пояс<br />
-                            - эластичный пояс<br />
-                            <br />
-                            <span class="consist">Состав: </span><span>Полиамид - 85%, Эластан - 15%</span><br />
-                            <span class="item-code">Код товара: </span>45987-B<span>
+                            <span class="consist">Состав: </span><span>@Model.unit.Material</span><br />
+                            <span class="item-code">Код товара: </span>@Model.unit.Id-B<span>
                         </p>
                     </div>
                     <h4><span>+</span>Доставка</h4>

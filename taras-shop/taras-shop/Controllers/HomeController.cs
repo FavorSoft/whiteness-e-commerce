@@ -31,8 +31,8 @@ namespace taras_shop.Controllers
             {
                 categories = facade.getBasicFunctionality().getCategory.GetAll(),
                 categoryTypes = facade.getBasicFunctionality().getCategoryType.GetAll(),
-                popular = facade.getBasicFunctionality().getUnit.GetPopular(4),
-                recommended = facade.getBasicFunctionality().getUnit.GetRecommends()
+                popular = facade.getPopularArticles(4),
+                recommended = facade.getRecommendsArticles(3)
             };
 
             return View(model);
@@ -72,9 +72,9 @@ namespace taras_shop.Controllers
             return View();
         }
 
-        public ActionResult ItemPage()
+        public ActionResult ItemPage(int id)
         {
-            return View();
+            return View(facade.getArticleById(id));
         }
 
         public ActionResult ShoppingCart()

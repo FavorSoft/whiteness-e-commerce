@@ -138,6 +138,7 @@
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\SizesRepository.cs" />
+    <Compile Include="Repositories\UnitInfoRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Roles.cs">

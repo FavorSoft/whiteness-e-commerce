@@ -9,6 +9,7 @@ using BLL.UnitOfWork;
 using taras_shop.Models;
 using BLL.Facade;
 using BLL.IFacade;
+using System.Threading.Tasks;
 
 namespace taras_shop.Controllers
 {
@@ -25,7 +26,7 @@ namespace taras_shop.Controllers
         }
         #endregion
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
             {
@@ -39,14 +40,14 @@ namespace taras_shop.Controllers
         }
 
         [HttpGet]
-        public JsonResult LoadSideBar()
+        public async Task<JsonResult> LoadSideBar()
         {
             var res = new {category_types = facade.getBasicFunctionality().getCategoryType.GetAll(), categories = facade.getBasicFunctionality().getCategory.GetAll(), sizes = facade.getBasicFunctionality().getSizes.GetAll()};
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public JsonResult LoadIndex()
+        public async Task<JsonResult> LoadIndex()
         {
             var res = new { popular = facade.getPopularArticles(4), recommends = facade.getRecommendsArticles(4) };
             return Json(res, JsonRequestBehavior.AllowGet);
@@ -72,7 +73,7 @@ namespace taras_shop.Controllers
             return View();
         }
 
-        public ActionResult ItemPage(int id)
+        public async Task<ActionResult> ItemPage(int id)
         {
             return View(facade.getArticleById(id));
         }

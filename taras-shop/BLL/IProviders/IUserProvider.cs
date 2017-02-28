@@ -12,5 +12,6 @@ namespace BLL.IProviders
     {
         Task<ClaimsIdentity> Authenticate(UsersDto user);
         Task SetInitialData(UsersDto user, List<string> roles);
+        UsersDto GetByInfo(UsersDto user);
     }
 }

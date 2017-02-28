@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,7 +33,7 @@ namespace taras_shop.Controllers
             return View();
         }
         //[ValidateAntiForgeryToken]
-        public ActionResult AddUnitPage()
+        public async Task<ActionResult> AddUnitPage()
         {
             Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()
             {
@@ -43,20 +44,8 @@ namespace taras_shop.Controllers
             return View(model);
         }
 
-        /*
-         title: title,
-         producer: producer,
-         categoryType: categoryType,
-         category: category,
-         price: price,
-         amount: amount,
-         size: size,
-         material: material,
-         description: description
-         */
-
         [HttpPost]
-        public JsonResult UploadPhoto()
+        public async Task<JsonResult> UploadPhoto()
         {
             List<string> tmpName = new List<string>();
             foreach (string file in Request.Files)
@@ -81,7 +70,7 @@ namespace taras_shop.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddUnit(
+        public async Task<JsonResult> AddUnit(
             string title,
             string producer,
             string categoryType,
@@ -94,7 +83,7 @@ namespace taras_shop.Controllers
             IEnumerable<string> images
             )
         {
-            try {
+            using (var transact = facade.getBasicFunctionality().BeginTransaction()) {
                 var unit = new UnitDto()
                 {
                     Title = title,
@@ -106,13 +95,6 @@ namespace taras_shop.Controllers
                     Color = "default",
                     Likes = 0
                 };
-                facade.getBasicFunctionality().getCategory.AddItem(new CategoriesDto()
-                {
-                    Category = "abc",
-                    CategoryImg = "abc",
-                    Description = "test",
-                    TypeId = 1
-                });
                 facade.getBasicFunctionality().getUnit.AddItem(unit);
                 foreach (string img in images) {
                     facade.getBasicFunctionality().getImages.AddItem(new ImagesDto()
@@ -121,15 +103,12 @@ namespace taras_shop.Controllers
                         OwnerId = unit.Id
                     });
                 }
-                facade.getBasicFunctionality().Commit();
-
+                transact.Commit();
+                facade.getBasicFunctionality().SaveChanges();
+                return Json("Success", JsonRequestBehavior.AllowGet);
             }
-            catch (Exception e)
-            {
-                return Json("Error", JsonRequestBehavior.AllowGet);
-            }
-            
-            return Json("Success", JsonRequestBehavior.AllowGet);
+                        
+            return Json("Error", JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)
         {

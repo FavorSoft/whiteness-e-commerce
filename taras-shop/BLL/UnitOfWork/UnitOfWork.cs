@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace BLL.UnitOfWork
         IProvider<RolesDto> _role;
         IProvider<SizesDto> _sizes;
         IUnitProvider _unit;
-        IProvider<UsersDto> _user;
+        IUserProvider _user;
         IUnitInfoProvider _unitInfo;
         Entities context;
         #endregion
@@ -181,7 +182,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<UsersDto> getUser
+        public IUserProvider getUser
         {
             get
             {
@@ -205,14 +206,19 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public int Commit()
-        {
-            return context.SaveChanges();
-        }
-
         public void Dispose()
         {
             context.Dispose();
+        }
+
+        public DbContextTransaction BeginTransaction()
+        {
+            return context.Database.BeginTransaction();
+        }
+
+        public int SaveChanges()
+        {
+            return context.SaveChanges();
         }
     }
 }

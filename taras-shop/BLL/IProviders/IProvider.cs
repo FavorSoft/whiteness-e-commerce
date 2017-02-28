@@ -8,7 +8,7 @@ namespace BLL.IProviders
 {
     public interface IProvider<T>
     {
-        void AddItem(T category);
+        void AddItem(T item);
         IEnumerable<T> GetAll();
         T GetById(int id);
     }

@@ -8,15 +8,17 @@ using DTO;
 using DAL;
 using DAL.Repository;
 using DAL.IRepository;
+using DAL.Identity;
+using System.Security.Claims;
 
 namespace BLL.Providers
 {
-    public class UserProvider : IProvider<UsersDto>
+    public class UserProvider : IUserProvider
     {
         readonly IRepository<Users> _repo;
-        public UserProvider(Entities db)
+        public UserProvider(Entities context)
         {
-            _repo = new UserRepository(db);
+            _repo = new UserRepository(context);
         }
         public void AddItem(UsersDto user)
         {
@@ -67,6 +69,30 @@ namespace BLL.Providers
                 RoleId = i.role_id,
                 Surname = i.surname
             };
+        }
+
+        public Task<ClaimsIdentity> Authenticate(UsersDto user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetInitialData(UsersDto user, List<string> roles)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UsersDto GetByInfo(UsersDto user)
+        {
+            return _repo.GetAll().Where(x => x.email == user.Email && x.password == user.Password).Select(x => new UsersDto()
+            {
+                Email = x.email,
+                Id = x.id,
+                Name = x.name,
+                Surname = x.surname,
+                Number = x.number,
+                RegDate = x.reg_date,
+                RoleId = x.role_id
+            }).FirstOrDefault();
         }
     }
 }

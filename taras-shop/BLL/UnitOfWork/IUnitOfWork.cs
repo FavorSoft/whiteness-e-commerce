@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,9 @@ namespace BLL.UnitOfWork
         IProvider<SizesDto> getSizes { get; }
         IUnitInfoProvider getUnitInfo { get; }
         IUnitProvider getUnit { get; }
-        IProvider<UsersDto> getUser { get; }
-        int Commit();
+        IUserProvider getUser { get; }
+        DbContextTransaction BeginTransaction();
+        int SaveChanges();
         void Dispose();
     }
 }

@@ -11,7 +11,7 @@ using DTO;
 
 namespace BLL.UnitOfWork
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         #region PARAMETERS
         IProvider<BasketItemsDto> _basketItems;

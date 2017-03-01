@@ -1,0 +1,212 @@
+﻿@model DTO.Article
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h5 class="routing-h"><a>Главная страница</a> > <a>Женское белье</a> > <a>Трусы</a> > <a>Anabel Arto</a></h5>
+        <div id="item-page-block">
+            <div id='item-carousel-custom' class='col-md-8 carousel slide' data-ride='carousel'>
+                <div class='carousel-outer'>
+                    <!-- thumb -->
+                    <ol class='carousel-indicators mCustomScrollbar meartlab'>
+                        @{
+                            int itemAmount = 0;
+                            foreach (var i in Model.images)
+                            {
+                                itemAmount++;
+                                string imgClass = ""; 
+                                if (itemAmount==1)
+                                {
+                                    imgClass = "active";
+                                }
+                                @*<li data-target='#item-carousel-custom' data-slide-to='0' class='@imgClass'><img src='~/Content/images/Units/@i.Image' alt='@itemAmount' /></li>*@
+                            }
+                        }
+                        <li data-target='#item-carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
+                        <li data-target='#item-carousel-custom' data-slide-to='1'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='2' /></li>
+                        <li data-target='#item-carousel-custom' data-slide-to='2'><img class="third-slider-img" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='3' /></li>
+                        <li data-target='#item-carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>
+
+                    </ol>
+                    <!-- me art lab slider -->
+                    <div class='carousel-inner '>
+                        @{
+                            int imgAmount = 0;
+                            foreach (var i in Model.images)
+                            {
+                                itemAmount++;
+                                string imgClass = "";
+                                if (itemAmount == 1)
+                                {
+                                    imgClass = "active";
+                                }
+                                @*<div class='item @imgClass'>
+                                    <img src='~/Content/images/Units/@i.Image' alt='' id="zoom_05" data-zoom-image='~/Content/images/Units/@i.Image' />
+                                </div>*@
+                            }
+                        }
+                        <div class='item active'>
+                            <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='' id="zoom_05" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg" />
+                        </div>
+                        <div class='item' id="zoom_05">
+                            <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg" />
+                        </div>
+                        <div class='item'>
+                            <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg" />
+                        </div>
+
+                        <div class='item'>
+                            <img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 details-modal-part">
+                <div class="col-md-12 text-details-part">
+                    <div class="title-unit-part">
+                        <p class="company-maker">@Model.unit.Title</p>
+                        <p class="item-type">@Model.category.Category</p>
+                    </div>
+                    <div class="price-unit-part">
+                        @if (!@Model.unit.Price.Equals(null)){
+                            <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                        }
+                        else
+                        {
+                            <span class="price-now">Цены нет</span>
+                        }
+                        @if (!Model.unit.OldPrice.Equals(null))
+                        {
+                            <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                        }
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <div class="colors"></div>
+                <div class="choose-size">
+                    <h4 id="size-toggle">Выбрать размер</h4>
+                    <div class="append-radio">
+                        <ul class="radio-list">
+                            @foreach (var i in Model.sizes)
+                            {
+                                <li>
+                                    <input type="radio" id="@i.Key.Size.ToLower()-option2" name="selector">
+                                    <label for="@i.Key.Size.ToLower()-option2">@i.Key.Size.ToLower()</label>
+                                    <div class="check"></div>
+                                    <p>Осталось - @i.Value.Amount</p>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <button class="frequent-button" data-toggle="modal" data-target="#basket-modal">Добавить в корзину</button>
+                <div id="item-accordion" data-theme="none">
+                    <h4><span>+</span>Описание товара</h4>
+                    <div>
+                        <p>
+                            @Model.unit.Description
+                            <br />
+                            <span class="consist">Состав: </span><span>@Model.unit.Material</span><br />
+                            <span class="item-code">Код товара: </span>@Model.unit.Id-B<span>
+                        </p>
+                    </div>
+                    <h4><span>+</span>Доставка</h4>
+                    <div>
+                        <p>
+                            Lorem.ua предоставляет своим клиентам следующие способы доставки:<br />
+                            <br />
+                            - новая почта<br />
+                            - деливери<br />
+                            - Адресная доставка по Ровно
+                        </p>
+                    </div>
+                    <h4><span>+</span>Оплата</h4>
+                    <div>
+                        <p>
+                            Lorem.ua предоставляет своим клиентам следующие виды оплаты:<br />
+                            <br />
+                            - наличный<br />
+                            - безналичный<br />
+                            - Visa и MasterCard
+                        </p>
+                    </div>
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="col-md-9 watch-also">
+                <h3>Смотрите также</h3>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 watch-also last-view">
+                <h3>Последние просмотренные</h3>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+                <div class="col-md-3 watch-also-item">
+                    <img src="~/Content/images/item-preview.png" />
+                    <p class="company-maker">Anabel Arto</p>
+                    <div class="price-unit-part">
+                        <span class="price-now">58.9 грн</span>
+                        <span class="price-was">79.90 грн</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

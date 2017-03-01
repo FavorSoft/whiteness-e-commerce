@@ -1,0 +1,261 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+<div class="container">
+    <div class="row">
+        <aside class="col-lg-2 col-md-2 sidebar-nav sidebar">
+            <div class="sidebar-mobile-accordion mobile-sidebar">
+                <h3 class="side-catalog">Каталог товарів</h3>
+                <div class="accordion" data-theme="none">
+                    <h4>Жінки</h4>
+                    <div>
+                        <ul class="women">
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                        </ul>
+                    </div>
+                    <h4>Чоловіки</h4>
+                    <div>
+                        <ul class="men">
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                        </ul>
+                    </div>
+                    <h4>Діти</h4>
+                    <div>
+                        <ul class="children">
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                            <li>Білизна</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="filters-h">Фильтры</h3>
+                <div class="filters">
+                    <h4 class="price-h">Цена</h4>
+                    <p>
+                        <input type="text" readonly id="amount">
+                    </p>
+                    <div id="slider"></div>
+                    <h4 class="size-h">Розмір</h4>
+                    <ul class="radio-list">
+                        <li>
+                            <input type="checkbox" id="xs-option" name="selector">
+                            <label for="xs-option">Xs</label>
+
+                            <div class="check"></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="s-option" name="selector">
+                            <label for="s-option">S</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="m-option" name="selector">
+                            <label for="m-option">M</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="l-option" name="selector">
+                            <label for="l-option">L</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+
+                        <li>
+                            <input type="checkbox" id="xl-option" name="selector">
+                            <label for="xl-option">Xl</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <section class="main">
+            <div class="col-md-9 search-img"></div>
+            <div class="col-md-9 col-md-offset-1 find-filters">
+                <div id="dropdowns">
+                    <div id="sort-dropdown" class="dropdown">
+                        <label>Сортировать:</label>
+                        <button class="btn dropdown-toggle"
+                                type="button" data-toggle="dropdown">
+                            Сортировать
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Со скидками</a></li>
+                            <li><a href="#">Сначала новые</a></li>
+                            <li><a href="#">Сначала дешевые</a></li>
+                            <li><a href="#">Сначала дорогие</a></li>
+                        </ul>
+                    </div>
+                    <div id="view-dropdown" class="dropdown">
+                        <label>Показать:</label>
+                        <button class="btn dropdown-toggle"
+                                type="button" data-toggle="dropdown">
+                            14
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu small-dropdown">
+                            <li><a href="#">14</a></li>
+                            <li><a href="#">32</a></li>
+                        </ul>
+                        <span class="how-many">14 из 300</span>
+                    </div>
+                </div>
+                <div class="pagination-block">
+                    <div class="left-pg">
+                        <span class="material-icons">keyboard_arrow_left</span>
+                    </div>
+                    <span class="page-pg">Страница</span>
+                    <input type="text" class="pg-input">
+                    <span class="how-many-pg">из 21</span>
+                    <div class="right-pg">
+                        <span class="material-icons">keyboard_arrow_right</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 found-units">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
+                    <a href="/Home/ItemPage">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <img class="sale-img" src="/Content/images/sale.png" alt="topsale">
+                            <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Стара колекція жіноччих комплектів</p>
+                                <p class="item-type">Труси</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">43.50 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
+                    <a href="/Home/ItemPage">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <img class="sale-img" src="/Content/images/sale.png" alt="topsale">
+                            <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Стара колекція жіноччих комплектів</p>
+                                <p class="item-type">Труси</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">43.50 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
+                    <a href="/Home/ItemPage">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <img class="sale-img" src="/Content/images/sale.png" alt="topsale">
+                            <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Стара колекція жіноччих комплектів</p>
+                                <p class="item-type">Труси</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">43.50 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
+                    <a href="/Home/ItemPage">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                            <img class="sale-img" src="/Content/images/sale.png" alt="topsale">
+                            <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
+                                <img src="/Content/images/eye.png" alt="eye">
+                                <span>Быстрый просмотр</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                            <div class="title-unit-part">
+                                <p class="company-maker">Стара колекція жіноччих комплектів</p>
+                                <p class="item-type">Труси</p>
+                            </div>
+                            <div class="price-unit-part">
+                                <span class="price-now">43.50 грн</span>
+                                <span class="price-was">79.90 грн</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9 col-md-offset-3 find-filters find-filters-bottom">
+                <div id="dropdowns">
+                    <div id="sort-dropdown" class="dropdown">
+                        <label for="sort-dropdown">Сортировать:</label>
+                        <button class="btn dropdown-toggle"
+                                type="button" data-toggle="dropdown">
+                            Сортировать
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Со скидками</a></li>
+                            <li><a href="#">Сначала новые</a></li>
+                            <li><a href="#">Сначала дешевые</a></li>
+                            <li><a href="#">Сначала дорогие</a></li>
+                        </ul>
+                    </div>
+                    <div id="view-dropdown" class="dropdown">
+                        <label for="sort-dropdown">Показать:</label>
+                        <button class="btn dropdown-toggle"
+                                type="button" data-toggle="dropdown">
+                            14
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">14</a></li>
+                            <li><a href="#">32</a></li>
+                        </ul>
+                        <span class="how-many">14 из 300</span>
+                    </div>
+                </div>
+                <div class="pagination-block">
+                    <div class="left-pg">
+                        <span class="material-icons">keyboard_arrow_left</span>
+                    </div>
+                    <span class="page-pg">Страница</span>
+                    <input type="text" class="pg-input">
+                    <span class="how-many-pg">из 21</span>
+                    <div class="right-pg">
+                        <span class="material-icons">keyboard_arrow_right</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

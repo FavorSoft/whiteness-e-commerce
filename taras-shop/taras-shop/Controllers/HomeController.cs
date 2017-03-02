@@ -15,6 +15,8 @@ namespace taras_shop.Controllers
 {
     public class HomeController : Controller
     {
+        
+
         #region PARAMETERS
         readonly Facade facade;
         #endregion

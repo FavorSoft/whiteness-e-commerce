@@ -355,6 +355,9 @@
     <Content Include="Scripts\jsx\Greeting.jsx" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\Registration.cshtml" />
+    <Content Include="Views\Shared\Basket.cshtml" />
+    <Content Include="Views\Shared\ItemPreview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

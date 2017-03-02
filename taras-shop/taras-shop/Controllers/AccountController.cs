@@ -31,12 +31,12 @@ namespace taras_shop.Controllers
 
         public ActionResult Login()
         {
-            return View(new LoginModel());
+            return View(new Auth.LoginModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model)
+        public ActionResult Login(Auth.LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace taras_shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(Auth.RegisterModel model)
         {
             if (ModelState.IsValid)
             {

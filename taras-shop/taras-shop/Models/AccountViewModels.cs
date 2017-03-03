@@ -31,6 +31,9 @@ namespace taras_shop.Models
 
             [Required]
             public string Number { get; set; }
+            
+            [Required]
+            public bool IsMan { get; set; }
 
             [Required]
             [DataType(DataType.Password)]

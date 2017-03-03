@@ -15,6 +15,7 @@ namespace DTO
         public string Name { get; set; }
         public string Surname { get; set; }
         public int RoleId { get; set; }
+        public bool IsMan { get; set; }
         public System.DateTime RegDate { get; set; }
     }
 }

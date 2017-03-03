@@ -88,7 +88,8 @@ namespace taras_shop.Controllers
                             Number = model.Number,
                             Password = model.Password,
                             RegDate = DateTime.Now,
-                            RoleId = 3
+                            RoleId = 3,
+                            IsMan = model.IsMan
                         });
                         transact.Commit();
                         facade.getBasicFunctionality().SaveChanges();

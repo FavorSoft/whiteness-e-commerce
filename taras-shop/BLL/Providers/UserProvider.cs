@@ -30,7 +30,8 @@ namespace BLL.Providers
                 password = user.Password,
                 reg_date = user.RegDate,
                 surname = user.Surname,
-                role_id = user.RoleId
+                role_id = user.RoleId,
+                is_man = user.IsMan
             });
         }
 
@@ -50,7 +51,8 @@ namespace BLL.Providers
                     Password = i.password,
                     RegDate = i.reg_date,
                     RoleId = i.role_id,
-                    Surname = i.surname
+                    Surname = i.surname,
+                    IsMan = i.is_man
                 }).ToList();
             
             return res;
@@ -67,7 +69,8 @@ namespace BLL.Providers
                 Password = i.password,
                 RegDate = i.reg_date,
                 RoleId = i.role_id,
-                Surname = i.surname
+                Surname = i.surname,
+                IsMan = i.is_man
             };
         }
 
@@ -91,7 +94,8 @@ namespace BLL.Providers
                 Surname = x.surname,
                 Number = x.number,
                 RegDate = x.reg_date,
-                RoleId = x.role_id
+                RoleId = x.role_id,
+                IsMan = x.is_man
             }).FirstOrDefault();
         }
     }

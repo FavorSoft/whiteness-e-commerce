@@ -130,6 +130,7 @@
           <Property Name="number" Type="nvarchar" MaxLength="64" />
           <Property Name="name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="is_man" Type="bit" Nullable="false" />
           <Property Name="role_id" Type="int" Nullable="false" />
           <Property Name="reg_date" Type="date" Nullable="false" />
         </EntityType>
@@ -495,6 +496,7 @@
           <NavigationProperty Name="Basket" Relationship="Self.fk_user_id" FromRole="Users" ToRole="Basket" />
           <NavigationProperty Name="Order" Relationship="Self.fk_o_user_id" FromRole="Users" ToRole="Order" />
           <NavigationProperty Name="Roles" Relationship="Self.fk_role_id" FromRole="Users" ToRole="Roles" />
+          <Property Name="is_man" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="fk_basket_id">
           <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
@@ -858,6 +860,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Model.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="is_man" ColumnName="is_man" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />

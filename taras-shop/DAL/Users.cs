@@ -28,6 +28,7 @@ namespace DAL
         public string surname { get; set; }
         public int role_id { get; set; }
         public System.DateTime reg_date { get; set; }
+        public bool is_man { get; set; }
     
         public virtual ICollection<Basket> Basket { get; set; }
         public virtual ICollection<Order> Order { get; set; }

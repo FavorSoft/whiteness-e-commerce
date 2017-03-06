@@ -10,8 +10,7 @@ namespace taras_shop
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new BabelBundle("~/bundles/bundle").Include(
-                "~/Scripts/jsx/Index.jsx",
-                "~/Scripts/jsx/Greeting.jsx"
+                "~/Scripts/jsx/Sidebar.jsx"
             ));
 
             // Forces files to be combined and minified in debug mode

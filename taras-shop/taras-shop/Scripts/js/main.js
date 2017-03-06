@@ -28,11 +28,11 @@
     /*
      * History back on button click on 404 page.
      */
-    //(function () {
-    //    $("#go-back").on("click", function () {
-    //        window.history.back();
-    //    });
-    //});
+    (function () {
+        $("#go-back").on("click", function () {
+            window.history.back();
+        });
+    });
 
     /*
      * Provide jquery ui accordion on sidebar categories.

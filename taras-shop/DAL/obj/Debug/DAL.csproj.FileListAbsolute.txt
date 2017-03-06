@@ -36,10 +36,13 @@ C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\E
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServerCompact.xml
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
+<<<<<<< HEAD
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Home\Desktop\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+>>>>>>> react-refactor
 D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll.config
 D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll
 D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.pdb

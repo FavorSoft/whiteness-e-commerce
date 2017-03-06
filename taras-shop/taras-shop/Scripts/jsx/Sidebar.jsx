@@ -71,7 +71,7 @@ class SideFiltersPrice extends React.Component {
             <div>
                 <h4 className="price-h">Цена</h4>
                 <p>
-                    <input type="text" readonly id="amount">
+                    <input type="text" readOnly id="amount" />
                 </p>
                 <div id="slider"></div>
             </div>
@@ -86,34 +86,34 @@ class SideFiltersSize extends React.Component {
                 <h4 className="size-h">Розмір</h4>
                 <ul className="radio-list">
                     <li>
-                        <input type="checkbox" id="xs-option" name="selector">
+                        <input type="checkbox" id="xs-option" name="selector" />
                         <label htmlFor="xs-option">Xs</label>
                         <div className="check"></div>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="s-option" name="selector">
+                        <input type="checkbox" id="s-option" name="selector" />
                         <label htmlFor="s-option">S</label>
 
                         <div className="check"><div className="inside"></div></div>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="m-option" name="selector">
+                        <input type="checkbox" id="m-option" name="selector" />
                         <label htmlFor="m-option">M</label>
 
                         <div className="check"><div className="inside"></div></div>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="l-option" name="selector">
+                        <input type="checkbox" id="l-option" name="selector" />
                         <label htmlFor="l-option">L</label>
 
                         <div className="check"><div className="inside"></div></div>
                     </li>
 
                     <li>
-                        <input type="checkbox" id="xl-option" name="selector">
+                        <input type="checkbox" id="xl-option" name="selector" />
                         <label htmlFor="xl-option">Xl</label>
 
                         <div className="check"><div className="inside"></div></div>

@@ -376,7 +376,6 @@
     <Content Include="Views\Home\ShoppingCart.cshtml" />
     <Content Include="Views\Home\Page404.cshtml" />
     <Content Include="Scripts\jsx\Sidebar.jsx" />
-    <Content Include="Scripts\jsx\MainPageCenter.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

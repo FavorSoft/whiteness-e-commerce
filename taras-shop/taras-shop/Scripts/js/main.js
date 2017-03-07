@@ -1,21 +1,4 @@
 ﻿$(document).ready(function () {
-
-    /*
-     * Privide main page carousel functionality.
-     */
-    $('.owl-carousel').owlCarousel({
-        items: 1,
-        margin: 10,
-        autoHeight: true,
-        nav: true,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplaySpeed: 1000,
-        navSpeed: 1000,
-        dotsSpeed: 1000
-    });
-
     /*
      * Search sliding and hiding function.
      */
@@ -141,7 +124,7 @@
     /*
      * Andrew? write comments!!!!
      */
-
+     
 
     /* Do you need sidebar information ?
      * url: "Home/LoadSideBar". You can try: http://localhost:port(default = 50315)/Home/LoadSideBar
@@ -159,88 +142,90 @@
     * Function for send unit to server
     */
     $("#create").click(function AddUnit() {
+        // bind 'addUnitForm' and provide a simple callback function 
+        $('#addUnitForm').ajaxForm(function() { 
+            alert("Thank you for your comment!"); 
+        }); 
         //  variable for saving photo names
-        
-        
-        if (window.FormData !== undefined) {
-            // Getting files from form
-            var files = document.getElementById('images').files;
-            var sendData= new FormData();
-            for (var x = 0; x < files.length; x++) {
-                sendData.append("file" + x, files[x]);
-            }
-            // ajax for upload photos
-            $.ajax({
-                type: "POST",
-                url: "UploadPhoto",
-                contentType: false,
-                processData: false,
-                data: sendData,
-                success: function (result) {
-                    //this result - photo names, that was uploaded
-                    for (var i in result) {
-                        $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
-                    }
-                    console.log(images);
+    //    if (window.FormData !== undefined) {
+    //        // Getting files from form
+    //        var files = document.getElementById('images').files;
+    //        var sendData= new FormData();
+    //        for (var x = 0; x < files.length; x++) {
+    //            sendData.append("file" + x, files[x]);
+    //        }
+    //        // ajax for upload photos
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "UploadPhoto",
+    //            contentType: false,
+    //            processData: false,
+    //            data: sendData,
+    //            success: function (result) {
+    //                //this result - photo names, that was uploaded
+    //                for (var i in result) {
+    //                    $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
+    //                }
+    //                console.log(images);
 
-                    for (var i in result) {
-                        $("#carousel-on-modal").append('<div class=\'item active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'\' /></div>');
-                    }
-                    $('#item-preview-modal').modal();
+    //                for (var i in result) {
+    //                    $("#carousel-on-modal").append('<div class=\'item active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'\' /></div>');
+    //                }
+    //                $('#item-preview-modal').modal();
 
-                    //getting values other parameters of unit from form
-                    var title = $("#title").val();
-                    var producer = $("#producer").val();
-                    var categoryType = $('#category-type option:selected').val();
-                    var category = $('#category option:selected').val();
-                    var price = $("#price").val();
-                    var amount = $("#count").val();
-                    var size = $("#size").val();
-                    var material = $("#material").val();
-                    var description = $("#description").val();
+    //                //getting values other parameters of unit from form
+    //                var title = $("#title").val();
+    //                var producer = $("#producer").val();
+    //                var categoryType = $('#category-type option:selected').val();
+    //                var category = $('#category option:selected').val();
+    //                var price = $("#price").val();
+    //                var amount = $("#count").val();
+    //                var size = $("#size").val();
+    //                var material = $("#material").val();
+    //                var description = $("#description").val();
 
 
-                    //work with modal window
-                    $("#title-on-modal").text(title);
-                    $("#item-type-on-modal").text($('#category option:selected').text());
-                    $("#price-now-on-modal").text(price + " грн");
-                    $("#carousel-on-modal").html("");   
+    //                //work with modal window
+    //                $("#title-on-modal").text(title);
+    //                $("#item-type-on-modal").text($('#category option:selected').text());
+    //                $("#price-now-on-modal").text(price + " грн");
+    //                $("#carousel-on-modal").html("");   
 
-                    //sending all data to server
-                    console.log("hello ajax");
-                    $.ajax({
-                        method: "POST",
-                        url: "AddUnit",
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            title: title,
-                            producer: producer,
-                            categoryType: categoryType,
-                            category: category,
-                            price: price,
-                            amount: amount,
-                            size: size,
-                            material: material,
-                            description: description,
-                            images: result
-                        }),
-                        success:function(data){
-                            console.log(data);
-                        }
-                    }).done(function (data) {
-                        console.log(data);
-                    });
-                    console.log("good bye ajax");
-                },
-                error: function (xhr, status, p3, p4) {
-                    var err = "Error " + " " + status + " " + p3 + " " + p4;
-                    if (xhr.responseText && xhr.responseText[0] == "{")
-                        err = JSON.parse(xhr.responseText).Message;
-                    console.log(err);
-                }
-            });
-        } else {
-            alert("This browser doesn't support HTML5 file uploads!");
-        }
+    //                //sending all data to server
+    //                console.log("hello ajax");
+    //                $.ajax({
+    //                    method: "POST",
+    //                    url: "AddUnit",
+    //                    contentType: 'application/json',
+    //                    data: JSON.stringify({
+    //                        title: title,
+    //                        producer: producer,
+    //                        categoryType: categoryType,
+    //                        category: category,
+    //                        price: price,
+    //                        amount: amount,
+    //                        size: size,
+    //                        material: material,
+    //                        description: description,
+    //                        images: result
+    //                    }),
+    //                    success:function(data){
+    //                        console.log(data);
+    //                    }
+    //                }).done(function (data) {
+    //                    console.log(data);
+    //                });
+    //                console.log("good bye ajax");
+    //            },
+    //            error: function (xhr, status, p3, p4) {
+    //                var err = "Error " + " " + status + " " + p3 + " " + p4;
+    //                if (xhr.responseText && xhr.responseText[0] == "{")
+    //                    err = JSON.parse(xhr.responseText).Message;
+    //                console.log(err);
+    //            }
+    //        });
+    //    } else {
+    //        alert("This browser doesn't support HTML5 file uploads!");
+    //    }
     });
 });

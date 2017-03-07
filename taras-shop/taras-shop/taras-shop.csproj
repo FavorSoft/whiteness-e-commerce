@@ -101,14 +101,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\animation.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\owl.theme.default.min.css" />
-    <Content Include="Content\css\Site.css" />
     <Content Include="Content\images\basket.jpg" />
     <Content Include="Content\images\Clouds.png" />
     <Content Include="Content\images\eye.png" />
@@ -147,6 +145,7 @@
     <Content Include="fonts\інструкція.docx" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\js\JQueryForm.js" />
     <Content Include="Scripts\js\main.js" />
     <Content Include="Scripts\js\owl.carousel.min.js" />
     <Content Include="Web.config" />

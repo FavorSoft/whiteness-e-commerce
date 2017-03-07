@@ -203,6 +203,11 @@ body p, body span
         padding: 20px;
     }
 
+    .mobile-sidebar .radio-list li label
+    {
+        margin: 10px auto;
+    }
+
     .main .find-filters,
     .main .search-img
     {
@@ -358,6 +363,11 @@ body p, body span
     {
         display: block;
     }
+
+    .carousel .carousel-indicators
+    {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 320px)
@@ -377,6 +387,11 @@ body p, body span
     .navbar-collapse .nav-left
     {
         padding: 0px;
+    }
+
+    .carousel.slide span.material-icons 
+    {
+        font-size: 30px;
     }
 }
 
@@ -873,6 +888,16 @@ body .modal-content .modal-body .frequent-button:hover
 }
 /* Basket modal end */
 
+/* Carousel block */
+    .carousel span.material-icons
+    {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 50px;
+    }
+/* Carousel block end */
+
 /* Item-preview modal */
 
 #carousel-custom,
@@ -1199,7 +1224,7 @@ body .modal-content .modal-body .frequent-button:hover
     font-size: 21px;
     text-transform: uppercase;
     padding: 0px 25px 25px 45px;
-    margin: 10px auto;
+    margin: 8px auto;
     height: 0px;
     z-index: 9;
     cursor: pointer;

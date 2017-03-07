@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using taras_shop.Controllers;
 
-namespace taras_shop.App_Start
+namespace taras_shop
 {
     public class AutofacConfig
     {

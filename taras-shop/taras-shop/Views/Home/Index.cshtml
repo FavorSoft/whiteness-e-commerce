@@ -47,7 +47,7 @@
                     <h4 class="title-lines-h">Популярные товары</h4>
                     <div class="col-md-4 right-line"></div>
                 </div>
-                @*@{
+                @{
                     foreach (var i in Model.popular)
                     {
                         bool isSale = false;
@@ -63,6 +63,7 @@
                                         <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
                                     }
                                     @*src="~/Content/images/Units/@i.images.FirstOrDefault().Image" - i's image *@ 
+                
                                     <div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
                                         <img src="~/Content/images/eye.png" alt="eye" />
                                         <span>Быстрый просмотр</span>
@@ -84,7 +85,7 @@
                             </a>
                         </div>
                     }
-                }*@
+                }
                 <div class="col-md-12 recommend-units">
                     <div class="title-lines">
                         <div class="col-md-4 left-line"></div>

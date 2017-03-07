@@ -1,48 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{461EFDB1-3DF1-4536-B724-EB3EA56218AC}</ProjectGuid>
-    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>taras_shop</RootNamespace>
-    <AssemblyName>taras-shop</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
-    <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>True</EnableENC>
+          <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
@@ -248,182 +233,4 @@
       <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\AutofacConfig.cs" />
-    <Compile Include="App_Start\ReactConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdminViewModels.cs" />
-    <Compile Include="Models\HomeViewModels.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\css\animation.css" />
-    <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\fontello.css" />
-    <Content Include="Content\css\jquery-ui.css" />
-    <Content Include="Content\css\main.css" />
-    <Content Include="Content\css\owl.carousel.min.css" />
-    <Content Include="Content\css\owl.theme.default.min.css" />
-    <Content Include="Content\css\Site.css" />
-    <Content Include="Content\images\basket.jpg" />
-    <Content Include="Content\images\eye.png" />
-    <Content Include="Content\images\he.jpg" />
-    <Content Include="Content\images\her.jpg" />
-    <Content Include="Content\images\item-preview.png" />
-    <Content Include="Content\images\logo-Vol.jpg" />
-    <Content Include="Content\images\lorem.jpg" />
-    <Content Include="Content\images\mant.jpg" />
-    <Content Include="Content\images\news.jpg" />
-    <Content Include="Content\images\register.jpg" />
-    <Content Include="Content\images\sale.png" />
-    <Content Include="Content\images\search.jpg" />
-    <Content Include="Content\images\slider.jpg" />
-    <Content Include="Content\images\small-womant.jpg" />
-    <Content Include="Content\images\topsale.jpg" />
-    <Content Include="Content\images\topsale.png" />
-    <Content Include="Content\images\topsalenew.jpg" />
-    <Content Include="Content\images\woman.png" />
-    <Content Include="Content\images\womant.jpg" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\bully\Bully\FREE FONT LICENSE.txt" />
-    <Content Include="fonts\fontello.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Scripts\js\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="fonts\fontello.woff2" />
-    <Content Include="fonts\fontello.eot" />
-    <Content Include="fonts\fontello.ttf" />
-    <Content Include="fonts\fontello.woff" />
-    <Content Include="fonts\Calibri.ttf" />
-    <Content Include="fonts\baron\Baron Neue Black Italic.otf" />
-    <Content Include="fonts\baron\Baron Neue Black.otf" />
-    <Content Include="fonts\baron\Baron Neue Bold Italic.otf" />
-    <Content Include="fonts\baron\Baron Neue Bold.otf" />
-    <Content Include="fonts\baron\Baron Neue Italic.otf" />
-    <Content Include="fonts\baron\Baron Neue.otf" />
-    <Content Include="fonts\baron\Baron Personal_EULA_license.pdf" />
-    <Content Include="fonts\baron\Baron_Specimen.pdf" />
-    <Content Include="fonts\bebas_neue\Bebas Neue - SIL Open Font License 1.1.pdf" />
-    <Content Include="fonts\bebas_neue\BebasNeue Book.otf" />
-    <Content Include="fonts\bebas_neue\BebasNeue Light.otf" />
-    <Content Include="fonts\bebas_neue\BebasNeueRegular.otf" />
-    <Content Include="fonts\bebas_neue\BebasNeue Thin.otf" />
-    <Content Include="fonts\bebas_neue\BebasNeueBold.otf" />
-    <Content Include="fonts\bully\Bully\.DS_Store" />
-    <Content Include="fonts\bully\Bully\Bully.otf" />
-    <None Include="Properties\PublishProfiles\taras-shop.pubxml" />
-    <Content Include="Scripts\js\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\js\main.js" />
-    <Content Include="Scripts\js\owl.carousel.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Admin\AddUnitPage.cshtml" />
-    <Content Include="Views\Home\ItemPage.cshtml" />
-    <Content Include="Views\Home\ShoppingCart.cshtml" />
-    <Content Include="Views\Home\Page404.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\Registration.cshtml" />
-    <Content Include="Views\Shared\Basket.cshtml" />
-    <Content Include="Views\Shared\ItemPreview.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="fonts\bully\__MACOSX\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{05041b0b-693f-4ad5-b630-0c232dbefb35}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{10e0e204-9006-4e0a-bf02-a0dc78de667e}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Image\WorkImage.csproj">
-      <Project>{28805f6c-a6df-4031-867d-561f0201370b}</Project>
-      <Name>WorkImage</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
-  </Target>
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
-        <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50315</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50315/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-        </WebProjectProperties>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target> -->
 </Project>

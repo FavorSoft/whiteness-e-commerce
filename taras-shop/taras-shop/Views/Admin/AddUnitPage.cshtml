@@ -7,14 +7,15 @@
 <div class="container">
     <h2>AddUnit</h2>
     <div class="col-lg-4 col-md-4">
-        <form class="form-horizontal" id="addUnitForm" action="" method="post">
+        <form  class="form-horizontal" id="addUnitForm" action="" method="post">
             <h4>AdminAddUnitViewModels</h4>
             <hr />
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="images">Фото:</label>
-                    <input id="images" type="file" multiple class="form-control" />
+                    <input onchange="onFileSelected(event)" id="images" type="file" multiple class="form-control" />
+                    <img id="myimage">
                 </div>
             </div>
             <div class="form-group">
@@ -91,6 +92,19 @@
             var tmp = @Model.categoryTypes.Select(x => x.Type);
             $("#test").val(tmp);
         }*@
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+
+            var imgtag = document.getElementById("myimage");
+            imgtag.title = selectedFile.name;
+
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+
+            reader.readAsDataURL(selectedFile);
+        }
     </script>
     <div>
         @Html.ActionLink("Back to List", "Index")

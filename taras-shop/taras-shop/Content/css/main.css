@@ -1306,6 +1306,11 @@ input[type=radio]:checked ~ label
     font-family: Calibri;
 }
 
+.main.nondisplay
+{
+    display: none;
+}
+
 .main .he,
 .main .her
 {
@@ -1883,21 +1888,9 @@ td.image-td a
     color: #000;
 }
 
-#cart-dropdown .dropdown-menu
+td .cart-number-input
 {
-    width: 70px;
-    min-width: 50px;
-    margin-top: 0px;
-    border-radius: 0px;
-    border: none;
-    background-color: #ebebeb;
-    box-shadow: none;
-    padding-top: 0px;
-}
-
-#cart-dropdown button.btn 
-{
-    width: 70px;
+    width: 60px;
 }
 
 .buy-button

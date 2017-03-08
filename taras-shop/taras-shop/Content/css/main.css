@@ -1,6 +1,6 @@
 ﻿/* Css Reset*/
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h3, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -1306,6 +1306,11 @@ input[type=radio]:checked ~ label
     font-family: Calibri;
 }
 
+.main.nondisplay
+{
+    display: none;
+}
+
 .main .he,
 .main .her
 {
@@ -1323,12 +1328,12 @@ input[type=radio]:checked ~ label
 
 .her-img
 {
-    background-image: url("../images/her.jpg");
+    background-image: url("../content/images/her.jpg");
 }
 
 .he-img
 {
-    background-image: url("../images/he.jpg");
+    background-image: url("../content/images/he.jpg");
 }
 
 .her-text,
@@ -1360,7 +1365,7 @@ input[type=radio]:checked ~ label
 
 .main .news
 {
-    background-image: url("../images/news.jpg");
+    background-image: url("../content/images/news.jpg");
     height: 280px;
     margin-right: -6px;
     cursor: pointer;
@@ -1409,7 +1414,7 @@ div.search-img
 {
     height: 170px;
     float: right;
-    background-image: url("../images/news.jpg");
+    background-image: url("../content/images/news.jpg");
 }
 
 .main .found-units
@@ -1883,21 +1888,9 @@ td.image-td a
     color: #000;
 }
 
-#cart-dropdown .dropdown-menu
+td .cart-number-input
 {
-    width: 70px;
-    min-width: 50px;
-    margin-top: 0px;
-    border-radius: 0px;
-    border: none;
-    background-color: #ebebeb;
-    box-shadow: none;
-    padding-top: 0px;
-}
-
-#cart-dropdown button.btn 
-{
-    width: 70px;
+    width: 60px;
 }
 
 .buy-button

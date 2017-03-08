@@ -28,7 +28,7 @@
         let womanList = this.state.categories.map(function (category) {
             if (category.TypeId === 1) {
                 return (
-                    <li key={ category.Id }>
+                <li key={ category.Id }>
                     <p>{ category.Category }</p>
                 </li>
                 );
@@ -40,7 +40,7 @@
         let manList = this.state.categories.map(function (category) {
             if (category.TypeId === 2) {
                 return (
-                    <li key={ category.Id }>
+                <li key={ category.Id }>
                     <p>{ category.Category }</p>
                 </li>
                 );
@@ -52,7 +52,7 @@
         let childrenList = this.state.categories.map(function (category) {
             if (category.TypeId === 3) {
                 return (
-                    <li key={ category.Id }>
+                <li key={ category.Id }>
                     <p>{ category.Category }</p>
                 </li>
                 );
@@ -112,7 +112,6 @@ class SideFiltersSize extends React.Component {
         super(props);
     }
     render() {
-        console.log(this.props.sizes);
         let sizeList = this.props.sizes.map(function (size) {
             return (
                 <li key={'S' + size.Id }>

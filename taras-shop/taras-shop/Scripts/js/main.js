@@ -38,7 +38,6 @@
      * Provide jquery ui accordion on item page.
      */
     $(function () {
-        console.log("Item accordin");
         $("#item-accordion").accordion(
             {
                 collapsible: true,

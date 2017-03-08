@@ -75,7 +75,7 @@ namespace taras_shop.Controllers
             return View();
         }
 
-        public async Task<ActionResult> ItemPage(int id)
+        public async Task<ActionResult> GetItemById(int id)
         {
             return View(facade.getArticleById(id));
         }

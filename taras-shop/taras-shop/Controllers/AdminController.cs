@@ -44,10 +44,18 @@ namespace taras_shop.Controllers
             return View(model);
         }
 
+
+        [HttpPost]
+        public void Upload(List<HttpPostedFileBase> images, string title)
+        {
+
+
+        }
+        
         [HttpPost]
         public async Task<JsonResult> UploadPhoto()
         {
-            List<string> tmpName = new List<string>();
+                List<string> tmpName = new List<string>();
             foreach (string file in Request.Files)
             {
                 var fileContent = Request.Files[file];

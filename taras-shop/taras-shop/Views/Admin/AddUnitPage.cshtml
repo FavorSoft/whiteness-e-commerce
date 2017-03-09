@@ -8,27 +8,29 @@
     <h2>AddUnit</h2>
     <div class="col-lg-4 col-md-4">
         <!--id="addUnitForm" action="" method="post"-->
-        <form id="addUnitForm" class="form-horizontal">
+        @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
             <h4>AdminAddUnitViewModels</h4>
             <hr />
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="images">Фото:</label>
-                    <input onchange="onFileSelected(event)" id="images" type="file" multiple class="form-control" />
+                    <input id="images" name="images" type="file" multiple class="form-control" />
                     <img id="myimage">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="title">Заголовок:</label>
-                    <input id="title" type="text" class="form-control" />
+                    <input id="title" name="title" type="text" class="form-control" />
                 </div>
             </div>
+            <input type="submit" />
+        }
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="producer">Виробник:</label>
-                    <input id="producer" type="text" class="form-control" />
+                    <input id="producer" name="producer" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
@@ -37,12 +39,12 @@
                     @foreach (var i in Model.categoryTypes)
                     {
                         <option value="@i.Id">@i.Type</option>
-                    }
+                        }
                 </select>
             </div>
             <div class="form-group">
                 <label for="category">Select list:</label>
-                <select class="form-control" id="category">
+                <select class="form-control" name="category" id="category">
                     @foreach (var i in Model.categories)
                     {
                         <option value="@i.Id">@i.Category</option>
@@ -52,7 +54,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="price">Ціна:</label>
-                    <input id="price" type="text" class="form-control" />
+                    <input id="price" name="price" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
@@ -88,13 +90,13 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="material">Матеріал:</label>
-                    <input id="material" type="text" class="form-control" />
+                    <input id="material" name="material" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="description">Опис:</label>
-                    <textarea class="form-control" rows="5" id="description"></textarea>
+                    <textarea class="form-control" name="description" rows="5" id="description"></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -102,28 +104,28 @@
                     <input type="submit" value="Create" id="create" class="btn btn-default" />
                 </div>
             </div>
-        </form>
-    </div>
-    <script>
+            
+        </div>
+        <script>
         @*function changeSelect() {
             var tmp = @Model.categoryTypes.Select(x => x.Type);
             $("#test").val(tmp);
         }*@
-        function onFileSelected(event) {
-            var selectedFile = event.target.files[0];
-            var reader = new FileReader();
+            function onFileSelected(event) {
+                var selectedFile = event.target.files[0];
+                var reader = new FileReader();
 
-            var imgtag = document.getElementById("myimage");
-            imgtag.title = selectedFile.name;
+                var imgtag = document.getElementById("myimage");
+                imgtag.title = selectedFile.name;
 
-            reader.onload = function (event) {
-                imgtag.src = event.target.result;
-            };
+                reader.onload = function (event) {
+                    imgtag.src = event.target.result;
+                };
 
-            reader.readAsDataURL(selectedFile);
-        }
-    </script>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+                reader.readAsDataURL(selectedFile);
+            }
+        </script>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     </div>
-</div>

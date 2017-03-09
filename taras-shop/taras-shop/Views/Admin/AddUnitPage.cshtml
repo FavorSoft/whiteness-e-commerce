@@ -7,7 +7,8 @@
 <div class="container">
     <h2>AddUnit</h2>
     <div class="col-lg-4 col-md-4">
-        <form  class="form-horizontal" id="addUnitForm" action="" method="post">
+        <!--id="addUnitForm" action="" method="post"-->
+        <form id="addUnitForm" class="form-horizontal">
             <h4>AdminAddUnitViewModels</h4>
             <hr />
 
@@ -54,19 +55,35 @@
                     <input id="price" type="text" class="form-control" />
                 </div>
             </div>
-
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <label for="count">Кількість:</label>
-                    <input id="count" type="text" class="form-control" />
-                </div>
+                <label for="size-xs">Розмір: XS</label>
+                <input value="true" id="size-xs" type="checkbox" class="form-control" />
+                <label for="count-xs">Кількість:</label>
+                <input id="count-xs" type="number" class="form-control" />
             </div>
-
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <label for="size">Розмір:</label>
-                    <input id="size" type="text" class="form-control" />
-                </div>
+                <label for="size-s">Розмір: S</label>
+                <input value="true" id="size-s" type="checkbox" class="form-control" />
+                <label for="count-s">Кількість:</label>
+                <input id="count-s" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="size-m">Розмір: M</label>
+                <input value="true" id="size-m" type="checkbox" class="form-control" />
+                <label for="count-m">Кількість:</label>
+                <input id="count-m" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="size-l">Розмір: L</label>
+                <input value="true" id="size-l" type="checkbox" class="form-control" />
+                <label for="count-l">Кількість:</label>
+                <input id="count-l" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="size-xl">Розмір: XL</label>
+                <input value="true" id="size-xl" type="checkbox" class="form-control" />
+                <label for="count-xl">Кількість:</label>
+                <input id="count-xl" type="number" class="form-control" />
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

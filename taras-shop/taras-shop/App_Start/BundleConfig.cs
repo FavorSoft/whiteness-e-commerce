@@ -12,15 +12,15 @@ namespace taras_shop
             BundleTable.EnableOptimizations = true;
 
             bundles.Add(new BabelBundle("~/bundles/bundle").Include(
-                "~/Scripts/jsx/Sidebar.jsx"
+                "~/Scripts/jsx/IndexComponent.jsx"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                 "~/Scripts/js/jquery-1.10.2.min.js",
                 "~/Scripts/js/bootstrap.min.js",
-                "~/Scripts/js/owl.carousel.min.js",
                 "~/Scripts/js/jQueryForm.js",
-                "~/Scripts/js/main.js"
+                "~/Scripts/js/main.js",
+                "~/Scripts/js/slick.min.js"
             ));
 
             bundles.Add(new StyleBundle("~/bundles/styles").Include(
@@ -28,8 +28,8 @@ namespace taras_shop
                 "~/Content/css/main.css",
                 "~/Content/css/jquery-ui.css",
                 "~/Content/css/bootstrap.css",
-                "~/Content/css/owl.carousel.min.css",
-                "~/Content/css/owl.theme.default.min.css"
+                "~/Content/css/slick.css",
+                "~/Content/css/slick-theme.css"
             ));
         }
     }

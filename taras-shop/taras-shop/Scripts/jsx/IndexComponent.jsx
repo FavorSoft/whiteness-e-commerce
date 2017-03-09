@@ -33,9 +33,13 @@ class Sidebar extends React.Component {
         this.state = {
             categoryTypes: [1, 2, 3],
             categories: [1, 2, 3],
-            sizes: [1, 2, 3]
+            sizes: [1, 2, 3],
+            isChanged: false
         };
         this.renderWomanList = this.renderWomanList.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.filtersButton = this.filtersButton.bind(this);
+        this.handleSearchClick = this.handleSearchClick.bind(this);
     }
 
     componentWillMount() {
@@ -55,7 +59,7 @@ class Sidebar extends React.Component {
         /*
          * Create list of woman li, to use in our jsx
          */
-        return womanList = this.state.categories.map(category => {
+        return this.state.categories.map(category => {
             if (category.TypeId === 1) {
                 return (
                     <li key={ category.Id }>
@@ -70,7 +74,7 @@ class Sidebar extends React.Component {
         /*
          * Create list of woman li, to use in our jsx
          */
-        return womanList = this.state.categories.map(category => {
+        return this.state.categories.map(category => {
             if (category.TypeId === 2) {
                 return (
                     <li key={ category.Id }>
@@ -85,15 +89,46 @@ class Sidebar extends React.Component {
         /*
          * Create list of woman li, to use in our jsx
          */
-        return womanList = this.state.categories.map(category => {
+        return this.state.categories.map(category => {
             if (category.TypeId === 3) {
                 return (
                     <li key={ category.Id }>
                         <p onClick={ () => this.props.getUnitInfo(category.TypeId, category.Category) }>{ category.Category }</p>
                     </li>
                 );
+            }
+        });
+    }
+
+    handleChange(event) {
+        console.log("firee");
+        this.setState({
+            isChanged: true
+        });
+    }
+
+    handleSearchClick() {
+        let price = document.querySelector("#amount");
+        let sizes = this.state.sizes.map((size) => {
+            let unitSize = document.querySelector("#" + size.Size + "-option:checked");
+            if (unitSize) {
+                return size.Size
+            }
+        });
+        sizes.filter(n => true);
+        console.log(sizes);
+        this.setState({
+            isChanged: false
+        });
+    }
+
+    filtersButton() {
+        if(this.state.isChanged === true) {
+            return <button onClick={ this.handleSearchClick } className="filters-search">Search</button>
         }
-    });
+        else {
+            return null
+        }
     }
 
     render() {
@@ -126,8 +161,9 @@ class Sidebar extends React.Component {
                 </div>
                 <h3 className="filters-h">Фильтры</h3>
                 <div className="filters">
-                    <SideFiltersPrice />
-                    <SideFiltersSize sizes={this.state.sizes}/>
+                    <SideFiltersPrice handleChange={ this.handleChange } />
+                    <SideFiltersSize handleChange={ this.handleChange } sizes={this.state.sizes}/>
+                    { this.filtersButton() }
                 </div>
             </div>
          </aside>
@@ -136,12 +172,16 @@ class Sidebar extends React.Component {
 };
 
 class SideFiltersPrice extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
                 <h4 className="price-h">Цена</h4>
                 <p>
-                    <input type="text" readOnly id="amount" />
+                    <input onChange={ this.props.handleChange } type="text" readOnly id="amount" />
                 </p>
                 <div id="slider"></div>
             </div>
@@ -152,23 +192,28 @@ class SideFiltersPrice extends React.Component {
 class SideFiltersSize extends React.Component {
     constructor(props) {
         super(props);
+        this.renderSizes = this.renderSizes.bind(this);
     }
 
-    render() {
-        let sizeList = this.props.sizes.map(function (size) {
+    renderSizes() {
+        return this.props.sizes.map(size => {
             return (
                 <li key={ size.Id || Math.random() }>
-                    <input type="checkbox" id={ size.Size + '-option' } name="selector" />
+                    <input value="true" onChange={ this.props.handleChange } type="checkbox" id={ size.Size + '-option' } name="selector" />
                     <label htmlFor={ size.Size + '-option' }>{ size.Size }</label>
                     <div className="check"></div>
                 </li>
             );
-        });  
+        }); 
+    }
+
+    render() {
+         
         return (
             <div>
                 <h4 className="size-h">Розмір</h4>
                 <ul className="radio-list">
-                    { sizeList }
+                    { this.renderSizes() }
                 </ul>
             </div>
         );

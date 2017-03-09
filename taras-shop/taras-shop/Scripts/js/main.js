@@ -113,118 +113,81 @@
           " - $" + $("#slider").slider("values", 1));
     });
 
+    $('.item-slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.item-slider-nav',
+        mobileFirst: true
+    });
+
+    $('.item-slider-nav').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.item-slider-for',
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true,
+        mobileFirst: true
+    });
+
     /*
      * Show or hide radio buttons on item page or preview.
      */
     $("#size-toggle").click(function () {
         $(".append-radio").toggleClass("radio-show")
     });
-
-    /*
-     * Andrew? write comments!!!!
-     */
-     
-
-    /* Do you need sidebar information ?
-     * url: "Home/LoadSideBar". You can try: http://localhost:port(default = 50315)/Home/LoadSideBar
-     */
-
-    /* Do you need data of index ?
-     * url: "Home/LoadIndex". You can try: http://localhost:port(default = 50315)/Home/LoadIndex
-     * if you need help - call me, my number = 067 355 33 94 :)
-     */
-
-
-    //Getting data of Home/Index
         
-    /*
-    * Function for send unit to server
-    */
-    $("#create").click(function AddUnit() {
-        // bind 'addUnitForm' and provide a simple callback function 
-        $('#addUnitForm').ajaxForm(function() { 
-            alert("Thank you for your comment!"); 
-        }); 
-        //  variable for saving photo names
-    //    if (window.FormData !== undefined) {
-    //        // Getting files from form
-    //        var files = document.getElementById('images').files;
-    //        var sendData= new FormData();
-    //        for (var x = 0; x < files.length; x++) {
-    //            sendData.append("file" + x, files[x]);
-    //        }
-    //        // ajax for upload photos
-    //        $.ajax({
-    //            type: "POST",
-    //            url: "UploadPhoto",
-    //            contentType: false,
-    //            processData: false,
-    //            data: sendData,
-    //            success: function (result) {
-    //                //this result - photo names, that was uploaded
-    //                for (var i in result) {
-    //                    $("#calousel-indicators-on-modal").append('<li data-target=\'#carousel-custom\' data-slide-to=\'0\' class=\'active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'1\' /></li>');
-    //                }
-    //                console.log(images);
+    $("#create").click(function (event) {
+        event.preventDefault();
+        var title = $("#title").val();
+        var producer = $("#producer").val();
+        var categoryType = $('#category-type option:selected').val();
+        var price = $("#price").val();
+        var sizeXs = $("#size-xs:checked").val();
+        var countXs = $("#count-xs").val();
+        var sizeS = $("#size-s:checked").val();
+        var countS = $("#count-s").val();
+        var sizeM = $("#size-m:checked").val();
+        var countM = $("#count-m").val();
+        var sizeL = $("#size-l:checked").val();
+        var countL = $("#count-l").val();
+        var sizeXl = $("#size-xl:checked").val();
+        var counXl = $("#count-xl").val();
+        var material = $("#material").val();
+        var description = $("#description").val();
 
-    //                for (var i in result) {
-    //                    $("#carousel-on-modal").append('<div class=\'item active\'><img src=\'../Content/images/Units/' + result[i] + '.png\' alt=\'\' /></div>');
-    //                }
-    //                $('#item-preview-modal').modal();
+        var sizes = [{exist: sizeXs, name: "XS"}, {exist: sizeS, name: "S"},
+            {exist: sizeM, name: "M"}, {exist: sizeL, name: "L"},
+            {exist: sizeXl, name: "XL"}];
 
-    //                //getting values other parameters of unit from form
-    //                var title = $("#title").val();
-    //                var producer = $("#producer").val();
-    //                var categoryType = $('#category-type option:selected').val();
-    //                var category = $('#category option:selected').val();
-    //                var price = $("#price").val();
-    //                var amount = $("#count").val();
-    //                var size = $("#size").val();
-    //                var material = $("#material").val();
-    //                var description = $("#description").val();
+        $('#item-preview-modal').modal();
 
-
-    //                //work with modal window
-    //                $("#title-on-modal").text(title);
-    //                $("#item-type-on-modal").text($('#category option:selected').text());
-    //                $("#price-now-on-modal").text(price + " грн");
-    //                $("#carousel-on-modal").html("");   
-
-    //                //sending all data to server
-    //                console.log("hello ajax");
-    //                $.ajax({
-    //                    method: "POST",
-    //                    url: "AddUnit",
-    //                    contentType: 'application/json',
-    //                    data: JSON.stringify({
-    //                        title: title,
-    //                        producer: producer,
-    //                        categoryType: categoryType,
-    //                        category: category,
-    //                        price: price,
-    //                        amount: amount,
-    //                        size: size,
-    //                        material: material,
-    //                        description: description,
-    //                        images: result
-    //                    }),
-    //                    success:function(data){
-    //                        console.log(data);
-    //                    }
-    //                }).done(function (data) {
-    //                    console.log(data);
-    //                });
-    //                console.log("good bye ajax");
-    //            },
-    //            error: function (xhr, status, p3, p4) {
-    //                var err = "Error " + " " + status + " " + p3 + " " + p4;
-    //                if (xhr.responseText && xhr.responseText[0] == "{")
-    //                    err = JSON.parse(xhr.responseText).Message;
-    //                console.log(err);
-    //            }
-    //        });
-    //    } else {
-    //        alert("This browser doesn't support HTML5 file uploads!");
-    //    }
+        $("#title-on-modal").text(title);
+        $("#item-type-on-modal").text($('#category option:selected').text());
+        $("#price-now-on-modal").text(price + " грн");
+        $("#modal-radio").html(function () {
+            console.log(sizes);
+            return sizes.map(function (size) {
+                if (size.exist === "true") {
+                    return (
+                          "<li>"
+                        + "    <input type='checkbox' id="+(size.name+"-option")+" name='selector' />"
+                        + "    <label htmlFor=" + (size.name + "-option") + ">"+size.name+"</label>"
+                        + "    <div class='check'></div>"
+                        + "</li>"
+                    );
+                }
+            }.bind(this)); 
+        });
+        $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
+        var queryString = $('#addUnitForm').formSerialize();
+        $("#apply-posting").click(function () {
+            console.log("i am here!");
+            $.post('', queryString, function (data) {
+                alert("I appeared!")
+            });
+        });
     });
 });

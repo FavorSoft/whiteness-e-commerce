@@ -44,80 +44,123 @@ namespace taras_shop.Controllers
             return View(model);
         }
 
-
         [HttpPost]
-        public void Upload(List<HttpPostedFileBase> images, string title)
+        public async Task<ActionResult> Upload(
+        #region uploadParameters
+            List<HttpPostedFileBase> images,
+            string title,
+            string producer,
+            int category_type,
+            int category,
+            Nullable<double> price,
+            int amount_xs,
+            int amount_s,
+            int amount_m,
+            int amount_l,
+            int amount_xl,
+            string material,
+            string description
+        #endregion
+            )
         {
-
-
+            using (var transact = facade.getBasicFunctionality().BeginTransaction())
+            {
+                List<string> guidImages = new List<string>();
+                try
+                {
+                    guidImages = await UploadPhotoAsync(images);
+                    var unit = new UnitDto()
+                    {
+                        Title = title,
+                        Producer = producer,
+                        CategoryId = category,
+                        Price = Convert.ToInt32(price * 100),
+                        Material = material,
+                        Description = description,
+                        Color = "default",
+                        Likes = 0
+                    };
+                    facade.getBasicFunctionality().getUnit.AddItem(unit);
+                    foreach (string img in guidImages)
+                    {
+                        facade.getBasicFunctionality().getImages.AddItem(new ImagesDto()
+                        {
+                            Image = img,
+                            OwnerId = unit.Id
+                        });
+                    }
+                    Dictionary<int, int> sizes = amountCounter(amount_xs, amount_s, amount_m, amount_l, amount_xl);
+                    foreach(var i in sizes)
+                    {
+                        if (i.Value != null && i.Value != 0)
+                        {
+                            facade.getBasicFunctionality().getUnitInfo.AddItem(new UnitInfoDto()
+                            {
+                                UnitId = unit.Id,
+                                SizeId = i.Key,
+                                Amount = i.Value
+                            });
+                        }
+                    }
+                    
+                    transact.Commit();
+                    facade.getBasicFunctionality().SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    transact.Rollback();
+                    string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
+                    string fileName = path + "Units\\";
+                    for(int i = 0; i < guidImages.Count; i++)
+                    {
+                        guidImages[i] += System.IO.Path.GetExtension(images[i].FileName);
+                    }
+                    WorkImage.WorkImage.DeleteImages(fileName, guidImages);
+                }
+                
+            }
+            return RedirectToAction("AddUnitPage");
         }
         
-        [HttpPost]
-        public async Task<JsonResult> UploadPhoto()
+        Dictionary<int, int> amountCounter(
+            int amount_xs,
+            int amount_s,
+            int amount_m,
+            int amount_l,
+            int amount_xl)
         {
-                List<string> tmpName = new List<string>();
-            foreach (string file in Request.Files)
+            Dictionary<int, int> res = new Dictionary<int, int>();
+            res.Add(1, amount_xl);
+            res.Add(2, amount_l);
+            res.Add(3, amount_m);
+            res.Add(4, amount_s);
+            res.Add(5, amount_xs);
+            return res;
+        }
+
+        public async Task<List<string>> UploadPhotoAsync(List<HttpPostedFileBase> imgs)
+        {
+            List<string> images = new List<string>();
+            foreach (var file in imgs)
             {
-                var fileContent = Request.Files[file];
-                if (fileContent != null && fileContent.ContentLength > 0)
+                if (file != null && file.ContentLength > 0)
                 {
 
-                    Bitmap imageSave = WorkImage.WorkImage.CropImage(fileContent, 600, 400);
+                    Bitmap imageSave = await WorkImage.WorkImage.CropImageAsync(file, 600, 400);
                     if (imageSave != null)
                     {
                         string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
                         Guid imageName = Guid.NewGuid();
-                        
-                        string fileName = path + "Units\\" + imageName + System.IO.Path.GetExtension(fileContent.FileName);
+
+                        string fileName = path + "Units\\" + imageName + System.IO.Path.GetExtension(file.FileName);
                         imageSave.Save(fileName, ImageFormat.Jpeg);
-                        tmpName.Add(imageName.ToString());
+                        images.Add(imageName.ToString());
                     }
                 }
             }
-            return Json(tmpName, JsonRequestBehavior.AllowGet);
+            return images;
         }
 
-        [HttpPost]
-        public async Task<JsonResult> AddUnit(
-            string title,
-            string producer,
-            string categoryType,
-            string category,
-            string price,
-            string amount,
-            string size,
-            string material,
-            string description,
-            IEnumerable<string> images
-            )
-        {
-            using (var transact = facade.getBasicFunctionality().BeginTransaction()) {
-                var unit = new UnitDto()
-                {
-                    Title = title,
-                    Producer = producer,
-                    CategoryId = Int32.Parse(category),
-                    Price = Convert.ToInt32(Int32.Parse(price) * 100),
-                    Material = material,
-                    Description = description,
-                    Color = "default",
-                    Likes = 0
-                };
-                facade.getBasicFunctionality().getUnit.AddItem(unit);
-                foreach (string img in images) {
-                    facade.getBasicFunctionality().getImages.AddItem(new ImagesDto()
-                    {
-                        Image = img,
-                        OwnerId = unit.Id
-                    });
-                }
-                transact.Commit();
-                facade.getBasicFunctionality().SaveChanges();
-                return Json("Success", JsonRequestBehavior.AllowGet);
-            }
-                        
-            return Json("Error", JsonRequestBehavior.AllowGet);
-        }
         protected override void Dispose(bool disposing)
         {
             facade.getBasicFunctionality().Dispose();

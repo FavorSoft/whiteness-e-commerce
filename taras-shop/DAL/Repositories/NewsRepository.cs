@@ -21,12 +21,15 @@ namespace DAL.Repository
 
         public void DeleteItem(int id)
         {
-            entities.News.Remove(new News() { id = id });
+            var item = entities.News.FirstOrDefault(x => x.id == id);
+            entities.News.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(News item)
         {
-            throw new NotImplementedException();
+            entities.News.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<News> GetAll()

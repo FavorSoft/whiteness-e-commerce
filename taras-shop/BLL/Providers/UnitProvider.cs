@@ -97,6 +97,27 @@ namespace BLL.Providers
             };
         }
 
-        
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(UnitDto item)
+        {
+            _repo.EditItem(new Unit()
+            {
+                id = item.Id,
+                add_date = item.AddUnitDate,
+                category_id = item.CategoryId,
+                color = item.Color,
+                description = item.Description,
+                likes = item.Likes,
+                material = item.Material,
+                old_price = item.OldPrice,
+                price = item.Price,
+                producer = item.Producer,
+                title = item.Title
+            });
+        }
     }
 }

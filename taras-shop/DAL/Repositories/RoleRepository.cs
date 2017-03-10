@@ -21,12 +21,16 @@ namespace DAL.Repository
 
         public void DeleteItem(int id)
         {
-            entities.Roles.Remove(new Roles() { id = id });
+            var item = entities.Roles.FirstOrDefault(x => x.id == id);
+            entities.Roles.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(Roles item)
         {
-            throw new NotImplementedException();
+            entities.Roles.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
+
         }
 
         public IQueryable<Roles> GetAll()

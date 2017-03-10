@@ -50,5 +50,19 @@ namespace BLL.Providers
                 Type = tmp.type
             };
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(CategoryTypeDto item)
+        {
+            _repo.EditItem(new Category_type()
+            {
+                id = item.Id,
+                type = item.Type
+            });
+        }
     }
 }

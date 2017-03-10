@@ -59,5 +59,22 @@ namespace BLL.Providers
                 UnitId = tmp.unit_id
             };
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(OrderItemsDto item)
+        {
+            _repo.EditItem(new Order_items()
+            {
+                id = item.Id,
+                amount = item.Amount,
+                order_id = item.OrderId,
+                price = item.Price,
+                unit_id = item.UnitId
+            });
+        }
     }
 }

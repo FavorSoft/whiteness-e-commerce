@@ -53,5 +53,20 @@ namespace BLL.Providers
                 UserId = tmp.user_id
             };
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(OrderDto item)
+        {
+            _repo.EditItem(new Order()
+            {
+                id = item.Id,
+                order_date = item.OrderDate,
+                user_id = item.UserId
+            });
+        }
     }
 }

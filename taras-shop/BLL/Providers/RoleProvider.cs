@@ -26,6 +26,20 @@ namespace BLL.Providers
             });
         }
 
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(RolesDto item)
+        {
+            _repo.EditItem(new Roles()
+            {
+                id = item.Id,
+                role = item.Role
+            });
+        }
+
         public IEnumerable<RolesDto> GetAll()
         {
             return _repo.GetAll().Select(i => new RolesDto()

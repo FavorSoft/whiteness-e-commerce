@@ -52,5 +52,20 @@ namespace BLL.IProviders
                 OwnerId = tmp.owner_id
             };
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(NewsImagesDto item)
+        {
+            _repo.EditItem(new News_image()
+            {
+                id = item.Id,
+                image = item.Image,
+                owner_id = item.OwnerId
+            });
+        }
     }
 }

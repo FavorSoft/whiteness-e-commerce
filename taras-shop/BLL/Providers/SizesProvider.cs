@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL.IProviders;
+using DAL;
 using DAL.IRepository;
 using DAL.Repositories;
 using DTO;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Providers
 {
-    public class SizesProvider : IProviders.IProvider<SizesDto>
+    public class SizesProvider : IProvider<SizesDto>
     {
         readonly IRepository<Sizes> _repo;
         public SizesProvider(Entities db)
@@ -22,6 +23,20 @@ namespace BLL.Providers
         {
             _repo.AddItem(new Sizes()
             {
+                size = item.Size
+            });
+        }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(SizesDto item)
+        {
+            _repo.EditItem(new Sizes()
+            {
+                id = item.Id,
                 size = item.Size
             });
         }

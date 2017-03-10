@@ -40,7 +40,6 @@ namespace taras_shop.Controllers
                 categories = facade.getBasicFunctionality().getCategory.GetAll(),
                 categoryTypes = facade.getBasicFunctionality().getCategoryType.GetAll()
             };
-
             return View(model);
         }
 
@@ -120,6 +119,12 @@ namespace taras_shop.Controllers
                 
             }
             return RedirectToAction("AddUnitPage");
+        }
+
+        public ActionResult DeleteUnit()
+        {
+
+            return Redirect("Index");
         }
         
         Dictionary<int, int> amountCounter(

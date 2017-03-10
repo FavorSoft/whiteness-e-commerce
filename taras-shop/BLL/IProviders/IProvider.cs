@@ -11,5 +11,7 @@ namespace BLL.IProviders
         void AddItem(T item);
         IEnumerable<T> GetAll();
         T GetById(int id);
+        void DeleteItem(int id);
+        void EditItem(T item);
     }
 }

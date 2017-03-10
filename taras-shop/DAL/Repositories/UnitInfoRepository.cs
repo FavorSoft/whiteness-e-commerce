@@ -20,15 +20,15 @@ namespace DAL.Repositories
 
         public void DeleteItem(int id)
         {
-            entities.UnitInfo.Remove(new UnitInfo()
-            {
-                id = id
-            });
+            var item = entities.UnitInfo.FirstOrDefault(x => x.id == id);
+            entities.UnitInfo.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(UnitInfo item)
         {
-            
+            entities.UnitInfo.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<UnitInfo> GetAll()

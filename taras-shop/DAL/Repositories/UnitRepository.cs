@@ -22,12 +22,15 @@ namespace DAL.Repository
 
         public void DeleteItem(int id)
         {
-            entities.Unit.Remove(new Unit() { id = id });
+            var item = entities.Unit.FirstOrDefault(x => x.id == id);
+            entities.Unit.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(Unit item)
         {
-            throw new NotImplementedException();
+            entities.Unit.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<Unit> GetAll()

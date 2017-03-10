@@ -57,5 +57,21 @@ namespace BLL.Providers
                 Title = tmp.title
             };
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(NewsDto item)
+        {
+            _repo.EditItem(new News()
+            {
+                data_create = item.DataCreate,
+                description = item.Description,
+                id = item.Id,
+                title = item.Title
+            });
+        }
     }
 }

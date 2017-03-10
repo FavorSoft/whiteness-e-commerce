@@ -20,12 +20,15 @@ namespace DAL.Repositories
 
         public void DeleteItem(int id)
         {
-            entities.Sizes.Remove(new Sizes() { id = id });
+            var item = entities.Sizes.FirstOrDefault(x => x.id == id);
+            entities.Sizes.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(Sizes item)
         {
-            throw new NotImplementedException();
+            entities.Sizes.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<Sizes> GetAll()

@@ -21,12 +21,15 @@ namespace DAL.Repository
 
         public void DeleteItem(int id)
         {
-            entities.Category_type.Remove(new Category_type() { id = id });
+            var item = entities.Category_type.FirstOrDefault(x => x.id == id);
+            entities.Category_type.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(Category_type item)
         {
-            throw new NotImplementedException();
+            entities.Category_type.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<Category_type> GetAll()

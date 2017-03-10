@@ -98,5 +98,26 @@ namespace BLL.Providers
                 IsMan = x.is_man
             }).FirstOrDefault();
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(UsersDto item)
+        {
+            _repo.EditItem(new Users()
+            {
+                id = item.Id,
+                email = item.Email,
+                is_man = item.IsMan,
+                name = item.Name,
+                number = item.Number,
+                password = item.Password,
+                reg_date = item.RegDate,
+                role_id = item.RoleId,
+                surname = item.Surname
+            });
+        }
     }
 }

@@ -81,5 +81,20 @@ namespace BLL.Providers
             }
             return res;
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(ImagesDto item)
+        {
+            _repo.EditItem(new Images()
+            {
+                id = item.Id,
+                image = item.Image,
+                owner_id = item.OwnerId
+            });
+        }
     }
 }

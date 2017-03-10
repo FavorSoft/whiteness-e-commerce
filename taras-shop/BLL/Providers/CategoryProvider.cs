@@ -60,5 +60,22 @@ namespace BLL.Providers
             };
             return category;
         }
+
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(CategoriesDto item)
+        {
+            _repo.EditItem(new Categories()
+            {
+                category = item.Category,
+                category_img = item.CategoryImg,
+                description = item.Description,
+                id = item.Id,
+                type_id = item.TypeId
+            });
+        }
     }
 }

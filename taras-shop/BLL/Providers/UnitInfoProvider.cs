@@ -28,6 +28,22 @@ namespace BLL.Providers
             });
         }
 
+        public void DeleteItem(int id)
+        {
+            _repo.DeleteItem(id);
+        }
+
+        public void EditItem(UnitInfoDto item)
+        {
+            _repo.EditItem(new UnitInfo()
+            {
+                id = item.Id,
+                amount = item.Amount,
+                size_id = item.SizeId,
+                unit_id = item.UnitId
+            });
+        }
+
         public IEnumerable<UnitInfoDto> GetAll()
         {
             return _repo.GetAll().Select(x => new UnitInfoDto()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace WorkImage
             Bitmap tmp = new Bitmap(upload, height, width);
             return await Task.FromResult<Bitmap>(tmp);
         }
+        public static async Task<Bitmap> CropImageAsync(HttpPostedFileBase upload, int maxHeight, int maxWidth)
+        {
+            return CropImage(upload, maxHeight, maxWidth);
+        }
+
         public static Bitmap CropImage(HttpPostedFileBase upload, int maxHeight, int maxWidth)
         {
             if (upload != null && upload.ContentLength > 0 && upload.ContentLength <= 10000000)
@@ -70,6 +76,21 @@ namespace WorkImage
                 }
             }
             return null;
+        }
+
+        public static void DeleteImages(string path, List<string> images)
+        {
+            try
+            {
+                foreach (var i in images)
+                {
+                    System.IO.File.Delete(String.Format("{0}{1}", path, i));
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
     }

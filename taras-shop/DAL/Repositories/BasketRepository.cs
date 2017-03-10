@@ -21,13 +21,15 @@ namespace DAL.Repository
 
         public void DeleteItem(int id)
         {
-            entities.Basket.Remove(new Basket() { id = id });
+            var item = entities.Basket.FirstOrDefault(x => x.id == id);
+            entities.Basket.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(Basket item)
         {
-            entities.Basket.Select(x => x.id == item.id).FirstOrDefault();
-            //help
+            entities.Basket.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<Basket> GetAll()

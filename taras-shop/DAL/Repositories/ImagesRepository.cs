@@ -22,12 +22,15 @@ namespace DAL.Repository
 
         public void DeleteItem(int id)
         {
-            entities.Images.Remove(new Images() { id = id });
+            var item = entities.Images.FirstOrDefault(x => x.id == id);
+            entities.Images.Remove(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public void EditItem(Images item)
         {
-            throw new NotImplementedException();
+            entities.Images.Attach(item);
+            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IQueryable<Images> GetAll()

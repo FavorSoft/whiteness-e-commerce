@@ -1159,7 +1159,14 @@ body .modal-content .modal-body .frequent-button:hover
     padding: 40px 0px 25px 8px;
 }
 
-#slider .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+#from-price-input,
+#to-price-input
+{
+    width: 50px;
+    margin: 5px;
+}
+
+/*#slider .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
     border: 0px solid #c5c5c5;
     background: #000;
     font-weight: normal;
@@ -1191,11 +1198,11 @@ body .modal-content .modal-body .frequent-button:hover
     color: #000;
     font-weight: bold;
     font-size: 20px
-}
+}*/
 
 .sidebar .radio-list
 {
-    min-height: 200px;
+    min-height: 130px;
 }
 
 .radio-list li

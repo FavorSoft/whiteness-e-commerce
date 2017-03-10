@@ -34,7 +34,9 @@ class Sidebar extends React.Component {
             categoryTypes: [1, 2, 3],
             categories: [1, 2, 3],
             sizes: [1, 2, 3],
-            isChanged: false
+            isChanged: false,
+            fromPrice: 0,
+            toPrice: 0
         };
         this.renderWomanList = this.renderWomanList.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -101,22 +103,46 @@ class Sidebar extends React.Component {
     }
 
     handleChange(event) {
-        console.log("firee");
+        console.log("fire");
         this.setState({
-            isChanged: true
+            isChanged: true,
         });
+        if (event.target.id === "from-price-input")
+        {
+            this.setState({
+                fromPrice: event.target.value
+            });
+        }
+        else if (event.target.id === "to-price-input")
+        {
+            this.setState({
+                toPrice: event.target.value
+            });
+        }
     }
 
     handleSearchClick() {
-        let price = document.querySelector("#amount");
+        /*
+         * If filters change - get changes and send them to the server
+         */
+        // Get changes of filters
         let sizes = this.state.sizes.map((size) => {
             let unitSize = document.querySelector("#" + size.Size + "-option:checked");
             if (unitSize) {
                 return size.Size
             }
         });
-        sizes.filter(n => true);
-        console.log(sizes);
+        // Clean sizes array from undefined values
+        temp = [];
+        for(let i of sizes)
+            i && temp.push(i); // copy each non-empty value to the 'temp' array
+
+        sizes = temp;
+        // Do ajax response to server for unit filtering
+        /*$.post('', {sizes: sizes, fromPrice: this.state.fromPrice, toPrice: this.state.toPrice}, (response) => {
+            console.log(response);
+        });*/
+        console.log("Sent!");
         this.setState({
             isChanged: false
         });
@@ -140,9 +166,6 @@ class Sidebar extends React.Component {
                     <h4>Жінки</h4>
                     <div>
                         <ul className="women">
-                            <li>
-                                <p onClick={ this.showCategoryItems }>Custom</p>
-                            </li>
                             { this.renderWomanList() }
                         </ul>
                     </div>
@@ -180,11 +203,17 @@ class SideFiltersPrice extends React.Component {
         return (
             <div>
                 <h4 className="price-h">Цена</h4>
-                <p>
-                    <input onChange={ this.props.handleChange } type="text" readOnly id="amount" />
-                </p>
-                <div id="slider"></div>
-            </div>
+                <div>
+                    <label htmlFor="from-price-input">От: </label>
+                    <input id="from-price-input" onChange={ this.props.handleChange } type="text" />
+                    <span>грн</span>
+                </div>
+                <div>
+                    <label htmlFor="to-price-input">До: </label>
+                    <input id="to-price-input" onChange={ this.props.handleChange } type="text" />
+                    <span>грн</span>
+                </div>
+                </div>
         );
     }
 }

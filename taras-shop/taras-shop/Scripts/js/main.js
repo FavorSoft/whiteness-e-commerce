@@ -95,43 +95,6 @@
     });
 
     /*
-     * Function provide jquery ui range slider.
-     */
-    //$(function () {
-    //    $("#slider").slider({
-    //        range: true,
-    //        min: 0,
-    //        max: 500,
-    //        values: [75, 300],
-    //        slide: function (event, ui) {
-    //            $("#amount").val(ui.values[0]);
-    //            $("$amount2").val(ui.values[1]);
-    //        }
-    //    });
-    //    $("#amount").val($("#slider").slider("values", 0));
-    //    $("#amount2").val($("#slider").slider("values", 1));
-    //});
-
-    $('.item-slider-for').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.item-slider-nav',
-        mobileFirst: true
-    });
-
-    $('.item-slider-nav').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: '.item-slider-for',
-        dots: true,
-        centerMode: true,
-        focusOnSelect: true,
-        mobileFirst: true
-    });
-
-    /*
      * Show or hide radio buttons on item page or preview.
      */
     $("#size-toggle").click(function () {
@@ -181,12 +144,12 @@
             }.bind(this)); 
         });
         $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
-        var queryString = $('#addUnitForm').formSerialize();
-        $("#apply-posting").click(function () {
-            console.log("i am here!");
-            $.post('', queryString, function (data) {
-                alert("I appeared!")
-            });
-        });
+        //var queryString = $('#addUnitForm').formSerialize();
+        //$("#apply-posting").click(function () {
+        //    console.log("i am here!");
+        //    $.post('', queryString, function (data) {
+        //        alert("I appeared!")
+        //    });
+        //});
     });
 });

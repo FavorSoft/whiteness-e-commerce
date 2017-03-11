@@ -106,10 +106,6 @@
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\main.css" />
-    <Content Include="Content\css\owl.carousel.min.css" />
-    <Content Include="Content\css\owl.theme.default.min.css" />
-    <Content Include="Content\css\slick-theme.css" />
-    <Content Include="Content\css\slick.css" />
     <Content Include="Content\images\basket.jpg" />
     <Content Include="Content\images\Clouds.png" />
     <Content Include="Content\images\eye.png" />
@@ -150,8 +146,6 @@
     <Content Include="Scripts\js\jquery-1.10.2.min.js" />
     <Content Include="Scripts\js\JQueryForm.js" />
     <Content Include="Scripts\js\main.js" />
-    <Content Include="Scripts\js\owl.carousel.min.js" />
-    <Content Include="Scripts\js\slick.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -10,7 +10,6 @@
         <div id="item-page-block">
             <div id='item-carousel-custom' class='col-md-8 carousel slide' data-ride='carousel'>
                 <div class='carousel-outer'>
-                    <!-- thumb -->
                     <ol class='carousel-indicators mCustomScrollbar meartlab'>
                         @{
                             int itemAmount = 0;
@@ -31,8 +30,7 @@
                         <li data-target='#item-carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>
 
                     </ol>
-                    <!-- me art lab slider -->
-                    <div class='carousel-inner '>
+                    <div class='carousel-inner'>
                         @{
                             int imgAmount = 0;
                             foreach (var i in Model.images)

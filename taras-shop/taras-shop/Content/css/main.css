@@ -214,6 +214,11 @@ body p, body span
         float: none;
     }
 
+    .details-modal-part
+    {
+        width: 100%;
+        float: left;
+    }
 }
 
 @media screen and (min-width: 992px)
@@ -367,6 +372,53 @@ body p, body span
     .carousel .carousel-indicators
     {
         display: none;
+    }
+
+    #carousel-custom,
+    #item-carousel-custom,
+    #carousel-custom .carousel-outer
+    {
+        width: 100%;
+        float: left;
+    }
+
+    .modal-body #carousel-custom .carousel-inner
+    {
+        width: 100%;
+        margin-bottom: 20px;
+        height: auto;
+    }
+
+    #carousel-custom .carousel-indicators.mCustomScrollbar.meartlab
+    {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin: 0px;
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-body #carousel-custom .carousel-inner > .item > img,
+    #item-carousel-custom .carousel-inner > .item > img
+    {
+        height: auto;
+    }
+
+    .modal-body #carousel-custom .carousel-indicators li,
+    #item-carousel-custom .carousel-indicators li
+    {
+        width: 50%;
+        float: left;
+        height: auto;
+        text-align: center;
+    }
+
+    #carousel-custom .carousel-indicators li img
+    {
+        margin: 5px auto;
+        width: 90%;
+        height: auto;
     }
 }
 

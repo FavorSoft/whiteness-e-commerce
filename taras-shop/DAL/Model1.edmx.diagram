@@ -16,23 +16,23 @@
         <EntityTypeShape EntityType="Model.Order_items" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Unit" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <AssociationConnector Association="Model.fk_basket_id" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.fk_user_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_unit_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_category_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_category_type_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_owner_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_news_image_owner_id" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.fk_o_user_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_order_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_o_unit_id" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.fk_role_id" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.Sizes" Width="1.5" PointX="9.625" PointY="7.875" />
-        <EntityTypeShape EntityType="Model.UnitInfo" Width="1.5" PointX="10.5" PointY="4.875" />
-        <AssociationConnector Association="Model.fk_size_id" />
-        <AssociationConnector Association="Model.fk_unitinfo_id" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model.Sizes" Width="1.5" PointX="8.25" PointY="12" />
+        <EntityTypeShape EntityType="Model.UnitInfo" Width="1.5" PointX="10.5" PointY="4.75" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="8.25" />
+        <AssociationConnector Association="Model.fk_user_id" />
+        <AssociationConnector Association="Model.fk_o_user_id" />
+        <AssociationConnector Association="Model.fk_role_id" />
+        <AssociationConnector Association="Model.fk_sizes_table_id" />
+        <AssociationConnector Association="Model.fk_unit_table_id" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -16,7 +16,7 @@ namespace DAL
     public partial class Entities : DbContext
     {
         public Entities()
-            : base("name=EntitiesAzure")
+            : base("name=Entities")
         {
         }
     
@@ -36,8 +36,8 @@ namespace DAL
         public virtual DbSet<Order_items> Order_items { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Sizes> Sizes { get; set; }
         public virtual DbSet<UnitInfo> UnitInfo { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

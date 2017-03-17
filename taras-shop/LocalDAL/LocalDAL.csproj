@@ -144,13 +144,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="localDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="localDB_log.ldf">
-      <DependentUpon>localDB.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8b3c314409943328dd6aee7940967a8" Name="Diagram1">
+        <EntityTypeShape EntityType="localDBModel.Basket" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Basket_items" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Categories" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Category_type" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Images" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.News" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.News_image" Width="1.5" PointX="12" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Order" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Order_items" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Roles" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Sizes" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Unit" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.UnitInfo" Width="1.5" PointX="10.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="localDBModel.Users" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="localDBModel.fk_basket_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_unit_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_category_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_category_type_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_owner_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_news_image_owner_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_o_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_order_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_o_unit_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_role_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_sizes_table_id" ManuallyRouted="false" />
+        <AssociationConnector Association="localDBModel.fk_unit_table_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -12,18 +12,20 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class News
     {
-        public Order()
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public News()
         {
-            this.Order_items = new HashSet<Order_items>();
+            this.News_image = new HashSet<News_image>();
         }
     
         public int id { get; set; }
-        public int user_id { get; set; }
-        public System.DateTime order_date { get; set; }
+        public string title { get; set; }
+        public System.DateTime data_create { get; set; }
+        public string description { get; set; }
     
-        public virtual ICollection<Order_items> Order_items { get; set; }
-        public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<News_image> News_image { get; set; }
     }
 }

@@ -12,18 +12,14 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class UnitInfo
     {
-        public Order()
-        {
-            this.Order_items = new HashSet<Order_items>();
-        }
-    
         public int id { get; set; }
-        public int user_id { get; set; }
-        public System.DateTime order_date { get; set; }
+        public int unit_id { get; set; }
+        public int size_id { get; set; }
+        public int amount { get; set; }
     
-        public virtual ICollection<Order_items> Order_items { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Sizes Sizes { get; set; }
+        public virtual Unit Unit { get; set; }
     }
 }

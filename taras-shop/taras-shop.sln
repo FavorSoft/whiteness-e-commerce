@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkImage", "Image\WorkImage.csproj", "{28805F6C-A6DF-4031-867D-561F0201370B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDAL", "LocalDAL\LocalDAL.csproj", "{D3C8D3A4-A959-488D-9CB9-2C0D744A49DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{28805F6C-A6DF-4031-867D-561F0201370B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28805F6C-A6DF-4031-867D-561F0201370B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28805F6C-A6DF-4031-867D-561F0201370B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C8D3A4-A959-488D-9CB9-2C0D744A49DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C8D3A4-A959-488D-9CB9-2C0D744A49DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C8D3A4-A959-488D-9CB9-2C0D744A49DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C8D3A4-A959-488D-9CB9-2C0D744A49DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

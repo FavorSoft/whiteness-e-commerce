@@ -12,18 +12,18 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Category_type
     {
-        public Order()
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Category_type()
         {
-            this.Order_items = new HashSet<Order_items>();
+            this.Categories = new HashSet<Categories>();
         }
     
         public int id { get; set; }
-        public int user_id { get; set; }
-        public System.DateTime order_date { get; set; }
+        public string type { get; set; }
     
-        public virtual ICollection<Order_items> Order_items { get; set; }
-        public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Categories> Categories { get; set; }
     }
 }

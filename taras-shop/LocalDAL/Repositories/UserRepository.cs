@@ -9,8 +9,8 @@ namespace DAL.Repository
 {
     public class UserRepository : IRepository<Users>
     {
-        Entities entities;
-        public UserRepository(Entities db)
+        LocalEntities entities;
+        public UserRepository(LocalEntities db)
         {
             entities = db;
         }

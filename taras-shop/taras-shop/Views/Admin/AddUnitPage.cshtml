@@ -18,11 +18,34 @@
                 <input id="images" name="images" type="file" multiple class="form-control text-standart-input" />
                 <img id="myimage">
             </div>
+<<<<<<< HEAD
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <label for="title">Заголовок:</label>
                 <input id="title" name="title" type="text" class="form-control text-standart-input" />
+=======
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label for="title">Заголовок:</label>
+                    <input id="title" name="title" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label for="producer">Виробник:</label>
+                    <input id="producer" name="producer" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category-type">Виберіть для кого:</label>
+                <select class="form-control" name="category_type" id="category-type" onchange="changeSelect()">
+                    @foreach (var i in Model.categoryTypes)
+                    {
+                        <option value="@i.Id">@i.Type</option>
+                    }
+                </select>
+>>>>>>> 33d4157fafee677c6f8a860e07d0a473a8c43359
             </div>
         </div>
         <input type="submit" />
@@ -105,6 +128,7 @@
                 <input type="submit" value="Create" id="create" class="btn btn-default" />
             </div>
         </div>
+<<<<<<< HEAD
         }
     </div>
     <script>
@@ -118,3 +142,6 @@
         @Html.ActionLink("Back to List", "Index")
     </div>
 </div>
+=======
+    </div>
+>>>>>>> 33d4157fafee677c6f8a860e07d0a473a8c43359

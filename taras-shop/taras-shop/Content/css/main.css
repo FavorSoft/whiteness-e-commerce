@@ -98,6 +98,11 @@ body p, body span
     {
         margin-right: 0px;
     }
+    
+    button.frequent-button
+    {
+        font-size: 17px;
+    }
 }
 
 @media screen and (max-width: 994px)
@@ -308,11 +313,6 @@ body p, body span
         text-align: center;
     }
 
-    button.frequent-button
-    {
-        font-size: 15px;
-    }
-
     h3.basket-header
     {
         font-size: 21px;
@@ -419,6 +419,16 @@ body p, body span
         margin: 5px auto;
         width: 90%;
         height: auto;
+    }
+
+    button.frequent-button
+    {
+        font-size: 15px;
+    }
+
+    input.search-input
+    {
+        margin: 5px;
     }
 }
 
@@ -624,7 +634,7 @@ a.search
     color: #fff;
     font-weight: 600;
     font-family: BebasNeueBold;
-    font-size: 23px;
+    font-size: 20px;
     background-color: #000;
     transition: all .3s ease;
 }
@@ -687,7 +697,8 @@ body .modal-content .modal-body .frequent-button:hover
 
 #registration-modal input[type="text"],
 #registration-modal input[type="email"],
-#registration-modal input[type="password"]
+#registration-modal input[type="password"],
+.container .form-group .text-standart-input
 {
     width: calc(100% - 10px);
     height: 50px;

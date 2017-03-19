@@ -14,5 +14,6 @@ namespace BLL.IFacade
         IEnumerable<Article> getPopularArticles(int count);
         IEnumerable<Article> getArticleById(int id);
         IEnumerable<Article> getRecommendsArticles(int count);
+        bool isUserInRole(string username, string role);
     }
 }

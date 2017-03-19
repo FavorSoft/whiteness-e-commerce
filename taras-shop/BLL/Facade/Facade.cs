@@ -76,6 +76,16 @@ namespace BLL.Facade
             return ConvertUnitToArticle(uow.getUnit.GetById(id), uow.getImages.GetByOwner(id).ToList());
         }
 
+        public bool isUserInRole(string username, string role)
+        {
+            int userRole = uow.getUser.GetByInfo(new UsersDto()
+            {
+                Email = username
+            }).RoleId;
+
+            return uow.getRole.GetById(userRole).Role == role ? true : false;
+        }
+
         public IUnitOfWork getBasicFunctionality()
         {
             return uow;

@@ -1,19 +1,20 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@using taras_shop.Controllers;
+@if (User.Identity.IsAuthenticated)
 {
-    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()*@
+    <ul class="nav navbar-nav navbar-right">
+        @if ((User).IsInRole("Admin"))
+        {
+        <li><a href="#">Вона</a></li>
+        <li><a href="#">Він</a></li>
+        }
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="" class="sign-in" data-toggle="modal" data-target="#registration-modal">
-                    <img src="~/Content/images/register.jpg" alt="sign">
-                    <span>Выйти</span>
-                </a>
-            </li>
-        </ul>
-    
+        <li>
+            <form action="/account/logoff" method="get">
+                <img src="~/Content/images/register.jpg" alt="sign">
+                <button type="submit">Выход</button>
+            </form>
+        </li>
+    </ul>
 }
 else
 {

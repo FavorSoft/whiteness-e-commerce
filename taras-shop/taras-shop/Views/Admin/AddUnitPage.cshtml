@@ -10,8 +10,6 @@
         <!--id="addUnitForm" action="" method="post"-->
         @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <h4>AdminAddUnitViewModels</h4>
-            <hr />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="images">Фото:</label>
@@ -59,31 +57,31 @@
 
             <div class="form-group">
                 <label for="size-xs">Розмір: XS</label>
-                <input value="true" id="size-xs" type="checkbox" class="form-control" />
+                @*<input value="true" id="size-xs" type="checkbox" class="form-control" />*@
                 <label for="count-xs">Кількість:</label>
                 <input id="count-xs" name="amount_xs" type="number" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="size-s">Розмір: S</label>
-                <input value="true" id="size-s" type="checkbox" class="form-control" />
+                @*<input value="true" id="size-s" type="checkbox" class="form-control" />*@
                 <label for="count-s">Кількість:</label>
                 <input id="count-s" name="amount_s" type="number" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="size-m">Розмір: M</label>
-                <input value="true" id="size-m" type="checkbox" class="form-control" />
+                @*<input value="true" id="size-m" type="checkbox" class="form-control" />*@
                 <label for="count-m">Кількість:</label>
                 <input id="count-m" name="amount_m" type="number" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="size-l">Розмір: L</label>
-                <input value="true" id="size-l" type="checkbox" class="form-control" />
+                @*<input value="true" id="size-l" type="checkbox" class="form-control" />*@
                 <label for="count-l">Кількість:</label>
                 <input id="count-l" name="amount_l" type="number" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="size-xl">Розмір: XL</label>
-                <input value="true" id="size-xl" type="checkbox" class="form-control" />
+                @*<input value="true" id="size-xl" type="checkbox" class="form-control" />*@
                 <label for="count-xl">Кількість:</label>
                 <input id="count-xl" name="amount_xl" type="number" class="form-control" />
             </div>

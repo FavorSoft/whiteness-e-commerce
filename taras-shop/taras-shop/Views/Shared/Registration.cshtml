@@ -1,85 +1,60 @@
-﻿<div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-sm-10 col-sm-offset-1 col-md-offset-1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></div>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#sign-in-tab">Войти</a></li>
-                                <li><a data-toggle="tab" href="#reg-tab">Регистрация</a></li>
-                            </ul>
+﻿@model taras_shop.Models.RegisterModel
 
-                            <div class="tab-content">
-                                <div id="sign-in-tab" class="tab-pane fade in active">
-                                    @using (Html.BeginForm())
-                                    {
-
-                                    }
-                                    <form class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" action="">
-                                        <div class="form-group">
-                                            <label for="login-email-input" class="login-email-label">E-Mail:</label>
-                                            <input type="email" class="login-email-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pass-email-input" class="pass-email-label">Пароль:</label>
-                                            <input type="password" class="pass-email-input">
-                                        </div>
-                                        <button type="submit" class="frequent-button submit-log">Войти</button>
-                                        <a href="#" class="forgot-pass">Забыли пароль?</a>
-                                    </form>
-                                </div>
-                                <div id="reg-tab" class="tab-pane fade">
-                                    <form class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" action="">
-                                        <div class="form-group">
-                                            <label for="reg-name-input">Имя:</label>
-                                            <input type="text" class="reg-name-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="reg-surname-input">Фамилия:</label>
-                                            <input type="text" class="reg-surname-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="login-email-input">E-Mail:</label>
-                                            <input type="email" class="login-email-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="reg-pass-input">Пароль:</label>
-                                            <input type="password" class="reg-pass-input">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="reg-phone-input">Телефон:</label>
-                                            <input type="text" class="reg-phone-input">
-                                        </div>
-                                        <ul class="radio-list">
-                                            <li class="man-li">
-                                                <input type="radio" id="man-option" name="selector">
-                                                <label for="man-option">Мужчина</label>
-                                                <div class="check"></div>
-                                            </li>
-
-                                            <li class="woman-li">
-                                                <input type="radio" id="woman-option" name="selector">
-                                                <label for="woman-option">Женщина</label>
-                                                <div class="check"><div class="inside"></div></div>
-                                            </li>
-                                        </ul>
-                                        <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
-                                        <div class="line"></div>
-                                        <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
-                                        <a href="#" class="forgot-pass">Забыли пароль?</a>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="reg-tab" class="tab-pane fade">
+    @using (Html.BeginForm("Registration", "Account",
+                FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.EditorFor(model => model.Email, new { @class = "login-email-input" })
+            @Html.ValidationMessageFor(model => model.Email)
         </div>
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Firstname)
+            @Html.EditorFor(model => model.Firstname, new { @class = "reg-name-input" })
+            @Html.ValidationMessageFor(model => model.Firstname)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Surname)
+            @Html.EditorFor(model => model.Surname, new { @class = "reg-surname-input" })
+            @Html.ValidationMessageFor(model => model.Surname)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.EditorFor(model => model.Password, new { @class = "reg-pass-input" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword)
+            @Html.EditorFor(model => model.ConfirmPassword, new { @class = "reg-pass-input" })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Number)
+            @Html.EditorFor(model => model.Number, new { @class = "reg-phone-input" })
+            @Html.ValidationMessageFor(model => model.Number)
+        </div>
+        <ul class="radio-list">
+            <li class="man-li">
+                @Html.RadioButton("IsMan", "true", new { @style ="{color: white}"})
+                
+                @*@Html.EditorFor(model => model.IsMan, new { @id="man-option", @class = "reg-phone-input", @name="selector", @type="radio" })*@
+                @*<input type="radio" id="man-option" name="selector">*@
+                @*<label for="man-option">Мужчина</label>
+                <div class="check"></div>*@
+            </li>
+
+            <li class="woman-li">
+                <input type="radio" id="woman-option" name="selector">
+                <label for="woman-option">Женщина</label>
+                <div class="check"><div class="inside"></div></div>
+            </li>
+        </ul>
+        <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
+        <div class="line"></div>
+        <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
+        <a href="#" class="forgot-pass">Забыли пароль?</a>
+    }
 </div>

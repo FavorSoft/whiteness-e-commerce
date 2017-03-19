@@ -32,7 +32,7 @@ namespace taras_shop.Controllers
         {
             return View();
         }
-        //[ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> AddUnitPage()
         {
             Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()

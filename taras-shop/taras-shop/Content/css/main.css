@@ -789,8 +789,8 @@ body .modal-content .modal-body .frequent-button:hover
     border: 2px solid #fff;
 }
 
-#registration-modal [for=woman-option],
-#registration-modal label[for=man-option]
+#registration-modal [for=IsMan],
+#registration-modal label[for=IsMan]
 {
     padding: 10px 5px 10px 45px;
     margin: 13px;

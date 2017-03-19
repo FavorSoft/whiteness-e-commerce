@@ -88,6 +88,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CustomIdentity.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -98,7 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\AddFonts.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
@@ -184,6 +184,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jsx\IndexComponent.jsx" />
     <Content Include="Scripts\jsx\ItemPreviewModal.jsx" />
+    <Content Include="Views\Shared\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

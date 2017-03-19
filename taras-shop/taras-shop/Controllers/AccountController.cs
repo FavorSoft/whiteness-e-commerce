@@ -4,6 +4,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -15,7 +16,10 @@ namespace taras_shop.Controllers
     {
         #region PARAMETERS
         readonly Facade facade;
+        CustomIdentity identity;
         #endregion
+
+        public CustomIdentity Identity { get; }
 
         #region CTOR
         public AccountController(IUnitOfWork uow)
@@ -31,12 +35,13 @@ namespace taras_shop.Controllers
 
         public ActionResult Login()
         {
-            return View(new Auth.LoginModel());
+            
+            return View(new LoginModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Auth.LoginModel model)
+        public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -49,6 +54,7 @@ namespace taras_shop.Controllers
                 });
                 if (user != null)
                 {
+                    identity = new CustomIdentity(model.Email, facade);
                     FormsAuthentication.SetAuthCookie(model.Email, true);
                     return RedirectToAction("Index", "Home");
                 }
@@ -59,6 +65,7 @@ namespace taras_shop.Controllers
             }
             return View(model);
         }
+        
 
         public ActionResult Register()
         {
@@ -67,8 +74,9 @@ namespace taras_shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Auth.RegisterModel model)
+        public ActionResult Registration(RegisterModel model)
         {
+            
             if (ModelState.IsValid)
             {
                 UsersDto user = null;
@@ -89,7 +97,7 @@ namespace taras_shop.Controllers
                             Password = model.Password,
                             RegDate = DateTime.Now,
                             RoleId = 3,
-                            IsMan = model.IsMan
+                            IsMan = (model.IsMan == Gender.Male)? true : false
                         });
                         transact.Commit();
                         facade.getBasicFunctionality().SaveChanges();
@@ -103,6 +111,7 @@ namespace taras_shop.Controllers
                         if (user != null)
                         {
                             FormsAuthentication.SetAuthCookie(model.Email, true);
+                            
                             return RedirectToAction("Index", "Home");
                         }
                     }
@@ -117,6 +126,7 @@ namespace taras_shop.Controllers
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();
+            identity = null;
             return RedirectToAction("Index", "Home");
         }
     }

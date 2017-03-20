@@ -34,5 +34,4 @@ D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB.mdf
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB_log.ldf
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
-D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB.mdf
-D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB_log.ldf
+D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\ru\EntityFramework.resources.dll

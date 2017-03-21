@@ -1,13 +1,7 @@
 ﻿@model taras_shop.Models.AdminAddUnitViewModels
 
-@{
-    ViewBag.Title = "AddUnit";
-}
-
 <div class="container">
-    <h2>AddUnit</h2>
     <div class="col-lg-4 col-md-4">
-        <!--id="addUnitForm" action="" method="post"-->
         @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-group">
@@ -103,27 +97,22 @@
                 </div>
             </div>
         }
-        </div>
-        <script>
-        @*function changeSelect() {
-            var tmp = @Model.categoryTypes.Select(x => x.Type);
-            $("#test").val(tmp);
-        }*@
-            function onFileSelected(event) {
-                var selectedFile = event.target.files[0];
-                var reader = new FileReader();
-
-                var imgtag = document.getElementById("myimage");
-                imgtag.title = selectedFile.name;
-
-                reader.onload = function (event) {
-                    imgtag.src = event.target.result;
-                };
-
-                reader.readAsDataURL(selectedFile);
-            }
-        </script>
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     </div>
+    <script>
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+
+            var imgtag = document.getElementById("myimage");
+            imgtag.title = selectedFile.name;
+
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+
+            reader.readAsDataURL(selectedFile);
+        }
+    </script>
+</div>
+
+

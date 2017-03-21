@@ -1,18 +1,25 @@
-﻿@using taras_shop.Controllers;
+﻿@using taras_shop.Controllers.Identity;
 @if (User.Identity.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
-        @if ((User).IsInRole("Admin"))
-        {
-        <li><a href="#">Вона</a></li>
-        <li><a href="#">Він</a></li>
+        @{
+            if ((User as CustomPrincipal).Role == "Admin")
+            {
+                <li><a href="@Url.Action("AddUnitPage", "Admin")">Додати товар</a></li>
+                <li><a href="#">Переглянути користувачів</a></li>
+                <li><a href="#">Переглянути замовлення</a></li>
+            }
+            else if ((User as CustomPrincipal).Role == "Moderator")
+            {
+                <li><a href="#">Додати товар</a></li>
+                <li><a href="#">Переглянути замовлення</a></li>
+            }
         }
-
         <li>
-            <form action="/account/logoff" method="get">
+            <a href="@Url.Action("Logoff", "Account")" class="sign-in">
                 <img src="~/Content/images/register.jpg" alt="sign">
-                <button type="submit">Выход</button>
-            </form>
+                <span>Вийти</span>
+            </a>
         </li>
     </ul>
 }

@@ -7,19 +7,18 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
+using taras_shop.Controllers.Identity;
 using taras_shop.Models;
 
 namespace taras_shop.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         #region PARAMETERS
         readonly Facade facade;
-        CustomIdentity identity;
         #endregion
-
-        public CustomIdentity Identity { get; }
 
         #region CTOR
         public AccountController(IUnitOfWork uow)
@@ -33,13 +32,14 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
-            
             return View(new LoginModel());
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
@@ -47,15 +47,36 @@ namespace taras_shop.Controllers
             {
                 UsersDto user = null;
 
-                user = facade.getBasicFunctionality().getUser.GetByInfo(new UsersDto()
+                user = facade.UnitOfWork.getUser.GetByInfo(new UsersDto()
                 {
                     Email = model.Email,
                     Password = model.Password
                 });
                 if (user != null)
                 {
-                    identity = new CustomIdentity(model.Email, facade);
-                    FormsAuthentication.SetAuthCookie(model.Email, true);
+                    UserModel userModel = new UserModel();
+
+                    userModel.Id = user.Id;
+                    userModel.Email = user.Email;
+                    userModel.Role = facade.UnitOfWork.getRole.GetById(user.RoleId).Role;
+
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+                    string userData = serializer.Serialize(userModel);
+
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                        1,
+                        model.Email,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(30),
+                        false,
+                        userData,
+                        FormsAuthentication.FormsCookiePath
+                        );
+                    string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+//                    (User as CustomIdentity).IsInRole()
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -65,9 +86,15 @@ namespace taras_shop.Controllers
             }
             return View(model);
         }
-        
 
+        [AllowAnonymous]
         public ActionResult Register()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult AuthError()
         {
             return View();
         }
@@ -80,15 +107,15 @@ namespace taras_shop.Controllers
             if (ModelState.IsValid)
             {
                 UsersDto user = null;
-                user = facade.getBasicFunctionality().getUser.GetByInfo(new UsersDto()
+                user = facade.UnitOfWork.getUser.GetByInfo(new UsersDto()
                 {
                     Email = model.Email
                 });
                 if (user == null)
                 {
-                    using (var transact = facade.getBasicFunctionality().BeginTransaction())
+                    using (var transact = facade.UnitOfWork.BeginTransaction())
                     {
-                        facade.getBasicFunctionality().getUser.AddItem(new UsersDto()
+                        facade.UnitOfWork.getUser.AddItem(new UsersDto()
                         {
                             Email = model.Email,
                             Name = model.Firstname,
@@ -100,9 +127,9 @@ namespace taras_shop.Controllers
                             IsMan = (model.IsMan == Gender.Male)? true : false
                         });
                         transact.Commit();
-                        facade.getBasicFunctionality().SaveChanges();
+                        facade.UnitOfWork.SaveChanges();
 
-                        user = facade.getBasicFunctionality().getUser.GetByInfo(new UsersDto()
+                        user = facade.UnitOfWork.getUser.GetByInfo(new UsersDto()
                         {
                             Email = model.Email,
                             Password = model.Password
@@ -110,6 +137,27 @@ namespace taras_shop.Controllers
 
                         if (user != null)
                         {
+                            UserModel userModel = new UserModel();
+
+                            userModel.Id = user.Id;
+                            userModel.Email = user.Email;
+                            userModel.Role = facade.UnitOfWork.getRole.GetById(user.RoleId).Role;
+
+                            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+                            string userData = serializer.Serialize(userModel);
+
+                            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                                1,
+                                model.Email,
+                                DateTime.Now,
+                                DateTime.Now.AddMinutes(30),
+                                false,
+                                userData,
+                                FormsAuthentication.FormsCookiePath
+                                );
+                            string encTicket = FormsAuthentication.Encrypt(ticket);
+
                             FormsAuthentication.SetAuthCookie(model.Email, true);
                             
                             return RedirectToAction("Index", "Home");
@@ -121,12 +169,12 @@ namespace taras_shop.Controllers
                     ModelState.AddModelError("", "Пользователь с таким логином уже существует");
                 }
             }
-            return View(model);
+            return View("AuthError");
         }
+
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();
-            identity = null;
             return RedirectToAction("Index", "Home");
         }
     }

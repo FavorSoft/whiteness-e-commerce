@@ -43,7 +43,7 @@ namespace BLL.DI
             builder.RegisterType<OrderItemsRepository>().As<IRepository<Order_items>>().InstancePerRequest();
             builder.RegisterType<OrderRepository>().As<IRepository<Order>>().InstancePerRequest();
             builder.RegisterType<RoleRepository>().As<IRepository<Roles>>().InstancePerRequest();
-            builder.RegisterType<UnitRepository>().As<IRepository<Unit>>().InstancePerRequest();
+            builder.RegisterType<UnitRepository>().As<IUnitRepository>().InstancePerRequest();
             builder.RegisterType<UserRepository>().As<IRepository<Users>>().InstancePerRequest();
             #endregion
 

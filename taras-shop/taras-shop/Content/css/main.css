@@ -65,17 +65,17 @@ body p, body span
 
 @font-face {
     font-family: Calibri;
-    src: url(../../fonts/Calibri.ttf);
+    src: url(../content/fonts/Calibri.ttf)
 }
 
 @font-face {
     font-family: BebasNeueBold;
-    src: url(../../fonts/bebas_neue/BebasNeueBold.otf);
+    src: url(../content/fonts/bebas_neue/BebasNeueBold.otf);
 }
 
 @font-face {
     font-family: BebasNeueRegular;
-    src: url(../../fonts/bebas_neue/BebasNeueRegular.otf);
+    src: url(../content/fonts/bebas_neue/BebasNeueRegular.otf);
 }
 
 /* Fonts end*/

@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Script.Serialization;
 using System.Web.Security;
+using taras_shop.Controllers;
+using taras_shop.Controllers.Identity;
 
 namespace taras_shop
 {
@@ -29,12 +32,12 @@ namespace taras_shop
 
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-                CustomPrincipalSerializeModel serializeModel = serializer.Deserialize<CustomPrincipalSerializeModel>(authTicket.UserData);
+                UserModel serializeModel = serializer.Deserialize<UserModel>(authTicket.UserData);
 
                 CustomPrincipal newUser = new CustomPrincipal(authTicket.Name);
+
                 newUser.Id = serializeModel.Id;
-                newUser.FirstName = serializeModel.FirstName;
-                newUser.LastName = serializeModel.LastName;
+                newUser.Role = serializeModel.Role;
 
                 HttpContext.Current.User = newUser;
             }

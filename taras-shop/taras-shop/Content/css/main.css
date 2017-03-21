@@ -1717,7 +1717,8 @@ div.search-img
 .row .unit
 {
     cursor: pointer;
-    height: 450px;
+    min-height: 450px;
+    height: auto;
     padding-right: 0px;
     padding-left: 0px;
     position: relative;

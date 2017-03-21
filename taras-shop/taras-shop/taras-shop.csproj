@@ -184,6 +184,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jsx\IndexComponent.jsx" />
     <Content Include="Scripts\jsx\ItemPreviewModal.jsx" />
+    <Content Include="Views\Home\Ordering.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

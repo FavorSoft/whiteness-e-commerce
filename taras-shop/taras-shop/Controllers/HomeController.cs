@@ -70,6 +70,11 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        public ActionResult Ordering()
+        {
+            return View();
+        }
+
         public ActionResult Page404()
         {
             return View();

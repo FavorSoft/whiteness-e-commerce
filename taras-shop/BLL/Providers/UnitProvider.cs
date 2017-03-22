@@ -61,20 +61,21 @@ namespace BLL.Providers
 
         IEnumerable<UnitDto> ConvertModeltoDTO(IQueryable<Unit> repo)
         {
-            IEnumerable<UnitDto> res = repo.Select(i => new UnitDto() {
-                    Id = i.id,
-                    CategoryId = i.category_id,
-                    Color = i.color,
-                    Description = i.description,
-                    Likes = i.likes,
-                    Material = i.material, 
-                    Price = i.price,
-                    OldPrice = i.old_price,
-                    Producer = i.producer,
-                    Title = i.title,
-                    AddUnitDate = i.add_date
+            IEnumerable<UnitDto> res = repo.Select(i => new UnitDto()
+            {
+                Id = i.id,
+                CategoryId = i.category_id,
+                Color = i.color,
+                Description = i.description,
+                Likes = i.likes,
+                Material = i.material,
+                Price = i.price,
+                OldPrice = i.old_price,
+                Producer = i.producer,
+                Title = i.title,
+                AddUnitDate = i.add_date
             });
-           
+
             return res;
         }
 
@@ -126,32 +127,46 @@ namespace BLL.Providers
                     join s in _repo.GetEntities.UnitInfo on units.id equals s.unit_id
                     where units.price >= startPrice &&
                           units.price <= endPrice &&
-                          units.category_id == categoryId &&
-                          s.ExistsSizes(sizesId)
+                          units.category_id == categoryId
                     orderby units.add_date descending
-                    select new UnitDto()
-            {
-                Id = units.id,
-                CategoryId = units.category_id,
-                Color = units.color,
-                Description = units.description,
-                Likes = units.likes,
-                Material = units.material,
-                Price = units.price,
-                OldPrice = units.old_price,
-                Producer = units.producer,
-                Title = units.title,
-                AddUnitDate = units.add_date
-            }).Take(amount);
+                    select new
+                    {
+                        Id = units.id,
+                        CategoryId = units.category_id,
+                        Color = units.color,
+                        Description = units.description,
+                        Likes = units.likes,
+                        Material = units.material,
+                        Price = units.price,
+                        OldPrice = units.old_price,
+                        Producer = units.producer,
+                        Title = units.title,
+                        AddUnitDate = units.add_date,
+                        sizeId = s.size_id,
+                        amount = s.amount
+                    }).Where(x => sizesId.Contains(x.sizeId) && x.amount > 0).Select(x => new UnitDto()
+                    {
+                        Id = x.Id,
+                        CategoryId = x.CategoryId,
+                        Color = x.Color,
+                        Description = x.Description,
+                        Likes = x.Likes,
+                        Material = x.Material,
+                        Price = x.Price,
+                        OldPrice = x.OldPrice,
+                        Producer = x.Producer,
+                        Title = x.Title,
+                        AddUnitDate = x.AddUnitDate
+                    }).Take(amount);
         }
-        
+
         public int GetAmountByFilter(int categoryId, int startPrice, int endPrice)
-        { 
+        {
             return (from units in _repo.GetEntities.Unit
-                        where units.price >= startPrice && 
-                              units.price <= endPrice && 
-                              units.category_id == categoryId
-                        select new { units.id }).Count();
+                    where units.price >= startPrice &&
+                          units.price <= endPrice &&
+                          units.category_id == categoryId
+                    select new { units.id }).Count();
 
 
         }

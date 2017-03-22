@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
+    [Serializable]
     public class SizesDto
     {
         public int Id { get; set; }

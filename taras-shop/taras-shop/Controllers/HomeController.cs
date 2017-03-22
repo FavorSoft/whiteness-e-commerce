@@ -10,6 +10,7 @@ using taras_shop.Models;
 using BLL.Facade;
 using BLL.IFacade;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace taras_shop.Controllers
 {
@@ -54,6 +55,7 @@ namespace taras_shop.Controllers
             List<string> sizes = new List<string>();
             sizes.Add("XL");
             sizes.Add("XS");
+
             return Json(facade.getByFilter(1, 0, 100000, sizes, 0, 8), JsonRequestBehavior.AllowGet);
         }
 

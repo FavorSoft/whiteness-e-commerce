@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace BLL.Facade
 {
@@ -57,7 +58,7 @@ namespace BLL.Facade
         }
 
         public IEnumerable<Article> getPopularArticles(int count)
-        { 
+        {
             var units = UnitOfWork.getUnit.GetPopular(count);
             return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
@@ -69,9 +70,17 @@ namespace BLL.Facade
 
             List<UnitDto> units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
 
+            List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
+
+            IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            string serializeArticles = serializer.Serialize(articles);
+
             int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice)/amountItems;
 
-            return new { units = units, page = (pages - skipItems)/amountItems, pages = pages };
+            return new { articles = articles, page = (pages - skipItems)/amountItems, pages = pages };
         }
 
         public IEnumerable<Article> getRecommendsArticles(int count)

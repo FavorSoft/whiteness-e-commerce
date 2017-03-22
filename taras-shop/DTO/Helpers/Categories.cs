@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
+    [Serializable]
     public class CategoriesDto
     {
         public int Id { get; set; }

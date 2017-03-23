@@ -101,62 +101,73 @@
         $(".append-radio").toggleClass("radio-show")
     });
 
-    
-    //$.ajax({
-    //    method: "GET",
-    //    url: "Home/GetItemsByFilter",
-    //    success: function (data) {
-    //        console.log(data);
-    //    }
-    //})
-    //  .done(function (msg) {
-    //      alert("Data Saved: " + msg);
-    //  });
 
+    function onFileSelected(event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
 
-    // I'll be back. okay?
-    //$("#create1").click(function (event) {
-    //    event.preventDefault();
-    //    var title = $("#title").val();
-    //    var producer = $("#producer").val();
-    //    var categoryType = $('#category-type option:selected').val();
-    //    var price = $("#price").val();
-    //    var sizeXs = $("#size-xs:checked").val();
-    //    var countXs = $("#count-xs").val();
-    //    var sizeS = $("#size-s:checked").val();
-    //    var countS = $("#count-s").val();
-    //    var sizeM = $("#size-m:checked").val();
-    //    var countM = $("#count-m").val();
-    //    var sizeL = $("#size-l:checked").val();
-    //    var countL = $("#count-l").val();
-    //    var sizeXl = $("#size-xl:checked").val();
-    //    var counXl = $("#count-xl").val();
-    //    var material = $("#material").val();
-    //    var description = $("#description").val();
+        var imgtag = document.getElementById("myimage");
+        imgtag.title = selectedFile.name;
 
-    //    var sizes = [{exist: sizeXs, name: "XS"}, {exist: sizeS, name: "S"},
-    //        {exist: sizeM, name: "M"}, {exist: sizeL, name: "L"},
-    //        {exist: sizeXl, name: "XL"}];
+        reader.onload = function (event) {
+            imgtag.src = event.target.result;
+        };
 
-    //    $('#item-preview-modal').modal();
+        reader.readAsDataURL(selectedFile);
+    }
+        
+//    $("#create").click(function (event) {
+//        event.preventDefault();
 
-    //    $("#title-on-modal").text(title);
-    //    $("#item-type-on-modal").text($('#category option:selected').text());
-    //    $("#price-now-on-modal").text(price + " грн");
-    //    $("#modal-radio").html(function () {
-    //        console.log(sizes);
-    //        return sizes.map(function (size) {
-    //            if (size.exist === "true") {
-    //                return (
-    //                      "<li>"
-    //                    + "    <input type='checkbox' id="+(size.name+"-option")+" name='selector' />"
-    //                    + "    <label htmlFor=" + (size.name + "-option") + ">"+size.name+"</label>"
-    //                    + "    <div class='check'></div>"
-    //                    + "</li>"
-    //                );
-    //            }
-    //        }.bind(this)); 
-    //    });
-    //    $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
-    //});
+//        var title = $("#title").val();
+//        var producer = $("#producer").val();
+//        var categoryType = $('#category-type option:selected').val();
+//        var price = $("#price").val();
+//        var sizeXs = $("#size-xs:checked").val();
+//        var countXs = $("#count-xs").val();
+//        var sizeS = $("#size-s:checked").val();
+//        var countS = $("#count-s").val();
+//        var sizeM = $("#size-m:checked").val();
+//        var countM = $("#count-m").val();
+//        var sizeL = $("#size-l:checked").val();
+//        var countL = $("#count-l").val();
+//        var sizeXl = $("#size-xl:checked").val();
+//        var counXl = $("#count-xl").val();
+//        var material = $("#material").val();
+//        var description = $("#description").val();
+
+//        var sizes = [{exist: sizeXs, name: "XS"}, {exist: sizeS, name: "S"},
+//            {exist: sizeM, name: "M"}, {exist: sizeL, name: "L"},
+//            {exist: sizeXl, name: "XL"}];
+
+//        $('#item-preview-modal').modal();
+
+//        $("#title-on-modal").text(title);
+//        $("#item-type-on-modal").text($('#category option:selected').text());
+//        $("#price-now-on-modal").text(price + " грн");
+//        $("#modal-radio").html(function () {
+//            console.log(sizes);
+//            return sizes.map(function (size) {
+//                if (size.exist === "true") {
+//                    return (
+//                          "<li>"
+//                        + "    <input type='checkbox' id="+(size.name+"-option")+" name='selector' />"
+//                        + "    <label htmlFor=" + (size.name + "-option") + ">"+size.name+"</label>"
+//                        + "    <div class='check'></div>"
+//                        + "</li>"
+//                    );
+//                }
+//            }.bind(this)); 
+//        });
+
+//        $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
+//        //var queryString = $('#addUnitForm').formSerialize();
+//        //$("#apply-posting").click(function () {
+//        //    console.log("i am here!");
+//        //    $.post('', queryString, function (data) {
+//        //        alert("I appeared!")
+//        //    });
+//        //});
+//    });
+
 });

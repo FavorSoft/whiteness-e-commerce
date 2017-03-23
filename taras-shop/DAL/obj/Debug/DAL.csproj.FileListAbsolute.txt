@@ -34,6 +34,7 @@ D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB.mdf
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB_log.ldf
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.dll
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServerCompact.dll
@@ -51,3 +52,6 @@ C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debu
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.pdb
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+=======
+D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\ru\EntityFramework.resources.dll
+>>>>>>> develop

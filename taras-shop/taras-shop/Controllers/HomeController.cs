@@ -55,7 +55,6 @@ namespace taras_shop.Controllers
             List<string> sizes = new List<string>();
             sizes.Add("XL");
             sizes.Add("XS");
-
             return Json(facade.getByFilter(1, 0, 100000, sizes, 0, 8), JsonRequestBehavior.AllowGet);
         }
 
@@ -79,6 +78,11 @@ namespace taras_shop.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Ordering()
+        {
             return View();
         }
 

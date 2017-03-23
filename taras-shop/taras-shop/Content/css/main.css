@@ -65,7 +65,7 @@ body p, body span
 
 @font-face {
     font-family: Calibri;
-    src: url(../content/fonts/Calibri.ttf)
+    src: url(../content/fonts/Calibri.ttf);
 }
 
 @font-face {
@@ -97,6 +97,11 @@ body p, body span
     .main .news
     {
         margin-right: 0px;
+    }
+    
+    button.frequent-button
+    {
+        font-size: 17px;
     }
 }
 
@@ -308,11 +313,6 @@ body p, body span
         text-align: center;
     }
 
-    button.frequent-button
-    {
-        font-size: 15px;
-    }
-
     h3.basket-header
     {
         font-size: 21px;
@@ -419,6 +419,21 @@ body p, body span
         margin: 5px auto;
         width: 90%;
         height: auto;
+    }
+
+    button.frequent-button
+    {
+        font-size: 15px;
+    }
+
+    input.search-input
+    {
+        margin: 5px;
+    }
+
+    .ordering .ordering-input
+    {
+        width: 100%;
     }
 }
 
@@ -624,7 +639,7 @@ a.search
     color: #fff;
     font-weight: 600;
     font-family: BebasNeueBold;
-    font-size: 23px;
+    font-size: 20px;
     background-color: #000;
     transition: all .3s ease;
 }
@@ -687,15 +702,16 @@ body .modal-content .modal-body .frequent-button:hover
 
 #registration-modal input[type="text"],
 #registration-modal input[type="email"],
-#registration-modal input[type="password"]
+#registration-modal input[type="password"],
+.container .form-group .text-standart-input,
+.ordering-input
 {
-    width: calc(100% - 10px);
+    width: 100%;
     height: 50px;
     border: none;
     background-color: #ebebeb;
     outline: none;
-    box-sizing: content-box;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 .modal-content .modal-body
@@ -1701,7 +1717,8 @@ div.search-img
 .row .unit
 {
     cursor: pointer;
-    height: 450px;
+    min-height: 450px;
+    height: auto;
     padding-right: 0px;
     padding-left: 0px;
     position: relative;
@@ -1897,7 +1914,7 @@ div.search-img
 
 /* Shopping Cart block */
 
-.cart-table-header
+.admin-header
 {
     text-align: center;
     text-transform: uppercase;
@@ -2141,6 +2158,32 @@ td .cart-number-input
 }
 
 /* ItemPage block end */
+
+/* Ordering block */
+
+.ordering-subheader
+{
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.ordering .form-group label
+{
+    display: block;
+}
+
+.ordering-input
+{
+    width: 350px;
+}
+
+.ordering form
+{
+    margin: 10px;
+}
+
+/* Ordering block end */
 
 /* Footer section */
 

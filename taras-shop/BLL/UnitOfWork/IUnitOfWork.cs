@@ -21,7 +21,7 @@ namespace BLL.UnitOfWork
         IProvider<OrderItemsDto> getOrderItems { get; }
         IProvider<OrderDto> getOrder { get; }
         IProvider<RolesDto> getRole { get; }
-        IProvider<SizesDto> getSizes { get; }
+        ISizesProvider getSizes { get; }
         IUnitInfoProvider getUnitInfo { get; }
         IUnitProvider getUnit { get; }
         IUserProvider getUser { get; }

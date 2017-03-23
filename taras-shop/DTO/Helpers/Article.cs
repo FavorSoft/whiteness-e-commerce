@@ -6,6 +6,7 @@ using System.Web;
 
 namespace DTO
 {
+    [Serializable]
     public class Article
     {
         public UnitDto unit { get; set; }

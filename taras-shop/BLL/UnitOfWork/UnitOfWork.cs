@@ -24,7 +24,7 @@ namespace BLL.UnitOfWork
         IProvider<OrderItemsDto> _orderItems;
         IProvider<OrderDto> _order;
         IProvider<RolesDto> _role;
-        IProvider<SizesDto> _sizes;
+        ISizesProvider _sizes;
         IUnitProvider _unit;
         IUserProvider _user;
         IUnitInfoProvider _unitInfo;
@@ -50,7 +50,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<SizesDto> getSizes
+        public ISizesProvider getSizes
         {
             get
             {

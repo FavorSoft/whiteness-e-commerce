@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public class UnitRepository : IRepository<Unit>
+    public class UnitRepository : IUnitRepository
     {
         Entities entities;
         public UnitRepository(Entities db)
         {
             entities = db;
         }
+
+        public Entities GetEntities { get { return entities; } }
+
         public void AddItem(Unit item)
         {
             entities.Unit.Add(item);

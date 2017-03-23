@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO
+namespace DAL.IRepository
 {
-    [Serializable]
-    public class SizesDto
+    public interface IUserRepository : IRepository<Users>
     {
-        public int Id { get; set; }
-        public string Size { get; set; }
+        Entities GetEntities { get; }
     }
 }

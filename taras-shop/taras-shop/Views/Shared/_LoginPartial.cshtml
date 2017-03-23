@@ -1,19 +1,27 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@using taras_shop.Controllers.Identity;
+@if (User.Identity.IsAuthenticated)
 {
-    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()*@
-
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="" class="sign-in" data-toggle="modal" data-target="#registration-modal">
-                    <img src="~/Content/images/register.jpg" alt="sign">
-                    <span>Выйти</span>
-                </a>
-            </li>
-        </ul>
-    
+    <ul class="nav navbar-nav navbar-right">
+        @{
+            if ((User as CustomPrincipal).Role == "Admin")
+            {
+                <li><a href="@Url.Action("AddUnitPage", "Admin")">Додати товар</a></li>
+                <li><a href="#">Переглянути користувачів</a></li>
+                <li><a href="#">Переглянути замовлення</a></li>
+            }
+            else if ((User as CustomPrincipal).Role == "Moderator")
+            {
+                <li><a href="#">Додати товар</a></li>
+                <li><a href="#">Переглянути замовлення</a></li>
+            }
+        }
+        <li>
+            <a href="@Url.Action("Logoff", "Account")" class="sign-in">
+                <img src="~/Content/images/register.jpg" alt="sign">
+                <span>Вийти</span>
+            </a>
+        </li>
+    </ul>
 }
 else
 {

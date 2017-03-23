@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Providers
 {
-    public class SizesProvider : IProvider<SizesDto>
+    public class SizesProvider : ISizesProvider
     {
         readonly IRepository<Sizes> _repo;
         public SizesProvider(Entities db)
@@ -58,6 +58,16 @@ namespace BLL.Providers
                 Id = res.id,
                 Size = res.size
             };
+        }
+
+        public List<int> GetIdsBySizes(List<string> sizes)
+        {
+            var res = _repo.GetAll().Select(x => new SizesDto()
+            {
+                Id = x.id,
+                Size = x.size
+            }).Where(x => sizes.Contains(x.Size)).Select(x => x.Id).ToList();
+            return res;
         }
     }
 }

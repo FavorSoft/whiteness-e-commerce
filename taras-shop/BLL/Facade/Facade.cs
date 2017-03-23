@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace BLL.Facade
 {
     public class Facade
     {
-        readonly IUnitOfWork uow;
         public Facade(IUnitOfWork _uow)
         {
-            uow = _uow;
+            UnitOfWork = _uow;
         }
 
         private List<Article> ConvertUnitsToArticles(List<UnitDto> units, List<ImagesDto> images)
@@ -23,33 +23,34 @@ namespace BLL.Facade
             {
                 int id = units[i].Id;
                 IDictionary<SizesDto, UnitInfoDto> sizes = new Dictionary<SizesDto, UnitInfoDto>();
-                foreach (var j in uow.getUnitInfo.GetByOwner(id))
+                foreach (var j in UnitOfWork.getUnitInfo.GetByOwner(id))
                 {
-                    sizes.Add(new KeyValuePair<SizesDto, UnitInfoDto>(uow.getSizes.GetAll().Where(x => x.Id == j.SizeId).FirstOrDefault(), j));
+                    sizes.Add(new KeyValuePair<SizesDto, UnitInfoDto>(UnitOfWork.getSizes.GetAll().Where(x => x.Id == j.SizeId).FirstOrDefault(), j));
                 }
                 
                 articles.Add(new Article()
                 {
                     unit = units[i],
                     images = images.Where(x => x.OwnerId == id).ToList(),
-                    category = uow.getCategory.GetById(units[i].CategoryId),
+                    category = UnitOfWork.getCategory.GetById(units[i].CategoryId),
                     sizes = sizes
                 });
             }
             return articles;
         }
+
         private Article ConvertUnitToArticle(UnitDto unit, List<ImagesDto> images)
         {
             IDictionary<SizesDto, UnitInfoDto> sizes = new Dictionary<SizesDto, UnitInfoDto>();
-            foreach (var i in uow.getUnitInfo.GetByOwner(unit.Id))
+            foreach (var i in UnitOfWork.getUnitInfo.GetByOwner(unit.Id))
             {
-                sizes.Add(new KeyValuePair<SizesDto, UnitInfoDto>(uow.getSizes.GetAll().Where(x => x.Id == i.SizeId).FirstOrDefault(), i));
+                sizes.Add(new KeyValuePair<SizesDto, UnitInfoDto>(UnitOfWork.getSizes.GetAll().Where(x => x.Id == i.SizeId).FirstOrDefault(), i));
             }
             Article article = new Article()
             {
                 unit = unit,
                 images = images.Where(x => x.OwnerId == unit.Id).ToList(),
-                category = uow.getCategory.GetById(unit.CategoryId),
+                category = UnitOfWork.getCategory.GetById(unit.CategoryId),
                 sizes = sizes
             };
 
@@ -57,28 +58,56 @@ namespace BLL.Facade
         }
 
         public IEnumerable<Article> getPopularArticles(int count)
-        { 
-            var units = uow.getUnit.GetPopular(count);
-            return ConvertUnitsToArticles(units.ToList(), uow.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
+        {
+            var units = UnitOfWork.getUnit.GetPopular(count);
+            return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
 
+        public object getByFilter(int categoryId, int startPrice, int endPrice, List<string> sizes, int skipItems, int amountItems)
+        {
+            List<int> sizeIds = new List<int>();
+            sizeIds = UnitOfWork.getSizes.GetIdsBySizes(sizes);
+
+            List<UnitDto> units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
+
+            List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
+
+            IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            string serializeArticles = serializer.Serialize(articles);
+
+            int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice)/amountItems;
+
+            return new { articles = articles, page = (pages - skipItems)/amountItems, pages = pages };
+        }
 
         public IEnumerable<Article> getRecommendsArticles(int count)
         {
             List<Article> res = new List<Article>();
-            var units = uow.getUnit.GetPopular(count);
-            res = ConvertUnitsToArticles(units.ToList(), uow.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
+            var units = UnitOfWork.getUnit.GetPopular(count);
+            res = ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
             return res;
         }
 
         public Article getArticleById(int id)
         {
-            return ConvertUnitToArticle(uow.getUnit.GetById(id), uow.getImages.GetByOwner(id).ToList());
+            return ConvertUnitToArticle(UnitOfWork.getUnit.GetById(id), UnitOfWork.getImages.GetByOwner(id).ToList());
         }
 
-        public IUnitOfWork getBasicFunctionality()
+        public string getUserRole(string username)
         {
-            return uow;
+            int userRole = UnitOfWork.getUser.GetByInfo(new UsersDto()
+            {
+                Email = username
+            }).RoleId;
+
+            return UnitOfWork.getRole.GetById(userRole).Role;
         }
+
+
+
+        public IUnitOfWork UnitOfWork { get; private set; }
     }
 }

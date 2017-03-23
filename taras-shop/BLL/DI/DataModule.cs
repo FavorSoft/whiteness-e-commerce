@@ -29,7 +29,7 @@ namespace BLL.DI
             builder.RegisterType<OrderProvider>().As<IProvider<OrderDto>>().InstancePerRequest();
             builder.RegisterType<RoleProvider>().As<IProvider<RolesDto>>().InstancePerRequest();
             builder.RegisterType<UnitProvider>().As<IProvider<UnitDto>>().InstancePerRequest();
-            builder.RegisterType<UserProvider>().As<IProvider<UsersDto>>().InstancePerRequest();
+            builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();
             #endregion
 
             #region Repositories
@@ -43,8 +43,8 @@ namespace BLL.DI
             builder.RegisterType<OrderItemsRepository>().As<IRepository<Order_items>>().InstancePerRequest();
             builder.RegisterType<OrderRepository>().As<IRepository<Order>>().InstancePerRequest();
             builder.RegisterType<RoleRepository>().As<IRepository<Roles>>().InstancePerRequest();
-            builder.RegisterType<UnitRepository>().As<IRepository<Unit>>().InstancePerRequest();
-            builder.RegisterType<UserRepository>().As<IRepository<Users>>().InstancePerRequest();
+            builder.RegisterType<UnitRepository>().As<IUnitRepository>().InstancePerRequest();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
             #endregion
 
             //builder.RegisterType<Facade.Facade>().As<IFacade.IFacade>().InstancePerRequest();

@@ -10,10 +10,11 @@ using taras_shop.Models;
 using BLL.Facade;
 using BLL.IFacade;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace taras_shop.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         
 
@@ -32,8 +33,8 @@ namespace taras_shop.Controllers
         {
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
             {
-                categories = facade.getBasicFunctionality().getCategory.GetAll(),
-                categoryTypes = facade.getBasicFunctionality().getCategoryType.GetAll(),
+                categories = facade.UnitOfWork.getCategory.GetAll(),
+                categoryTypes = facade.UnitOfWork.getCategoryType.GetAll(),
                 popular = facade.getPopularArticles(4),
                 recommended = facade.getRecommendsArticles(3)
             };
@@ -44,8 +45,18 @@ namespace taras_shop.Controllers
         [HttpGet]
         public async Task<JsonResult> LoadSideBar()
         {
-            var res = new {category_types = facade.getBasicFunctionality().getCategoryType.GetAll(), categories = facade.getBasicFunctionality().getCategory.GetAll(), sizes = facade.getBasicFunctionality().getSizes.GetAll()};
+            var res = new {category_types = facade.UnitOfWork.getCategoryType.GetAll(), categories = facade.UnitOfWork.getCategory.GetAll(), sizes = facade.UnitOfWork.getSizes.GetAll()};
             return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetItemsByFilter()
+        {
+            List<string> sizes = new List<string>();
+            sizes.Add("XL");
+            sizes.Add("XS");
+
+            return Json(facade.getByFilter(1, 0, 100000, sizes, 0, 8), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -62,6 +73,7 @@ namespace taras_shop.Controllers
 
             return View();
         }
+
 
         public ActionResult Contact()
         {
@@ -80,7 +92,7 @@ namespace taras_shop.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetItemById(int id)
+        public async Task<ActionResult> ItemPage(int id)
         {
             return View(facade.getArticleById(id));
         }
@@ -96,7 +108,7 @@ namespace taras_shop.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            facade.getBasicFunctionality().Dispose();
+            facade.UnitOfWork.Dispose();
             base.Dispose(disposing);
         }
     }

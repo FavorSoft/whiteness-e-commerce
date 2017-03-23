@@ -15,7 +15,7 @@ namespace BLL.Providers
 {
     public class UserProvider : IUserProvider
     {
-        readonly IRepository<Users> _repo;
+        readonly IUserRepository _repo;
         public UserProvider(Entities context)
         {
             _repo = new UserRepository(context);
@@ -118,6 +118,15 @@ namespace BLL.Providers
                 role_id = item.RoleId,
                 surname = item.Surname
             });
+        }
+
+        public bool IsInRole(string role)
+        {
+            bool flag = false;
+
+            if (_repo.GetEntities.Roles.Where(x => x.role == role).Select(x => x.role)) ;
+
+            return flag;
         }
     }
 }

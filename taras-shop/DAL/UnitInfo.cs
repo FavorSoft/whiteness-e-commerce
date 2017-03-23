@@ -18,7 +18,22 @@ namespace DAL
         public int unit_id { get; set; }
         public int size_id { get; set; }
         public int amount { get; set; }
-    
+
+
+        public bool ExistsSizes(List<int> sizesId)
+        {
+            bool res = false;
+            foreach (var i in sizesId)
+            {
+                if (size_id == i)
+                {
+                    res = true;
+                }
+            }
+
+            return base.Equals(res);
+        }
+
         public virtual Sizes Sizes { get; set; }
         public virtual Unit Unit { get; set; }
     }

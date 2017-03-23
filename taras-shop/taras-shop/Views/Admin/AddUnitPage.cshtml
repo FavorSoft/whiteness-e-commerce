@@ -1,30 +1,22 @@
 ﻿@model taras_shop.Models.AdminAddUnitViewModels
 
-@{
-    ViewBag.Title = "AddUnit";
-}
-
 <div class="container">
-    <h2>AddUnit</h2>
     <div class="col-lg-4 col-md-4">
-        <!--id="addUnitForm" action="" method="post"-->
         @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-        <h4>AdminAddUnitViewModels</h4>
-        <hr />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <label for="images">Фото:</label>
-                <input id="images" name="images" type="file" multiple class="form-control text-standart-input" />
-                <img id="myimage">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label for="images">Фото:</label>
+                    <input id="images" name="images" type="file" multiple class="form-control" />
+                    <img id="myimage">
+                </div>
             </div>
-<<<<<<< HEAD
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <label for="title">Заголовок:</label>
-                <input id="title" name="title" type="text" class="form-control text-standart-input" />
-=======
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label for="title">Заголовок:</label>
+                    <input id="title" name="title" type="text" class="form-control text-standart-input" />
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="title">Заголовок:</label>
@@ -45,10 +37,7 @@
                         <option value="@i.Id">@i.Type</option>
                     }
                 </select>
->>>>>>> 33d4157fafee677c6f8a860e07d0a473a8c43359
             </div>
-        </div>
-        <input type="submit" />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <label for="producer">Виробник:</label>
@@ -81,42 +70,48 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="size-xs">Розмір: XS</label>
-            <input value="true" id="size-xs" type="checkbox" class="form-control text-standart-input" />
-            <label for="count-xs">Кількість:</label>
-            <input id="count-xs" name="amount_xs" type="number" class="form-control text-standart-input" />
-        </div>
-        <div class="form-group">
-            <label for="size-s">Розмір: S</label>
-            <input value="true" id="size-s" type="checkbox" class="form-control text-standart-input" />
-            <label for="count-s">Кількість:</label>
-            <input id="count-s" name="amount_s" type="number" class="form-control text-standart-input" />
-        </div>
-        <div class="form-group">
-            <label for="size-m">Розмір: M</label>
-            <input value="true" id="size-m" type="checkbox" class="form-control text-standart-input" />
-            <label for="count-m">Кількість:</label>
-            <input id="count-m" name="amount_m" type="number" class="form-control text-standart-input" />
-        </div>
-        <div class="form-group">
-            <label for="size-l">Розмір: L</label>
-            <input value="true" id="size-l" type="checkbox" class="form-control text-standart-input" />
-            <label for="count-l">Кількість:</label>
-            <input id="count-l" name="amount_l" type="number" class="form-control text-standart-input" />
-        </div>
-        <div class="form-group">
-            <label for="size-xl">Розмір: XL</label>
-            <input value="true" id="size-xl" type="checkbox" class="form-control text-standart-input" />
-            <label for="count-xl">Кількість:</label>
-            <input id="count-xl" name="amount_xl" type="number" class="form-control text-standart-input" />
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <label for="material">Матеріал:</label>
-                <input id="material" name="material" type="text" class="form-control text-standart-input" />
+            <div class="form-group">
+                <label for="size-xs">Розмір: XS</label>
+                @*<input value="true" id="size-xs" type="checkbox" class="form-control" />*@
+                <label for="count-xs">Кількість:</label>
+                <input id="count-xs" name="amount_xs" type="number" class="form-control" />
             </div>
-        </div>
+            <div class="form-group">
+                <label for="size-s">Розмір: S</label>
+                @*<input value="true" id="size-s" type="checkbox" class="form-control" />*@
+                <label for="count-s">Кількість:</label>
+                <input id="count-s" name="amount_s" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="size-m">Розмір: M</label>
+                @*<input value="true" id="size-m" type="checkbox" class="form-control" />*@
+                <label for="count-m">Кількість:</label>
+                <input id="count-m" name="amount_m" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="size-l">Розмір: L</label>
+                @*<input value="true" id="size-l" type="checkbox" class="form-control" />*@
+                <label for="count-l">Кількість:</label>
+                <input id="count-l" name="amount_l" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="size-xl">Розмір: XL</label>
+                @*<input value="true" id="size-xl" type="checkbox" class="form-control" />*@
+                <label for="count-xl">Кількість:</label>
+                <input id="count-xl" name="amount_xl" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label for="material">Матеріал:</label>
+                    <input id="material" name="material" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <label for="description">Опис:</label>
+                    <textarea class="form-control" name="description" rows="5" id="description"></textarea>
+                </div>
+            </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <label for="description">Опис:</label>
@@ -128,20 +123,23 @@
                 <input type="submit" value="Create" id="create" class="btn btn-default" />
             </div>
         </div>
-<<<<<<< HEAD
         }
     </div>
-    <script>
-    @*function changeSelect() {
-        var tmp = @Model.categoryTypes.Select(x => x.Type);
-        $("#test").val(tmp);
-    }*@
-            
-    </script>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
 </div>
-=======
-    </div>
->>>>>>> 33d4157fafee677c6f8a860e07d0a473a8c43359
+        
+    <script>
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+
+            var imgtag = document.getElementById("myimage");
+            imgtag.title = selectedFile.name;
+
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+
+            reader.readAsDataURL(selectedFile);
+        }
+    </script>

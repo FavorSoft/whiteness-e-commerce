@@ -7,13 +7,22 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public class UserRepository : IRepository<Users>
+    public class UserRepository : IUserRepository
     {
         Entities entities;
         public UserRepository(Entities db)
         {
             entities = db;
         }
+
+        public Entities GetEntities
+        {
+            get
+            {
+                return entities;
+            }
+        }
+
         public void AddItem(Users item)
         {
             entities.Users.Add(item);

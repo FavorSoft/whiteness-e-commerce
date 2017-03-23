@@ -50,3 +50,4 @@ C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debu
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll.config
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.pdb
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

@@ -25,7 +25,7 @@ namespace taras_shop.Controllers.Identity
 
         public bool IsInRole(string role)
         {
-            return facade.UnitOfWork.getUser.;
+            return facade.UnitOfWork.getUser.IsInRole(role, Id);
         }
     }
 }

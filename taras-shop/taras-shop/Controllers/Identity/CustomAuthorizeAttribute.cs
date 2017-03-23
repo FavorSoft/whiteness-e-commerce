@@ -50,7 +50,8 @@ namespace taras_shop.Controllers.Identity
             {
                 for (int i = 0; i < allowedRoles.Length; i++)
                 {
-                    if (httpContext.User.IsInRole(allowedRoles[i]))
+                    var user = httpContext.User as CustomPrincipal;
+                    if (user.IsInRole(allowedRoles[i]))
                         return true;
                 }
                 return false;

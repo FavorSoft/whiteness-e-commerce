@@ -31,13 +31,7 @@ namespace taras_shop.Controllers
         {
             return View();
         }
-
-        [AllowAnonymous]
-        public ActionResult Login()
-        {
-            return View(new LoginModel());
-        }
-
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -86,13 +80,7 @@ namespace taras_shop.Controllers
             }
             return View(model);
         }
-
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
+        
         [AllowAnonymous]
         public ActionResult AuthError()
         {
@@ -166,7 +154,7 @@ namespace taras_shop.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Пользователь с таким логином уже существует");
+                    return View("AuthError");
                 }
             }
             return View("AuthError");

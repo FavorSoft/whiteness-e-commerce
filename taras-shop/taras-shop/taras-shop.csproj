@@ -90,6 +90,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Identity\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\Identity\CustomPrincipal.cs" />
     <Compile Include="Controllers\Identity\ICustomPrincipal.cs" />
     <Compile Include="Controllers\Identity\UserModel.cs" />
@@ -168,8 +169,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Admin\AddUnitPage.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />

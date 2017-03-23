@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Facade;
+using BLL.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -8,6 +10,8 @@ namespace taras_shop.Controllers.Identity
 {
     public class CustomPrincipal : ICustomPrincipal
     {
+        Facade facade = new Facade(new UnitOfWork());
+
         public int Id { get; set; }
 
         public string Role { get; set; }
@@ -21,7 +25,7 @@ namespace taras_shop.Controllers.Identity
 
         public bool IsInRole(string role)
         {
-            return false;
+            return facade.UnitOfWork.getUser.;
         }
     }
 }

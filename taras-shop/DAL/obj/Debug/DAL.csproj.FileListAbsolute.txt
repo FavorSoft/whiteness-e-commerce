@@ -34,3 +34,19 @@ D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB.mdf
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\localDB_log.ldf
 C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServerCompact.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\System.Data.SqlServerCe.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServerCompact.xml
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.pdb
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll.config
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.dll
+C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.pdb

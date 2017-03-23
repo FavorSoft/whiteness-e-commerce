@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using taras_shop.Controllers.Identity;
 
 namespace taras_shop.Controllers
 {
@@ -33,21 +34,16 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        [CustomAuthorizeAttribute(Roles = "Admin")]
         public async Task<ActionResult> AddUnitPage()
         {
-            if (User != null && User.Role == "Admin")
-            {
                 Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()
                 {
                     categories = facade.UnitOfWork.getCategory.GetAll(),
                     categoryTypes = facade.UnitOfWork.getCategoryType.GetAll()
                 };
                 return View(model);
-            }
-            else
-            {
-                return View("AuthError");
-            }
+         
         }
 
         [HttpPost]

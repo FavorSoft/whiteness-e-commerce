@@ -100,17 +100,18 @@
     $("#size-toggle").click(function () {
         $(".append-radio").toggleClass("radio-show")
     });
-        
-    $.ajax({
-        method: "GET",
-        url: "Home/GetItemsByFilter",
-        success: function (data) {
-            console.log(data);
-        }
-    })
-      .done(function (msg) {
-          alert("Data Saved: " + msg);
-      });
+
+    
+    //$.ajax({
+    //    method: "GET",
+    //    url: "Home/GetItemsByFilter",
+    //    success: function (data) {
+    //        console.log(data);
+    //    }
+    //})
+    //  .done(function (msg) {
+    //      alert("Data Saved: " + msg);
+    //  });
 
 
     // I'll be back. okay?

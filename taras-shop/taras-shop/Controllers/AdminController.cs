@@ -96,7 +96,7 @@ namespace taras_shop.Controllers
                         Dictionary<int, int> sizes = amountCounter(amount_xs, amount_s, amount_m, amount_l, amount_xl);
                         foreach (var i in sizes)
                         {
-                            if (i.Value != null && i.Value != 0)
+                            if (i.Value.Equals(null) && i.Value != 0)
                             {
                                 facade.UnitOfWork.getUnitInfo.AddItem(new UnitInfoDto()
                                 {

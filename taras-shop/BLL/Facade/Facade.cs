@@ -74,15 +74,24 @@ namespace BLL.Facade
 
             IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            JavaScriptSerializer s = new JavaScriptSerializer();
 
-            string serializeArticles = serializer.Serialize(articles);
+            int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice) / amountItems;
 
-            int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice)/amountItems;
+            var res = new
+            {
+                units = s.Serialize(articles.Select(x => x.unit).ToList()),
+                images = s.Serialize(articles.Select(x => x.images).ToList()),
+                sizes = s.Serialize(articles.Select(x => x.sizes.Keys).ToList()),
+                unitDtos = s.Serialize(articles.Select(x => x.sizes.Values).ToList()),
+                categories = s.Serialize(articles.Select(x => x.category).ToList()),
+                page = (pages - skipItems) / amountItems,
+                pages = pages
+            };
 
-            return new { articles = articles, page = (pages - skipItems)/amountItems, pages = pages };
+            return res;
         }
-
+        
         public IEnumerable<Article> getRecommendsArticles(int count)
         {
             List<Article> res = new List<Article>();

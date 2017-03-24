@@ -37,6 +37,7 @@ C:\Users\Home\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.cspr
 <<<<<<< HEAD
 D:\taras-shop\whiteness-e-commerce\taras-shop\DAL\bin\Debug\ru\EntityFramework.resources.dll
 =======
+>>>>>>> migrate-on-cam
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.dll
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\EntityFramework.SqlServerCompact.dll
@@ -55,3 +56,4 @@ C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debu
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\bin\Debug\DAL.pdb
 >>>>>>> ee4c95ede106dab10426205c70c331387216f33e
 C:\Users\Andrii Kolomys\Desktop\dev\whiteness-e-commerce\taras-shop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+>>>>>>> develop

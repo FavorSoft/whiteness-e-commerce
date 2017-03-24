@@ -38,8 +38,10 @@
         </div>
         <ul class="radio-list">
             <li class="man-li">
-                @Html.RadioButton("IsMan", "true", new { @style ="{color: white}"})
                 
+                @Html.RadioButton("IsMan", "true", new { @style ="{color: white}"})
+                <label for="man-option">Мужчина</label>
+                <div class="check"><div class="inside"></div></div>
                 @*@Html.EditorFor(model => model.IsMan, new { @id="man-option", @class = "reg-phone-input", @name="selector", @type="radio" })*@
                 @*<input type="radio" id="man-option" name="selector">*@
                 @*<label for="man-option">Мужчина</label>

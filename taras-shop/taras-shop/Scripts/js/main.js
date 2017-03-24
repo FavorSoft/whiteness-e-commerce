@@ -100,21 +100,6 @@
     $("#size-toggle").click(function () {
         $(".append-radio").toggleClass("radio-show")
     });
-
-    function onFileSelected(event) {
-        var selectedFile = event.target.files[0];
-        var reader = new FileReader();
-
-        var imgtag = document.getElementById("myimage");
-        imgtag.title = selectedFile.name;
-
-        reader.onload = function (event) {
-            imgtag.src = event.target.result;
-        };
-
-        reader.readAsDataURL(selectedFile);
-    }
-
     //$.ajax({
     //    method: "GET",
     //    url: "Home/GetItemsByFilter",
@@ -172,5 +157,4 @@
     //    });
     //    $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
     //});
->>>>>>> ee4c95ede106dab10426205c70c331387216f33e
 });

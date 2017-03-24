@@ -120,12 +120,15 @@ namespace BLL.Providers
             });
         }
 
-        public bool IsInRole(string role)
+        public bool IsInRole(string role, int id)
         {
             bool flag = false;
 
-            if (_repo.GetEntities.Roles.Where(x => x.role == role).Select(x => x.role)) ;
-
+            int roleId = _repo.GetEntities.Roles.Where(x => x.role == role).FirstOrDefault().id;
+            if (roleId == GetById(id).RoleId)
+            {
+                flag = true;
+            }
             return flag;
         }
     }

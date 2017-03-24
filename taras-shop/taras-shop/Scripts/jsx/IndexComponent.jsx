@@ -18,7 +18,6 @@
         this.setState({
             units: [{name: category}]
         });
-        return null;
     }
 
     render() {

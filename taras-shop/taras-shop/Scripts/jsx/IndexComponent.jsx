@@ -7,10 +7,14 @@
         this.getUnitInfo = this.getUnitInfo.bind(this);
     }
 
-    getUnitInfo(typeId, category) {
+    getUnitInfo(typeId, category, sizes = false, fromPrice = false, toPrice = false) {
         document.querySelector(".main").classList.add("nondisplay");
+        console.log("-------------------------");
         console.log(typeId);
         console.log(category);
+        console.log(fromPrice);
+        console.log(toPrice);
+        //запит
         this.setState({
             units: [{name: category}]
         });
@@ -34,14 +38,11 @@ class Sidebar extends React.Component {
             categoryTypes: [1, 2, 3],
             categories: [1, 2, 3],
             sizes: [1, 2, 3],
-            isChanged: false,
             fromPrice: 0,
             toPrice: 0
         };
         this.renderWomanList = this.renderWomanList.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.filtersButton = this.filtersButton.bind(this);
-        this.handleSearchClick = this.handleSearchClick.bind(this);
     }
 
     componentWillMount() {
@@ -52,9 +53,18 @@ class Sidebar extends React.Component {
             this.setState({
                 categoryTypes: response.category_types,
                 categories: response.categories,
-                sizes: response.sizes
+                sizes: response.sizes,
+                currentTypeId: null,
+                currentCategory: null
             });
         }.bind(this));
+    }
+
+    setCurrentCategory(TypeId, Category) {
+        this.setState({
+            currentTypeId: TypeId,
+            currentCategory: Category
+        });
     }
 
     renderWomanList() {
@@ -65,7 +75,13 @@ class Sidebar extends React.Component {
             if (category.TypeId === 1) {
                 return (
                     <li key={ category.Id }>
-                        <p onClick={ () => this.props.getUnitInfo(category.TypeId, category.Category) }>{ category.Category }</p>
+                        <p onClick={ () => 
+                        {
+                            this.props.getUnitInfo(category.TypeId, category.Category);
+                            this.setCurrentCategory(category.TypeId, category.Category);
+                        }}>
+                        { category.Category }
+                        </p>
                     </li>
                 );
             }
@@ -74,7 +90,7 @@ class Sidebar extends React.Component {
 
     renderManList() {
         /*
-         * Create list of woman li, to use in our jsx
+         * Create list of man li, to use in our jsx
          */
         return this.state.categories.map(category => {
             if (category.TypeId === 2) {
@@ -89,7 +105,7 @@ class Sidebar extends React.Component {
 
     renderChildrenList() {
         /*
-         * Create list of woman li, to use in our jsx
+         * Create list of children li, to use in our jsx
          */
         return this.state.categories.map(category => {
             if (category.TypeId === 3) {
@@ -104,27 +120,16 @@ class Sidebar extends React.Component {
 
     handleChange(event) {
         console.log("fire");
-        this.setState({
-            isChanged: true,
-        });
+        let fromPrice = null;
+        let toPrice = null;
         if (event.target.id === "from-price-input")
         {
-            this.setState({
-                fromPrice: event.target.value
-            });
+                fromPrice = event.target.value
         }
         else if (event.target.id === "to-price-input")
         {
-            this.setState({
-                toPrice: event.target.value
-            });
+                toPrice = event.target.value
         }
-    }
-
-    handleSearchClick() {
-        /*
-         * If filters change - get changes and send them to the server
-         */
         // Get changes of filters
         let sizes = this.state.sizes.map((size) => {
             let unitSize = document.querySelector("#" + size.Size + "-option:checked");
@@ -138,24 +143,32 @@ class Sidebar extends React.Component {
             i && temp.push(i); // copy each non-empty value to the 'temp' array
 
         sizes = temp;
-        // Do ajax response to server for unit filtering
-        /*$.post('', {sizes: sizes, fromPrice: this.state.fromPrice, toPrice: this.state.toPrice}, (response) => {
-            console.log(response);
-        });*/
-        console.log("Sent!");
-        this.setState({
-            isChanged: false
-        });
+        this.props.getUnitInfo(this.state.currentCategory, this.currentTypeId, sizes, fromPrice, toPrice);
     }
 
-    filtersButton() {
-        if(this.state.isChanged === true) {
-            return <button onClick={ this.handleSearchClick } className="filters-search">Search</button>
-        }
-        else {
-            return null
-        }
-    }
+    //handleSearchClick() {
+    //    /*
+    //     * If filters change - get changes and send them to the server
+    //     */
+    //    // Get changes of filters
+    //    let sizes = this.state.sizes.map((size) => {
+    //        let unitSize = document.querySelector("#" + size.Size + "-option:checked");
+    //        if (unitSize) {
+    //            return size.Size
+    //        }
+    //    });
+    //    // Clean sizes array from undefined values
+    //    temp = [];
+    //    for(let i of sizes)
+    //        i && temp.push(i); // copy each non-empty value to the 'temp' array
+
+    //    sizes = temp;
+    //    // Do ajax response to server for unit filtering
+    //    /*$.get('/Home/GetItemsByFilter', {sizes: sizes, fromPrice: this.state.fromPrice, toPrice: this.state.toPrice}, (response) => {
+    //        console.log(response);
+    //    });*/
+    //    console.log("Sent!");
+    //}
 
     render() {
         return (
@@ -186,7 +199,6 @@ class Sidebar extends React.Component {
                 <div className="filters">
                     <SideFiltersPrice handleChange={ this.handleChange } />
                     <SideFiltersSize handleChange={ this.handleChange } sizes={this.state.sizes}/>
-                    { this.filtersButton() }
                 </div>
             </div>
          </aside>

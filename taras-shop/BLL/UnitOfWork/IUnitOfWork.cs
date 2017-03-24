@@ -13,7 +13,7 @@ namespace BLL.UnitOfWork
     {
         IProvider<BasketItemsDto> getBasketItems { get; }
         IProvider<BasketDto> getBasket { get; }
-        IProvider<CategoriesDto> getCategory { get; }
+        ICategoryProvider getCategory { get; }
         IProvider<CategoryTypeDto> getCategoryType { get; }
         IImagesProvider getImages { get; }
         IProvider<NewsImagesDto> getNewsImages { get; }

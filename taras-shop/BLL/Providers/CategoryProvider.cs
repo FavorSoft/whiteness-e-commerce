@@ -11,7 +11,7 @@ using BLL.IProviders;
 
 namespace BLL.Providers
 {
-    public class CategoryProvider : IProvider<CategoriesDto>
+    public class CategoryProvider : ICategoryProvider
     {
         readonly IRepository<Categories> _repo;
         public CategoryProvider(Entities db)
@@ -76,6 +76,11 @@ namespace BLL.Providers
                 id = item.Id,
                 type_id = item.TypeId
             });
+        }
+
+        public CategoriesDto getCategoryByInfo(int typeId, string category)
+        {
+            return _repo.
         }
     }
 }

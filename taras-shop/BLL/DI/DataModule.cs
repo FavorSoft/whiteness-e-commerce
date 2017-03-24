@@ -18,7 +18,7 @@ namespace BLL.DI
         {
             #region Providers
             builder.RegisterType<UnitOfWork.UnitOfWork>().As<UnitOfWork.IUnitOfWork>().InstancePerRequest();
-            builder.RegisterType<CategoryProvider>().As<IProvider<CategoriesDto>>().InstancePerRequest();
+            builder.RegisterType<CategoryProvider>().As<ICategoryProvider>().InstancePerRequest();
             builder.RegisterType<CategoryTypeProvider>().As<IProvider<CategoryTypeDto>>().InstancePerRequest();
             builder.RegisterType<BasketItemsProvider>().As<IProvider<BasketItemsDto>>().InstancePerRequest();
             builder.RegisterType<BasketProvider>().As<IProvider<BasketDto>>().InstancePerRequest();

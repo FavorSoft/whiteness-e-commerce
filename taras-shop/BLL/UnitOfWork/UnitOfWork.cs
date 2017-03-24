@@ -16,7 +16,7 @@ namespace BLL.UnitOfWork
         #region PARAMETERS
         IProvider<BasketItemsDto> _basketItems;
         IProvider<BasketDto> _basket;
-        IProvider<CategoriesDto> _category;
+        ICategoryProvider _category;
         IProvider<CategoryTypeDto> _categoryType;
         IImagesProvider _images;
         IProvider<NewsImagesDto> _newsImages;
@@ -74,7 +74,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<CategoriesDto> getCategory
+        public ICategoryProvider getCategory
         {
             get
             {

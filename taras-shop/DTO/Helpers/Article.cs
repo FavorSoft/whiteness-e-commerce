@@ -12,6 +12,7 @@ namespace DTO
         public UnitDto unit { get; set; }
         public CategoriesDto category { get; set; }
         public IEnumerable<ImagesDto> images { get; set; }
-        public IDictionary<SizesDto, UnitInfoDto> sizes { get; set; }
+        public IEnumerable<SizesDto> sizes { get; set; }
+        public IEnumerable<UnitInfoDto> unitsInfo { get; set; }
     }
 }

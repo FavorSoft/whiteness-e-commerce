@@ -13,7 +13,7 @@ namespace BLL.Providers
 {
     public class UnitProvider : IUnitProvider
     {
-        readonly IUnitRepository _repo;
+        readonly IRepository<Unit> _repo;
         public UnitProvider(Entities db)
         {
             _repo = new UnitRepository(db);
@@ -124,8 +124,8 @@ namespace BLL.Providers
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, List<int> sizesId, int skipItems, int amount)
         {
             return (
-                from units in _repo.GetEntities.Unit
-                join s in _repo.GetEntities.UnitInfo on units.id equals s.unit_id
+                from units in _repo.GetEntities().Unit
+                join s in _repo.GetEntities().UnitInfo on units.id equals s.unit_id
                 where units.price >= startPrice &&
                       units.price <= endPrice &&
                       units.category_id == categoryId
@@ -164,8 +164,8 @@ namespace BLL.Providers
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int amount)
         {
             return (
-                from units in _repo.GetEntities.Unit
-                join s in _repo.GetEntities.UnitInfo on units.id equals s.unit_id
+                from units in _repo.GetEntities().Unit
+                join s in _repo.GetEntities().UnitInfo on units.id equals s.unit_id
                 where units.category_id == categoryId
                 orderby units.add_date descending
                 select new
@@ -201,7 +201,7 @@ namespace BLL.Providers
 
         public int GetAmountByFilter(int categoryId, int startPrice, int endPrice)
         {
-            return (from units in _repo.GetEntities.Unit
+            return (from units in _repo.GetEntities().Unit
                     where units.price >= startPrice &&
                           units.price <= endPrice &&
                           units.category_id == categoryId

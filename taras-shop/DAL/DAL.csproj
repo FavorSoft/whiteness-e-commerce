@@ -95,11 +95,6 @@
     <Compile Include="Category_type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity\IdentityContext.cs" />
-    <Compile Include="IRepository\IUnitRepository.cs" />
-    <Compile Include="IRepository\IUserRepository.cs" />
-    <Compile Include="Identity\UserIdentityRepository.cs" />
-    <Compile Include="Identity\UsersIdentity.cs" />
     <Compile Include="Images.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -97,30 +97,30 @@ namespace BLL.Facade
 
         public object getByFilter(int typeId, string category, int amountItems)
         {
-            int categoryId = UnitOfWork.getCategory.
+            //int categoryId = UnitOfWork.getCategory.
 
-            List<UnitDto> units = UnitOfWork.getUnit.GetByFilter(categoryId, amountItems).ToList();
+            //List<UnitDto> units = UnitOfWork.getUnit.GetByFilter(categoryId, amountItems).ToList();
 
-            List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
+            //List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
+            //
+            //IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
+            //
+            //JavaScriptSerializer s = new JavaScriptSerializer();
+            //
+            //int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice) / amountItems;
+            //
+            //var res = new
+            //{
+            //    units = s.Serialize(articles.Select(x => x.unit).ToList()),
+            //    images = s.Serialize(articles.Select(x => x.images).ToList()),
+            //    sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
+            //    unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),
+            //    categories = s.Serialize(articles.Select(x => x.category).ToList()),
+            //    page = (pages - skipItems) / amountItems,
+            //    pages = pages
+            //};
 
-            IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
-
-            JavaScriptSerializer s = new JavaScriptSerializer();
-
-            int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice) / amountItems;
-
-            var res = new
-            {
-                units = s.Serialize(articles.Select(x => x.unit).ToList()),
-                images = s.Serialize(articles.Select(x => x.images).ToList()),
-                sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
-                unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),
-                categories = s.Serialize(articles.Select(x => x.category).ToList()),
-                page = (pages - skipItems) / amountItems,
-                pages = pages
-            };
-
-            return res;
+            return null;
         }
 
         public IEnumerable<Article> getRecommendsArticles(int count)

@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 
 namespace DAL.IRepository
 {
-    public interface IRepository<T>
+    public abstract class IRepository<T>
     {
-        void AddItem(T item);
-        IQueryable<T> GetAll();
-        T GetById(int id);
-        void EditItem(T item);
-        void DeleteItem(int id);
+        protected Entities entities;
+        public IRepository(Entities db)
+        {
+            entities = db;
+        }
+
+        public Entities GetEntities() {
+            return entities;
+        }
+        public abstract void AddItem(T item);
+        public abstract IQueryable<T> GetAll();
+        public abstract T GetById(int id);
+        public abstract void EditItem(T item);
+        public abstract void DeleteItem(int id);
     }
 }

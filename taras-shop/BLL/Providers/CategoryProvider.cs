@@ -80,7 +80,16 @@ namespace BLL.Providers
 
         public CategoriesDto getCategoryByInfo(int typeId, string category)
         {
-            return _repo.
+            var tmp = _repo.GetById(1);
+            CategoriesDto category1 = new CategoriesDto()
+            {
+                Category = tmp.category,
+                CategoryImg = tmp.category_img,
+                Id = tmp.id,
+                Description = tmp.description,
+                TypeId = tmp.type_id
+            };
+            return category1;
         }
     }
 }

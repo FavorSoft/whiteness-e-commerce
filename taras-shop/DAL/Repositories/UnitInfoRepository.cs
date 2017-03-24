@@ -8,35 +8,34 @@ namespace DAL.Repositories
 {
     public class UnitInfoRepository : IRepository.IRepository<UnitInfo>
     {
-        Entities entities;
-        public UnitInfoRepository(Entities db)
+        public UnitInfoRepository(Entities db) : base(db)
         {
-            entities = db;
         }
-        public void AddItem(UnitInfo item)
+
+        public override void AddItem(UnitInfo item)
         {
             entities.UnitInfo.Add(item);
         }
 
-        public void DeleteItem(int id)
+        public override void DeleteItem(int id)
         {
             var item = entities.UnitInfo.FirstOrDefault(x => x.id == id);
             entities.UnitInfo.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public void EditItem(UnitInfo item)
+        public override void EditItem(UnitInfo item)
         {
             entities.UnitInfo.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public IQueryable<UnitInfo> GetAll()
+        public override IQueryable<UnitInfo> GetAll()
         {
             return entities.UnitInfo;
         }
 
-        public UnitInfo GetById(int id)
+        public override UnitInfo GetById(int id)
         {
             return entities.UnitInfo.Where(x => x.id == id).FirstOrDefault();
         }

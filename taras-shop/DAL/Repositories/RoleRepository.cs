@@ -9,36 +9,35 @@ namespace DAL.Repository
 {
     public class RoleRepository : IRepository<Roles>
     {
-        Entities entities;
-        public RoleRepository(Entities db)
+        public RoleRepository(Entities db) : base(db)
         {
-            entities = db;
         }
-        public void AddItem(Roles item)
+
+        public override void AddItem(Roles item)
         {
             entities.Roles.Add(item);
         }
 
-        public void DeleteItem(int id)
+        public override void DeleteItem(int id)
         {
             var item = entities.Roles.FirstOrDefault(x => x.id == id);
             entities.Roles.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public void EditItem(Roles item)
+        public override void EditItem(Roles item)
         {
             entities.Roles.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
 
         }
 
-        public IQueryable<Roles> GetAll()
+        public override IQueryable<Roles> GetAll()
         {
             return entities.Roles;
         }
 
-        public Roles GetById(int id)
+        public override Roles GetById(int id)
         {
             return entities.Roles.Where(x => x.id == id).FirstOrDefault();
         }

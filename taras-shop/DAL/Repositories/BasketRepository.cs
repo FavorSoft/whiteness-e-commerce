@@ -9,35 +9,34 @@ namespace DAL.Repository
 {
     public class BasketRepository : IRepository<Basket>
     {
-        Entities entities;
-        public BasketRepository(Entities db)
+        public BasketRepository(Entities db) : base(db)
         {
-            entities = db;
         }
-        public void AddItem(Basket item)
+
+        public override void AddItem(Basket item)
         {
             entities.Basket.Add(item);
         }
 
-        public void DeleteItem(int id)
+        public override void DeleteItem(int id)
         {
             var item = entities.Basket.FirstOrDefault(x => x.id == id);
             entities.Basket.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public void EditItem(Basket item)
+        public override void EditItem(Basket item)
         {
             entities.Basket.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public IQueryable<Basket> GetAll()
+        public override IQueryable<Basket> GetAll()
         {
             return entities.Basket;
         }
 
-        public Basket GetById(int id)
+        public override Basket GetById(int id)
         {
             return entities.Basket.Where(x => x.id == id).FirstOrDefault();
         }

@@ -8,14 +8,13 @@ using DTO;
 using DAL;
 using DAL.Repository;
 using DAL.IRepository;
-using DAL.Identity;
 using System.Security.Claims;
 
 namespace BLL.Providers
 {
     public class UserProvider : IUserProvider
     {
-        readonly IUserRepository _repo;
+        readonly IRepository<Users> _repo;
         public UserProvider(Entities context)
         {
             _repo = new UserRepository(context);
@@ -124,7 +123,7 @@ namespace BLL.Providers
         {
             bool flag = false;
 
-            int roleId = _repo.GetEntities.Roles.Where(x => x.role == role).FirstOrDefault().id;
+            int roleId = _repo.GetEntities().Roles.Where(x => x.role == role).FirstOrDefault().id;
             if (roleId == GetById(id).RoleId)
             {
                 flag = true;

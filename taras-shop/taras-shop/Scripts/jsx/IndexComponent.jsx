@@ -18,12 +18,15 @@
             fromPrice: fromPrice,
             toPrice: toPrice
         };
-        //document.querySelector(".main").removeChild();
-        
+
+        let deleteChild = document.querySelector("#to-be-deleted");
+        if (typeof (deleteChild) != 'undefined' && deleteChild != null) {
+            document.querySelector(".main").removeChild(deleteChild);
+        }
+
         $.get("/Home/GetItemsByFilter", request, (response) => {
             console.log(response);
         });
-        console.log("change");
         this.setState({
             units: [{ name: category }]
         });
@@ -50,13 +53,11 @@ class Sidebar extends React.Component {
             toPrice: 5000,
             currentTypeId: null,
             currentCategory: null,
-            returnSizes: null,
-            isGo: false
+            returnSizes: null
         };
         this.renderLists = this.renderLists.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSizesChange = this.handleSizesChange.bind(this);
         this.setCurrentCategory = this.setCurrentCategory.bind(this);
-        this.pause = this.pause.bind(this);
         this.handleGo = this.handleGo.bind(this);
     }
 
@@ -102,79 +103,39 @@ class Sidebar extends React.Component {
     });
     }
 
-    pause(milliseconds) {
-        var dt = new Date();
-        while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+    handleGo(fromPrice, toPrice) {
+        this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
+            fromPrice, toPrice);
+
+        this.setState({
+            fromPrice: fromPrice,
+            toPrice: toPrice
+        });
     }
 
-    handleGo(toPrice, fromPrice) {
-        console.log("TOGGLE");
-        if (this.state.isGo === false) {
+    handleSizesChange() {
+        // Get changes of size filters
+        this.setState({
+            returnSizes: this.state.sizes.map((size) => {
+                let unitSize = document.querySelector("#" + size.Size + "-option:checked");
+                if (unitSize) {
+                    return size.Size
+                }
+            })
+        }, () => {
+            // Clean sizes array from undefined values
+            let temp = [];
+            for(let i of this.state.returnSizes)
+                i && temp.push(i); // copy each non-empty value to the 'temp' array
+
             this.setState({
-                isGo: true
+                returnSizes: temp
+            }, () => {
+                this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
+                    this.state.fromPrice, this.state.toPrice);
             });
-        }
-        else if (this.state.isGo === true) {
-            this.setState({
-                isGo: false
-            });
-        }
+        });
     }
-
-    //handlePriceChange(event) {
-    //    let eventTarget = event.target;
-    //    if (event.target.id === "from-price-input") {
-    //        this.setState({
-    //            fromPrice: event.target.value
-    //        });
-    //    }
-    //    else if (event.target.id === "to-price-input") {
-    //        this.setState({
-    //            toPrice: event.target.value
-    //        });
-    //    }
-        
-    //    console.log("evenTarget");
-    //    if (this.state.isGo) {
-    //        console.log("evenTarget ISGO");
-    //        this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
-    //            this.state.fromPrice, this.state.toPrice);
-    //    }
-    //}
-
-    //handleSizesChange() {
-    //    // Get changes of size filters
-    //    this.setState({
-    //        returnSizes: this.state.sizes.map((size) => {
-    //            let unitSize = document.querySelector("#" + size.Size + "-option:checked");
-    //            if (unitSize) {
-    //                return size.Size
-    //            }
-    //        })
-    //    }, () => {
-    //        // Clean sizes array from undefined values
-    //        let temp = [];
-    //        for(let i of this.state.returnSizes)
-    //            i && temp.push(i); // copy each non-empty value to the 'temp' array
-
-    //        this.setState({
-    //            returnSizes: temp
-    //        }, () => {
-    //            //if (eventTarget.id === "from-price-input" || eventTarget.id === "to-price-input") {
-    //            //    console.log("evenTarget");
-    //            //    if (this.state.isGo) {
-    //            //        console.log("evenTarget ISGO");
-    //            //        this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
-    //            //            this.state.fromPrice, this.state.toPrice);
-    //            //    }
-    //            //}
-    //            //else {
-    //                this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
-    //                    this.state.fromPrice, this.state.toPrice);
-    //            //}
-    //        });
-    //    });
-    //}
 
     render() {
         return (
@@ -203,9 +164,8 @@ class Sidebar extends React.Component {
                 </div>
                 <h3 className="filters-h">Фильтры</h3>
                 <div className="filters">
-                    <SideFiltersPrice handleChange={ this.handleChange} fromValue={this.state.fromPrice} 
-                        toValue={this.state.toPrice} />
-                    <SideFiltersSize handleChange={ this.handleChange } sizes={this.state.sizes}/>
+                    <SideFiltersPrice handleGo={ this.handleGo } />
+                    <SideFiltersSize handleChange={ this.handleSizesChange } sizes={this.state.sizes}/>
                 </div>
             </div>
          </aside>
@@ -216,6 +176,24 @@ class Sidebar extends React.Component {
 class SideFiltersPrice extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            fromValue: 0,
+            toValue: 5000
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    handleChange(event) {
+        if (event.target.id === "from-price-input") {
+            this.setState({
+                fromValue: event.target.value
+            });
+        }
+        else if (event.target.id === "to-price-input") {
+            this.setState({
+                toValue: event.target.value
+            });
+        }
     }
 
     render() {
@@ -224,15 +202,16 @@ class SideFiltersPrice extends React.Component {
                 <h4 className="price-h">Цена</h4>
                 <div>
                     <label htmlFor="from-price-input">От: </label>
-                    <input value={this.props.fromValue } id="from-price-input" onChange={ this.props.handleChange } type="text" />
+                    <input value={this.state.fromValue } id="from-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
                 <div>
                     <label htmlFor="to-price-input">До: </label>
-                    <input value={ this.props.toValue }  id="to-price-input" onChange={ this.props.handleChange } type="text" />
+                    <input value={ this.state.toValue}  id="to-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
-                <button onClick={ this.props.handleGo } className="go-search-btn">Go</button>
+                <button onClick={ () => this.props.handleGo(this.state.fromValue, this.state.toValue) }
+                 className="go-search-btn">Go</button>
             </div>
         );
     }

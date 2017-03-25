@@ -13,6 +13,7 @@ namespace BLL.IProviders
         IEnumerable<UnitDto> GetRecommends();
         IEnumerable<UnitDto> GetSomeUnits(int start, int amount);
         IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, List<int> sizesId, int skipItems, int amount);
+        IEnumerable<UnitDto> GetByFilter(int categoryId, int amount);
         int GetAmountByFilter(int categoryId, int startPrice, int endPrice);
     }
 }

@@ -189,6 +189,7 @@
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Shared\AuthError.cshtml" />
     <Content Include="Views\Home\Ordering.cshtml" />
+    <Content Include="Views\Admin\AllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

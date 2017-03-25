@@ -11,7 +11,7 @@ using DAL.IRepository;
 
 namespace BLL.Providers
 {
-    public class RoleProvider : IProvider<RolesDto>
+    public class RoleProvider : IRolesProvider
     {
         readonly IRepository<Roles> _repo;
         public RoleProvider(Entities db)
@@ -57,6 +57,11 @@ namespace BLL.Providers
                 Id = tmp.id,
                 Role = tmp.role
             };
+        }
+
+        public int GetIdByRole(string role)
+        {
+            return _repo.GetEntities().Roles.Where(x => x.role == role).Select(x => x.id).FirstOrDefault();
         }
     }
 }

@@ -8,14 +8,13 @@ using DTO;
 using DAL;
 using DAL.Repository;
 using DAL.IRepository;
-using DAL.Identity;
 using System.Security.Claims;
 
 namespace BLL.Providers
 {
     public class UserProvider : IUserProvider
     {
-        readonly IUserRepository _repo;
+        readonly IRepository<Users> _repo;
         public UserProvider(Entities context)
         {
             _repo = new UserRepository(context);
@@ -86,10 +85,11 @@ namespace BLL.Providers
 
         public UsersDto GetByInfo(UsersDto user)
         {
-            return _repo.GetAll().Where(x => x.email == user.Email && x.password == user.Password).Select(x => new UsersDto()
+            return _repo.GetAll().Where(x => x.email == user.Email).Select(x => new UsersDto()
             {
                 Email = x.email,
                 Id = x.id,
+                Password = x.password,
                 Name = x.name,
                 Surname = x.surname,
                 Number = x.number,
@@ -124,12 +124,20 @@ namespace BLL.Providers
         {
             bool flag = false;
 
-            int roleId = _repo.GetEntities.Roles.Where(x => x.role == role).FirstOrDefault().id;
+            int roleId = _repo.GetEntities().Roles.Where(x => x.role == role).FirstOrDefault().id;
             if (roleId == GetById(id).RoleId)
             {
                 flag = true;
             }
             return flag;
+        }
+
+        public void ChangeRole(int userId, int roleId)
+        {
+            _repo.EditItem(new Users()
+            {
+                id = userId   
+            });
         }
     }
 }

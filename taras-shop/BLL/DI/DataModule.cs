@@ -18,7 +18,7 @@ namespace BLL.DI
         {
             #region Providers
             builder.RegisterType<UnitOfWork.UnitOfWork>().As<UnitOfWork.IUnitOfWork>().InstancePerRequest();
-            builder.RegisterType<CategoryProvider>().As<IProvider<CategoriesDto>>().InstancePerRequest();
+            builder.RegisterType<CategoryProvider>().As<ICategoryProvider>().InstancePerRequest();
             builder.RegisterType<CategoryTypeProvider>().As<IProvider<CategoryTypeDto>>().InstancePerRequest();
             builder.RegisterType<BasketItemsProvider>().As<IProvider<BasketItemsDto>>().InstancePerRequest();
             builder.RegisterType<BasketProvider>().As<IProvider<BasketDto>>().InstancePerRequest();
@@ -27,7 +27,7 @@ namespace BLL.DI
             builder.RegisterType<NewsProvider>().As<IProvider<NewsDto>>().InstancePerRequest();
             builder.RegisterType<OrderItemsProvider>().As<IProvider<OrderItemsDto>>().InstancePerRequest();
             builder.RegisterType<OrderProvider>().As<IProvider<OrderDto>>().InstancePerRequest();
-            builder.RegisterType<RoleProvider>().As<IProvider<RolesDto>>().InstancePerRequest();
+            builder.RegisterType<RoleProvider>().As<IRolesProvider>().InstancePerRequest();
             builder.RegisterType<UnitProvider>().As<IProvider<UnitDto>>().InstancePerRequest();
             builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();
             #endregion
@@ -43,8 +43,8 @@ namespace BLL.DI
             builder.RegisterType<OrderItemsRepository>().As<IRepository<Order_items>>().InstancePerRequest();
             builder.RegisterType<OrderRepository>().As<IRepository<Order>>().InstancePerRequest();
             builder.RegisterType<RoleRepository>().As<IRepository<Roles>>().InstancePerRequest();
-            builder.RegisterType<UnitRepository>().As<IUnitRepository>().InstancePerRequest();
-            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
+            builder.RegisterType<UnitRepository>().As<IRepository<Unit>>().InstancePerRequest();
+            builder.RegisterType<UserRepository>().As<IRepository<Users>>().InstancePerRequest();
             #endregion
 
             //builder.RegisterType<Facade.Facade>().As<IFacade.IFacade>().InstancePerRequest();

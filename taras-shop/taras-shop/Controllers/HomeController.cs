@@ -45,19 +45,28 @@ namespace taras_shop.Controllers
         [HttpGet]
         public async Task<JsonResult> LoadSideBar()
         {
-            var res = new {category_types = facade.UnitOfWork.getCategoryType.GetAll(), categories = facade.UnitOfWork.getCategory.GetAll(), sizes = facade.UnitOfWork.getSizes.GetAll()};
+            var res = new
+            {
+                category_types = facade.UnitOfWork.getCategoryType.GetAll(),
+                categories = facade.UnitOfWork.getCategory.GetAll(),
+                sizes = facade.UnitOfWork.getSizes.GetAll()
+            };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public JsonResult GetItemsByFilter()
+        public JsonResult GetItemsByFilter(List<string> sizes)
         {
-            List<string> sizes = new List<string>();
-            sizes.Add("XL");
-            sizes.Add("XS");
             return Json(facade.getByFilter(1, 0, 100000, sizes, 0, 8), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetItemsByCategory(int typeId, string category)
+        {
+
+            return Json(facade.getByFilter(typeId, category, 8), JsonRequestBehavior.AllowGet);
+        }
+        
         [HttpGet]
         public async Task<JsonResult> LoadIndex()
         {

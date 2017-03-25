@@ -16,14 +16,14 @@ namespace BLL.UnitOfWork
         #region PARAMETERS
         IProvider<BasketItemsDto> _basketItems;
         IProvider<BasketDto> _basket;
-        IProvider<CategoriesDto> _category;
+        ICategoryProvider _category;
         IProvider<CategoryTypeDto> _categoryType;
         IImagesProvider _images;
         IProvider<NewsImagesDto> _newsImages;
         IProvider<NewsDto> _news;
         IProvider<OrderItemsDto> _orderItems;
         IProvider<OrderDto> _order;
-        IProvider<RolesDto> _role;
+        IRolesProvider _role;
         ISizesProvider _sizes;
         IUnitProvider _unit;
         IUserProvider _user;
@@ -74,7 +74,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<CategoriesDto> getCategory
+        public ICategoryProvider getCategory
         {
             get
             {
@@ -158,7 +158,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<RolesDto> getRole
+        public IRolesProvider getRole
         {
             get
             {

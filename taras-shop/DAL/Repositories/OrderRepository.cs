@@ -9,36 +9,35 @@ namespace DAL.Repository
 {
     public class OrderRepository : IRepository<Order>
     {
-        Entities entities;
-        public OrderRepository(Entities db)
+        public OrderRepository(Entities db) : base(db)
         {
-            entities = db;
         }
-        public void AddItem(Order item)
+
+        public override void AddItem(Order item)
         {
             entities.Order.Add(item);
         }
 
-        public void DeleteItem(int id)
+        public override void DeleteItem(int id)
         {
             var item = entities.Order.FirstOrDefault(x => x.id == id);
             entities.Order.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public void EditItem(Order item)
+        public override void EditItem(Order item)
         {
             entities.Order.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
 
         }
 
-        public IQueryable<Order> GetAll()
+        public override IQueryable<Order> GetAll()
         {
             return entities.Order;
         }
 
-        public Order GetById(int id)
+        public override Order GetById(int id)
         {
             return entities.Order.Where(x => x.id == id).FirstOrDefault();
         }

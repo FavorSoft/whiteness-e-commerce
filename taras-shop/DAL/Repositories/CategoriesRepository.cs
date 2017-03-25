@@ -9,35 +9,34 @@ namespace DAL.Repository
 {
     public class CategoriesRepository : IRepository<Categories>
     {
-        Entities entities;
-        public CategoriesRepository(Entities db)
+        public CategoriesRepository(Entities db) : base(db)
         {
-            entities = db;
         }
-        public void AddItem(Categories item)
+
+        public override void AddItem(Categories item)
         {
             entities.Categories.Add(item);
         }
 
-        public void DeleteItem(int id)
+        public override void DeleteItem(int id)
         {
             var item = entities.Categories.FirstOrDefault(x => x.id == id);
             entities.Categories.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public void EditItem(Categories item)
+        public override void EditItem(Categories item)
         {
             entities.Categories.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public IQueryable<Categories> GetAll()
+        public override IQueryable<Categories> GetAll()
         {
             return entities.Categories.AsQueryable();
         }
 
-        public Categories GetById(int id)
+        public override Categories GetById(int id)
         {
             return entities.Categories.Where(x => x.id == id).FirstOrDefault();
         }

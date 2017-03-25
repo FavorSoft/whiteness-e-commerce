@@ -180,6 +180,10 @@ body p, body span
         text-align: center;
     }
 
+    .go-search-btn {
+
+    }
+
     .mobile-sidebar #slider 
     {
         margin: 0 auto;

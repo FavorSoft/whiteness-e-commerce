@@ -22,5 +22,6 @@ namespace DAL.IRepository
         public abstract T GetById(int id);
         public abstract void EditItem(T item);
         public abstract void DeleteItem(int id);
+        public abstract T GetByInfo(string title, int id);
     }
 }

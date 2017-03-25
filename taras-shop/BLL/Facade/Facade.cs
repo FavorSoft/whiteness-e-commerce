@@ -66,7 +66,7 @@ namespace BLL.Facade
             return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
 
-        public object getByFilter(int categoryId, int startPrice, int endPrice, List<string> sizes, int skipItems, int amountItems)
+        public object getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
         {
             List<int> sizeIds = new List<int>();
             sizeIds = UnitOfWork.getSizes.GetIdsBySizes(sizes);

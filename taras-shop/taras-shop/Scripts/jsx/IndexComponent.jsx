@@ -2,22 +2,35 @@
     constructor(props) {
         super(props);
         this.state = {
-            units: []
+            units: [],
+            timer: null
         };
         this.getUnitInfo = this.getUnitInfo.bind(this);
     }
 
     getUnitInfo(typeId, category, sizes, fromPrice, toPrice) {
+        clearTimeout(this.state.timer);
         sizes = typeof sizes !== false ? sizes : null;
         fromPrice = typeof fromPrice !== false ? fromPrice : null;
         toPrice = typeof toPrice !== false ? toPrice : null;
-
-        document.querySelector(".main").classList.add("nondisplay");
-
-        console.log(typeId, category, sizes, fromPrice, toPrice);
-        //запит
+        let request = {
+            typeId: typeId,
+            category: category,
+            sizes: sizes,
+            fromPrice: fromPrice,
+            toPrice: toPrice
+        };
+        //document.querySelector(".main").removeChild();
+        
+        let timer = setTimeout(() => {
+            $.get("/Home/GetItemsByFilter", request, (response) => {
+                console.log(response);
+            });
+        }, 3000);
+        
         this.setState({
-            units: [{name: category}]
+            units: [{ name: category }],
+            timer: timer
         });
     }
 

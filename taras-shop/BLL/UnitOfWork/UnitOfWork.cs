@@ -23,7 +23,7 @@ namespace BLL.UnitOfWork
         IProvider<NewsDto> _news;
         IProvider<OrderItemsDto> _orderItems;
         IProvider<OrderDto> _order;
-        IProvider<RolesDto> _role;
+        IRolesProvider _role;
         ISizesProvider _sizes;
         IUnitProvider _unit;
         IUserProvider _user;
@@ -158,7 +158,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<RolesDto> getRole
+        public IRolesProvider getRole
         {
             get
             {

@@ -27,7 +27,7 @@ namespace BLL.DI
             builder.RegisterType<NewsProvider>().As<IProvider<NewsDto>>().InstancePerRequest();
             builder.RegisterType<OrderItemsProvider>().As<IProvider<OrderItemsDto>>().InstancePerRequest();
             builder.RegisterType<OrderProvider>().As<IProvider<OrderDto>>().InstancePerRequest();
-            builder.RegisterType<RoleProvider>().As<IProvider<RolesDto>>().InstancePerRequest();
+            builder.RegisterType<RoleProvider>().As<IRolesProvider>().InstancePerRequest();
             builder.RegisterType<UnitProvider>().As<IProvider<UnitDto>>().InstancePerRequest();
             builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();
             #endregion

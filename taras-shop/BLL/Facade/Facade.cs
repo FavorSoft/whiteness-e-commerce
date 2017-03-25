@@ -147,6 +147,11 @@ namespace BLL.Facade
         }
 
 
+        public void changeRole(int userId, string role)
+        {
+            int roleId = UnitOfWork.getRole.GetIdByRole(role);
+            UnitOfWork.getUser.ChangeRole(userId, roleId);
+        }
 
         public IUnitOfWork UnitOfWork { get; private set; }
     }

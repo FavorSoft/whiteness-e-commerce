@@ -14,5 +14,6 @@ namespace BLL.IProviders
         Task SetInitialData(UsersDto user, List<string> roles);
         bool IsInRole(string role, int id);
         UsersDto GetByInfo(UsersDto user);
+        void ChangeRole(int userId, int roleId);
     }
 }

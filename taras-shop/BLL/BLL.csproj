@@ -63,6 +63,7 @@
     <Compile Include="IProviders\ICategoryProvider.cs" />
     <Compile Include="IProviders\IImagesProvider.cs" />
     <Compile Include="IProviders\IProvider.cs" />
+    <Compile Include="IProviders\IRolesProvider.cs" />
     <Compile Include="IProviders\ISizesProvider.cs" />
     <Compile Include="IProviders\IUnitInfoProvider.cs" />
     <Compile Include="IProviders\IUnitProvider.cs" />

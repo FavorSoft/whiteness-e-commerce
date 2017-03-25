@@ -85,10 +85,11 @@ namespace BLL.Providers
 
         public UsersDto GetByInfo(UsersDto user)
         {
-            return _repo.GetAll().Where(x => x.email == user.Email && x.password == user.Password).Select(x => new UsersDto()
+            return _repo.GetAll().Where(x => x.email == user.Email).Select(x => new UsersDto()
             {
                 Email = x.email,
                 Id = x.id,
+                Password = x.password,
                 Name = x.name,
                 Surname = x.surname,
                 Number = x.number,
@@ -129,6 +130,14 @@ namespace BLL.Providers
                 flag = true;
             }
             return flag;
+        }
+
+        public void ChangeRole(int userId, int roleId)
+        {
+            _repo.EditItem(new Users()
+            {
+                id = userId   
+            });
         }
     }
 }

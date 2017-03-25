@@ -34,19 +34,20 @@ namespace taras_shop.Controllers
             return View();
         }
 
-        [CustomAuthorizeAttribute(Roles = "Admin")]
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public async Task<ActionResult> AddUnitPage()
         {
-                Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()
-                {
-                    categories = facade.UnitOfWork.getCategory.GetAll(),
-                    categoryTypes = facade.UnitOfWork.getCategoryType.GetAll()
-                };
-                return View(model);
-         
+            Models.AdminAddUnitViewModels model = new Models.AdminAddUnitViewModels()
+            {
+                categories = facade.UnitOfWork.getCategory.GetAll(),
+                categoryTypes = facade.UnitOfWork.getCategoryType.GetAll()
+            };
+            return View(model);
+
         }
 
         [HttpPost]
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public async Task<ActionResult> Upload(
         #region uploadParameters
             List<HttpPostedFileBase> images,
@@ -65,78 +66,79 @@ namespace taras_shop.Controllers
         #endregion
             )
         {
-            if (User != null && User.Role == "Admin" || User != null && User.Role == "Moderator")
+            using (var transact = facade.UnitOfWork.BeginTransaction())
             {
-                using (var transact = facade.UnitOfWork.BeginTransaction())
+                List<string> guidImages = new List<string>();
+                try
                 {
-                    List<string> guidImages = new List<string>();
-                    try
+                    guidImages = await UploadPhotoAsync(images);
+                    var unit = new UnitDto()
                     {
-                        guidImages = await UploadPhotoAsync(images);
-                        var unit = new UnitDto()
+                        Title = title,
+                        Producer = producer,
+                        CategoryId = category,
+                        Price = Convert.ToInt32(price * 100),
+                        Material = material,
+                        Description = description,
+                        Color = "default",
+                        Likes = 0
+                    };
+                    facade.UnitOfWork.getUnit.AddItem(unit);
+                    foreach (string img in guidImages)
+                    {
+                        facade.UnitOfWork.getImages.AddItem(new ImagesDto()
                         {
-                            Title = title,
-                            Producer = producer,
-                            CategoryId = category,
-                            Price = Convert.ToInt32(price * 100),
-                            Material = material,
-                            Description = description,
-                            Color = "default",
-                            Likes = 0
-                        };
-                        facade.UnitOfWork.getUnit.AddItem(unit);
-                        foreach (string img in guidImages)
+                            Image = img,
+                            OwnerId = unit.Id
+                        });
+                    }
+                    Dictionary<int, int> sizes = amountCounter(amount_xs, amount_s, amount_m, amount_l, amount_xl);
+                    foreach (var i in sizes)
+                    {
+                        if (i.Value.Equals(null) && i.Value != 0)
                         {
-                            facade.UnitOfWork.getImages.AddItem(new ImagesDto()
+                            facade.UnitOfWork.getUnitInfo.AddItem(new UnitInfoDto()
                             {
-                                Image = img,
-                                OwnerId = unit.Id
+                                UnitId = unit.Id,
+                                SizeId = i.Key,
+                                Amount = i.Value
                             });
                         }
-                        Dictionary<int, int> sizes = amountCounter(amount_xs, amount_s, amount_m, amount_l, amount_xl);
-                        foreach (var i in sizes)
-                        {
-                            if (i.Value.Equals(null) && i.Value != 0)
-                            {
-                                facade.UnitOfWork.getUnitInfo.AddItem(new UnitInfoDto()
-                                {
-                                    UnitId = unit.Id,
-                                    SizeId = i.Key,
-                                    Amount = i.Value
-                                });
-                            }
-                        }
-
-                        transact.Commit();
-                        facade.UnitOfWork.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        transact.Rollback();
-                        string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
-                        string fileName = path + "Units\\";
-                        for (int i = 0; i < guidImages.Count; i++)
-                        {
-                            guidImages[i] += System.IO.Path.GetExtension(images[i].FileName);
-                        }
-                        WorkImage.WorkImage.DeleteImages(fileName, guidImages);
                     }
 
+                    transact.Commit();
+                    facade.UnitOfWork.SaveChanges();
                 }
-                return RedirectToAction("AddUnitPage");
+                catch (Exception e)
+                {
+                    transact.Rollback();
+                    string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
+                    string fileName = path + "Units\\";
+                    for (int i = 0; i < guidImages.Count; i++)
+                    {
+                        guidImages[i] += System.IO.Path.GetExtension(images[i].FileName);
+                    }
+                    WorkImage.WorkImage.DeleteImages(fileName, guidImages);
+                }
+
             }
-            else
-            {
-                return View("AuthError");
-            }
+            return RedirectToAction("AddUnitPage");
+
+        }
+
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
+        public ActionResult AllUsers()
+        {
+            var res = facade.UnitOfWork.getUser.GetAll();
+
+            return View(res);
         }
 
         public ActionResult DeleteUnit()
         {
-
             return Redirect("Index");
         }
-        
+
         Dictionary<int, int> amountCounter(
             int amount_xs,
             int amount_s,
@@ -174,6 +176,12 @@ namespace taras_shop.Controllers
                 }
             }
             return images;
+        }
+
+        public ActionResult BanUser(int id)
+        {
+            
+            return View("AddUsers");
         }
 
         protected override void Dispose(bool disposing)

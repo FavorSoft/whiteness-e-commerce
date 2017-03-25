@@ -2,21 +2,35 @@
     constructor(props) {
         super(props);
         this.state = {
-            units: []
+            units: [],
+            timer: null
         };
         this.getUnitInfo = this.getUnitInfo.bind(this);
     }
 
-    getUnitInfo(typeId, category, sizes = false, fromPrice = false, toPrice = false) {
-        document.querySelector(".main").classList.add("nondisplay");
-        console.log("-------------------------");
-        console.log(typeId);
-        console.log(category);
-        console.log(fromPrice);
-        console.log(toPrice);
-        //запит
+    getUnitInfo(typeId, category, sizes, fromPrice, toPrice) {
+        clearTimeout(this.state.timer);
+        sizes = typeof sizes !== false ? sizes : null;
+        fromPrice = typeof fromPrice !== false ? fromPrice : null;
+        toPrice = typeof toPrice !== false ? toPrice : null;
+        let request = {
+            typeId: typeId,
+            category: category,
+            sizes: sizes,
+            fromPrice: fromPrice,
+            toPrice: toPrice
+        };
+        //document.querySelector(".main").removeChild();
+        
+        let timer = setTimeout(() => {
+            $.get("/Home/GetItemsByFilter", request, (response) => {
+                console.log(response);
+            });
+        }, 3000);
+        
         this.setState({
-            units: [{name: category}]
+            units: [{ name: category }],
+            timer: timer
         });
     }
 
@@ -40,8 +54,9 @@ class Sidebar extends React.Component {
             fromPrice: 0,
             toPrice: 0
         };
-        this.renderWomanList = this.renderWomanList.bind(this);
+        this.renderLists = this.renderLists.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.setCurrentCategory = this.setCurrentCategory.bind(this);
     }
 
     componentWillMount() {
@@ -54,7 +69,10 @@ class Sidebar extends React.Component {
                 categories: response.categories,
                 sizes: response.sizes,
                 currentTypeId: null,
-                currentCategory: null
+                currentCategory: null,
+                fromPrice: null,
+                toPrice: null,
+                returnSizes: null
             });
         }.bind(this));
     }
@@ -66,108 +84,65 @@ class Sidebar extends React.Component {
         });
     }
 
-    renderWomanList() {
+    renderLists(type_id) {
         /*
-         * Create list of woman li, to use in our jsx
-         */
+        * Create list of man, woman or children li, to use in our jsx
+        */
         return this.state.categories.map(category => {
-            if (category.TypeId === 1) {
+            if (category.TypeId === type_id) {
                 return (
                     <li key={ category.Id }>
-                        <p onClick={ () => 
+                        <p onClick={ () =>
                         {
-                            this.props.getUnitInfo(category.TypeId, category.Category);
                             this.setCurrentCategory(category.TypeId, category.Category);
-                        }}>
-                        { category.Category }
-                        </p>
-                    </li>
-                );
-            }
-        });
-    }
-
-    renderManList() {
-        /*
-         * Create list of man li, to use in our jsx
-         */
-        return this.state.categories.map(category => {
-            if (category.TypeId === 2) {
-                return (
-                    <li key={ category.Id }>
-                        <p onClick={ () => this.props.getUnitInfo(category.TypeId, category.Category) }>{ category.Category }</p>
-                    </li>
-                );
+                            this.props.getUnitInfo(category.TypeId, category.Category,
+                                this.state.returnSizes, this.state.fromPrice,
+                                this.state.toPrice);
+                        }}>{ category.Category }
+                    </p>
+                </li>
+            );
         }
     });
     }
 
-    renderChildrenList() {
-        /*
-         * Create list of children li, to use in our jsx
-         */
-        return this.state.categories.map(category => {
-            if (category.TypeId === 3) {
-                return (
-                    <li key={ category.Id }>
-                        <p onClick={ () => this.props.getUnitInfo(category.TypeId, category.Category) }>{ category.Category }</p>
-                    </li>
-                );
-            }
-        });
-    }
-
     handleChange(event) {
-        console.log("fire");
-        let fromPrice = null;
-        let toPrice = null;
         if (event.target.id === "from-price-input")
         {
-                fromPrice = event.target.value
+            this.setState({
+                fromPrice: event.target.value
+            })
         }
         else if (event.target.id === "to-price-input")
         {
-                toPrice = event.target.value
+            this.setState({
+                toPrice: event.target.value
+            })
         }
-        // Get changes of filters
-        let sizes = this.state.sizes.map((size) => {
-            let unitSize = document.querySelector("#" + size.Size + "-option:checked");
-            if (unitSize) {
-                return size.Size
-            }
+        console.log("--------------------");
+        console.log(this.state.toPrice);
+        // Get changes of size filters
+        this.setState({
+            returnSizes: this.state.sizes.map((size) => {
+                let unitSize = document.querySelector("#" + size.Size + "-option:checked");
+                if (unitSize) {
+                    return size.Size
+                }
+            })
+        }, () => {
+            // Clean sizes array from undefined values
+            let temp = [];
+            for(let i of this.state.returnSizes)
+                i && temp.push(i); // copy each non-empty value to the 'temp' array
+
+            this.setState({
+                returnSizes: temp
+            }, () => {
+                this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
+                this.state.fromPrice, this.state.toPrice);
+            });
         });
-        // Clean sizes array from undefined values
-        temp = [];
-        for(let i of sizes)
-            i && temp.push(i); // copy each non-empty value to the 'temp' array
-
-        sizes = temp;
-        this.props.getUnitInfo(this.state.currentCategory, this.currentTypeId, sizes, fromPrice, toPrice);
     }
-
-    //handleSearchClick() {
-    //    /*
-    //     * If filters change - get changes and send them to the server
-    //     */
-    //    // Get changes of filters
-    //    let sizes = this.state.sizes.map((size) => {
-    //        let unitSize = document.querySelector("#" + size.Size + "-option:checked");
-    //        if (unitSize) {
-    //            return size.Size
-    //        }
-    //    });
-    //    // Clean sizes array from undefined values
-    //    temp = [];
-    //    for(let i of sizes)
-    //        i && temp.push(i); // copy each non-empty value to the 'temp' array
-
-    //    sizes = temp;
-    //    // Do ajax response to server for unit filtering
-    //    /*$.get('/Home/GetItemsByFilter', {sizes: sizes, fromPrice: this.state.fromPrice, toPrice: this.state.toPrice}, (response) => {
-    //        console.log(response);
-    //    });*/
-    //    console.log("Sent!");
-    //}
 
     render() {
         return (
@@ -178,19 +153,19 @@ class Sidebar extends React.Component {
                     <h4>Жінки</h4>
                     <div>
                         <ul className="women">
-                            { this.renderWomanList() }
+                            { this.renderLists(1) }
                         </ul>
                     </div>
                     <h4>Чоловіки</h4>
                     <div>
                         <ul className="men">
-                            { this.renderManList() }
+                            { this.renderLists(2) }
                         </ul>
                     </div>
                     <h4>Діти</h4>
                     <div>
                         <ul className="children">
-                            { this.renderChildrenList() }
+                            { this.renderLists(3) }
                         </ul>
                     </div>
                 </div>
@@ -239,7 +214,8 @@ class SideFiltersSize extends React.Component {
         return this.props.sizes.map(size => {
             return (
                 <li key={ size.Id || Math.random() }>
-                    <input value="true" onChange={ this.props.handleChange } type="checkbox" id={ size.Size + '-option' } name="selector" />
+                    <input value="true" onChange={ this.props.handleChange } 
+                     type="checkbox" id={ size.Size + '-option' } name="selector" />
                     <label htmlFor={ size.Size + '-option' }>{ size.Size }</label>
                     <div className="check"></div>
                 </li>
@@ -268,9 +244,9 @@ class Units extends React.Component {
 
     renderUnits() {
         return unitList = this.props.units.map(function (unit) {
-            console.log(unit.name);
             return (
-                <Unit key={ Math.random()} imgLink={{ backgroundImage: "url('../Content/images/mant.jpg')" }} companyMaker={unit.name} itemType="Tryci" priceWas="100.90" priceNow="23.78"/>
+                <Unit key={ Math.random()} imgLink={{ backgroundImage: "url('../Content/images/mant.jpg')" }} 
+                 companyMaker={unit.name} itemType="Tryci" priceWas="100.90" priceNow="23.78"/>
             );
         });
     }

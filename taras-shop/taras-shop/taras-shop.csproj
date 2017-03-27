@@ -107,6 +107,7 @@
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\images\1.png" />
     <Content Include="Content\images\basket.jpg" />
     <Content Include="Content\images\Clouds.png" />
     <Content Include="Content\images\eye.png" />

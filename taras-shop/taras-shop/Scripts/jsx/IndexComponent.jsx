@@ -2,14 +2,12 @@
     constructor(props) {
         super(props);
         this.state = {
-            units: [],
-            timer: null
+            units: []
         };
         this.getUnitInfo = this.getUnitInfo.bind(this);
     }
 
     getUnitInfo(typeId, category, sizes, fromPrice, toPrice) {
-        clearTimeout(this.state.timer);
         sizes = typeof sizes !== false ? sizes : null;
         fromPrice = typeof fromPrice !== false ? fromPrice : null;
         toPrice = typeof toPrice !== false ? toPrice : null;
@@ -20,17 +18,17 @@
             fromPrice: fromPrice,
             toPrice: toPrice
         };
-        //document.querySelector(".main").removeChild();
-        
-        let timer = setTimeout(() => {
-            $.get("/Home/GetItemsByFilter", request, (response) => {
-                console.log(response);
-            });
-        }, 3000);
-        
+
+        let deleteChild = document.querySelector("#to-be-deleted");
+        if (typeof (deleteChild) != 'undefined' && deleteChild != null) {
+            document.querySelector(".main").removeChild(deleteChild);
+        }
+
+        $.get("/Home/GetItemsByFilter", request, (response) => {
+            console.log(response);
+        });
         this.setState({
-            units: [{ name: category }],
-            timer: timer
+            units: [{ name: category }]
         });
     }
 
@@ -52,11 +50,15 @@ class Sidebar extends React.Component {
             categories: [1, 2, 3],
             sizes: [1, 2, 3],
             fromPrice: 0,
-            toPrice: 0
+            toPrice: 5000,
+            currentTypeId: null,
+            currentCategory: null,
+            returnSizes: null
         };
         this.renderLists = this.renderLists.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSizesChange = this.handleSizesChange.bind(this);
         this.setCurrentCategory = this.setCurrentCategory.bind(this);
+        this.handleGo = this.handleGo.bind(this);
     }
 
     componentWillMount() {
@@ -68,11 +70,6 @@ class Sidebar extends React.Component {
                 categoryTypes: response.category_types,
                 categories: response.categories,
                 sizes: response.sizes,
-                currentTypeId: null,
-                currentCategory: null,
-                fromPrice: null,
-                toPrice: null,
-                returnSizes: null
             });
         }.bind(this));
     }
@@ -106,21 +103,17 @@ class Sidebar extends React.Component {
     });
     }
 
-    handleChange(event) {
-        if (event.target.id === "from-price-input")
-        {
-            this.setState({
-                fromPrice: event.target.value
-            })
-        }
-        else if (event.target.id === "to-price-input")
-        {
-            this.setState({
-                toPrice: event.target.value
-            })
-        }
-        console.log("--------------------");
-        console.log(this.state.toPrice);
+    handleGo(fromPrice, toPrice) {
+        this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
+            fromPrice, toPrice);
+
+        this.setState({
+            fromPrice: fromPrice,
+            toPrice: toPrice
+        });
+    }
+
+    handleSizesChange() {
         // Get changes of size filters
         this.setState({
             returnSizes: this.state.sizes.map((size) => {
@@ -139,7 +132,7 @@ class Sidebar extends React.Component {
                 returnSizes: temp
             }, () => {
                 this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
-                this.state.fromPrice, this.state.toPrice);
+                    this.state.fromPrice, this.state.toPrice);
             });
         });
     }
@@ -171,8 +164,8 @@ class Sidebar extends React.Component {
                 </div>
                 <h3 className="filters-h">Фильтры</h3>
                 <div className="filters">
-                    <SideFiltersPrice handleChange={ this.handleChange } />
-                    <SideFiltersSize handleChange={ this.handleChange } sizes={this.state.sizes}/>
+                    <SideFiltersPrice handleGo={ this.handleGo } />
+                    <SideFiltersSize handleChange={ this.handleSizesChange } sizes={this.state.sizes}/>
                 </div>
             </div>
          </aside>
@@ -183,6 +176,24 @@ class Sidebar extends React.Component {
 class SideFiltersPrice extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            fromValue: 0,
+            toValue: 5000
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    handleChange(event) {
+        if (event.target.id === "from-price-input") {
+            this.setState({
+                fromValue: event.target.value
+            });
+        }
+        else if (event.target.id === "to-price-input") {
+            this.setState({
+                toValue: event.target.value
+            });
+        }
     }
 
     render() {
@@ -191,15 +202,17 @@ class SideFiltersPrice extends React.Component {
                 <h4 className="price-h">Цена</h4>
                 <div>
                     <label htmlFor="from-price-input">От: </label>
-                    <input id="from-price-input" onChange={ this.props.handleChange } type="text" />
+                    <input value={this.state.fromValue } id="from-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
                 <div>
                     <label htmlFor="to-price-input">До: </label>
-                    <input id="to-price-input" onChange={ this.props.handleChange } type="text" />
+                    <input value={ this.state.toValue}  id="to-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
-                </div>
+                <button onClick={ () => this.props.handleGo(this.state.fromValue, this.state.toValue) }
+                 className="go-search-btn">Go</button>
+            </div>
         );
     }
 }
@@ -253,7 +266,7 @@ class Units extends React.Component {
 
     render() {
         return (
-            <div className="col-md-9 popular-units">
+            <div className="col-md-9 col-sm-12 popular-units">
                 {this.renderUnits()}
             </div>
         );
@@ -267,10 +280,6 @@ class Unit extends React.Component {
                     <a href="/Home/ItemPage">
                         <div style={ this.props.imgLink } className="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
                             {/*<img className="sale-img" src={this.props.sale} alt="topsale" />*/}
-                            <div className="quick-view" data-target="#item-preview-modal" data-toggle="modal">
-                                <img src="../Content/images/eye.png" alt="eye" />
-                                <span>Быстрый просмотр</span>
-                            </div>
                         </div>
                         <div className="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                             <div className="title-unit-part">

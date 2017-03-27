@@ -126,12 +126,26 @@ namespace taras_shop.Controllers
 
         }
 
-        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult AllUsers()
         {
-            var res = facade.UnitOfWork.getUser.GetAll();
+            return View("AllUsers", GetUsersModels());
+        }
 
-            return View(res);
+        public List<Models.AllUsersModels> GetUsersModels()
+        {
+            List<Models.AllUsersModels> model = facade.UnitOfWork.getUser.GetAll().Select(x => new Models.AllUsersModels()
+            {
+                Email = x.Email,
+                Gender = (x.IsMan) ? "man" : "woman",
+                Id = x.Id,
+                Name = x.Name,
+                Number = x.Number,
+                RegDate = x.RegDate,
+                Role = (x.RoleId == 3) ? "User" : (x.RoleId == 2) ? "Moderator" : (x.RoleId == 1) ? "Admin" : (x.RoleId == 4) ? "Banned" : "Undefined",
+                Surname = x.Surname
+            }).ToList();
+
+            return model;
         }
 
         public ActionResult DeleteUnit()
@@ -178,10 +192,32 @@ namespace taras_shop.Controllers
             return images;
         }
 
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult BanUser(int id)
         {
-            
+            facade.changeRole(id, "Banned");
             return View("AddUsers");
+        }
+
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
+        public ActionResult SetAsAdmin(int id)
+        {
+            facade.changeRole(id, "Admin");
+            return View("AllUsers", GetUsersModels());
+        }
+
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
+        public ActionResult SetAsUser(int id)
+        {
+            facade.changeRole(id, "User");
+            return View("AllUsers", GetUsersModels());
+        }
+
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
+        public ActionResult SetAsModerator(int id)
+        {
+            facade.changeRole(id, "Moderator");
+            return View("AllUsers", GetUsersModels());
         }
 
         protected override void Dispose(bool disposing)

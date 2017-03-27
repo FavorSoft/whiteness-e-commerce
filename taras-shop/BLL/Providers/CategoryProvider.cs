@@ -25,7 +25,7 @@ namespace BLL.Providers
                 category = category.Category,
                 category_img = category.CategoryImg,
                 type_id = category.TypeId,
-                description = category.Description   
+                description = category.Description
             });
         }
 
@@ -37,13 +37,13 @@ namespace BLL.Providers
         IEnumerable<CategoriesDto> ConvertModeltoDTO(IQueryable<Categories> repo)
         {
             IEnumerable<CategoriesDto> res = repo.Select(i => new CategoriesDto()
-                {
-                    Id = i.id,
-                    Category = i.category,
-                    CategoryImg = i.category_img,
-                    Description = i.description,
-                    TypeId = i.type_id
-                });
+            {
+                Id = i.id,
+                Category = i.category,
+                CategoryImg = i.category_img,
+                Description = i.description,
+                TypeId = i.type_id
+            });
             return res;
         }
 
@@ -80,16 +80,27 @@ namespace BLL.Providers
 
         public CategoriesDto getCategoryByInfo(int typeId, string category)
         {
-            var tmp = _repo.GetById(1);
-            CategoriesDto category1 = new CategoriesDto()
-            {
-                Category = tmp.category,
-                CategoryImg = tmp.category_img,
-                Id = tmp.id,
-                Description = tmp.description,
-                TypeId = tmp.type_id
-            };
-            return category1;
+            var res = (from categories in _repo.GetEntities().Categories
+                       join s in _repo.GetEntities().Category_type on categories.type_id equals s.id
+                       where s.id == typeId && categories.category == category
+                       select new
+                       {
+                           Id = categories.id,
+                           Category = categories.category,
+                           CategoryImg = categories.category_img,
+                           Description = categories.description,
+                           TypeId = categories.type_id
+                       }
+                      ).Select(x => new CategoriesDto()
+                      {
+                          Category = x.Category,
+                          CategoryImg = x.CategoryImg,
+                          Description = x.Description,
+                          Id = x.Id,
+                          TypeId = x.TypeId
+                      }).FirstOrDefault();
+
+            return res;
         }
     }
 }

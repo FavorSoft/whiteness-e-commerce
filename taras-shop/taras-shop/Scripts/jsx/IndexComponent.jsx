@@ -266,7 +266,7 @@ class Units extends React.Component {
 
     render() {
         return (
-            <div className="col-md-9 popular-units">
+            <div className="col-md-9 col-sm-12 popular-units">
                 {this.renderUnits()}
             </div>
         );
@@ -280,10 +280,6 @@ class Unit extends React.Component {
                     <a href="/Home/ItemPage">
                         <div style={ this.props.imgLink } className="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
                             {/*<img className="sale-img" src={this.props.sale} alt="topsale" />*/}
-                            <div className="quick-view" data-target="#item-preview-modal" data-toggle="modal">
-                                <img src="../Content/images/eye.png" alt="eye" />
-                                <span>Быстрый просмотр</span>
-                            </div>
                         </div>
                         <div className="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                             <div className="title-unit-part">

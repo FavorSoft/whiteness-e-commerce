@@ -134,10 +134,7 @@ namespace BLL.Providers
 
         public void ChangeRole(int userId, int roleId)
         {
-            _repo.EditItem(new Users()
-            {
-                id = userId   
-            });
+            _repo.GetById(userId).role_id = roleId;
         }
     }
 }

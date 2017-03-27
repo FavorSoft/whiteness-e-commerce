@@ -66,8 +66,10 @@ namespace BLL.Facade
             return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
 
-        public object getByFilter(int categoryId, int startPrice, int endPrice, List<string> sizes, int skipItems, int amountItems)
+        public object getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
         {
+            int categoryId = UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
+
             List<int> sizeIds = new List<int>();
             sizeIds = UnitOfWork.getSizes.GetIdsBySizes(sizes);
 
@@ -79,7 +81,7 @@ namespace BLL.Facade
 
             JavaScriptSerializer s = new JavaScriptSerializer();
 
-            int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice) / amountItems;
+            int pages = articles.Count() / amountItems;
 
             var res = new
             {
@@ -150,7 +152,12 @@ namespace BLL.Facade
         public void changeRole(int userId, string role)
         {
             int roleId = UnitOfWork.getRole.GetIdByRole(role);
-            UnitOfWork.getUser.ChangeRole(userId, roleId);
+            using (var transact = UnitOfWork.BeginTransaction())
+            {
+                UnitOfWork.getUser.ChangeRole(userId, roleId);
+
+                transact.Commit();
+            }
         }
 
         public IUnitOfWork UnitOfWork { get; private set; }

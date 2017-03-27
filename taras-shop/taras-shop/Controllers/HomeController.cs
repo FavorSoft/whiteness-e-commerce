@@ -55,9 +55,9 @@ namespace taras_shop.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetItemsByFilter(int categoryTypeId, string category, List<string> sizes, int fromPrice, int toPrice)
+        public JsonResult GetItemsByFilter(int typeId, string category, List<string> sizes, int fromPrice, int toPrice)
         {
-            return Json(facade.getByFilter(categoryTypeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
+            return Json(facade.getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

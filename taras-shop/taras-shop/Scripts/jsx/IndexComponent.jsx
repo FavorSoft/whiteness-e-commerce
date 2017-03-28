@@ -275,7 +275,7 @@ class Units extends React.Component {
             console.log(unit);
             return (
                 <Unit key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/" + unit.Image + "')" }} 
-                 companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice)} priceNow={ (unit.Price/100).toFixed(2) + " грн" } />
+                 companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice) } priceNow={ (unit.Price/100).toFixed(2) + " грн" } />
             );
         });
     }
@@ -283,19 +283,35 @@ class Units extends React.Component {
     render() {
         return (
             <div className="col-md-9 col-sm-12 popular-units">
-                {this.renderUnits()}
+                { this.renderUnits() }
             </div>
         );
     }
 }
 
 class Unit extends React.Component {
+    constructor(props) {
+        super(props);
+        this.isSale = this.isSale.bind(this);
+    }
+
+    isSale() {
+        if(this.props.priceWas) {
+            return (
+                <img className="sale-img" src="../Content/images/sale.png" alt="topsale" />
+            );
+        }
+        else {
+            return null;
+        }
+    }
+
     render() {
         return (
             <div className="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
                     <a href="/Home/ItemPage">
                         <div style={ this.props.imgLink } className="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                            {/*<img className="sale-img" src={this.props.sale} alt="topsale" />*/}
+                            { this.isSale() }
                         </div>
                         <div className="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                             <div className="title-unit-part">

@@ -1,5 +1,5 @@
 ﻿@model taras_shop.Models.AllUsersModels
-
+@using taras_shop.Helpers
 @{
     ViewBag.Title = "AllUsers";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,9 +7,6 @@
 <div class="container">
 <h2>AllUsers</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -62,12 +59,14 @@
         <td>
             @Html.ActionLink("Ban user", "BanUser", new { id=item.Id }) |
             @Html.ActionLink("Set as admin", "SetAsAdmin", new { id=item.Id }) |
-            @Html.ActionLink("Set as moderator", "SetAsModerator", new { id = item.Id })
+            @Html.ActionLink("Set as moderator", "SetAsModerator", new { id = item.Id }) |
             @Html.ActionLink("Set as user", "SetAsUser", new { id = item.Id })
         </td>
     </tr>
 }
 
 </table>
-
+    <div class="btn-group">
+        @Html.PageLinks(Model.PageInfo, x => Url.Action("AllUsers", "Admin", new { page = x }))
+    </div>
 </div>

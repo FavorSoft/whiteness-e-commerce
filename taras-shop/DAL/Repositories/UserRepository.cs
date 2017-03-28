@@ -27,9 +27,8 @@ namespace DAL.Repository
 
         public override void EditItem(Users item)
         {
-            entities.Users.Attach(item);
-            entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
-
+            var tmp = entities.Users.Where(x => x.id == item.id);
+            entities.Entry(tmp).CurrentValues.SetValues(item);
         }
 
         public override IQueryable<Users> GetAll()

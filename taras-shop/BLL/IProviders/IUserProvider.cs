@@ -13,5 +13,7 @@ namespace BLL.IProviders
         UsersDto GetByInfo(UsersDto user);
         IEnumerable<UsersDto> GetAll(int skip, int amount);
         void ChangeRole(int userId, int roleId);
+        int GetAmountUsers();
+        void SaveChanges();
     }
 }

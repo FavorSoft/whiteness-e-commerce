@@ -97,6 +97,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PagingHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\AllUsersModels.cs" />
@@ -164,7 +165,6 @@
     <Folder Include="Content\fonts\baron\" />
     <Folder Include="Content\fonts\bebas_neue\" />
     <Folder Include="Content\fonts\bully\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

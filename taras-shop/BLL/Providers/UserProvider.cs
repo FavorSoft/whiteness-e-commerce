@@ -131,5 +131,14 @@ namespace BLL.Providers
         {
             _repo.GetById(userId).role_id = roleId;
         }
+
+        public int GetAmountUsers()
+        {
+            return _repo.GetAll().Count();
+        }
+        public void SaveChanges()
+        {
+            _repo.GetEntities().SaveChanges();
+        }
     }
 }

@@ -163,7 +163,7 @@ namespace BLL.Facade
             using (var transact = UnitOfWork.BeginTransaction())
             {
                 UnitOfWork.getUser.ChangeRole(userId, roleId);
-
+                UnitOfWork.getUser.SaveChanges();
                 transact.Commit();
             }
         }

@@ -25,8 +25,8 @@
         }
 
         $.get("/Home/GetItemsByFilter", request, (response) => {
-            let units = JSON.parse(response.units);
             console.log(response);
+            let units = response.Units;
             this.setState({
                 units: units
             });
@@ -96,8 +96,9 @@ class Sidebar extends React.Component {
                             this.props.getUnitInfo(category.TypeId, category.Category,
                                 this.state.returnSizes, this.state.fromPrice,
                                 this.state.toPrice);
-                        }}>{ category.Category }
-                    </p>
+                        }}>
+                        { category.Category }
+                        </p>
                 </li>
             );
         }
@@ -105,7 +106,7 @@ class Sidebar extends React.Component {
     }
 
     handleGo(fromPrice, toPrice) {
-        this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
+        this.props.getUnitInfo(this.state.currentTypeId, this.state.currentCategory, this.state.returnSizes,
             fromPrice, toPrice);
 
         this.setState({
@@ -132,7 +133,7 @@ class Sidebar extends React.Component {
             this.setState({
                 returnSizes: temp
             }, () => {
-                this.props.getUnitInfo(this.state.currentCategory, this.state.currentTypeId, this.state.returnSizes,
+                this.props.getUnitInfo(this.state.currentTypeId, this.state.currentCategory, this.state.returnSizes,
                     this.state.fromPrice, this.state.toPrice);
             });
         });
@@ -208,7 +209,7 @@ class SideFiltersPrice extends React.Component {
                 </div>
                 <div>
                     <label htmlFor="to-price-input">До: </label>
-                    <input value={ this.state.toValue}  id="to-price-input" onChange={ this.handleChange } type="text" />
+                    <input value={ this.state.toValue} id="to-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
                 <button onClick={ () => this.props.handleGo(this.state.fromValue, this.state.toValue) }
@@ -258,8 +259,11 @@ class Units extends React.Component {
     }
 
     priceCheck(price) {
-        if(price) {
-            return price;
+        if (price) {
+            console.log("Heyyy");
+            console.log((price / 100).toFixed(2) + " грн");
+            let formatedPrice = (price / 100).toFixed(2) + " грн";
+            return formatedPrice;
         }
         else {
             return "";
@@ -267,11 +271,11 @@ class Units extends React.Component {
     }
 
     renderUnits() {
-        return unitList = this.props.units.map(function (unit) {
+        return unitList = this.props.units.map((unit) => {
             console.log(unit);
             return (
-                <Unit key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/mant.jpg')" }} 
-                 companyMaker={ unit.Title } itemType="Tryci" priceWas={ () => this.priceCheck(unit.OldPrice) } priceNow={ unit.Price } />
+                <Unit key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/" + unit.Image + "')" }} 
+                 companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice)} priceNow={ (unit.Price/100).toFixed(2) + " грн" } />
             );
         });
     }

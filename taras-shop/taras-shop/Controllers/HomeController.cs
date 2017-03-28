@@ -57,9 +57,62 @@ namespace taras_shop.Controllers
         [HttpGet]
         public JsonResult GetItemsByFilter(int typeId, string category, List<string> sizes, int fromPrice, int toPrice)
         {
-            return Json(facade.getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
+            return Json(getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
         }
-        
+
+        SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
+        {
+            SearchModels model = new SearchModels();
+
+            int categoryId = facade.UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
+
+            List<int> sizeIds = new List<int>();
+            sizeIds = facade.UnitOfWork.getSizes.GetIdsBySizes(sizes);
+
+            List<UnitDto> units;
+            if (sizeIds != null && sizeIds.Count > 0)
+            {
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
+            }
+            else
+            {
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, skipItems, amountItems).ToList();
+            }
+
+            List<ImagesDto> images = facade.UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
+
+            IEnumerable<Article> articles = facade.ConvertUnitsToArticles(units, images);
+
+            JavaScriptSerializer s = new JavaScriptSerializer();
+
+            int pages = articles.Count() / amountItems;
+
+            model.Articles = articles.Select(x => new ArticlesModel()
+            {
+                category = x.category,
+                images = x.images,
+                sizes = x.sizes,
+                unit = new Item()
+                {
+                    AddUnitDate = x.unit.AddUnitDate,
+                    CategoryId = x.unit.CategoryId,
+                    Color = x.unit.Color,
+                    Description = x.unit.Description,
+                    Id = x.unit.Id,
+                    Likes = x.unit.Likes,
+                    Material = x.unit.Material,
+                    OldPrice = x.unit.OldPrice,
+                    Price = x.unit.Price,
+                    Producer = x.unit.Producer,
+                    Title = x.unit.Title,
+                    Category = x.category.Category
+                },
+                unitsInfo = x.unitsInfo
+            }).ToList();
+
+            return model;
+        }
+
         [HttpGet]
         public JsonResult GetItemsByCategory(int typeId, string category)
         {

@@ -102,6 +102,7 @@
     <Compile Include="Models\AllUsersModels.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\ItemPageModels.cs" />
+    <Compile Include="Models\SearchModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

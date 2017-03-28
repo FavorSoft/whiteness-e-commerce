@@ -55,7 +55,7 @@ namespace BLL.Providers
                     Password = i.password,
                     RegDate = i.reg_date,
                     RoleId = i.role_id,
-                    Surname = i.surname,
+                    Surname = i.surname,              
                     IsMan = i.is_man
                 }).ToList();
             

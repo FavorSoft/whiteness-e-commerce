@@ -524,9 +524,9 @@ a.search
     margin: 0px auto;
 }
 
-.logo
+.navbar-header .navbar-brand
 {
-    padding: 15px 0px;
+    padding: 18px 15px;
 }
 
 .nav-left

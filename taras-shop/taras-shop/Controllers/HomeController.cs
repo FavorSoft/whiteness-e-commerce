@@ -59,7 +59,7 @@ namespace taras_shop.Controllers
         {
             return Json(facade.getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
         }
-
+        
         [HttpGet]
         public JsonResult GetItemsByCategory(int typeId, string category)
         {

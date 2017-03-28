@@ -16,7 +16,7 @@ namespace BLL.Facade
             UnitOfWork = _uow;
         }
 
-        private List<Article> ConvertUnitsToArticles(List<UnitDto> units, List<ImagesDto> images)
+        public List<Article> ConvertUnitsToArticles(List<UnitDto> units, List<ImagesDto> images)
         {
             List<Article> articles = new List<Article>();
             for (int i = 0; i < units.Count; i++)
@@ -41,7 +41,7 @@ namespace BLL.Facade
             return articles;
         }
 
-        private Article ConvertUnitToArticle(UnitDto unit, List<ImagesDto> images)
+        public Article ConvertUnitToArticle(UnitDto unit, List<ImagesDto> images)
         {
             List<UnitInfoDto> unitsInfo = new List<UnitInfoDto>();
             foreach (var i in UnitOfWork.getUnitInfo.GetByOwner(unit.Id))
@@ -93,7 +93,10 @@ namespace BLL.Facade
 
             var res = new
             {
-                units = s.Serialize(articles.Select(x => x.unit).ToList()),
+                units = s.Serialize(articles.Select(x => new {
+                    x.unit,
+                    x.category
+                }).ToList()),
                 images = s.Serialize(articles.Select(x => x.images).ToList()),
                 sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
                 unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),

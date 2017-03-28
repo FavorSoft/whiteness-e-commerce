@@ -203,28 +203,28 @@ namespace taras_shop.Controllers
         public ActionResult BanUser(int id)
         {
             facade.changeRole(id, "Banned");
-            return View("AddUsers");
+            return View("AllUsers", GetUsersModels(0));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsAdmin(int id)
         {
             facade.changeRole(id, "Admin");
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(0));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsUser(int id)
         {
             facade.changeRole(id, "User");
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(0));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsModerator(int id)
         {
             facade.changeRole(id, "Moderator");
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(0));
         }
 
         protected override void Dispose(bool disposing)

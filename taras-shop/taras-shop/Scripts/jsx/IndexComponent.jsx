@@ -17,7 +17,7 @@
             sizes: sizes,
             fromPrice: fromPrice,
             toPrice: toPrice
-        };
+        };                  
 
         let deleteChild = document.querySelector("#to-be-deleted");
         if (typeof (deleteChild) != 'undefined' && deleteChild != null) {
@@ -25,10 +25,11 @@
         }
 
         $.get("/Home/GetItemsByFilter", request, (response) => {
+            let units = JSON.parse(response.units);
             console.log(response);
-        });
-        this.setState({
-            units: [{ name: category }]
+            this.setState({
+                units: units
+            });
         });
     }
 
@@ -253,13 +254,24 @@ class Units extends React.Component {
     constructor(props) {
         super(props);
         this.renderUnits = this.renderUnits.bind(this);
+        this.priceCheck = this.priceCheck.bind(this);
+    }
+
+    priceCheck(price) {
+        if(price) {
+            return price;
+        }
+        else {
+            return "";
+        }
     }
 
     renderUnits() {
         return unitList = this.props.units.map(function (unit) {
+            console.log(unit);
             return (
-                <Unit key={ Math.random()} imgLink={{ backgroundImage: "url('../Content/images/mant.jpg')" }} 
-                 companyMaker={unit.name} itemType="Tryci" priceWas="100.90" priceNow="23.78"/>
+                <Unit key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/mant.jpg')" }} 
+                 companyMaker={ unit.Title } itemType="Tryci" priceWas={ () => this.priceCheck(unit.OldPrice) } priceNow={ unit.Price } />
             );
         });
     }

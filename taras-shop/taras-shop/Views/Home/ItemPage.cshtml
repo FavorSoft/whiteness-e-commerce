@@ -1,4 +1,4 @@
-﻿@model DTO.Article
+﻿@model taras_shop.Models.ItemPageModels
 @{
     ViewBag.Title = "Item";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <h5 class="routing-h"><a>Главная страница</a> > <a>Женское белье</a> > <a>Трусы</a> > <a>Anabel Arto</a></h5>
+        <h5 class="routing-h"><a>Главная страница</a> > <a>@Model.CategoryType </a> > <a>@Model.category.Category </a> > <a>@Model.unit.Title</a></h5>
         <div id="item-page-block">
             <div id='item-carousel-custom' class='col-md-8 carousel slide' data-ride='carousel'>
                 <div class='carousel-outer'>
@@ -21,32 +21,32 @@
                                 {
                                     imgClass = "active";
                                 }
-                                @*<li data-target='#item-carousel-custom' data-slide-to='0' class='@imgClass'><img src='~/Content/images/Units/@i.Image' alt='@itemAmount' /></li>*@
+                                <li data-target='#item-carousel-custom' data-slide-to='0' class='@imgClass'><img src='~/Content/images/Units/@i.Image' alt='@itemAmount' /></li>
                             }
                         }
-                        <li data-target='#item-carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
+                        @*<li data-target='#item-carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='1' /></li>
                         <li data-target='#item-carousel-custom' data-slide-to='1'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='2' /></li>
                         <li data-target='#item-carousel-custom' data-slide-to='2'><img class="third-slider-img" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='3' /></li>
-                        <li data-target='#item-carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>
+                        <li data-target='#item-carousel-custom' data-slide-to='3'><img class="fourth-slider-img" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='4' /></li>*@
 
                     </ol>
                     <div class='carousel-inner'>
                         @{
-                            int imgAmount = 0;
+                            int counter = 0;
                             foreach (var i in Model.images)
                             {
-                                itemAmount++;
+                                counter++;
                                 string imgClass = "";
-                                if (itemAmount == 1)
+                                if (counter == 1)
                                 {
                                     imgClass = "active";
                                 }
-                                @*<div class='item @imgClass'>
+                                <div class='item @imgClass'>
                                     <img src='~/Content/images/Units/@i.Image' alt='' id="zoom_05" data-zoom-image='~/Content/images/Units/@i.Image' />
-                                </div>*@
+                                </div>
                             }
                         }
-                        <div class='item active'>
+                        @*<div class='item active'>
                             <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='' id="zoom_05" data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg" />
                         </div>
                         <div class='item' id="zoom_05">
@@ -58,7 +58,7 @@
 
                         <div class='item'>
                             <img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05" />
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
@@ -88,11 +88,11 @@
                     <h4 id="size-toggle">Выбрать размер</h4>
                     <div class="append-radio">
                         <ul class="radio-list">
-                            @foreach (var i in Model.sizes)
+                            @for (int i = 0; i < Model.sizes.Count(); i++)
                             {
                                 <li>
-                                    <input type="radio" id="@i.Key.Size.ToLower()-option2" name="selector">
-                                    <label for="@i.Key.Size.ToLower()-option2">@i.Key.Size.ToLower()</label>
+                                    <input type="radio" id="@Model.sizes.ToList()[i].Size.ToLower()-option2" name="selector">
+                                    <label for="@Model.sizes.ToList()[i].Size.ToLower()-option2">@Model.sizes.ToList()[i].Size.ToLower()</label>
                                     <div class="check"></div>
                                 </li>
                             }
@@ -133,76 +133,6 @@
                     <h4></h4>
                 </div>
             </div>
-            @*<div class="col-md-9 watch-also">
-                <h3>Смотрите также</h3>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9 watch-also last-view">
-                <h3>Последние просмотренные</h3>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-                <div class="col-md-3 watch-also-item">
-                    <img src="~/Content/images/item-preview.png" />
-                    <p class="company-maker">Anabel Arto</p>
-                    <div class="price-unit-part">
-                        <span class="price-now">58.9 грн</span>
-                        <span class="price-was">79.90 грн</span>
-                    </div>
-                </div>
-            </div>*@
         </div>
     </div>
 </div>

@@ -73,7 +73,15 @@ namespace BLL.Facade
             List<int> sizeIds = new List<int>();
             sizeIds = UnitOfWork.getSizes.GetIdsBySizes(sizes);
 
-            List<UnitDto> units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
+            List<UnitDto> units;
+            if (sizeIds != null && sizeIds.Count > 0)
+            {
+                units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
+            }
+            else
+            {
+                units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, skipItems, amountItems).ToList();
+            }
 
             List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
 

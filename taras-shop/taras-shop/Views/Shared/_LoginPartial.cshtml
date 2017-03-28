@@ -6,12 +6,12 @@
             if ((User as CustomPrincipal).Role == "Admin")
             {
                 <li><a href="@Url.Action("AddUnitPage", "Admin")">Додати товар</a></li>
-                <li><a href="#">Переглянути користувачів</a></li>
+                <li><a href="@Url.Action("AllUsers", "Admin")">Переглянути користувачів</a></li>
                 <li><a href="#">Переглянути замовлення</a></li>
             }
             else if ((User as CustomPrincipal).Role == "Moderator")
             {
-                <li><a href="#">Додати товар</a></li>
+                <li><a href="@Url.Action("AddUnitPage", "Admin")">Додати товар</a></li>
                 <li><a href="#">Переглянути замовлення</a></li>
             }
         }

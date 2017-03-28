@@ -39,6 +39,11 @@ namespace BLL.Providers
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
+        public IEnumerable<UsersDto> GetAll(int skip, int amount)
+        {
+            return ConvertModeltoDTO(_repo.GetAll().OrderByDescending(x => x.email).Skip(skip).Take(amount));
+        }
+
         IEnumerable<UsersDto> ConvertModeltoDTO(IQueryable<Users> repo)
         {
             List<UsersDto> res = repo.Select(i => new UsersDto()
@@ -72,17 +77,7 @@ namespace BLL.Providers
                 IsMan = i.is_man
             };
         }
-
-        public Task<ClaimsIdentity> Authenticate(UsersDto user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SetInitialData(UsersDto user, List<string> roles)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public UsersDto GetByInfo(UsersDto user)
         {
             return _repo.GetAll().Where(x => x.email == user.Email).Select(x => new UsersDto()

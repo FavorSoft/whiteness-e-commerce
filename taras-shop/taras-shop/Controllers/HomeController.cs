@@ -102,7 +102,11 @@ namespace taras_shop.Controllers
 
         public async Task<ActionResult> ItemPage(int id)
         {
-            return View(facade.getArticleById(id));
+            var res = new ItemPageModels(facade.getArticleById(id));
+
+            res.CategoryType = facade.UnitOfWork.getCategoryType.GetById(res.category.TypeId).Type;
+            
+            return View(res);
         }
 
         public ActionResult ShoppingCart()

@@ -62,6 +62,7 @@ namespace BLL.Providers
 
         public List<int> GetIdsBySizes(List<string> sizes)
         {
+
             var res = _repo.GetAll().Select(x => new SizesDto()
             {
                 Id = x.id,

@@ -93,10 +93,7 @@ namespace BLL.Facade
 
             var res = new
             {
-                units = s.Serialize(articles.Select(x => new {
-                    x.unit,
-                    x.category
-                }).ToList()),
+                units = s.Serialize(articles.Select(x => x.unit).ToList()),
                 images = s.Serialize(articles.Select(x => x.images).ToList()),
                 sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
                 unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),

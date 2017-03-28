@@ -83,31 +83,24 @@ namespace taras_shop.Controllers
 
             IEnumerable<Article> articles = facade.ConvertUnitsToArticles(units, images);
 
-            JavaScriptSerializer s = new JavaScriptSerializer();
-
             int pages = articles.Count() / amountItems;
 
-            model.Articles = articles.Select(x => new ArticlesModel()
+            model.Units = articles.Select(x => new Item()
             {
-                category = x.category,
-                images = x.images,
-                sizes = x.sizes,
-                unit = new Item()
-                {
-                    AddUnitDate = x.unit.AddUnitDate,
-                    CategoryId = x.unit.CategoryId,
-                    Color = x.unit.Color,
-                    Description = x.unit.Description,
-                    Id = x.unit.Id,
-                    Likes = x.unit.Likes,
-                    Material = x.unit.Material,
-                    OldPrice = x.unit.OldPrice,
-                    Price = x.unit.Price,
-                    Producer = x.unit.Producer,
-                    Title = x.unit.Title,
-                    Category = x.category.Category
-                },
-                unitsInfo = x.unitsInfo
+                Image = x.images.FirstOrDefault().Image,
+                AddUnitDate = x.unit.AddUnitDate,
+                CategoryId = x.unit.CategoryId,
+                Color = x.unit.Color,
+                Description = x.unit.Description,
+                Id = x.unit.Id,
+                Likes = x.unit.Likes,
+                Material = x.unit.Material,
+                OldPrice = x.unit.OldPrice,
+                Price = x.unit.Price,
+                Producer = x.unit.Producer,
+                Title = x.unit.Title,
+                Category = x.category.Category
+                
             }).ToList();
 
             return model;

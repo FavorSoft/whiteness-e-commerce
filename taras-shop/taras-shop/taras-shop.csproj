@@ -164,6 +164,7 @@
     <Folder Include="Content\fonts\baron\" />
     <Folder Include="Content\fonts\bebas_neue\" />
     <Folder Include="Content\fonts\bully\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

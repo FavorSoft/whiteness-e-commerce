@@ -133,9 +133,10 @@ namespace taras_shop.Controllers
 
         public Models.AllUsersModels GetUsersModels(int page)
         {
+            int pageSize = 10;
             var model = new Models.AllUsersModels();
             
-            model.Users = facade.UnitOfWork.getUser.GetAll((page - 1) * 20, 20).Select(x => new Models.User()
+            model.Users = facade.UnitOfWork.getUser.GetAll((page - 1) * pageSize, pageSize).Select(x => new Models.User()
             {
                 Email = x.Email,
                 Gender = (x.IsMan) ? "man" : "woman",
@@ -150,7 +151,7 @@ namespace taras_shop.Controllers
 
             model.PageInfo = new Models.PageInfo();
             model.PageInfo.PageNumber = page;
-            model.PageInfo.PageSize = 20;
+            model.PageInfo.PageSize = pageSize;
             model.PageInfo.TotalItems = model.Users.Count();
 
 

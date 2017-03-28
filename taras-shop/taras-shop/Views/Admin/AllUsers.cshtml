@@ -1,4 +1,4 @@
-﻿@model IEnumerable<taras_shop.Models.AllUsersModels>
+﻿@model taras_shop.Models.AllUsersModels
 
 @{
     ViewBag.Title = "AllUsers";
@@ -13,25 +13,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Users.First().Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Number)
+            @Html.DisplayNameFor(model => model.Users.First().Number)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Users.First().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Users.First().Surname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            @Html.DisplayNameFor(model => model.Users.First().Role)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
+            @Html.DisplayNameFor(model => model.Users.First().Gender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegDate)
+            @Html.DisplayNameFor(model => model.Users.First().RegDate)
         </th>
         <th></th>
     </tr>

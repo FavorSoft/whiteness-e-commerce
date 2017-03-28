@@ -5,7 +5,7 @@ using System.Web;
 
 namespace taras_shop.Models
 {
-    public class AllUsersModels
+    public class User
     {
         public int Id { get; set; }
         public string Email { get; set; }
@@ -15,5 +15,23 @@ namespace taras_shop.Models
         public string Role { get; set; }
         public string Gender { get; set; }
         public System.DateTime RegDate { get; set; }
+
+
+    }
+    public class AllUsersModels
+    {
+        public IEnumerable<User> Users { get; set; }
+        public PageInfo PageInfo { get; set; }
+    }
+
+    public class PageInfo
+    {
+        public int PageNumber { get; set; }    
+        public int PageSize { get; set; }
+        public int TotalItems { get; set; } 
+        public int TotalPages
+        {
+            get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
+        }
     }
 }

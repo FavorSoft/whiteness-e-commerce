@@ -80,13 +80,13 @@
                         foreach (var i in Model.popular)
                         {
                             bool isSale = false;
-                            if (!i.unit.OldPrice.Equals(null))
+                            if (!i.unit.OldPrice.Equals(null) && i.unit.OldPrice > i.unit.Price)
                             {
                                 isSale = true;
                             }
                             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
                                 <a href="/Home/ItemPage/@i.unit.Id">
-                                    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
+                                    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div" style="background-image: url(../../Content/images/@i.images.FirstOrDefault().Image)">
                                         @if (isSale)
                                         {
                                             <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
@@ -124,17 +124,16 @@
                         @foreach (var i in Model.recommended)
                         {
                             bool isSale = false;
-                            if (!i.unit.OldPrice.Equals(null))
+                            if (!i.unit.OldPrice.Equals(null) && i.unit.OldPrice > i.unit.Price)
                             {
                                 isSale = true;
                             }
                             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
-                                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
-                                    <div class="quick-view">
-                                        <img src="/Content/images/eye.png" alt="eye">
-                                        @*src="~/Content/images/Units/@i.images.FirstOrDefault().Image" - i's image *@
-                                        @*<span>Быстрый просмотр</span>*@
-                                    </div>
+                                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div" style="background-image: url(../../Content/images/@i.images.FirstOrDefault().Image)">
+                                    @if (isSale)
+                                    {
+                                        <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
+                                    }
                                 </div>
                                 <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                                     <div class="title-unit-part">

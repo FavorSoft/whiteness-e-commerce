@@ -126,14 +126,16 @@ namespace taras_shop.Controllers
 
         }
 
-        public ActionResult AllUsers()
+        public ActionResult AllUsers(int page = 1)
         {
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(page));
         }
 
-        public List<Models.AllUsersModels> GetUsersModels()
+        public Models.AllUsersModels GetUsersModels(int page)
         {
-            List<Models.AllUsersModels> model = facade.UnitOfWork.getUser.GetAll().Select(x => new Models.AllUsersModels()
+            var model = new Models.AllUsersModels();
+            
+            model.Users = facade.UnitOfWork.getUser.GetAll((page - 1) * 20, 20).Select(x => new Models.User()
             {
                 Email = x.Email,
                 Gender = (x.IsMan) ? "man" : "woman",
@@ -144,6 +146,11 @@ namespace taras_shop.Controllers
                 Role = (x.RoleId == 3) ? "User" : (x.RoleId == 2) ? "Moderator" : (x.RoleId == 1) ? "Admin" : (x.RoleId == 4) ? "Banned" : "Undefined",
                 Surname = x.Surname
             }).ToList();
+
+            model.PageInfo.PageNumber = page;
+            model.PageInfo.PageSize = 20;
+            model.PageInfo.TotalItems = model.Users.Count();
+
 
             return model;
         }
@@ -196,28 +203,28 @@ namespace taras_shop.Controllers
         public ActionResult BanUser(int id)
         {
             facade.changeRole(id, "Banned");
-            return View("AddUsers");
+            return View("AllUsers", GetUsersModels(0));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsAdmin(int id)
         {
             facade.changeRole(id, "Admin");
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(0));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsUser(int id)
         {
             facade.changeRole(id, "User");
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(0));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsModerator(int id)
         {
             facade.changeRole(id, "Moderator");
-            return View("AllUsers", GetUsersModels());
+            return View("AllUsers", GetUsersModels(0));
         }
 
         protected override void Dispose(bool disposing)

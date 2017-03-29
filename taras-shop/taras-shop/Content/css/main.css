@@ -2379,3 +2379,39 @@ footer .subscribe
 }
 
 /* Item slider end */
+
+/* Pagination */
+
+.container .pagination
+{
+    display: block;
+    height: 36px;
+}
+
+.pagination a.material-icons
+{
+    padding: 6px;
+}
+
+.pagination a {
+    cursor: pointer;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination .pagination-wrapper
+{
+    float: right;
+}
+
+/* Pagination end */

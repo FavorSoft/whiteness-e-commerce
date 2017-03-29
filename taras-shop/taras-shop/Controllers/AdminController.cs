@@ -88,7 +88,7 @@ namespace taras_shop.Controllers
                     {
                         facade.UnitOfWork.getImages.AddItem(new ImagesDto()
                         {
-                            Image = img,
+                            Image = String.Format("{0}.jpg",img),
                             OwnerId = unit.Id
                         });
                     }

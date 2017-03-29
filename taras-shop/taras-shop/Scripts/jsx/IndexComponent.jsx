@@ -229,7 +229,7 @@ class SideFiltersSize extends React.Component {
         return this.props.sizes.map(size => {
             return (
                 <li key={ size.Id || Math.random() }>
-                    <input value="true" onChange={ this.props.handleChange } 
+                    <input value="true" onChange={ this.props.handleChange }
                      type="checkbox" id={ size.Size + '-option' } name="selector" />
                     <label htmlFor={ size.Size + '-option' }>{ size.Size }</label>
                     <div className="check"></div>
@@ -260,8 +260,6 @@ class Units extends React.Component {
 
     priceCheck(price) {
         if (price) {
-            console.log("Heyyy");
-            console.log((price / 100).toFixed(2) + " грн");
             let formatedPrice = (price / 100).toFixed(2) + " грн";
             return formatedPrice;
         }
@@ -274,7 +272,7 @@ class Units extends React.Component {
         return unitList = this.props.units.map((unit) => {
             console.log(unit);
             return (
-                <Unit key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/" + unit.Image + "')" }} 
+                <Unit link={ "/Home/ItemPage/" + unit.Id } key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/" + unit.Image + "')" }} 
                  companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice) } priceNow={ (unit.Price/100).toFixed(2) + " грн" } />
             );
         });
@@ -309,7 +307,7 @@ class Unit extends React.Component {
     render() {
         return (
             <div className="col-md-6 col-lg-6 col-sm-6 col-xs-8 unit">
-                    <a href="/Home/ItemPage">
+                    <a href={ this.props.link }>
                         <div style={ this.props.imgLink } className="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div">
                             { this.isSale() }
                         </div>

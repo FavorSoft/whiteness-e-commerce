@@ -2360,3 +2360,22 @@ footer .subscribe
 }
 
 /* Footer section end */
+
+/* Item slider section */
+
+.slider-block
+{
+    margin-bottom: 50px;
+}
+
+.container .slider-block .lslide 
+{
+    text-align: center;
+}
+
+.container .lSSlideOuter .lSPager.lSGallery
+{
+    margin: 0 auto;
+}
+
+/* Item slider end */

@@ -10,59 +10,16 @@
         <div id="item-page-block">
             <div class="slider-block col-md-7">
                 <ul class="custom-gallery col-md-12" id="imageGallery">
-                    <li data-thumb="../../Content/images/womant.jpg" data-src="../../Content/images/womant.jpg">
-                        <img src="../../Content/images/womant.jpg" />
-                    </li>
-                    <li data-thumb="../../Content/images/womant.jpg" data-src="../../Content/images/womant.jpg">
-                        <img src="../../Content/images/womant.jpg" />
-                    </li>
-                    <li data-thumb="../../Content/images/womant.jpg" data-src="../../Content/images/womant.jpg">
-                        <img src="../../Content/images/womant.jpg" />
-                    </li>
-                    <li data-thumb="../../Content/images/womant.jpg" data-src="../../Content/images/womant.jpg">
-                        <img src="../../Content/images/womant.jpg" />
-                    </li>
-                    <li data-thumb="../../Content/images/womant.jpg" data-src="../../Content/images/womant.jpg">
-                        <img src="../../Content/images/womant.jpg" />
-                    </li>
+                    @{
+                        foreach (var i in Model.images)
+                        {
+                            <li data-thumb="../../Content/images/@i.Image" data-src="../../Content/images/@i.Image">
+                                <img src="../../Content/images/@i.Image" />
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
-            @*<div id='carousel-custom' class='col-md-8 carousel slide' data-ride='carousel'>
-                <div class='carousel-outer'>
-                    <div class='carousel-inner'>
-                        @{
-                            int counter = 0;
-                            foreach (var i in Model.images)
-                            {
-                                counter++;
-                                string imgClass = "";
-                                if (counter == 1)
-                                {
-                                    imgClass = "active";
-                                }
-                                <div class='item @imgClass'>
-                                    <img src='~/Content/images/Units/@i.Image' alt='' id="zoom_05" data-zoom-image='~/Content/images/Units/@i.Image' />
-                                </div>
-                            }
-                        }
-                    </div>
-                    <ol class='carousel-indicators mCustomScrollbar meartlab'>
-                        @{
-                            int itemAmount = 0;
-                            foreach (var i in Model.images)
-                            {
-                                itemAmount++;
-                                string imgClass = "";
-                                if (itemAmount == 1)
-                                {
-                                    imgClass = "active";
-                                }
-                                <li data-target='#carousel-custom' data-slide-to='0' class='@imgClass'><img src='~/Content/images/Units/@i.Image' alt='@itemAmount' /></li>
-                            }
-                        }
-                    </ol>
-                </div>
-            </div>*@
             <div class="col-md-4 details-modal-part">
                 <div class="col-md-12 text-details-part">
                     <div class="title-unit-part">
@@ -139,5 +96,7 @@
             </div>
         </div>
     </div>
+    <!--Basket modal-->
+    @Html.Partial("Basket")
 </div>
 

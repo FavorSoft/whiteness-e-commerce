@@ -177,12 +177,12 @@ foreign key (user_id)
 references Users(id)
 
 
-/* create Basket table*/
+/* create Basket items table*/
 create table Basket_items
 (
 	id int not null identity(1,1),
 	basket_id int not null,
-	unit_id int not null,
+	unit_info_id int not null,
 	amount int not null
 )
 /**/
@@ -193,9 +193,9 @@ add constraint pk_basket_items_id
 primary key (id)
  
 alter table Basket_items
-add constraint fk_unit_id
-foreign key (unit_id)
-references Unit(id)
+add constraint fk_unit_info_id
+foreign key (unit_info_id)
+references UnitInfo(id)
 
 alter table Basket_items
 add constraint fk_basket_id

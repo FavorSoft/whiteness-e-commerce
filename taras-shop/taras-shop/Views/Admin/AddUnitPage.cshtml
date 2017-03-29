@@ -4,6 +4,7 @@
     <div class="col-lg-4 col-md-4">
         @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="images">Фото:</label>
@@ -15,12 +16,6 @@
                 <div class="col-md-offset-2 col-md-10">
                     <label for="title">Заголовок:</label>
                     <input id="title" name="title" type="text" class="form-control text-standart-input" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <label for="title">Заголовок:</label>
-                    <input id="title" name="title" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
@@ -39,21 +34,6 @@
                 </select>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <label for="producer">Виробник:</label>
-                    <input id="producer" name="producer" type="text" class="form-control text-standart-input" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="category-type">Виберіть для кого:</label>
-                <select class="form-control text-standart-input" name="category_type" id="category-type" onchange="changeSelect()">
-                    @foreach (var i in Model.categoryTypes)
-                    {
-                        <option value="@i.Id">@i.Type</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="category">Select list:</label>
                 <select class="form-control text-standart-input" name="category" id="category">
                     @foreach (var i in Model.categories)
@@ -62,14 +42,12 @@
                     }
                 </select>
             </div>
-
-            <div class="form-group">
+                <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="price">Ціна:</label>
                     <input id="price" name="price" type="text" class="form-control text-standart-input" />
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="size-xs">Розмір: XS</label>
                 <input value="true" id="size-xs" type="checkbox" class="form-control text-standart-input" />
@@ -117,10 +95,7 @@
                     <input type="submit" value="Create" id="create" class="btn btn-default" />
                 </div>
             </div>
-
         }
-
     </div>
-
 </div>
 

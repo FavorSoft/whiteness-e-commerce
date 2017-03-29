@@ -84,22 +84,25 @@
                     <div class="line"></div>
                 </div>
                 <div class="colors"></div>
-                <div class="choose-size">
-                    <h4 id="size-toggle">Выбрать размер</h4>
-                    <div class="append-radio">
-                        <ul class="radio-list">
-                            @for (int i = 0; i < Model.sizes.Count(); i++)
-                            {
-                                <li>
-                                    <input type="radio" id="@Model.sizes.ToList()[i].Size.ToLower()-option2" name="selector">
-                                    <label for="@Model.sizes.ToList()[i].Size.ToLower()-option2">@Model.sizes.ToList()[i].Size.ToLower()</label>
-                                    <div class="check"></div>
-                                </li>
-                            }
-                        </ul>
+                @using (Html.BeginForm("addtobasket", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="choose-size">
+                        <h4 id="size-toggle">Выбрать размер</h4>
+                        <div class="append-radio">
+                            <ul class="radio-list">
+                                @for (int i = 0; i < Model.sizes.Count(); i++)
+                                {
+                                    <li>
+                                        <input type="radio" id="@Model.sizes.ToList()[i].Size.ToLower()-option2" name="selector">
+                                        <label for="@Model.sizes.ToList()[i].Size.ToLower()-option2">@Model.sizes.ToList()[i].Size.ToLower()</label>
+                                        <div class="check"></div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <button class="frequent-button" data-toggle="modal" data-target="#basket-modal">Добавить в корзину</button>
+                    <button type="submit" class="frequent-button" data-toggle="modal" data-target="#basket-modal">Добавить в корзину</button>
+                }   
                 <div id="item-accordion" data-theme="none">
                     <h4><span>+</span>Описание товара</h4>
                     <div>

@@ -110,6 +110,7 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\fontello.css" />
     <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\lightslider.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\images\1.png" />
     <Content Include="Content\images\basket.jpg" />
@@ -151,6 +152,7 @@
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\jquery-1.10.2.min.js" />
     <Content Include="Scripts\js\JQueryForm.js" />
+    <Content Include="Scripts\js\lightslider.min.js" />
     <Content Include="Scripts\js\main.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

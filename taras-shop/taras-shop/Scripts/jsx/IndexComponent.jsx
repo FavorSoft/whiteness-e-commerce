@@ -26,9 +26,9 @@
 
         $.get("/Home/GetItemsByFilter", request, (response) => {
             console.log(response);
-            let units = response.Units;
             this.setState({
-                units: units
+                units: response.Units,
+                pageInfo: response.PageUnfo
             });
         });
     }

@@ -193,41 +193,41 @@ namespace BLL.Providers
         }
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
         {
-            return (from units in _repo.GetEntities().Unit
-                    join s in _repo.GetEntities().UnitInfo on units.id equals s.unit_id
-                    where units.price >= startPrice &&
-                          units.price <= endPrice &&
-                          units.category_id == categoryId
-                    orderby units.add_date descending
-                    select new
-                    {
-                        Id = units.id,
-                        CategoryId = units.category_id,
-                        Color = units.color,
-                        Description = units.description,
-                        Likes = units.likes,
-                        Material = units.material,
-                        Price = units.price,
-                        OldPrice = units.old_price,
-                        Producer = units.producer,
-                        Title = units.title,
-                        AddUnitDate = units.add_date,
-                        sizeId = s.size_id,
-                        amount = s.amount
-                    }).Select(x => new UnitDto()
-                    {
-                        Id = x.Id,
-                        CategoryId = x.CategoryId,
-                        Color = x.Color,
-                        Description = x.Description,
-                        Likes = x.Likes,
-                        Material = x.Material,
-                        Price = x.Price,
-                        OldPrice = x.OldPrice,
-                        Producer = x.Producer,
-                        Title = x.Title,
-                        AddUnitDate = x.AddUnitDate
-                    }).Take(amount);
+            return _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            a => a.id,
+            b => b.unit_id,
+            (a, b) => new
+            {
+                Id = a.id,
+                CategoryId = a.category_id,
+                AddUnitDate = a.add_date,
+                Color = a.color,
+                Description = a.description,
+                Likes = a.likes,
+                Material = a.material,
+                OldPrice = a.old_price,
+                Price = a.price,
+                Producer = a.producer,
+                Title = a.title,
+                SizeId = b.size_id,
+                Amount = b.amount
+            }).Where(x => x.Amount > 0 &&
+            x.Price >= startPrice &&
+            x.Price <= endPrice &&
+            x.CategoryId == categoryId).OrderByDescending(y => y.AddUnitDate).Select(unit => new UnitDto()
+            {
+                Id = unit.Id,
+                CategoryId = unit.CategoryId,
+                Color = unit.Color,
+                Description = unit.Description,
+                Likes = unit.Likes,
+                Material = unit.Material,
+                Price = unit.Price,
+                OldPrice = unit.OldPrice,
+                Producer = unit.Producer,
+                Title = unit.Title,
+                AddUnitDate = unit.AddUnitDate
+            }).Take(amount);
         }
     }
 }

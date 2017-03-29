@@ -275,7 +275,7 @@ class Units extends React.Component {
         return unitList = this.props.units.map((unit) => {
             console.log(unit);
             return (
-                <Unit link={ "/Home/ItemPage/" + unit.Id } key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/" + unit.Image + "')" }} 
+                <Unit link={ "/Home/ItemPage/" + unit.Id } key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/Units/" + unit.Image + "')" }} 
                  companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice) } priceNow={ (unit.Price/100).toFixed(2) + " грн" } />
             );
         });

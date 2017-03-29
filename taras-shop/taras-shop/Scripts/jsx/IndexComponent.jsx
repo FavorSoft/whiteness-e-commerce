@@ -256,6 +256,9 @@ class Units extends React.Component {
         super(props);
         this.renderUnits = this.renderUnits.bind(this);
         this.priceCheck = this.priceCheck.bind(this);
+        this.renderPagination = this.renderPagination.bind(this);
+        this.state = {
+        };
     }
 
     priceCheck(price) {
@@ -278,9 +281,25 @@ class Units extends React.Component {
         });
     }
 
+    renderPagination() {
+        return (
+            <div className="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#">1</a>
+                    <a className="active" href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            );
+    }
+
     render() {
         return (
             <div className="col-md-9 col-sm-12 popular-units">
+                { this.renderPagination() }
                 { this.renderUnits() }
             </div>
         );
@@ -322,7 +341,7 @@ class Unit extends React.Component {
                             </div>
                         </div>
                     </a>
-                </div>
+            </div>
         );
     }
 }

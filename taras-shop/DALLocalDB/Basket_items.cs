@@ -16,10 +16,10 @@ namespace DALLocalDB
     {
         public int id { get; set; }
         public int basket_id { get; set; }
-        public int unit_id { get; set; }
+        public int unit_info_id { get; set; }
         public int amount { get; set; }
     
         public virtual Basket Basket { get; set; }
-        public virtual Unit Unit { get; set; }
+        public virtual UnitInfo UnitInfo { get; set; }
     }
 }

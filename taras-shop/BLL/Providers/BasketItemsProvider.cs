@@ -19,7 +19,7 @@ namespace BLL.Providers
         {
             _repo.AddItem(new Basket_items()
             {
-                unit_id = basketItems.UnitId,
+                unit_info_id = basketItems.UnitInfoId,
                 amount = basketItems.Amount,
                 basket_id = basketItems.BasketId
             });
@@ -36,7 +36,7 @@ namespace BLL.Providers
                     Id = i.id,
                     Amount = i.amount,
                     BasketId = i.basket_id,
-                    UnitId = i.unit_id
+                    UnitInfoId = i.unit_info_id
                 });
             return res;
         }
@@ -49,7 +49,7 @@ namespace BLL.Providers
                 Id = tmp.id,
                 Amount = tmp.amount,
                 BasketId = tmp.basket_id,
-                UnitId = tmp.unit_id
+                UnitInfoId = tmp.unit_info_id
             };
         }
 
@@ -65,7 +65,7 @@ namespace BLL.Providers
                 amount = item.Amount,
                 basket_id = item.BasketId,
                 id = item.Id,
-                unit_id = item.UnitId
+                unit_info_id = item.UnitInfoId
             });
         }
     }

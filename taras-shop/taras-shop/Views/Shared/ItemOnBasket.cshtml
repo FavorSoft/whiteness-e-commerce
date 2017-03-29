@@ -6,7 +6,7 @@
         <h4>@Model.unit.Title</h4>
         @if (Model.unitsInfo.Count() == 1)
         {
-            @foreach (var i in Model.unitsInfo)
+            foreach (var i in Model.unitsInfo)
             {
                 <span>Размер: @Model.sizes.Where(x => x.Id == i.SizeId).Select(x => x.Size)</span>
             }

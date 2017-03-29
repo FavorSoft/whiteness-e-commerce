@@ -17,7 +17,6 @@ namespace DALLocalDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unit()
         {
-            this.Basket_items = new HashSet<Basket_items>();
             this.Images = new HashSet<Images>();
             this.Order_items = new HashSet<Order_items>();
             this.UnitInfo = new HashSet<UnitInfo>();
@@ -35,8 +34,6 @@ namespace DALLocalDB
         public System.DateTime add_date { get; set; }
         public string description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Basket_items> Basket_items { get; set; }
         public virtual Categories Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Images> Images { get; set; }

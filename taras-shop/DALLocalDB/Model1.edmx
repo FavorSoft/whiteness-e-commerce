@@ -18,7 +18,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="basket_id" Type="int" Nullable="false" />
-          <Property Name="unit_id" Type="int" Nullable="false" />
+          <Property Name="unit_info_id" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Categories">
@@ -254,15 +254,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_unit_id">
-          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+        <Association Name="fk_unit_info_id">
+          <End Role="UnitInfo" Type="Self.UnitInfo" Multiplicity="1" />
           <End Role="Basket_items" Type="Self.Basket_items" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Unit">
+            <Principal Role="UnitInfo">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Basket_items">
-              <PropertyRef Name="unit_id" />
+              <PropertyRef Name="unit_info_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -345,8 +345,8 @@
             <End Role="Sizes" EntitySet="Sizes" />
             <End Role="UnitInfo" EntitySet="UnitInfo" />
           </AssociationSet>
-          <AssociationSet Name="fk_unit_id" Association="Self.fk_unit_id">
-            <End Role="Unit" EntitySet="Unit" />
+          <AssociationSet Name="fk_unit_info_id" Association="Self.fk_unit_info_id">
+            <End Role="UnitInfo" EntitySet="UnitInfo" />
             <End Role="Basket_items" EntitySet="Basket_items" />
           </AssociationSet>
           <AssociationSet Name="fk_unit_table_id" Association="Self.fk_unit_table_id">
@@ -378,10 +378,10 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="basket_id" Type="Int32" Nullable="false" />
-          <Property Name="unit_id" Type="Int32" Nullable="false" />
+          <Property Name="unit_info_id" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket" Relationship="Self.fk_basket_id" FromRole="Basket_items" ToRole="Basket" />
-          <NavigationProperty Name="Unit" Relationship="Self.fk_unit_id" FromRole="Basket_items" ToRole="Unit" />
+          <NavigationProperty Name="UnitInfo" Relationship="Self.fk_unit_info_id" FromRole="Basket_items" ToRole="UnitInfo" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -484,7 +484,6 @@
           <Property Name="likes" Type="Int32" Nullable="false" />
           <Property Name="add_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Basket_items" Relationship="Self.fk_unit_id" FromRole="Unit" ToRole="Basket_items" />
           <NavigationProperty Name="Categories" Relationship="Self.fk_category_id" FromRole="Unit" ToRole="Categories" />
           <NavigationProperty Name="Images" Relationship="Self.fk_owner_id" FromRole="Unit" ToRole="Images" />
           <NavigationProperty Name="Order_items" Relationship="Self.fk_o_unit_id" FromRole="Unit" ToRole="Order_items" />
@@ -498,6 +497,7 @@
           <Property Name="unit_id" Type="Int32" Nullable="false" />
           <Property Name="size_id" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Basket_items" Relationship="Self.fk_unit_info_id" FromRole="UnitInfo" ToRole="Basket_items" />
           <NavigationProperty Name="Sizes" Relationship="Self.fk_sizes_table_id" FromRole="UnitInfo" ToRole="Sizes" />
           <NavigationProperty Name="Unit" Relationship="Self.fk_unit_table_id" FromRole="UnitInfo" ToRole="Unit" />
         </EntityType>
@@ -542,15 +542,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_unit_id">
-          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+        <Association Name="fk_unit_info_id">
+          <End Role="UnitInfo" Type="Self.UnitInfo" Multiplicity="1" />
           <End Role="Basket_items" Type="Self.Basket_items" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Unit">
+            <Principal Role="UnitInfo">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Basket_items">
-              <PropertyRef Name="unit_id" />
+              <PropertyRef Name="unit_info_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -674,7 +674,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LocalEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Basket" EntityType="Self.Basket" />
           <EntitySet Name="Basket_items" EntityType="Self.Basket_items" />
           <EntitySet Name="Categories" EntityType="Self.Categories" />
@@ -697,8 +697,8 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
-          <AssociationSet Name="fk_unit_id" Association="Self.fk_unit_id">
-            <End Role="Unit" EntitySet="Unit" />
+          <AssociationSet Name="fk_unit_info_id" Association="Self.fk_unit_info_id">
+            <End Role="UnitInfo" EntitySet="UnitInfo" />
             <End Role="Basket_items" EntitySet="Basket_items" />
           </AssociationSet>
           <AssociationSet Name="fk_category_id" Association="Self.fk_category_id">
@@ -747,7 +747,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EntitiesModelStoreContainer" CdmEntityContainer="LocalEntities">
+        <EntityContainerMapping StorageEntityContainer="EntitiesModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Basket">
             <EntityTypeMapping TypeName="EntitiesModel.Basket">
               <MappingFragment StoreEntitySet="Basket">
@@ -761,7 +761,7 @@
               <MappingFragment StoreEntitySet="Basket_items">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="basket_id" ColumnName="basket_id" />
-                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="unit_info_id" ColumnName="unit_info_id" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
               </MappingFragment>
             </EntityTypeMapping>

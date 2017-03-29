@@ -16,7 +16,7 @@ namespace taras_shop.Controllers
 {
     public class HomeController : BaseController
     {
-        
+
 
         #region PARAMETERS
         readonly Facade facade;
@@ -100,19 +100,32 @@ namespace taras_shop.Controllers
                 Producer = x.unit.Producer,
                 Title = x.unit.Title,
                 Category = x.category.Category
-                
+
             }).ToList();
 
+            model.PageInfo = new PageInfo();
+            model.PageInfo.PageNumber = 1;
+            model.PageInfo.PageSize = 8;
+            model.PageInfo.TotalItems = model.Units.Count();
+            
             return model;
         }
 
         [HttpGet]
         public JsonResult GetItemsByCategory(int typeId, string category)
         {
-
             return Json(facade.getByFilter(typeId, category, 8), JsonRequestBehavior.AllowGet);
         }
-        
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToBasket()
+        {
+
+            return View();
+        }
+
         [HttpGet]
         public async Task<JsonResult> LoadIndex()
         {

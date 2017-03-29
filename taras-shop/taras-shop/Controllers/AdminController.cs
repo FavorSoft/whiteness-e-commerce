@@ -43,10 +43,10 @@ namespace taras_shop.Controllers
                 categoryTypes = facade.UnitOfWork.getCategoryType.GetAll()
             };
             return View(model);
-
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public async Task<ActionResult> Upload(
         #region uploadParameters
@@ -126,6 +126,7 @@ namespace taras_shop.Controllers
 
         }
 
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult AllUsers(int page = 1)
         {
             return View("AllUsers", GetUsersModels(page));
@@ -201,6 +202,7 @@ namespace taras_shop.Controllers
             return images;
         }
 
+        [ValidateAntiForgeryToken]
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult BanUser(int id)
         {
@@ -208,6 +210,7 @@ namespace taras_shop.Controllers
             return View("AllUsers", GetUsersModels(1));
         }
 
+        [ValidateAntiForgeryToken]
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsAdmin(int id)
         {
@@ -215,6 +218,7 @@ namespace taras_shop.Controllers
             return View("AllUsers", GetUsersModels(1));
         }
 
+        [ValidateAntiForgeryToken]
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsUser(int id)
         {
@@ -222,6 +226,7 @@ namespace taras_shop.Controllers
             return View("AllUsers", GetUsersModels(1));
         }
 
+        [ValidateAntiForgeryToken]
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsModerator(int id)
         {

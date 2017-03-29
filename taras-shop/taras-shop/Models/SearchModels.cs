@@ -9,8 +9,7 @@ namespace taras_shop.Models
     public class SearchModels
     {
         public List<Item> Units { get; set; }
-        public int Page { get; set; }
-        public int Pages { get; set; }
+        public PageInfo PageInfo { get; set; }
     }
     public class Item : UnitDto
     {

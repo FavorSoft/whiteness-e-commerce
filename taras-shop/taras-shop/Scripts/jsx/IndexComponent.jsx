@@ -284,15 +284,17 @@ class Units extends React.Component {
     renderPagination() {
         return (
             <div className="pagination">
-                    <a href="#">&laquo;</a>
+                <div className="pagination-wrapper">
+                    <a className="material-icons">keyboard_arrow_left</a>
                     <a href="#">1</a>
                     <a className="active" href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
                     <a href="#">6</a>
-                    <a href="#">&raquo;</a>
+                    <a className="material-icons">keyboard_arrow_right</a>
                 </div>
+            </div>
             );
     }
 

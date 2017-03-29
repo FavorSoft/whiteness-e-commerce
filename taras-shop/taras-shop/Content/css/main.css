@@ -2382,7 +2382,19 @@ footer .subscribe
 
 /* Pagination */
 
+.container .pagination
+{
+    display: block;
+    height: 36px;
+}
+
+.pagination a.material-icons
+{
+    padding: 6px;
+}
+
 .pagination a {
+    cursor: pointer;
     color: black;
     float: left;
     padding: 8px 16px;
@@ -2396,5 +2408,10 @@ footer .subscribe
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination .pagination-wrapper
+{
+    float: right;
+}
 
 /* Pagination end */

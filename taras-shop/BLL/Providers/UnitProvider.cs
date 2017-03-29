@@ -214,20 +214,20 @@ namespace BLL.Providers
             }).Where(x => x.Amount > 0 &&
             x.Price >= startPrice &&
             x.Price <= endPrice &&
-            x.CategoryId == categoryId).OrderByDescending(y => y.AddUnitDate).Select(unit => new UnitDto()
+            x.CategoryId == categoryId).GroupBy(g => g.Id).Select(unit => new UnitDto()
             {
-                Id = unit.Id,
-                CategoryId = unit.CategoryId,
-                Color = unit.Color,
-                Description = unit.Description,
-                Likes = unit.Likes,
-                Material = unit.Material,
-                Price = unit.Price,
-                OldPrice = unit.OldPrice,
-                Producer = unit.Producer,
-                Title = unit.Title,
-                AddUnitDate = unit.AddUnitDate
-            }).Take(amount);
+                Id = unit.FirstOrDefault().Id,
+                CategoryId = unit.FirstOrDefault().CategoryId,
+                Color = unit.FirstOrDefault().Color,
+                Description = unit.FirstOrDefault().Description,
+                Likes = unit.FirstOrDefault().Likes,
+                Material = unit.FirstOrDefault().Material,
+                Price = unit.FirstOrDefault().Price,
+                OldPrice = unit.FirstOrDefault().OldPrice,
+                Producer = unit.FirstOrDefault().Producer,
+                Title = unit.FirstOrDefault().Title,
+                AddUnitDate = unit.FirstOrDefault().AddUnitDate
+            }).Take(amount).ToList();
         }
     }
 }

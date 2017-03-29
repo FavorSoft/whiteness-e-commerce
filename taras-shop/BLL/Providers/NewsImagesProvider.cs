@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
-using DAL.Repository;
-using DAL.IRepository;
+using DALLocalDB;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
 using DTO;
 
 namespace BLL.IProviders
@@ -13,7 +10,7 @@ namespace BLL.IProviders
     public class NewsImagesProvider : IProvider<NewsImagesDto>
     {
         readonly IRepository<News_image> _repo;
-        public NewsImagesProvider(Entities db)
+        public NewsImagesProvider(LocalEntities db)
         {
             _repo = new NewsImageRepository(db);
         }

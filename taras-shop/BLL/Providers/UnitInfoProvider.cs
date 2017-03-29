@@ -1,20 +1,17 @@
 ﻿using BLL.IProviders;
-using DAL;
-using DAL.IRepository;
-using DAL.Repositories;
+using DALLocalDB;
+using DALLocalDB.IRepository;
+using DALLocalDB.Repositories;
 using DTO;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Providers
 {
     public class UnitInfoProvider : IUnitInfoProvider
     {
         readonly IRepository<UnitInfo> _repo;
-        public UnitInfoProvider(Entities db)
+        public UnitInfoProvider(LocalEntities db)
         {
             _repo = new UnitInfoRepository(db);
         }

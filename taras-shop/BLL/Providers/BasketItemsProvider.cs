@@ -1,20 +1,17 @@
 ﻿using BLL.IProviders;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
-using DAL;
-using DAL.IRepository;
-using DAL.Repository;
+using DALLocalDB;
+using DALLocalDB.IRepository;
+using DALLocalDB.Repository;
 
 namespace BLL.Providers
 {
     public class BasketItemsProvider : IProvider<BasketItemsDto>
     {
         readonly IRepository<Basket_items> _repo;
-        public BasketItemsProvider(Entities db)
+        public BasketItemsProvider(LocalEntities db)
         {   
             _repo = new BasketItemsRepository(db);
         }

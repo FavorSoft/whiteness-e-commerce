@@ -1,21 +1,17 @@
 ﻿using BLL.IProviders;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
-using DAL;
-using DAL.Repository;
-using DAL.IRepository;
-using System.Security.Claims;
+using DALLocalDB;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
 
 namespace BLL.Providers
 {
     public class UserProvider : IUserProvider
     {
         readonly IRepository<Users> _repo;
-        public UserProvider(Entities context)
+        public UserProvider(LocalEntities context)
         {
             _repo = new UserRepository(context);
         }

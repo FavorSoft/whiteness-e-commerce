@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
-using DAL.Repository;
-using DAL.IRepository;
-using DAL;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
+using DALLocalDB;
 using BLL.IProviders;
 
 namespace BLL.Providers
@@ -14,7 +11,7 @@ namespace BLL.Providers
     public class CategoryProvider : ICategoryProvider
     {
         readonly IRepository<Categories> _repo;
-        public CategoryProvider(Entities db)
+        public CategoryProvider(LocalEntities db)
         {
             _repo = new CategoriesRepository(db);
         }

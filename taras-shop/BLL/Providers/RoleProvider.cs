@@ -1,20 +1,17 @@
 ﻿using BLL.IProviders;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
-using DAL;
-using DAL.Repository;
-using DAL.IRepository;
+using DALLocalDB;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
 
 namespace BLL.Providers
 {
     public class RoleProvider : IRolesProvider
     {
         readonly IRepository<Roles> _repo;
-        public RoleProvider(Entities db)
+        public RoleProvider(LocalEntities db)
         {
             _repo = new RoleRepository(db);
         }

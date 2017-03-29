@@ -87,9 +87,9 @@
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{f0df2bba-1b60-4c48-b19d-2431471e0a15}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\DALLocalDB\DALLocalDB.csproj">
+      <Project>{40621b8c-2837-4553-8bdd-12faa9dc3780}</Project>
+      <Name>DALLocalDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{10e0e204-9006-4e0a-bf02-a0dc78de667e}</Project>

@@ -1,14 +1,9 @@
 ﻿using Autofac;
 using BLL.IProviders;
 using BLL.Providers;
-using DAL;
-using DAL.Repository;
-using DAL.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DALLocalDB;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
 using DTO;
 namespace BLL.DI
 {

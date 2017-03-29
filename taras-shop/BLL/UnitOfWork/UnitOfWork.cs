@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using BLL.IProviders;
 using BLL.Providers;
-using DAL;
+using DALLocalDB;
 using DTO;
 
 namespace BLL.UnitOfWork
@@ -28,14 +23,14 @@ namespace BLL.UnitOfWork
         IUnitProvider _unit;
         IUserProvider _user;
         IUnitInfoProvider _unitInfo;
-        Entities context;
+        LocalEntities context;
         #endregion
 
         #region CTOR
         public UnitOfWork(
             )
         {
-            context = new Entities();
+            context = new LocalEntities();
         }
         #endregion
 

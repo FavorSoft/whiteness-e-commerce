@@ -1,20 +1,17 @@
-﻿ using BLL.IProviders;
-using System;
+﻿using BLL.IProviders;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
-using DAL;
-using DAL.Repository;
-using DAL.IRepository;
+using DALLocalDB;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
 
 namespace BLL.Providers
 {
     public class ImagesProvider : IImagesProvider
     {
         readonly IRepository<Images> _repo;
-        public ImagesProvider(Entities db)
+        public ImagesProvider(LocalEntities db)
         {
             _repo = new ImagesRepository(db);
         }

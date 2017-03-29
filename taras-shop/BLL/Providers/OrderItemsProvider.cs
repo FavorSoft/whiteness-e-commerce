@@ -1,20 +1,17 @@
 ﻿using BLL.IProviders;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO;
-using DAL;
-using DAL.Repository;
-using DAL.IRepository;
+using DALLocalDB;
+using DALLocalDB.Repository;
+using DALLocalDB.IRepository;
 
 namespace BLL.Providers
 {
     public class OrderItemsProvider : IProvider<OrderItemsDto>
     {
         readonly IRepository<Order_items> _repo;
-        public OrderItemsProvider(Entities db)
+        public OrderItemsProvider(LocalEntities db)
         {
             _repo = new OrderItemsRepository(db);
         }

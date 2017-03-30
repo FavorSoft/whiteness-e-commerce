@@ -55,9 +55,9 @@ namespace taras_shop.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetItemsByFilter(int typeId, string category, List<string> sizes, int fromPrice, int toPrice)
+        public JsonResult GetItemsByFilter(int typeId, string category, List<string> sizes, int fromPrice, int toPrice, int page = 1)
         {
-            return Json(getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
+            return Json(getByFilter(typeId, category, sizes, 0, 100000, 0, 8, page), JsonRequestBehavior.AllowGet);
         }
 
         //public ViewResult ItemOnBasket(int personId)
@@ -71,7 +71,7 @@ namespace taras_shop.Controllers
         //    //return View(model);
         //}
 
-        SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
+        SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems, int page)
         {
             SearchModels model = new SearchModels();
 
@@ -86,11 +86,11 @@ namespace taras_shop.Controllers
             List<UnitDto> units;
             if (sizeIds != null && sizeIds.Count > 0)
             {
-                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, (page - 1) * amountItems, amountItems).ToList();
             }
             else
             {
-                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, skipItems, amountItems).ToList();
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, (page - 1) * amountItems, amountItems).ToList();
             }
 
             List<ImagesDto> images = facade.UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
@@ -99,6 +99,7 @@ namespace taras_shop.Controllers
 
             int pages = articles.Count() / amountItems;
 
+            model.Units = new List<Item>();
             model.Units = articles.Select(x => new Item()
             {
                 Image = x.images.FirstOrDefault().Image,
@@ -116,15 +117,11 @@ namespace taras_shop.Controllers
                 Category = x.category.Category
 
             }).ToList();
-
-            model.Units.AddRange(model.Units);
-            model.Units.AddRange(model.Units);
-
-
+            
             model.PageInfo = new PageInfo();
-            model.PageInfo.PageNumber = 1;
+            model.PageInfo.PageNumber = page;
             model.PageInfo.PageSize = 8;
-            model.PageInfo.TotalItems = model.Units.Count();
+            model.PageInfo.TotalItems = facade.UnitOfWork.getUnit.GetAmountUnit();
             
             return model;
         }

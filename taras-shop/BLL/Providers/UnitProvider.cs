@@ -5,6 +5,7 @@ using DTO;
 using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
+using System;
 
 namespace BLL.Providers
 {
@@ -193,6 +194,11 @@ namespace BLL.Providers
                 Title = unit.FirstOrDefault().Title,
                 AddUnitDate = unit.FirstOrDefault().AddUnitDate
             }).Take(amount).ToList();
+        }
+
+        public int GetAmountUnit()
+        {
+            return _repo.GetAll().Count();
         }
     }
 }

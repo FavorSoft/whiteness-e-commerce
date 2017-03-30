@@ -15,12 +15,14 @@ namespace BLL.Providers
         {   
             _repo = new BasketItemsRepository(db);
         }
+
         public void AddItem(BasketItemsDto basketItems)
         {
             _repo.AddItem(new Basket_items()
             {
                 unit_info_id = basketItems.UnitInfoId,
                 amount = basketItems.Amount,
+                was_added = basketItems.WasAdded,
                 basket_id = basketItems.BasketId
             });
         }
@@ -29,6 +31,7 @@ namespace BLL.Providers
         {
             return ConvertModeltoDTO(_repo.GetAll());
         }
+
         IEnumerable<BasketItemsDto> ConvertModeltoDTO(IQueryable<Basket_items> repo)
         {
             IEnumerable<BasketItemsDto> res = repo.Select(i => new BasketItemsDto()
@@ -36,6 +39,7 @@ namespace BLL.Providers
                     Id = i.id,
                     Amount = i.amount,
                     BasketId = i.basket_id,
+                    WasAdded = i.was_added,
                     UnitInfoId = i.unit_info_id
                 });
             return res;
@@ -49,6 +53,7 @@ namespace BLL.Providers
                 Id = tmp.id,
                 Amount = tmp.amount,
                 BasketId = tmp.basket_id,
+                WasAdded = tmp.was_added,
                 UnitInfoId = tmp.unit_info_id
             };
         }
@@ -64,6 +69,7 @@ namespace BLL.Providers
             {
                 amount = item.Amount,
                 basket_id = item.BasketId,
+                was_added = item.WasAdded,
                 id = item.Id,
                 unit_info_id = item.UnitInfoId
             });

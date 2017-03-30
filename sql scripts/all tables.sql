@@ -181,6 +181,7 @@ references Users(id)
 create table Basket_items
 (
 	id int not null identity(1,1),
+	was_added date not null,
 	basket_id int not null,
 	unit_info_id int not null,
 	amount int not null

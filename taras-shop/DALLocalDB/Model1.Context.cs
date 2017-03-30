@@ -13,10 +13,10 @@ namespace DALLocalDB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LocalEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public LocalEntities()
-            : base("name=LocalEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

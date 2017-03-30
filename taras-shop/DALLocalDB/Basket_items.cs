@@ -18,6 +18,7 @@ namespace DALLocalDB
         public int basket_id { get; set; }
         public int unit_info_id { get; set; }
         public int amount { get; set; }
+        public System.DateTime was_added { get; set; }
     
         public virtual Basket Basket { get; set; }
         public virtual UnitInfo UnitInfo { get; set; }

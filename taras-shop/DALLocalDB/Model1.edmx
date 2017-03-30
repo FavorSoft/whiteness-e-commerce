@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -17,6 +17,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="was_added" Type="date" Nullable="false" />
           <Property Name="basket_id" Type="int" Nullable="false" />
           <Property Name="unit_info_id" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
@@ -358,8 +359,7 @@
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -382,6 +382,7 @@
           <Property Name="amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket" Relationship="Self.fk_basket_id" FromRole="Basket_items" ToRole="Basket" />
           <NavigationProperty Name="UnitInfo" Relationship="Self.fk_unit_info_id" FromRole="Basket_items" ToRole="UnitInfo" />
+          <Property Name="was_added" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -759,6 +760,7 @@
           <EntitySetMapping Name="Basket_items">
             <EntityTypeMapping TypeName="EntitiesModel.Basket_items">
               <MappingFragment StoreEntitySet="Basket_items">
+                <ScalarProperty Name="was_added" ColumnName="was_added" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="basket_id" ColumnName="basket_id" />
                 <ScalarProperty Name="unit_info_id" ColumnName="unit_info_id" />

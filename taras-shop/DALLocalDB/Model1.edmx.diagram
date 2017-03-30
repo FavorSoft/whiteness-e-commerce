@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="EntitiesModel.Images" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModel.News" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModel.News_image" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Order" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModel.Order" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModel.Order_items" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModel.Roles" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModel.Sizes" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />

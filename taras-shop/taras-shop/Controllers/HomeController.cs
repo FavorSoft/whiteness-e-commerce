@@ -60,6 +60,17 @@ namespace taras_shop.Controllers
             return Json(getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
         }
 
+        //public ViewResult ItemOnBasket(int personId)
+        //{
+        //    //var unit = _repo
+        //
+        //    //var model = new Models.ItemOnBasket();
+        //
+        //    //model.
+        //
+        //    //return View(model);
+        //}
+
         SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
         {
             SearchModels model = new SearchModels();
@@ -67,7 +78,10 @@ namespace taras_shop.Controllers
             int categoryId = facade.UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
 
             List<int> sizeIds = new List<int>();
-            sizeIds = facade.UnitOfWork.getSizes.GetIdsBySizes(sizes);
+            if (sizes != null)
+            {
+                sizeIds = facade.UnitOfWork.getSizes.GetIdsBySizes(sizes);
+            }
 
             List<UnitDto> units;
             if (sizeIds != null && sizeIds.Count > 0)
@@ -102,6 +116,10 @@ namespace taras_shop.Controllers
                 Category = x.category.Category
 
             }).ToList();
+
+            model.Units.AddRange(model.Units);
+            model.Units.AddRange(model.Units);
+
 
             model.PageInfo = new PageInfo();
             model.PageInfo.PageNumber = 1;

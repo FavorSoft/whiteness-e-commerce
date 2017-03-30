@@ -1,18 +1,18 @@
-﻿@model DTO.Article
+﻿@model taras_shop.Models.ItemOnBasket
 
 <div class="col-md-5 col-sm-12 col-xs-12 left-basket">
     <img src="~/Content/images/item-preview.png" />
     <div class="text-basket-preview">
-        <h4>@Model.unit.Title</h4>
-        @if (Model.unitsInfo.Count() == 1)
+        <h4>@Model.Title</h4>
+        @if (Model.UnitsInfo.Count() == 1)
         {
-            foreach (var i in Model.unitsInfo)
+            foreach (var i in Model.UnitsInfo)
             {
-                <span>Размер: @Model.sizes.Where(x => x.Id == i.SizeId).Select(x => x.Size)</span>
+                <span>Размер: @Model.Sizes.Where(x => x.Id == i.SizeId).Select(x => x.Size)</span>
             }
         }
         else {
-            <span>Размеры: @Model.sizes.Where(x => x.Id == Model.unitsInfo.FirstOrDefault().SizeId).Select(x => x.Size)</span>
+            <span>Размеры: @Model.Sizes.Where(x => x.Id == Model.UnitsInfo.FirstOrDefault().SizeId).Select(x => x.Size)</span>
         }
     </div>
     <button class="frequent-button submit-log">Продолжить покупки</button>

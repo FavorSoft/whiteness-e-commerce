@@ -2,7 +2,8 @@
     constructor(props) {
         super(props);
         this.state = {
-            units: []
+            units: [],
+            page: 1
         };
         this.getUnitInfo = this.getUnitInfo.bind(this);
     }
@@ -16,7 +17,8 @@
             category: category,
             sizes: sizes,
             fromPrice: fromPrice,
-            toPrice: toPrice
+            toPrice: toPrice,
+            page: this.state.page
         };                  
 
         let deleteChild = document.querySelector("#to-be-deleted");

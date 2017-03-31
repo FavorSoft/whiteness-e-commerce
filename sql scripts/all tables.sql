@@ -315,10 +315,10 @@ values
 /* fill Users table*/
 insert into Users(email, [password], number, name, surname, role_id, reg_date, is_man)
 values
-('pinoplastiks@gmail.com', '1111', '0673553394', 'Andrii', 'Kolomys', 1, '2017-01-25', 1),
-('dendendengrebenets@gmail.com', '1111', '0673455599', 'Denny', 'Greb', 2, '2017-01-25', 1),
-('isurrender@gmail.com', '1111', '0931234423', 'Taras', 'Volinets', 3, '2017-01-27', 0),
-('isurrender2@gmail.com', '1111', '0931234423', 'Taras', 'Volinets', 4, '2017-01-27', 0)
+('pinoplastiks@gmail.com', 'AIjNMpc0wRcURA7dCurcHycpO8PA75kHpHUBPGGRk2LpxTXXQoIgyou6MIgtfPwhkg==', '0673553394', 'Andrii', 'Kolomys', 1, '2017-01-25', 1),
+('dendendengrebenets@gmail.com', 'AIjNMpc0wRcURA7dCurcHycpO8PA75kHpHUBPGGRk2LpxTXXQoIgyou6MIgtfPwhkg==', '0673455599', 'Denny', 'Greb', 2, '2017-01-25', 1),
+('isurrender@gmail.com', 'AIjNMpc0wRcURA7dCurcHycpO8PA75kHpHUBPGGRk2LpxTXXQoIgyou6MIgtfPwhkg==', '0931234423', 'Taras', 'Volinets', 3, '2017-01-27', 0),
+('isurrender2@gmail.com', 'AIjNMpc0wRcURA7dCurcHycpO8PA75kHpHUBPGGRk2LpxTXXQoIgyou6MIgtfPwhkg==', '0931234423', 'Taras', 'Volinets', 4, '2017-01-27', 0)
 
 /* fill Category_type table*/
 insert into Category_type([type])

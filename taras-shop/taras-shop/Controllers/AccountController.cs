@@ -71,14 +71,14 @@ namespace taras_shop.Controllers
                     string encTicket = FormsAuthentication.Encrypt(ticket);
 
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-                    return RedirectToAction("Index", "Home");
+                    return PartialView("LoginSuccess");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Пользователя с таким логином не существует");
+                    return PartialView("LoginFailed");
                 }
             }
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
         public string HashPassword(string password)

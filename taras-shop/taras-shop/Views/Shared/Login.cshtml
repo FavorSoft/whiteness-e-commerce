@@ -1,8 +1,8 @@
 ﻿@model taras_shop.Models.LoginModel
 <div id="sign-in-tab" class="tab-pane fade in active">
 
-    @using (Html.BeginForm("Login", "Account",
-                    FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
+    @using (Ajax.BeginForm("Login","Account", "",
+                    new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "login-result" }, new { @id = "login-form",@class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -16,6 +16,9 @@
             @Html.EditorFor(model => model.Password, new { @class = "pass-email-input" })
             @Html.ValidationMessageFor(model => model.Password)
         </div>
+        
+        <div id="login-result"></div>
+
         <button type="submit" class="frequent-button submit-log">Войти</button>
         <a href="#" class="forgot-pass">Забыли пароль?</a>
     }

@@ -38,7 +38,10 @@ namespace taras_shop.Models
         public string Number { get; set; }
 
         [Required]
-        public Gender IsMan { get; set; }
+        public Gender Woman { get; set; }
+
+        [Required]
+        public Gender Man{ get; set; }
 
         [Required]
         [DataType(DataType.Password)]

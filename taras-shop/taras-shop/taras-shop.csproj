@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -150,6 +153,7 @@
     <Content Include="Content\fonts\fontello.woff" />
     <Content Include="Content\fonts\fontello.woff2" />
     <Content Include="Content\fonts\інструкція.docx" />
+    <Content Include="Scripts\js\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\jquery-1.10.2.min.js" />
     <Content Include="Scripts\js\JQueryForm.js" />
@@ -199,6 +203,9 @@
     <Content Include="Views\Home\Ordering.cshtml" />
     <Content Include="Views\Admin\AllUsers.cshtml" />
     <Content Include="Views\Shared\ItemOnBasket.cshtml" />
+    <Content Include="Views\Shared\NullitemOnBasket.cshtml" />
+    <Content Include="Views\Shared\LoginFailed.cshtml" />
+    <Content Include="Views\Shared\LoginSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

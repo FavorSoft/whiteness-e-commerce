@@ -60,16 +60,22 @@ namespace taras_shop.Controllers
             return Json(getByFilter(typeId, category, sizes, 0, 100000, 0, 8), JsonRequestBehavior.AllowGet);
         }
 
-        //public ViewResult ItemOnBasket(int personId)
-        //{
-        //    //var unit = _repo
-        //
-        //    //var model = new Models.ItemOnBasket();
-        //
-        //    //model.
-        //
-        //    //return View(model);
-        //}
+        [HttpGet]
+        public ViewResult ItemOnBasket(int personId)
+        {
+            if (!String.IsNullOrWhiteSpace(User.Identity.Name))
+            {
+                
+                //return View(model);
+            }
+            //var unit = _repo
+        
+            //var model = new Models.ItemOnBasket();
+        
+            //model
+
+            return View("NullItemOnBasket");
+        }
 
         SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
         {

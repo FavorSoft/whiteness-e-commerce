@@ -89,7 +89,7 @@
             $('.sidebar-mobile-accordion h4').removeClass('ui-corner-all');
             $('.sidebar-mobile-accordion h4').removeClass('ui-accordion-icons');
         }
-        else if($(".side-catalog").hasClass("ui-accordion-header")) {
+        else if ($(".side-catalog").hasClass("ui-accordion-header")) {
             $('.sidebar-mobile-accordion').accordion('destroy');
         }
     }
@@ -117,6 +117,34 @@
     $("#size-toggle").click(function () {
         $(".append-radio").toggleClass("radio-show")
     });
+
+
+
+    $("#login-result").bind("DOMSubtreeModified", function () {
+        if ($("#successAuth").length != 0)
+        {
+            window.location.reload();
+        }
+    });
+
+
+
+
+    function getBasketInfo() {
+        $.ajax({
+            method: "GET",
+            url: "Home/ItemOnBasket",
+            success: function (data) {
+                console.log(data);
+            }
+        })
+            .done(function (msg) {
+                alert("Data Saved: " + msg);
+            });
+
+    }
+
+
     //$.ajax({
     //    method: "GET",
     //    url: "Home/GetItemsByFilter",

@@ -6,11 +6,11 @@
             page: 1,
             route: window.location.hash.substr(1)
         };
+        this.hashControl = this.hashControl.bind(this);
     }
 
-    componentDidMount() {
-        window.location.hash = "";
-        window.addEventListener('hashchange', () => {
+    hashControl() {
+        if (window.location.hash) {
             this.setState({
                 route: window.location.hash.substr(1)
             }, () => {
@@ -24,10 +24,15 @@
                     }
                 });
                 console.log(resList);
+                let sizes = null;
+                if (resList[2]) {
+                    sizes = resList[2].split(",");
+                }
+                console.log(sizes);
                 let request = {
                     typeId: resList[0],
                     category: resList[1],
-                    sizes: resList[2],
+                    sizes: sizes,
                     fromPrice: resList[3],
                     toPrice: resList[4],
                     page: this.state.page
@@ -46,13 +51,20 @@
                     });
                 });
             });
+        }
+    }
+
+    componentDidMount() {
+        this.hashControl();
+        window.addEventListener('hashchange', () => {
+            this.hashControl();
         });
     }
 
     render() {
         return (
             <div>
-                <Sidebar getUnitInfo={ this.getUnitInfo }/>
+                <Sidebar />
                 <Units units={ this.state.units }/>
             </div>
         );
@@ -111,9 +123,6 @@ class Sidebar extends React.Component {
                         <p onClick={ () =>
                         {
                             this.setCurrentCategory(category.TypeId, category.Category);
-                            //this.props.getUnitInfo(category.TypeId, category.Category,
-                            //    this.state.returnSizes, this.state.fromPrice,
-                            //    this.state.toPrice);
                         }}>
                             { category.Category }
                         </p>
@@ -133,7 +142,6 @@ class Sidebar extends React.Component {
                 }
             })
         }, () => {
-            console.log(this.state.returnSizes);
             // Clean sizes array from undefined values
             let temp = [];
             for(let i of this.state.returnSizes)
@@ -142,8 +150,8 @@ class Sidebar extends React.Component {
             this.setState({
                 returnSizes: temp
             }, () => {
-                this.props.getUnitInfo(this.state.currentTypeId, this.state.currentCategory, this.state.returnSizes,
-                    this.state.fromPrice, this.state.toPrice);
+                window.location.hash = "#" + this.state.currentTypeId + "#" + this.state.currentCategory + "#" + this.state.returnSizes
+                            + "#" + this.state.fromPrice + "#" + this.state.toPrice;
             });
         });
     }
@@ -193,6 +201,7 @@ class SideFiltersPrice extends React.Component {
             toPrice: 5000
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleGo = this.handleGo.bind(this)
     }
     
     handleChange(event) {
@@ -206,6 +215,11 @@ class SideFiltersPrice extends React.Component {
                 toPrice: event.target.value
             });
         }
+    }
+
+    handleGo() {
+        window.location.hash = "#" + this.props.TypeId + "#" + this.props.Category + "#" + this.props.Sizes
+                   + "#" + this.state.fromPrice + "#" + this.state.toPrice;
     }
 
     render() {
@@ -222,12 +236,9 @@ class SideFiltersPrice extends React.Component {
                     <input value={ this.state.toPrice } id="to-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
-                <a href={ "#" + this.props.TypeId + "#" + this.props.Category + "#" + this.props.Sizes
-                   + "#" + this.state.fromPrice + "#" + this.state.toPrice }>
-                    <button className="go-search-btn">
-                        Go
-                    </button>
-                </a>
+                <button onClick={ this.handleGo } className="go-search-btn">
+                    Go
+                </button>
             </div>
         );
     }

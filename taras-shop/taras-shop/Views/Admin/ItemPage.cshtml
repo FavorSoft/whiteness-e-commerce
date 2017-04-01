@@ -1,0 +1,104 @@
+﻿@model taras_shop.Models.ItemPageModels
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h5 class="routing-h"><a>Главная страница</a> > <a>@Model.CategoryType </a> > <a>@Model.category.Category </a> > <a>@Model.unit.Title</a></h5>
+        <div id="item-page-block">
+            <div class="slider-block col-md-7">
+                <ul class="custom-gallery col-md-12" id="imageGallery">
+                    @{
+                        foreach (var i in Model.images)
+                        {
+                            <li data-thumb="../../Content/images/@i.Image" data-src="../../Content/images/@i.Image">
+                                <img src="../../Content/images/@i.Image" />
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <a href="@Html.Action("Edit", "Admin", Model.unit.Id)">Изменить</a>
+            <a href="@Html.Action("Delete", "Admin", Model.unit.Id)">Удалить</a>
+            <div class="col-md-4 details-modal-part">
+                <div class="col-md-12 text-details-part">
+                    <div class="title-unit-part">
+                        <p class="company-maker">@Model.unit.Title</p>
+                        <p class="item-type">@Model.category.Category</p>
+                    </div>
+                    <div class="price-unit-part">
+                        @if (!@Model.unit.Price.Equals(null)){
+                            <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                        }
+                        else
+                        {
+                            <span class="price-now">Цены нет</span>
+                        }
+                        @if (!Model.unit.OldPrice.Equals(null))
+                        {
+                            <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                        }
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <div class="colors"></div>
+                @using (Html.BeginForm("addtobasket", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="choose-size">
+                        <h4 id="size-toggle">Выбрать размер</h4>
+                        <div class="append-radio">
+                            <ul class="radio-list">
+                                @for (int i = 0; i < Model.sizes.Count(); i++)
+                                {
+                                    <li>
+                                        <input type="radio" id="@Model.sizes.ToList()[i].Size.ToLower()-option2" name="selector">
+                                        <label for="@Model.sizes.ToList()[i].Size.ToLower()-option2">@Model.sizes.ToList()[i].Size.ToLower()</label>
+                                        <div class="check"></div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="getBasketInfo()" class="frequent-button" data-toggle="modal" data-target="#basket-modal">Добавить в корзину</button>
+                }   
+                <div id="item-accordion" data-theme="none">
+                    <h4><span>+</span>Описание товара</h4>
+                    <div>
+                        <p>
+                            @Model.unit.Description
+                            <br />
+                            <span class="consist">Состав: </span><span>@Model.unit.Material</span><br />
+                            <span class="item-code">Код товара: </span>@Model.unit.Id-B<span>
+                        </p>
+                    </div>
+                    <h4><span>+</span>Доставка</h4>
+                    <div>
+                        <p>
+                            Lorem.ua предоставляет своим клиентам следующие способы доставки:<br />
+                            <br />
+                            - новая почта<br />
+                            - деливери<br />
+                            - Адресная доставка по Ровно
+                        </p>
+                    </div>
+                    <h4><span>+</span>Оплата</h4>
+                    <div>
+                        <p>
+                            Lorem.ua предоставляет своим клиентам следующие виды оплаты:<br />
+                            <br />
+                            - наличный<br />
+                            - безналичный<br />
+                            - Visa и MasterCard
+                        </p>
+                    </div>
+                    <h4></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Basket modal-->
+    @Html.Partial("Basket")
+</div>
+

@@ -100,7 +100,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\PagingHelpers.cs" />
+    <Compile Include="Controllers\Helpers\PagingHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\AllUsersModels.cs" />
@@ -206,6 +206,9 @@
     <Content Include="Views\Shared\NullitemOnBasket.cshtml" />
     <Content Include="Views\Shared\LoginFailed.cshtml" />
     <Content Include="Views\Shared\LoginSuccess.cshtml" />
+    <Content Include="Views\Admin\ItemPage.cshtml" />
+    <Content Include="Views\Admin\EditItem.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

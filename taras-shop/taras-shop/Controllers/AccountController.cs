@@ -137,7 +137,6 @@ namespace taras_shop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Registration(RegisterModel model)
         {
-            
             if (ModelState.IsValid)
             {
                 UsersDto user = null;
@@ -161,6 +160,7 @@ namespace taras_shop.Controllers
                             RoleId = 3,
                             IsMan = (model.Man == Gender.Male)? true : false
                         });
+
                         transact.Commit();
                         facade.UnitOfWork.SaveChanges();
 

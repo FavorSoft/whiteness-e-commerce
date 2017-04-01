@@ -3,34 +3,48 @@
         super(props);
         this.state = {
             units: [],
-            page: 1
+            page: 1,
+            route: window.location.hash.substr(1)
         };
-        this.getUnitInfo = this.getUnitInfo.bind(this);
     }
 
-    getUnitInfo(typeId, category, sizes, fromPrice, toPrice) {
-        sizes = typeof sizes !== false ? sizes : null;
-        fromPrice = typeof fromPrice !== false ? fromPrice : null;
-        toPrice = typeof toPrice !== false ? toPrice : null;
-        let request = {
-            typeId: typeId,
-            category: category,
-            sizes: sizes,
-            fromPrice: fromPrice,
-            toPrice: toPrice,
-            page: this.state.page
-        };                  
-
-        let deleteChild = document.querySelector("#to-be-deleted");
-        if (typeof (deleteChild) != 'undefined' && deleteChild != null) {
-            document.querySelector(".main").removeChild(deleteChild);
-        }
-
-        $.get("/Home/GetItemsByFilter", request, (response) => {
-            console.log(response);
+    componentDidMount() {
+        window.location.hash = "";
+        window.addEventListener('hashchange', () => {
             this.setState({
-                units: response.Units,
-                pageInfo: response.PageUnfo
+                route: window.location.hash.substr(1)
+            }, () => {
+                let resList = this.state.route.split("#");
+                resList = resList.map((item) => {
+                    if (item !== "null") {
+                        return item;
+                    }
+                    else {
+                        return null;
+                    }
+                });
+                console.log(resList);
+                let request = {
+                    typeId: resList[0],
+                    category: resList[1],
+                    sizes: resList[2],
+                    fromPrice: resList[3],
+                    toPrice: resList[4],
+                    page: this.state.page
+                };
+
+                let deleteChild = document.querySelector("#to-be-deleted");
+                if (typeof (deleteChild) != 'undefined' && deleteChild != null) {
+                    document.querySelector(".main").removeChild(deleteChild);
+                }
+
+                $.get("/Home/GetItemsByFilter", request, (response) => {
+                    //console.log(response);
+                    this.setState({
+                        units: response.Units,
+                        pageInfo: response.PageUnfo
+                    });
+                });
             });
         });
     }
@@ -38,7 +52,7 @@
     render() {
         return (
             <div>
-                <Sidebar getUnitInfo={this.getUnitInfo }/>
+                <Sidebar getUnitInfo={ this.getUnitInfo }/>
                 <Units units={ this.state.units }/>
             </div>
         );
@@ -61,7 +75,6 @@ class Sidebar extends React.Component {
         this.renderLists = this.renderLists.bind(this);
         this.handleSizesChange = this.handleSizesChange.bind(this);
         this.setCurrentCategory = this.setCurrentCategory.bind(this);
-        this.handleGo = this.handleGo.bind(this);
     }
 
     componentWillMount() {
@@ -81,6 +94,9 @@ class Sidebar extends React.Component {
         this.setState({
             currentTypeId: TypeId,
             currentCategory: Category
+        }, () => {
+            window.location.hash = "#" + this.state.currentTypeId + "#" + this.state.currentCategory + "#" + this.state.returnSizes
+                            + "#" + this.state.fromPrice + "#" + this.state.toPrice;
         });
     }
 
@@ -91,30 +107,20 @@ class Sidebar extends React.Component {
         return this.state.categories.map(category => {
             if (category.TypeId === type_id) {
                 return (
-                    <li key={ category.Id }>
+                    <li key={ category.Id }>                    
                         <p onClick={ () =>
                         {
                             this.setCurrentCategory(category.TypeId, category.Category);
-                            this.props.getUnitInfo(category.TypeId, category.Category,
-                                this.state.returnSizes, this.state.fromPrice,
-                                this.state.toPrice);
+                            //this.props.getUnitInfo(category.TypeId, category.Category,
+                            //    this.state.returnSizes, this.state.fromPrice,
+                            //    this.state.toPrice);
                         }}>
-                        { category.Category }
+                            { category.Category }
                         </p>
-                </li>
+                    </li>
             );
         }
     });
-    }
-
-    handleGo(fromPrice, toPrice) {
-        this.props.getUnitInfo(this.state.currentTypeId, this.state.currentCategory, this.state.returnSizes,
-            fromPrice, toPrice);
-
-        this.setState({
-            fromPrice: fromPrice,
-            toPrice: toPrice
-        });
     }
 
     handleSizesChange() {
@@ -127,6 +133,7 @@ class Sidebar extends React.Component {
                 }
             })
         }, () => {
+            console.log(this.state.returnSizes);
             // Clean sizes array from undefined values
             let temp = [];
             for(let i of this.state.returnSizes)
@@ -168,7 +175,8 @@ class Sidebar extends React.Component {
                 </div>
                 <h3 className="filters-h">Фильтры</h3>
                 <div className="filters">
-                    <SideFiltersPrice handleGo={ this.handleGo } />
+                    <SideFiltersPrice TypeId={ this.state.currentTypeId } Category={ this.state.currentCategory }
+                                      Sizes={ this.state.returnSizes } />
                     <SideFiltersSize handleChange={ this.handleSizesChange } sizes={this.state.sizes}/>
                 </div>
             </div>
@@ -181,8 +189,8 @@ class SideFiltersPrice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fromValue: 0,
-            toValue: 5000
+            fromPrice: 0,
+            toPrice: 5000
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -190,12 +198,12 @@ class SideFiltersPrice extends React.Component {
     handleChange(event) {
         if (event.target.id === "from-price-input") {
             this.setState({
-                fromValue: event.target.value
+                fromPrice: event.target.value
             });
         }
         else if (event.target.id === "to-price-input") {
             this.setState({
-                toValue: event.target.value
+                toPrice: event.target.value
             });
         }
     }
@@ -206,16 +214,20 @@ class SideFiltersPrice extends React.Component {
                 <h4 className="price-h">Цена</h4>
                 <div>
                     <label htmlFor="from-price-input">От: </label>
-                    <input value={this.state.fromValue } id="from-price-input" onChange={ this.handleChange } type="text" />
+                    <input value={this.state.fromPrice } id="from-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
                 <div>
                     <label htmlFor="to-price-input">До: </label>
-                    <input value={ this.state.toValue} id="to-price-input" onChange={ this.handleChange } type="text" />
+                    <input value={ this.state.toPrice } id="to-price-input" onChange={ this.handleChange } type="text" />
                     <span>грн</span>
                 </div>
-                <button onClick={ () => this.props.handleGo(this.state.fromValue, this.state.toValue) }
-                 className="go-search-btn">Go</button>
+                <a href={ "#" + this.props.TypeId + "#" + this.props.Category + "#" + this.props.Sizes
+                   + "#" + this.state.fromPrice + "#" + this.state.toPrice }>
+                    <button className="go-search-btn">
+                        Go
+                    </button>
+                </a>
             </div>
         );
     }

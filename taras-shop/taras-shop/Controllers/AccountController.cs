@@ -159,7 +159,7 @@ namespace taras_shop.Controllers
                             Password = hash,
                             RegDate = DateTime.Now,
                             RoleId = 3,
-                            IsMan = (model.IsMan == Gender.Male)? true : false
+                            IsMan = (model.Man == Gender.Male)? true : false
                         });
                         transact.Commit();
                         facade.UnitOfWork.SaveChanges();

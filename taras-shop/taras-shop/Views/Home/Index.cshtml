@@ -91,12 +91,6 @@
                                         {
                                             <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
                                         }
-                                        @*src="~/Content/images/Units/@i.images.FirstOrDefault().Image" - i's image *@
-
-                                        @*<div class="quick-view" data-target="#item-preview-modal" data-toggle="modal">
-                                            <img src="~/Content/images/eye.png" alt="eye" />
-                                            <span>Быстрый просмотр</span>
-                                        </div>*@
                                     </div>
                                     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                                         <div class="title-unit-part">
@@ -129,25 +123,27 @@
                                 isSale = true;
                             }
                             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-8 unit">
-                                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div" style="background-image: url(../../Content/images/@i.images.FirstOrDefault().Image)">
-                                    @if (isSale)
-                                    {
-                                        <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
-                                    }
-                                </div>
-                                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
-                                    <div class="title-unit-part">
-                                        <p class="company-maker">@i.unit.Title</p>
-                                        <p class="item-type">@Model.categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
-                                    </div>
-                                    <div class="price-unit-part">
-                                        <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                                <a href="/Home/ItemPage/@i.unit.Id">
+                                    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-10 img-unit-div" style="background-image: url(../../Content/images/@i.images.FirstOrDefault().Image)">
                                         @if (isSale)
                                         {
-                                            <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                                            <img class="sale-img" src="~/Content/images/sale.png" alt="topsale">
                                         }
                                     </div>
-                                </div>
+                                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
+                                        <div class="title-unit-part">
+                                            <p class="company-maker">@i.unit.Title</p>
+                                            <p class="item-type">@Model.categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
+                                        </div>
+                                        <div class="price-unit-part">
+                                            <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
+                                            @if (isSale)
+                                            {
+                                                <span class="price-was">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.OldPrice.GetValueOrDefault(0)) / 100)) грн</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         }
                     </div>

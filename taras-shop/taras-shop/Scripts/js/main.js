@@ -126,10 +126,13 @@
             window.location.reload();
         }
     });
-
-
-
-
+    
+    $("#basket-result").bind("DOMSubtreeModified", function () {
+        if ($("#successAuth").length != 0) {
+            window.location.reload();
+        }
+    });
+    
     function getBasketInfo() {
         $.ajax({
             method: "GET",

@@ -65,15 +65,9 @@ namespace taras_shop.Controllers
         {
             if (!String.IsNullOrWhiteSpace(User.Identity.Name))
             {
-                
-                //return View(model);
+                return View("NoAuth");
             }
-            //var unit = _repo
-        
-            //var model = new Models.ItemOnBasket();
-        
-            //model
-
+            
             return View("NullItemOnBasket");
         }
 
@@ -138,13 +132,10 @@ namespace taras_shop.Controllers
             return Json(facade.getByFilter(typeId, category, 8), JsonRequestBehavior.AllowGet);
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddToBasket()
+        [HttpGet]
+        public string AddToBasket()
         {
-
-            return View();
+            return "true";
         }
 
         [HttpGet]
@@ -153,15 +144,13 @@ namespace taras_shop.Controllers
             var res = new { popular = facade.getPopularArticles(4), recommends = facade.getRecommendsArticles(4) };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
-
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
 
         public ActionResult Contact()
         {
@@ -198,6 +187,7 @@ namespace taras_shop.Controllers
         {
             return View();
         }
+
         protected override void Dispose(bool disposing)
         {
             facade.UnitOfWork.Dispose();

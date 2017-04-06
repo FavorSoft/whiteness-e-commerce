@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/e4a15a8d-e796-4229-bdf8-8c83663aaca9/resourcegroups/favorsoft/providers/microsoft.insights/components/taras-shop</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/e4a15a8d-e796-4229-bdf8-8c83663aaca9/resourcegroups/favorsoft/providers/microsoft.insights/components/taras-shop</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -209,6 +211,9 @@
     <Content Include="Views\Admin\ItemPage.cshtml" />
     <Content Include="Views\Admin\EditItem.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\release-shop - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\taras-shop20170403095344 - Web Deploy.pubxml" />
+    <Content Include="Views\Shared\NotAuth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

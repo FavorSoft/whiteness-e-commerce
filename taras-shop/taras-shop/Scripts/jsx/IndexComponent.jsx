@@ -4,7 +4,8 @@
         this.state = {
             units: [],
             page: 1,
-            route: window.location.hash.substr(1)
+            route: window.location.hash.substr(1),
+            pageInfo: []
         };
         this.hashControl = this.hashControl.bind(this);
     }
@@ -47,7 +48,7 @@
                     //console.log(response);
                     this.setState({
                         units: response.Units,
-                        pageInfo: response.PageUnfo
+                        pageInfo: response.PageInfo
                     });
                 });
             });
@@ -65,7 +66,8 @@
         return (
             <div>
                 <Sidebar />
-                <Units units={ this.state.units }/>
+                <Units units={ this.state.units } />
+                <Pagination pageInfo={ this.state.pageInfo } />
             </div>
         );
     }
@@ -276,14 +278,27 @@ class SideFiltersSize extends React.Component {
     }
 }
 
+class Pagination extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div className="pagination">
+                <div className="pagination-wrapper">
+                    <a className="material-icons">keyboard_arrow_left</a>
+                    <a className="active" href="#">2</a>
+                </div>
+            </div>
+        );
+    }
+}
+
 class Units extends React.Component {
     constructor(props) {
         super(props);
         this.renderUnits = this.renderUnits.bind(this);
         this.priceCheck = this.priceCheck.bind(this);
-        this.renderPagination = this.renderPagination.bind(this);
-        this.state = {
-        };
     }
 
     priceCheck(price) {
@@ -306,27 +321,9 @@ class Units extends React.Component {
         });
     }
 
-    renderPagination() {
-        return (
-            <div className="pagination">
-                <div className="pagination-wrapper">
-                    <a className="material-icons">keyboard_arrow_left</a>
-                    <a href="#">1</a>
-                    <a className="active" href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a className="material-icons">keyboard_arrow_right</a>
-                </div>
-            </div>
-            );
-    }
-
     render() {
         return (
             <div className="col-md-9 col-sm-12 popular-units">
-                { this.renderPagination() }
                 { this.renderUnits() }
             </div>
         );
@@ -340,7 +337,7 @@ class Unit extends React.Component {
     }
 
     isSale() {
-        if(this.props.priceWas) {
+        if (this.props.priceWas) {
             return (
                 <img className="sale-img" src="../Content/images/sale.png" alt="topsale" />
             );

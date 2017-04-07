@@ -157,8 +157,8 @@ namespace taras_shop.Controllers
                             Number = model.Number,
                             Password = hash,
                             RegDate = DateTime.Now,
-                            RoleId = 3,
-                            IsMan = (model.Man == Gender.Male)? true : false
+                            RoleId = 3, 
+                            IsMan = (model.Sex == Gender.Male) ? true : false
                         });
 
                         transact.Commit();
@@ -185,7 +185,7 @@ namespace taras_shop.Controllers
                                 1,
                                 model.Email,
                                 DateTime.Now,
-                                DateTime.Now.AddMinutes(30),
+                                DateTime.Now.AddMinutes(15),
                                 false,
                                 userData,
                                 FormsAuthentication.FormsCookiePath

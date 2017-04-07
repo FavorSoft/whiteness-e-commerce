@@ -5,7 +5,8 @@
             units: [],
             page: 1,
             route: window.location.hash.substr(1),
-            pageInfo: []
+            pageInfo: [],
+            isSearched: false
         };
         this.hashControl = this.hashControl.bind(this);
     }
@@ -13,7 +14,8 @@
     hashControl() {
         if (window.location.hash) {
             this.setState({
-                route: window.location.hash.substr(1)
+                route: window.location.hash.substr(1),
+                isSearched: true
             }, () => {
                 let resList = this.state.route.split("#");
                 resList = resList.map((item) => {
@@ -66,8 +68,10 @@
         return (
             <div>
                 <Sidebar />
+                {
+                    this.state.isSearched ? <Pagination pageInfo={ this.state.pageInfo } /> : null
+                }
                 <Units units={ this.state.units } />
-                <Pagination pageInfo={ this.state.pageInfo } />
             </div>
         );
     }
@@ -281,13 +285,61 @@ class SideFiltersSize extends React.Component {
 class Pagination extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            oldActiveA: null
+        };
+        this.renderPages = this.renderPages.bind(this);
+        this.pageClick = this.pageClick.bind(this);
     }
+
+    pageClick(event) {
+        if (this.state.oldActiveA) {
+            this.state.oldActiveA.classList = "";
+        }
+        let currentSibling = event.target;
+        event.target.classList += "active";
+        this.setState({
+            oldActiveA: event.target
+        });
+        if (currentSibling.nextSibling.innerHTML == "...") {
+            let number = parseInt(currentSibling.innerHTML) + 1;
+            let newNode = currentSibling;
+            let parentNode = currentSibling.parentNode;
+            parentNode.removeChild(parentNode.childNodes[1]);
+            newNode.innerHTML = parseInt(currentSibling.innerHTML) + 1;
+            currentSibling.parentNode.insertBefore(newNode, currentSibling.nextSibling);
+        }   
+    }
+
+    renderPages() {
+        let total = this.props.pageInfo.TotalPages;
+        let pages = [];
+        if (total > 4) {
+            for (let i = 1; i <= 4; i++) {
+                if (i === 1) {
+                    pages.push(<a key={ Math.random() } className="material-icons">keyboard_arrow_left</a>);
+                }
+                pages.push(<a onClick={ (event) => this.pageClick(event) } key={i} href="#">{ i }</a>);
+                if (i === 4) {
+                    pages.push(<a key={ Math.random() }>...</a>);
+                    pages.push(<a key={ Math.random() } href="#">{ total }</a>);
+                    pages.push(<a key={ Math.random() } className="material-icons">keyboard_arrow_right</a>);
+                }
+            }
+        }
+        else {
+            for (let i = 1; i <= total; i++) {
+                pages.push(<a key={i} href="#">{ i }</a>);
+            }
+        }
+        return pages;
+    }
+
     render() {
         return (
             <div className="pagination">
                 <div className="pagination-wrapper">
-                    <a className="material-icons">keyboard_arrow_left</a>
-                    <a className="active" href="#">2</a>
+                    { this.renderPages() }
                 </div>
             </div>
         );

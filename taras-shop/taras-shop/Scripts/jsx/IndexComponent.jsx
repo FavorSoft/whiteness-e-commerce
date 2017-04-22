@@ -285,51 +285,57 @@ class SideFiltersSize extends React.Component {
 class Pagination extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            oldActiveA: null
-        };
         this.renderPages = this.renderPages.bind(this);
         this.pageClick = this.pageClick.bind(this);
+        this.arrowClick = this.arrowClick.bind(this);
+        this.state = {
+            oldActiveA: null,
+            leftArrow: <a name="left" onClick={ this.arrowClick } key={ Math.random() } 
+                          className="material-icons">keyboard_arrow_left</a>,
+            rightArrow: <a name="right" onClick={ this.arrowClick } key={ Math.random() } 
+                           className="material-icons right">keyboard_arrow_right</a>,
+            right: 0
+        };
     }
 
     pageClick(event) {
         if (this.state.oldActiveA) {
-            this.state.oldActiveA.classList = "";
+            let changedA = this.state.oldActiveA;
+            changedA.classList.remove("active");
+            this.setState({
+                oldActiveA: changedA
+            });
         }
         let currentSibling = event.target;
-        event.target.classList += "active";
+        currentSibling.classList.add("active");
         this.setState({
-            oldActiveA: event.target
+            oldActiveA: currentSibling
         });
-        if (currentSibling.nextSibling.innerHTML == "...") {
-            let number = parseInt(currentSibling.innerHTML) + 1;
-            let newNode = currentSibling;
-            let parentNode = currentSibling.parentNode;
-            parentNode.removeChild(parentNode.childNodes[1]);
-            newNode.innerHTML = parseInt(currentSibling.innerHTML) + 1;
-            currentSibling.parentNode.insertBefore(newNode, currentSibling.nextSibling);
-        }   
+    }
+
+    arrowClick(event) {
+        console.log(this.state.right);
+        console.log(this.props.pageInfo.TotalPages * 40);
+        if (event.target.name === "right" && this.state.right < ((this.props.pageInfo.TotalPages * 40) - 200)) {
+            this.setState({
+                right: (this.state.right + 40)
+            });
+        }
+        else if(event.target.name === "left" && this.state.right >= 40) {
+            this.setState({
+                right: (this.state.right - 40)
+            });
+        }
     }
 
     renderPages() {
         let total = this.props.pageInfo.TotalPages;
         let pages = [];
-        if (total > 4) {
-            for (let i = 1; i <= 4; i++) {
-                if (i === 1) {
-                    pages.push(<a key={ Math.random() } className="material-icons">keyboard_arrow_left</a>);
-                }
-                pages.push(<a onClick={ (event) => this.pageClick(event) } key={i} href="#">{ i }</a>);
-                if (i === 4) {
-                    pages.push(<a key={ Math.random() }>...</a>);
-                    pages.push(<a key={ Math.random() } href="#">{ total }</a>);
-                    pages.push(<a key={ Math.random() } className="material-icons">keyboard_arrow_right</a>);
-                }
-            }
-        }
-        else {
-            for (let i = 1; i <= total; i++) {
-                pages.push(<a key={i} href="#">{ i }</a>);
+        for (let i = 1; i <= total; i++) {
+            pages.push(<a onClick={ this.pageClick } key={i} href="#">{ i }</a>);
+            if(total < 4)
+            {
+                document.querySelector(".conditional-a2").classList.add("conditional-display");
             }
         }
         return pages;
@@ -339,7 +345,24 @@ class Pagination extends React.Component {
         return (
             <div className="pagination">
                 <div className="pagination-wrapper">
-                    { this.renderPages() }
+                    { this.state.leftArrow }
+                    { this.state.rightArrow }
+                    <div className="conditional-a">
+                        <a href="#" className="first-pag">1</a>
+                        <a href="#" className="dots">...</a>
+                    </div>
+                    <div className="pag-moving-part">
+                        <div style={{
+                                "right": (this.state.right + "px"),
+                                "width": ((this.props.pageInfo.TotalPages * 40) + 40) + "px"
+                            }} className="pag-inner-part">
+                            { this.renderPages() }
+                        </div>
+                    </div>
+                    <div className="conditional-a2">
+                        <a href="#" className="dots">...</a>
+                        <a href="#" className="last-pag">{ this.props.pageInfo.TotalPages }</a>
+                    </div>
                 </div>
             </div>
         );

@@ -2153,14 +2153,14 @@ footer .subscribe
 
 .pagination a.material-icons
 {
-    padding: 6px;
+    padding: 8px;
 }
 
 .pagination a  {
     cursor: pointer;
     color: black;
     float: left;
-    padding: 8px 16px;
+    padding: 10px 16.45px;
     text-decoration: none;
     transition: background-color .3s;
 }
@@ -2177,4 +2177,47 @@ footer .subscribe
     float: right;
 }
 
+.conditional-a,
+.conditional-a2
+{
+    display: none;
+    float: left;
+}
+
+.conditional-a2 
+{
+    float: right;
+}
+
+.conditional-display
+{
+    display: block;
+}
+
+.pag-moving-part
+{
+    width: 200px;
+    height: 40px;
+    overflow: hidden;
+    float: left;
+}
+
+.pag-inner-part {
+    position: relative;
+}
 /* Pagination end */
+
+/* Helper classes */
+
+.right
+{
+    float: right !important;
+}
+
+.left {
+    float: left;
+}
+
+.material-icons {
+    user-select: none;
+}

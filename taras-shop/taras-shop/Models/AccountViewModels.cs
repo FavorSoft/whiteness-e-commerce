@@ -20,8 +20,9 @@ namespace taras_shop.Models
     public enum Gender
     {
         Male = 1,
-        Female = 0
+        Female = 2
     }
+
     public class RegisterModel
     {
         
@@ -38,10 +39,7 @@ namespace taras_shop.Models
         public string Number { get; set; }
 
         [Required]
-        public Gender Woman { get; set; }
-
-        [Required]
-        public Gender Man{ get; set; }
+        public Gender Sex{ get; set; }
 
         [Required]
         [DataType(DataType.Password)]

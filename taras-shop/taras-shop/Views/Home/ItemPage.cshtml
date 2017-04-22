@@ -27,7 +27,8 @@
                         <p class="item-type">@Model.category.Category</p>
                     </div>
                     <div class="price-unit-part">
-                        @if (!@Model.unit.Price.Equals(null)){
+                        @if (!@Model.unit.Price.Equals(null))
+                        {
                             <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
                         }
                         else
@@ -42,25 +43,26 @@
                     <div class="line"></div>
                 </div>
                 <div class="colors"></div>
-                @using (Html.BeginForm("addtobasket", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Ajax.BeginForm("addtobasket", "Home", new AjaxOptions() { HttpMethod="get", UpdateTargetId= "basket-result" }))
                 {
-                    <div class="choose-size">
-                        <h4 id="size-toggle">Выбрать размер</h4>
-                        <div class="append-radio">
-                            <ul class="radio-list">
-                                @for (int i = 0; i < Model.sizes.Count(); i++)
-                                {
-                                    <li>
-                                        <input type="radio" id="@Model.sizes.ToList()[i].Size.ToLower()-option2" name="selector">
-                                        <label for="@Model.sizes.ToList()[i].Size.ToLower()-option2">@Model.sizes.ToList()[i].Size.ToLower()</label>
-                                        <div class="check"></div>
-                                    </li>
-                                }
-                            </ul>
+                        <div class="choose-size">
+                            <h4 id="size-toggle">Выбрать размер</h4>
+                            <div class="append-radio">
+                                <ul class="radio-list">
+                                    @for (int i = 0; i < Model.sizes.Count(); i++)
+                                    {
+                                        <li>
+                                            <input type="radio" id="@Model.sizes.ToList()[i].Size.ToLower()-option2" name="selector">
+                                            <label for="@Model.sizes.ToList()[i].Size.ToLower()-option2">@Model.sizes.ToList()[i].Size.ToLower()</label>
+                                            <div class="check"></div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <button onclick="getBasketInfo()" class="frequent-button" data-toggle="modal" data-target="#basket-modal">Добавить в корзину</button>
-                }   
+                    <div id="basket-result"></div>
+                    <button type = "submit" class="frequent-button">Добавить в корзину</button>
+                }
                 <div id="item-accordion" data-theme="none">
                     <h4><span>+</span>Описание товара</h4>
                     <div>
@@ -99,4 +101,3 @@
     <!--Basket modal-->
     @Html.Partial("Basket")
 </div>
-

@@ -16,7 +16,7 @@ namespace DALLocalDB
     public partial class LocalEntities : DbContext
     {
         public LocalEntities()
-            : base("name=LocalEntities")
+            : base("name=EntitiesAzure")
         {
         }
     

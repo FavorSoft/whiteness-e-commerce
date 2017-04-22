@@ -234,6 +234,26 @@ namespace taras_shop.Controllers
             return View("AllUsers", GetUsersModels(1));
         }
 
+        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
+        public ActionResult ItemPage(int id)
+        {
+            var res = new Models.ItemPageModels(facade.getArticleById(id));
+
+            res.CategoryType = facade.UnitOfWork.getCategoryType.GetById(res.category.TypeId).Type;
+
+            return View(res);
+        }
+
+        public void Edit(int id)
+        {
+
+        }
+
+        public void Delete(int id)
+        {
+
+        }
+        
         protected override void Dispose(bool disposing)
         {
             facade.UnitOfWork.Dispose();

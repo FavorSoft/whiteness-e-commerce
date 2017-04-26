@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     <div id="basket-result"></div>
-                    <button type = "submit" class="frequent-button">Добавить в корзину</button>
+                    <button onclick="addToCart(@Json.Encode(Model.unit))" id="add-to-cart" class="frequent-button">Добавить в корзину</button>
                 }
                 <div id="item-accordion" data-theme="none">
                     <h4><span>+</span>Описание товара</h4>

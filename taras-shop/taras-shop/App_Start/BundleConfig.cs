@@ -11,17 +11,13 @@ namespace taras_shop
         {
             BundleTable.EnableOptimizations = true;
 
-            bundles.Add(new BabelBundle("~/bundles/bundle").Include(
-                "~/Scripts/jsx/IndexComponent.jsx"
-            ));
-
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                 "~/Scripts/js/jquery-1.10.2.min.js",
                 "~/Scripts/js/bootstrap.min.js",
+                "~/Scripts/js/lightslider.min.js",
                 "~/Scripts/js/jQueryForm.js",
                 "~/Scripts/js/main.js",
                 "~/Scripts/js/slick.min.js",
-                "~/Scripts/js/lightslider.min.js",
                 "~/Scripts/js/jquery.unobtrusive-ajax.min.js"
             ));
 

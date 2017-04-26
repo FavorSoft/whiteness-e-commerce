@@ -57,7 +57,9 @@ namespace taras_shop.Controllers
         [HttpGet]
         public JsonResult GetItemsByFilter(int typeId, string category, List<string> sizes, int fromPrice, int toPrice, int page = 1)
         {
-            return Json(getByFilter(typeId, category, sizes, 0, 100000, 0, 8, page), JsonRequestBehavior.AllowGet);
+            int skipItems = 0;
+            int amountItems = 8;
+            return Json(getByFilter(typeId, category, sizes, fromPrice*100, toPrice*100, skipItems, amountItems, page), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -71,7 +73,7 @@ namespace taras_shop.Controllers
             return View("NullItemOnBasket");
         }
 
-        SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems, int page)
+        SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int fromPrice, int toPrice, int skipItems, int amountItems, int page)
         {
             SearchModels model = new SearchModels();
 
@@ -86,11 +88,11 @@ namespace taras_shop.Controllers
             List<UnitDto> units;
             if (sizeIds != null && sizeIds.Count > 0)
             {
-                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, (page - 1) * amountItems, amountItems).ToList();
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, fromPrice, toPrice, sizeIds, (page - 1) * amountItems, amountItems).ToList();
             }
             else
             {
-                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, (page - 1) * amountItems, amountItems).ToList();
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, fromPrice, toPrice, (page - 1) * amountItems, amountItems).ToList();
             }
 
             List<ImagesDto> images = facade.UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();

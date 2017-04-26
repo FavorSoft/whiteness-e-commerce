@@ -121,7 +121,8 @@ namespace BLL.Providers
 
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
-            return _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            
+            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
             b => b.unit_id,
             (a, b) => new
@@ -139,10 +140,13 @@ namespace BLL.Providers
                 Title = a.title,
                 SizeId = b.size_id,
                 Amount = b.amount
-            }).Where(x => x.Amount > 0 &&
+            }).AsQueryable();
+            var second = first.Where(x => x.Amount > 0 &&
             x.Price >= startPrice &&
             x.Price <= endPrice &&
-            x.CategoryId == categoryId).GroupBy(g => g.Id).Select(unit => new UnitDto()
+            x.CategoryId == categoryId);
+            var third = second.GroupBy(g => g.Id);
+            var fourth = third.Select(unit => new UnitDto()
             {
                 Id = unit.FirstOrDefault().Id,
                 CategoryId = unit.FirstOrDefault().CategoryId,
@@ -156,10 +160,11 @@ namespace BLL.Providers
                 Title = unit.FirstOrDefault().Title,
                 AddUnitDate = unit.FirstOrDefault().AddUnitDate
             }).Take(amount).ToList();
+            return fourth;
         }
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
         {
-            return _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
             b => b.unit_id,
             (a, b) => new
@@ -177,10 +182,13 @@ namespace BLL.Providers
                 Title = a.title,
                 SizeId = b.size_id,
                 Amount = b.amount
-            }).Where(x => x.Amount > 0 &&
+            });
+            var second = first.Where(x => x.Amount > 0 &&
             x.Price >= startPrice &&
             x.Price <= endPrice &&
-            x.CategoryId == categoryId).GroupBy(g => g.Id).Select(unit => new UnitDto()
+            x.CategoryId == categoryId);
+            var third = second.GroupBy(g => g.Id);
+            var fourth = third.Select(unit => new UnitDto()
             {
                 Id = unit.FirstOrDefault().Id,
                 CategoryId = unit.FirstOrDefault().CategoryId,
@@ -194,6 +202,7 @@ namespace BLL.Providers
                 Title = unit.FirstOrDefault().Title,
                 AddUnitDate = unit.FirstOrDefault().AddUnitDate
             }).Take(amount).ToList();
+            return fourth;
         }
 
         public int GetAmountUnit()

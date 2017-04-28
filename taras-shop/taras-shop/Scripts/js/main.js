@@ -144,9 +144,12 @@
             .done(function (msg) {
                 alert("Data Saved: " + msg);
             });
-
     }
 
+    /* Add to cart functionality */
+    $("#add-to-cart").click(function () {
+        console.log("click---");
+    });
 
     //$.ajax({
     //    method: "GET",
@@ -206,3 +209,7 @@
     //    $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
     //});
 });
+
+function addToCart(item) {
+    console.log(item);
+}

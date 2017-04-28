@@ -113,16 +113,15 @@
 	                            return null;
 	                        }
 	                    });
-	                    console.log(resList);
+
 	                    var sizes = null;
 	                    if (resList[2]) {
 	                        sizes = resList[2].split(",");
 	                    }
-	                    console.log(sizes);
 	                    var request = {
 	                        typeId: resList[0],
 	                        category: resList[1],
-	                        sizes: sizes,
+	                        sizes: resList[2],
 	                        fromPrice: resList[3],
 	                        toPrice: resList[4],
 	                        page: _this2.state.page
@@ -462,6 +461,10 @@
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
+	process.prependListener = noop;
+	process.prependOnceListener = noop;
+
+	process.listeners = function (name) { return [] }
 
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');

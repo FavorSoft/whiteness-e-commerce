@@ -34,21 +34,16 @@ class IndexComponent extends Component {
                         return null;
                     }
                 });
-                console.log(resList);
-                let sizes = null;
-                if (resList[2]) {
-                    sizes = resList[2].split(",");
-                }
-                console.log(sizes);
+                
                 let request = {
                     typeId: resList[0],
                     category: resList[1],
-                    sizes: sizes,
+                    sizes: resList[2],
                     fromPrice: resList[3],
                     toPrice: resList[4],
                     page: this.state.page
                 };
-
+                
                 let deleteChild = document.querySelector("#to-be-deleted");
                 if (typeof (deleteChild) != 'undefined' && deleteChild != null) {
                     document.querySelector(".main").removeChild(deleteChild);
@@ -61,6 +56,7 @@ class IndexComponent extends Component {
                         pageInfo: response.PageInfo
                     });
                 });
+                
             });
         }
     }

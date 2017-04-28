@@ -53,13 +53,13 @@ namespace taras_shop.Controllers
             };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
-
+        
         [HttpGet]
-        public JsonResult GetItemsByFilter(int typeId, string category, List<string> sizes, int fromPrice, int toPrice, int page = 1)
+        public JsonResult GetItemsByFilter(int? typeId, string category, string sizes, int fromPrice, int toPrice, int page = 1)
         {
             int skipItems = 0;
             int amountItems = 8;
-            return Json(getByFilter(typeId, category, sizes, fromPrice*100, toPrice*100, skipItems, amountItems, page), JsonRequestBehavior.AllowGet);
+            return Json(getByFilter(typeId, category, sizes.Split(',').ToList(), fromPrice*100, toPrice*100, skipItems, amountItems, page), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -73,11 +73,18 @@ namespace taras_shop.Controllers
             return View("NullItemOnBasket");
         }
 
-        SearchModels getByFilter(int categoryTypeId, string category, List<string> sizes, int fromPrice, int toPrice, int skipItems, int amountItems, int page)
+        SearchModels getByFilter(int? categoryTypeId, string category, List<string> sizes, int fromPrice, int toPrice, int skipItems, int amountItems, int page)
         {
+            //it is very important!
+            int typeId = 0;
+            if (categoryTypeId != null)
+            {
+                typeId = categoryTypeId.Value;
+            }
+            
             SearchModels model = new SearchModels();
 
-            int categoryId = facade.UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
+            int categoryId = facade.UnitOfWork.getCategory.getCategoryByInfo(typeId, category).Id;
 
             List<int> sizeIds = new List<int>();
             if (sizes != null)
@@ -102,6 +109,8 @@ namespace taras_shop.Controllers
             int pages = articles.Count() / amountItems;
 
             model.Units = new List<Item>();
+
+            //i have to change this method, because not all units have images
             model.Units = articles.Select(x => new Item()
             {
                 Image = x.images.FirstOrDefault().Image,

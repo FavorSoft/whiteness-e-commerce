@@ -211,9 +211,14 @@ namespace BLL.Providers
             return fourth;
         }
 
-        public int GetAmountUnit()
+
+        public int GetAmountUnit(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
         {
-            return _repo.GetAll().Count();
+            return GetByFilter(categoryId, startPrice, endPrice, skipItems, amount).Count();
+        }
+        public int GetAmountUnit(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
+        {
+            return GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amount).Count();
         }
     }
 }

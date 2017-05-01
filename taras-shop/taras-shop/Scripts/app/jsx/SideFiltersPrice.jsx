@@ -25,8 +25,8 @@ export default class SideFiltersPrice extends Component {
     }
 
     handleGo() {
-        window.location.hash = "#" + this.props.TypeId + "#" + this.props.Category + "#" + this.props.Sizes
-                   + "#" + this.state.fromPrice + "#" + this.state.toPrice;
+        window.location.hash = "/" + this.props.TypeId + "/" + this.props.Category + "/" + this.props.Sizes
+                   + "/" + this.state.fromPrice + "/" + this.state.toPrice;
     }
 
     render() {

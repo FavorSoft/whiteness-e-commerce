@@ -23,10 +23,12 @@ class IndexComponent extends Component {
     hashControl() {
         if (window.location.hash) {
             this.setState({
-                route: window.location.hash.substr(1),
+                route: window.location.hash.substr(2),
                 isSearched: true
             }, () => {
-                let resList = this.state.route.split("#");
+                let resList = this.state.route.split("/");
+                console.log(this.state.route);
+                console.log(resList);
                 resList = resList.map((item) => {
                     if (item !== "null") {
                         return item;
@@ -72,6 +74,7 @@ class IndexComponent extends Component {
     handlePageClick(currentPage) {
         console.log(currentPage);
         console.log("page clickk!!!");
+
     }
 
     render() {

@@ -39,8 +39,8 @@ export default class Sidebar extends Component {
             currentTypeId: TypeId,
             currentCategory: Category
         }, () => {
-            window.location.hash = "#" + this.state.currentTypeId + "#" + this.state.currentCategory + "#" + this.state.returnSizes
-                            + "#" + this.state.fromPrice + "#" + this.state.toPrice;
+            window.location.hash = "/" + this.state.currentTypeId + "/" + this.state.currentCategory + "/" + this.state.returnSizes
+                            + "/" + this.state.fromPrice + "/" + this.state.toPrice;
         });
     }
 
@@ -82,8 +82,8 @@ export default class Sidebar extends Component {
             this.setState({
                 returnSizes: temp
             }, () => {
-                window.location.hash = "#" + this.state.currentTypeId + "#" + this.state.currentCategory + "#" + this.state.returnSizes
-                            + "#" + this.state.fromPrice + "#" + this.state.toPrice;
+                window.location.hash = "/" + this.state.currentTypeId + "/" + this.state.currentCategory + "/" + this.state.returnSizes
+                            + "/" + this.state.fromPrice + "/" + this.state.toPrice;
             });
         });
     }

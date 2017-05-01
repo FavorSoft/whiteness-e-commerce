@@ -103,10 +103,12 @@
 
 	            if (window.location.hash) {
 	                this.setState({
-	                    route: window.location.hash.substr(1),
+	                    route: window.location.hash.substr(2),
 	                    isSearched: true
 	                }, function () {
-	                    var resList = _this2.state.route.split("#");
+	                    var resList = _this2.state.route.split("/");
+	                    console.log(_this2.state.route);
+	                    console.log(resList);
 	                    resList = resList.map(function (item) {
 	                        if (item !== "null") {
 	                            return item;
@@ -22822,7 +22824,7 @@
 	                currentTypeId: TypeId,
 	                currentCategory: Category
 	            }, function () {
-	                window.location.hash = "#" + _this2.state.currentTypeId + "#" + _this2.state.currentCategory + "#" + _this2.state.returnSizes + "#" + _this2.state.fromPrice + "#" + _this2.state.toPrice;
+	                window.location.hash = "/" + _this2.state.currentTypeId + "/" + _this2.state.currentCategory + "/" + _this2.state.returnSizes + "/" + _this2.state.fromPrice + "/" + _this2.state.toPrice;
 	            });
 	        }
 	    }, {
@@ -22893,7 +22895,7 @@
 	                _this4.setState({
 	                    returnSizes: temp
 	                }, function () {
-	                    window.location.hash = "#" + _this4.state.currentTypeId + "#" + _this4.state.currentCategory + "#" + _this4.state.returnSizes + "#" + _this4.state.fromPrice + "#" + _this4.state.toPrice;
+	                    window.location.hash = "/" + _this4.state.currentTypeId + "/" + _this4.state.currentCategory + "/" + _this4.state.returnSizes + "/" + _this4.state.fromPrice + "/" + _this4.state.toPrice;
 	                });
 	            });
 	        }
@@ -23037,7 +23039,7 @@
 	    }, {
 	        key: "handleGo",
 	        value: function handleGo() {
-	            window.location.hash = "#" + this.props.TypeId + "#" + this.props.Category + "#" + this.props.Sizes + "#" + this.state.fromPrice + "#" + this.state.toPrice;
+	            window.location.hash = "/" + this.props.TypeId + "/" + this.props.Category + "/" + this.props.Sizes + "/" + this.state.fromPrice + "/" + this.state.toPrice;
 	        }
 	    }, {
 	        key: "render",

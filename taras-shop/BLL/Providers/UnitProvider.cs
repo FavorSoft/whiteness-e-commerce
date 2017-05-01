@@ -121,7 +121,6 @@ namespace BLL.Providers
 
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
-            
             var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
             b => b.unit_id,
@@ -214,11 +213,93 @@ namespace BLL.Providers
 
         public int GetAmountUnit(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
         {
-            return GetByFilter(categoryId, startPrice, endPrice, skipItems, amount).Count();
+            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            a => a.id,
+            b => b.unit_id,
+            (a, b) => new
+            {
+                Id = a.id,
+                CategoryId = a.category_id,
+                AddUnitDate = a.add_date,
+                Color = a.color,
+                Description = a.description,
+                Likes = a.likes,
+                Material = a.material,
+                OldPrice = a.old_price,
+                Price = a.price,
+                Producer = a.producer,
+                Title = a.title,
+                SizeId = b.size_id,
+                Amount = b.amount
+            });
+            var second = first.Where(x => x.Amount > 0 &&
+                x.Price >= startPrice &&
+                x.Price <= endPrice);
+            if (categoryId != 0)
+            {
+                second.Where(x => x.CategoryId == categoryId);
+            }
+            var third = second.GroupBy(g => g.Id);
+            var fourth = third.Select(unit => new UnitDto()
+            {
+                Id = unit.FirstOrDefault().Id,
+                CategoryId = unit.FirstOrDefault().CategoryId,
+                Color = unit.FirstOrDefault().Color,
+                Description = unit.FirstOrDefault().Description,
+                Likes = unit.FirstOrDefault().Likes,
+                Material = unit.FirstOrDefault().Material,
+                Price = unit.FirstOrDefault().Price,
+                OldPrice = unit.FirstOrDefault().OldPrice,
+                Producer = unit.FirstOrDefault().Producer,
+                Title = unit.FirstOrDefault().Title,
+                AddUnitDate = unit.FirstOrDefault().AddUnitDate
+            }).Count();
+            return fourth;
         }
         public int GetAmountUnit(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
-            return GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amount).Count();
+            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            a => a.id,
+            b => b.unit_id,
+            (a, b) => new
+            {
+                Id = a.id,
+                CategoryId = a.category_id,
+                AddUnitDate = a.add_date,
+                Color = a.color,
+                Description = a.description,
+                Likes = a.likes,
+                Material = a.material,
+                OldPrice = a.old_price,
+                Price = a.price,
+                Producer = a.producer,
+                Title = a.title,
+                SizeId = b.size_id,
+                Amount = b.amount
+            }).AsQueryable();
+            var second = first.Where(x => x.Amount > 0 &&
+                x.Price >= startPrice &&
+                x.Price <= endPrice);
+            if (categoryId != 0)
+            {
+                second.Where(x => x.CategoryId == categoryId);
+            }
+            var third = second.GroupBy(g => g.Id);
+            var fourth = third.Select(unit => new UnitDto()
+            {
+                Id = unit.FirstOrDefault().Id,
+                CategoryId = unit.FirstOrDefault().CategoryId,
+                Color = unit.FirstOrDefault().Color,
+                Description = unit.FirstOrDefault().Description,
+                Likes = unit.FirstOrDefault().Likes,
+                Material = unit.FirstOrDefault().Material,
+                Price = unit.FirstOrDefault().Price,
+                OldPrice = unit.FirstOrDefault().OldPrice,
+                Producer = unit.FirstOrDefault().Producer,
+                Title = unit.FirstOrDefault().Title,
+                AddUnitDate = unit.FirstOrDefault().AddUnitDate
+            }).Count();
+            return fourth;
         }
     }
 }

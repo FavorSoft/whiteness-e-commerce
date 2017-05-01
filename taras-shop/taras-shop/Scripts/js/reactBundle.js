@@ -92,6 +92,7 @@
 	            isSearched: false
 	        };
 	        _this.hashControl = _this.hashControl.bind(_this);
+	        _this.handlePageClick = _this.handlePageClick.bind(_this);
 	        return _this;
 	    }
 
@@ -114,10 +115,6 @@
 	                        }
 	                    });
 
-	                    var sizes = null;
-	                    if (resList[2]) {
-	                        sizes = resList[2].split(",");
-	                    }
 	                    var request = {
 	                        typeId: resList[0],
 	                        category: resList[1],
@@ -133,7 +130,7 @@
 	                    }
 
 	                    $.get("/Home/GetItemsByFilter", request, function (response) {
-	                        //console.log(response);
+	                        console.log(response);
 	                        _this2.setState({
 	                            units: response.Units,
 	                            pageInfo: response.PageInfo
@@ -153,12 +150,33 @@
 	            });
 	        }
 	    }, {
+	        key: 'handlePageClick',
+	        value: function handlePageClick(currentPage) {
+	            console.log(currentPage);
+	            console.log("page clickk!!!");
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(_Sidebar2.default, null),
+	                _react2.default.createElement(_reactPaginate2.default, { previousLabel: "previous",
+	                    nextLabel: "next",
+	                    breakLabel: _react2.default.createElement(
+	                        'a',
+	                        { href: '' },
+	                        '...'
+	                    ),
+	                    breakClassName: "break-me",
+	                    pageCount: this.state.pageInfo.TotalPages,
+	                    marginPagesDisplayed: 2,
+	                    pageRangeDisplayed: 5,
+	                    onPageChange: this.handlePageClick,
+	                    containerClassName: "pagination",
+	                    subContainerClassName: "pages pagination",
+	                    activeClassName: "active" }),
 	                _react2.default.createElement(_Units2.default, { units: this.state.units })
 	            );
 	        }
@@ -461,10 +479,6 @@
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
-	process.prependListener = noop;
-	process.prependOnceListener = noop;
-
-	process.listeners = function (name) { return [] }
 
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
@@ -23220,7 +23234,6 @@
 
 	            var unitList = void 0;
 	            return unitList = this.props.units.map(function (unit) {
-	                console.log(unit);
 	                return _react2.default.createElement(_Unit2.default, { link: "/Home/ItemPage/" + unit.Id, key: Math.random(), imgLink: { backgroundImage: "url('../Content/images/Units/" + unit.Image + "')" },
 	                    companyMaker: unit.Title, itemType: unit.Category, priceWas: _this2.priceCheck(unit.OldPrice), priceNow: (unit.Price / 100).toFixed(2) + " грн" });
 	            });

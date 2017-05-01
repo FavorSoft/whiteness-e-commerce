@@ -17,6 +17,7 @@ class IndexComponent extends Component {
             isSearched: false
         };
         this.hashControl = this.hashControl.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
     }
 
     hashControl() {
@@ -50,7 +51,7 @@ class IndexComponent extends Component {
                 }
 
                 $.get("/Home/GetItemsByFilter", request, (response) => {
-                    //console.log(response);
+                    console.log(response);
                     this.setState({
                         units: response.Units,
                         pageInfo: response.PageInfo
@@ -68,6 +69,11 @@ class IndexComponent extends Component {
         });
     }
 
+    handlePageClick(currentPage) {
+        console.log(currentPage);
+        console.log("page clickk!!!");
+    }
+
     render() {
         return (
             <div>
@@ -75,17 +81,17 @@ class IndexComponent extends Component {
                 {
                     /*this.state.isSearched ? <Pagination pageInfo={ this.state.pageInfo } /> : null*/
                 }
-                { /*<ReactPaginate previousLabel={"previous"}
+                { <ReactPaginate previousLabel={"previous"}
                        nextLabel={"next"}
                        breakLabel={<a href="">...</a>}
                        breakClassName={"break-me"}
-                       pageCount={this.state.pageCount}
+                       pageCount={this.state.pageInfo.TotalPages}
                        marginPagesDisplayed={2}
                        pageRangeDisplayed={5}
                        onPageChange={this.handlePageClick}
                        containerClassName={"pagination"}
                        subContainerClassName={"pages pagination"}
-                       activeClassName={"active"} /> */}
+                       activeClassName={"active"} /> }
                 <Units units={ this.state.units } />
             </div>
         );

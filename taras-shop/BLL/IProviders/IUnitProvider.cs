@@ -10,6 +10,7 @@ namespace BLL.IProviders
         IEnumerable<UnitDto> GetSomeUnits(int start, int amount);
         IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, List<int> sizesId, int skipItems, int amount);
         IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, int skipItems, int amount);
-        int GetAmountUnit();
+        int GetAmountUnit(int categoryId, int startPrice, int endPrice, int skipItems, int amount);
+        int GetAmountUnit(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount);
     }
 }

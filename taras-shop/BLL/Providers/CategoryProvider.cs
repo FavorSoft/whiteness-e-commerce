@@ -77,17 +77,20 @@ namespace BLL.Providers
 
         public CategoriesDto getCategoryByInfo(int typeId, string category)
         {
-            var res = (from categories in _repo.GetEntities().Categories
-                       join s in _repo.GetEntities().Category_type on categories.type_id equals s.id
-                       where s.id == typeId && categories.category == category
-                       select new
-                       {
-                           Id = categories.id,
-                           Category = categories.category,
-                           CategoryImg = categories.category_img,
-                           Description = categories.description,
-                           TypeId = categories.type_id
-                       }
+            CategoriesDto res = null;
+            if (typeId!= 0)
+            {
+                res = (from categories in _repo.GetEntities().Categories
+                           join s in _repo.GetEntities().Category_type on categories.type_id equals s.id
+                           where s.id == typeId && categories.category == category
+                           select new
+                           {
+                               Id = categories.id,
+                               Category = categories.category,
+                               CategoryImg = categories.category_img,
+                               Description = categories.description,
+                               TypeId = categories.type_id
+                           }
                       ).Select(x => new CategoriesDto()
                       {
                           Category = x.Category,
@@ -96,6 +99,8 @@ namespace BLL.Providers
                           Id = x.Id,
                           TypeId = x.TypeId
                       }).FirstOrDefault();
+            }
+            
 
             return res;
         }

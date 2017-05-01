@@ -142,9 +142,12 @@ namespace BLL.Providers
                 Amount = b.amount
             }).AsQueryable();
             var second = first.Where(x => x.Amount > 0 &&
-            x.Price >= startPrice &&
-            x.Price <= endPrice &&
-            x.CategoryId == categoryId);
+                x.Price >= startPrice &&
+                x.Price <= endPrice);
+            if (categoryId != 0)
+            {
+                second.Where(x => x.CategoryId == categoryId);
+            }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
             {
@@ -184,9 +187,12 @@ namespace BLL.Providers
                 Amount = b.amount
             });
             var second = first.Where(x => x.Amount > 0 &&
-            x.Price >= startPrice &&
-            x.Price <= endPrice &&
-            x.CategoryId == categoryId);
+                x.Price >= startPrice &&
+                x.Price <= endPrice);
+            if (categoryId != 0)
+            {
+                second.Where(x => x.CategoryId == categoryId);
+            }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
             {
@@ -205,9 +211,14 @@ namespace BLL.Providers
             return fourth;
         }
 
-        public int GetAmountUnit()
+
+        public int GetAmountUnit(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
         {
-            return _repo.GetAll().Count();
+            return GetByFilter(categoryId, startPrice, endPrice, skipItems, amount).Count();
+        }
+        public int GetAmountUnit(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
+        {
+            return GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amount).Count();
         }
     }
 }

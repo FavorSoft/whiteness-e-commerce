@@ -6,6 +6,7 @@ using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
 using System;
+using System.Linq.Expressions;
 
 namespace BLL.Providers
 {
@@ -145,7 +146,10 @@ namespace BLL.Providers
                 x.Price <= endPrice);
             if (categoryId != 0)
             {
-                second.Where(x => x.CategoryId == categoryId);
+                second = first.Where(x => x.Amount > 0 &&
+                x.Price >= startPrice &&
+                x.Price <= endPrice &&
+                x.CategoryId == categoryId);
             }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
@@ -190,7 +194,10 @@ namespace BLL.Providers
                 x.Price <= endPrice);
             if (categoryId != 0)
             {
-                second.Where(x => x.CategoryId == categoryId);
+                second = first.Where(x => x.Amount > 0 &&
+                x.Price >= startPrice &&
+                x.Price <= endPrice &&
+                x.CategoryId == categoryId);
             }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
@@ -237,7 +244,10 @@ namespace BLL.Providers
                 x.Price <= endPrice);
             if (categoryId != 0)
             {
-                second.Where(x => x.CategoryId == categoryId);
+                second = first.Where(x => x.Amount > 0 &&
+                x.Price >= startPrice &&
+                x.Price <= endPrice &&
+                x.CategoryId == categoryId);
             }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
@@ -282,7 +292,10 @@ namespace BLL.Providers
                 x.Price <= endPrice);
             if (categoryId != 0)
             {
-                second.Where(x => x.CategoryId == categoryId);
+                second = first.Where(x => x.Amount > 0 &&
+                x.Price >= startPrice &&
+                x.Price <= endPrice &&
+                x.CategoryId == categoryId);
             }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
@@ -299,7 +312,9 @@ namespace BLL.Providers
                 Title = unit.FirstOrDefault().Title,
                 AddUnitDate = unit.FirstOrDefault().AddUnitDate
             }).Count();
+
             return fourth;
+
         }
     }
 }

@@ -2147,64 +2147,9 @@ footer .subscribe
 
 .container .pagination
 {
-    display: block;
-    height: 36px;
-}
-
-.pagination a.material-icons
-{
-    padding: 8px;
-}
-
-.pagination a  {
-    cursor: pointer;
-    color: black;
-    float: left;
-    padding: 10px 16.45px;
-    text-decoration: none;
-    transition: background-color .3s;
-}
-
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
-
-.pagination .pagination-wrapper
-{
     float: right;
 }
 
-.conditional-a,
-.conditional-a2
-{
-    display: none;
-    float: left;
-}
-
-.conditional-a2 
-{
-    float: right;
-}
-
-.conditional-display
-{
-    display: block;
-}
-
-.pag-moving-part
-{
-    width: 200px;
-    height: 40px;
-    overflow: hidden;
-    float: left;
-}
-
-.pag-inner-part {
-    position: relative;
-}
 /* Pagination end */
 
 /* Helper classes */

@@ -84,7 +84,13 @@ namespace taras_shop.Controllers
             
             SearchModels model = new SearchModels();
 
-            int categoryId = facade.UnitOfWork.getCategory.getCategoryByInfo(typeId, category).Id;
+            CategoriesDto categoryDto = facade.UnitOfWork.getCategory.getCategoryByInfo(typeId, category);
+
+            int categoryId = 0;
+            if(categoryDto != null)
+            {
+                categoryId = categoryDto.Id;
+            }
 
             List<int> sizeIds = new List<int>();
             if (sizes != null)

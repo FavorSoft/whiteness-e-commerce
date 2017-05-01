@@ -142,9 +142,12 @@ namespace BLL.Providers
                 Amount = b.amount
             }).AsQueryable();
             var second = first.Where(x => x.Amount > 0 &&
-            x.Price >= startPrice &&
-            x.Price <= endPrice &&
-            x.CategoryId == categoryId);
+                x.Price >= startPrice &&
+                x.Price <= endPrice);
+            if (categoryId != 0)
+            {
+                second.Where(x => x.CategoryId == categoryId);
+            }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
             {
@@ -184,9 +187,12 @@ namespace BLL.Providers
                 Amount = b.amount
             });
             var second = first.Where(x => x.Amount > 0 &&
-            x.Price >= startPrice &&
-            x.Price <= endPrice &&
-            x.CategoryId == categoryId);
+                x.Price >= startPrice &&
+                x.Price <= endPrice);
+            if (categoryId != 0)
+            {
+                second.Where(x => x.CategoryId == categoryId);
+            }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
             {

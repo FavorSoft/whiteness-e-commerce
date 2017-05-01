@@ -78,10 +78,8 @@ class IndexComponent extends Component {
         return (
             <div>
                 <Sidebar />
-                {
-                    /*this.state.isSearched ? <Pagination pageInfo={ this.state.pageInfo } /> : null*/
-                }
-                { <ReactPaginate previousLabel={"previous"}
+                { this.state.isSearched ? 
+                    <ReactPaginate previousLabel={"previous"}
                        nextLabel={"next"}
                        breakLabel={<a href="">...</a>}
                        breakClassName={"break-me"}
@@ -91,7 +89,8 @@ class IndexComponent extends Component {
                        onPageChange={this.handlePageClick}
                        containerClassName={"pagination"}
                        subContainerClassName={"pages pagination"}
-                       activeClassName={"active"} /> }
+                       activeClassName={"active"} /> 
+                       : null }
                 <Units units={ this.state.units } />
             </div>
         );

@@ -162,7 +162,7 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(_Sidebar2.default, null),
-	                _react2.default.createElement(_reactPaginate2.default, { previousLabel: "previous",
+	                this.state.isSearched ? _react2.default.createElement(_reactPaginate2.default, { previousLabel: "previous",
 	                    nextLabel: "next",
 	                    breakLabel: _react2.default.createElement(
 	                        'a',
@@ -176,7 +176,7 @@
 	                    onPageChange: this.handlePageClick,
 	                    containerClassName: "pagination",
 	                    subContainerClassName: "pages pagination",
-	                    activeClassName: "active" }),
+	                    activeClassName: "active" }) : null,
 	                _react2.default.createElement(_Units2.default, { units: this.state.units })
 	            );
 	        }

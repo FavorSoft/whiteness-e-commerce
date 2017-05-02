@@ -2150,6 +2150,24 @@ footer .subscribe
     float: right;
 }
 
+.container .pagination a 
+{
+    cursor: pointer;
+    outline: none;
+}
+
+.container .pagination>.active>a, .container .pagination>.active>span, 
+.container .pagination>.active>a:hover, .container .pagination>.active>span:hover, 
+.container .pagination>.active>a:focus, .container .pagination>.active>span:focus 
+{
+    z-index: 2;
+    color: #fff;
+    cursor: pointer;
+    background-color: #ccc;
+    border-color: #ccc;
+    outline: none;
+}
+
 /* Pagination end */
 
 /* Helper classes */

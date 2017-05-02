@@ -14,11 +14,13 @@ export default class Sidebar extends Component {
             toPrice: 5000,
             currentTypeId: null,
             currentCategory: null,
-            returnSizes: null
+            returnSizes: null,
+            oldP: null
         };
         this.renderLists = this.renderLists.bind(this);
         this.handleSizesChange = this.handleSizesChange.bind(this);
         this.setCurrentCategory = this.setCurrentCategory.bind(this);
+        this.handleCategoryClick = this.handleCategoryClick.bind(this);
     }
 
     componentWillMount() {
@@ -39,9 +41,27 @@ export default class Sidebar extends Component {
             currentTypeId: TypeId,
             currentCategory: Category
         }, () => {
-            window.location.hash = "/" + this.state.currentTypeId + "/" + this.state.currentCategory + "/" + this.state.returnSizes
-                            + "/" + this.state.fromPrice + "/" + this.state.toPrice;
+            this.props.unsetPage();
+            this.props.setHash(this.state.currentTypeId, this.state.currentCategory, 
+                               this.state.returnSizes, this.state.fromPrice, this.state.toPrice);
         });
+    }
+
+    handleCategoryClick(event) {
+        if(this.state.oldP) {
+            let oldPRef = this.state.oldP;
+            oldPRef.style = "";
+            event.target.style.fontWeight = "bold";
+            this.setState({
+                oldP: event.target
+            });
+        }
+        else {
+            event.target.style.fontWeight = "bold";
+            this.setState({
+                oldP: event.target
+            });
+        }
     }
 
     renderLists(type_id) {
@@ -52,10 +72,12 @@ export default class Sidebar extends Component {
             if (category.TypeId === type_id) {
                 return (
                     <li key={ category.Id }>                    
-                        <p onClick={ () =>
-                        {
-                            this.setCurrentCategory(category.TypeId, category.Category);
-                        }}>
+                        <p onClick={ (event) =>
+                            {
+                                this.setCurrentCategory(category.TypeId, category.Category);
+                                this.handleCategoryClick(event);
+                            }
+                        }>
                             { category.Category }
                         </p>
                     </li>
@@ -82,8 +104,9 @@ export default class Sidebar extends Component {
             this.setState({
                 returnSizes: temp
             }, () => {
-                window.location.hash = "/" + this.state.currentTypeId + "/" + this.state.currentCategory + "/" + this.state.returnSizes
-                            + "/" + this.state.fromPrice + "/" + this.state.toPrice;
+                this.props.unsetPage();
+                this.props.setHash(this.state.currentTypeId, this.state.currentCategory, 
+                               this.state.returnSizes, this.state.fromPrice, this.state.toPrice);
             });
         });
     }
@@ -115,7 +138,7 @@ export default class Sidebar extends Component {
                 </div>
                 <h3 className="filters-h">Фильтры</h3>
                 <div className="filters">
-                    <SideFiltersPrice TypeId={ this.state.currentTypeId } Category={ this.state.currentCategory }
+                    <SideFiltersPrice unsetPage={ this.props.unsetPage } setHash={ this.props.setHash } page={ this.props.page } TypeId={ this.state.currentTypeId } Category={ this.state.currentCategory }
                                       Sizes={ this.state.returnSizes } />
                     <SideFiltersSize handleChange={ this.handleSizesChange } sizes={this.state.sizes}/>
                 </div>

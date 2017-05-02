@@ -86,29 +86,42 @@
 
 	        _this.state = {
 	            units: [],
-	            page: 1,
-	            route: window.location.hash.substr(1),
+	            page: 0,
 	            pageInfo: [],
-	            isSearched: false
+	            isSearched: false,
+	            currentTypeId: null,
+	            currentCategory: null,
+	            returnSizes: null,
+	            fromPrice: null,
+	            toPrice: null
 	        };
 	        _this.hashControl = _this.hashControl.bind(_this);
 	        _this.handlePageClick = _this.handlePageClick.bind(_this);
+	        _this.unsetPage = _this.unsetPage.bind(_this);
+	        _this.setHash = _this.setHash.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(IndexComponent, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            this.hashControl();
+	            window.addEventListener('hashchange', function () {
+	                _this2.hashControl();
+	            });
+	        }
+	    }, {
 	        key: 'hashControl',
 	        value: function hashControl() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            if (window.location.hash) {
 	                this.setState({
-	                    route: window.location.hash.substr(2),
 	                    isSearched: true
 	                }, function () {
-	                    var resList = _this2.state.route.split("/");
-	                    console.log(_this2.state.route);
-	                    console.log(resList);
+	                    var resList = window.location.hash.substr(2).split("/");
 	                    resList = resList.map(function (item) {
 	                        if (item !== "null") {
 	                            return item;
@@ -117,14 +130,25 @@
 	                        }
 	                    });
 
+	                    _this3.setState({
+	                        currentTypeId: resList[0],
+	                        currentCategory: resList[1],
+	                        returnSizes: resList[2],
+	                        fromPrice: resList[3],
+	                        toPrice: resList[4],
+	                        page: parseInt(resList[5]) - 1
+	                    });
+
 	                    var request = {
 	                        typeId: resList[0],
 	                        category: resList[1],
 	                        sizes: resList[2],
 	                        fromPrice: resList[3],
 	                        toPrice: resList[4],
-	                        page: _this2.state.page
+	                        page: resList[5]
 	                    };
+
+	                    console.log(request);
 
 	                    var deleteChild = document.querySelector("#to-be-deleted");
 	                    if (typeof deleteChild != 'undefined' && deleteChild != null) {
@@ -132,8 +156,7 @@
 	                    }
 
 	                    $.get("/Home/GetItemsByFilter", request, function (response) {
-	                        console.log(response);
-	                        _this2.setState({
+	                        _this3.setState({
 	                            units: response.Units,
 	                            pageInfo: response.PageInfo
 	                        });
@@ -142,20 +165,42 @@
 	            }
 	        }
 	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this3 = this;
+	        key: 'unsetPage',
+	        value: function unsetPage() {
+	            var _this4 = this;
 
-	            this.hashControl();
-	            window.addEventListener('hashchange', function () {
-	                _this3.hashControl();
+	            this.setState({
+	                page: 0
+	            }, function () {
+	                _this4.setHash(_this4.state.currentTypeId, _this4.state.currentCategory, _this4.state.returnSizes, _this4.state.fromPrice, _this4.state.toPrice);
+	            });
+	        }
+	    }, {
+	        key: 'setHash',
+	        value: function setHash(currentTypeId, currentCategory, returnSizes, fromPrice, toPrice) {
+	            var _this5 = this;
+
+	            window.location.hash = "/" + currentTypeId + "/" + currentCategory + "/" + returnSizes + "/" + fromPrice + "/" + toPrice + "/" + (this.state.page + 1);
+	            this.setState({
+	                currentTypeId: currentTypeId,
+	                currentCategory: currentCategory,
+	                returnSizes: returnSizes,
+	                fromPrice: fromPrice,
+	                toPrice: toPrice
+	            }, function () {
+	                _this5.hashControl();
 	            });
 	        }
 	    }, {
 	        key: 'handlePageClick',
 	        value: function handlePageClick(currentPage) {
-	            console.log(currentPage);
-	            console.log("page clickk!!!");
+	            var _this6 = this;
+
+	            this.setState({
+	                page: currentPage.selected
+	            }, function () {
+	                _this6.setHash(_this6.state.currentTypeId, _this6.state.currentCategory, _this6.state.returnSizes, _this6.state.fromPrice, _this6.state.toPrice);
+	            });
 	        }
 	    }, {
 	        key: 'render',
@@ -163,7 +208,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_Sidebar2.default, null),
+	                _react2.default.createElement(_Sidebar2.default, { unsetPage: this.unsetPage, setHash: this.setHash, page: this.state.page }),
 	                this.state.isSearched ? _react2.default.createElement(_reactPaginate2.default, { previousLabel: "previous",
 	                    nextLabel: "next",
 	                    breakLabel: _react2.default.createElement(
@@ -171,6 +216,7 @@
 	                        { href: '' },
 	                        '...'
 	                    ),
+	                    forcePage: this.state.page,
 	                    breakClassName: "break-me",
 	                    pageCount: this.state.pageInfo.TotalPages,
 	                    marginPagesDisplayed: 2,
@@ -22793,11 +22839,13 @@
 	            toPrice: 5000,
 	            currentTypeId: null,
 	            currentCategory: null,
-	            returnSizes: null
+	            returnSizes: null,
+	            oldP: null
 	        };
 	        _this.renderLists = _this.renderLists.bind(_this);
 	        _this.handleSizesChange = _this.handleSizesChange.bind(_this);
 	        _this.setCurrentCategory = _this.setCurrentCategory.bind(_this);
+	        _this.handleCategoryClick = _this.handleCategoryClick.bind(_this);
 	        return _this;
 	    }
 
@@ -22824,8 +22872,26 @@
 	                currentTypeId: TypeId,
 	                currentCategory: Category
 	            }, function () {
-	                window.location.hash = "/" + _this2.state.currentTypeId + "/" + _this2.state.currentCategory + "/" + _this2.state.returnSizes + "/" + _this2.state.fromPrice + "/" + _this2.state.toPrice;
+	                _this2.props.unsetPage();
+	                _this2.props.setHash(_this2.state.currentTypeId, _this2.state.currentCategory, _this2.state.returnSizes, _this2.state.fromPrice, _this2.state.toPrice);
 	            });
+	        }
+	    }, {
+	        key: 'handleCategoryClick',
+	        value: function handleCategoryClick(event) {
+	            if (this.state.oldP) {
+	                var oldPRef = this.state.oldP;
+	                oldPRef.style = "";
+	                event.target.style.fontWeight = "bold";
+	                this.setState({
+	                    oldP: event.target
+	                });
+	            } else {
+	                event.target.style.fontWeight = "bold";
+	                this.setState({
+	                    oldP: event.target
+	                });
+	            }
 	        }
 	    }, {
 	        key: 'renderLists',
@@ -22842,8 +22908,9 @@
 	                        { key: category.Id },
 	                        _react2.default.createElement(
 	                            'p',
-	                            { onClick: function onClick() {
+	                            { onClick: function onClick(event) {
 	                                    _this3.setCurrentCategory(category.TypeId, category.Category);
+	                                    _this3.handleCategoryClick(event);
 	                                } },
 	                            category.Category
 	                        )
@@ -22895,7 +22962,8 @@
 	                _this4.setState({
 	                    returnSizes: temp
 	                }, function () {
-	                    window.location.hash = "/" + _this4.state.currentTypeId + "/" + _this4.state.currentCategory + "/" + _this4.state.returnSizes + "/" + _this4.state.fromPrice + "/" + _this4.state.toPrice;
+	                    _this4.props.unsetPage();
+	                    _this4.props.setHash(_this4.state.currentTypeId, _this4.state.currentCategory, _this4.state.returnSizes, _this4.state.fromPrice, _this4.state.toPrice);
 	                });
 	            });
 	        }
@@ -22967,7 +23035,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'filters' },
-	                        _react2.default.createElement(_SideFiltersPrice2.default, { TypeId: this.state.currentTypeId, Category: this.state.currentCategory,
+	                        _react2.default.createElement(_SideFiltersPrice2.default, { unsetPage: this.props.unsetPage, setHash: this.props.setHash, page: this.props.page, TypeId: this.state.currentTypeId, Category: this.state.currentCategory,
 	                            Sizes: this.state.returnSizes }),
 	                        _react2.default.createElement(_SideFiltersSize2.default, { handleChange: this.handleSizesChange, sizes: this.state.sizes })
 	                    )
@@ -23039,7 +23107,8 @@
 	    }, {
 	        key: "handleGo",
 	        value: function handleGo() {
-	            window.location.hash = "/" + this.props.TypeId + "/" + this.props.Category + "/" + this.props.Sizes + "/" + this.state.fromPrice + "/" + this.state.toPrice;
+	            this.props.unsetPage();
+	            this.props.setHash(this.props.TypeId, this.props.Category, this.props.Sizes, this.state.fromPrice, this.state.toPrice);
 	        }
 	    }, {
 	        key: "render",

@@ -170,6 +170,7 @@
     <Content Include="Scripts\js\jquery-1.10.2.min.js" />
     <Content Include="Scripts\js\JQueryForm.js" />
     <Content Include="Scripts\js\lightslider.min.js" />
+    <Content Include="Scripts\js\Lodash.js" />
     <Content Include="Scripts\js\main.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

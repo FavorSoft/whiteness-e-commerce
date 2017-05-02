@@ -1870,6 +1870,28 @@ td .cart-number-input
     margin-left: 21px;
 }
 
+.choose-size
+{
+    overflow: hidden;
+}
+
+.details-modal-part .done-icon
+{
+    font-size: 50px;
+    display: block;
+    color: green;
+    text-align: center;
+}
+
+.details-modal-part .done-fail
+{
+    font-family: Calibri;
+    font-size: 20px;
+    display: block;
+    color: green;
+    text-align: center;
+}
+
 .consist,
 .item-code
 {

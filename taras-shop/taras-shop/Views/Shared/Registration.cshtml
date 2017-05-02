@@ -2,7 +2,7 @@
 
 <div id="reg-tab" class="tab-pane fade">
     @using (Html.BeginForm("Registration", "Account",
-                                FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
+                                        FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -37,48 +37,36 @@
             @Html.ValidationMessageFor(model => model.Number)
         </div>
         <ul class="radio-list">
-
             <li class="man-li">
-                @*<input type="radio" value="true" checked id="IsMan" name="selector">*@
-                @Html.RadioButtonFor(model => model.Sex, (int)taras_shop.Models.Gender.Male, new { @checked = "checked", name = "selector" });
-                <label for="man-option">Мужчина</label>
-                <div class="check"></div>
 
+                <input type="radio" checked id="Male" name="Male">
+                <label for="Male">Мужчина</label>
+                <div class="check"><div class="inside"></div></div>
             </li>
-
 
             <li class="woman-li">
-                
-                <input type="radio" id="woman-option" name="selector">
-                @*@Html.RadioButtonFor(model => model.Sex, (int)taras_shop.Models.Gender.Female, new { name = "selector" });*@
-                <label for="woman-option">Женщина</label>
+                <input type="radio" id="Female" name="Female">
+                <label for="Female">Женщина</label>
                 <div class="check"><div class="inside"></div></div>
-
             </li>
-
         </ul>
-        @*<ul class="radio-list">
-                <li class="man-li">
+            @*<ul class="radio-list">
+                    <li class="man-li">
 
-                    <input type="radio" checked id="man-option" name="selector">
-                    <label for="man-option">Мужчина</label>
-                    <div class="check"><div class="inside"></div></div>
-                </li>
+                        <input type="radio" checked id="man-option" name="selector">
+                        <label for="man-option">Мужчина</label>
+                        <div class="check"><div class="inside"></div></div>
+                    </li>
 
-                <li class="woman-li">
-                    <input type="radio" id="woman-option" name="selector">
-                    <label for="woman-option">Женщина</label>
-                    <div class="check"><div class="inside"></div></div>
-                </li>
-            </ul>*@
-        <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
-        <div class="line"></div>
-
-
-
-
-
-        <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
-        <a href="#" class="forgot-pass">Забыли пароль?</a>
+                    <li class="woman-li">
+                        <input type="radio" id="woman-option" name="selector">
+                        <label for="woman-option">Женщина</label>
+                        <div class="check"><div class="inside"></div></div>
+                    </li>
+                </ul>*@
+            <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
+            <div class="line"></div>
+            <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
+            <a href="#" class="forgot-pass">Забыли пароль?</a>
     }
 </div>

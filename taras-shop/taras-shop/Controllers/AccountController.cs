@@ -158,7 +158,7 @@ namespace taras_shop.Controllers
                             Password = hash,
                             RegDate = DateTime.Now,
                             RoleId = 3, 
-                            IsMan = (model.Sex == Gender.Male) ? true : false
+                            IsMan = (model.Female) ? false : true
                         });
 
                         transact.Commit();

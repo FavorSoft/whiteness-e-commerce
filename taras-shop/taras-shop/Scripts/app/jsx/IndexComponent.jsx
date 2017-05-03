@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import ReactPaginate from 'react-paginate';
 
+import ShoppingCart from './ShoppingCart.jsx';
 import Sidebar from './Sidebar.jsx';
 import Units from './Units.jsx';
 
@@ -145,7 +146,19 @@ class IndexComponent extends Component {
     }
 }
 
-ReactDOM.render(
-  <IndexComponent />,
-  document.getElementById('index-component')
-);
+if(window.location.pathname === "/Home/ShoppingCart") { 
+    console.log("Shopping Cart");
+    ReactDOM.render(
+        <ShoppingCart />,
+        document.getElementById('shopping-cart-component')
+    );
+}
+else if(window.location.pathname === "/") {
+    console.log("Index");
+    ReactDOM.render(
+        <IndexComponent />,
+        document.getElementById('index-component')
+    );
+}
+
+

@@ -210,14 +210,39 @@ function addToCart(item) {
     var done = document.createElement("div");
     var addButton = document.querySelector("#add-to-cart");
     var isEqual = true;
+    
+    if (items) {
+        items.forEach(function (eachItem, i, arr) {
+            if (_.isEqual(eachItem, item)) {
+                isEqual = false
+            }
+        });
 
-    items.forEach(function (eachItem, i, arr) {
-        if (_.isEqual(eachItem, item)) {
-            isEqual = false
+        if (isEqual) {
+            var doneText = document.createTextNode("done");
+
+            done.appendChild(doneText);
+            addButton.parentNode.replaceChild(done, addButton);
+            done.setAttribute("class", "material-icons done-icon");
+
+            if (items) {
+                items.push(item);
+                localStorage.setItem("items", JSON.stringify(items));
+            }
+            else {
+                items = [];
+                items.push(item);
+                localStorage.setItem("items", JSON.stringify(items));
+            }
         }
-    });
-
-    if (isEqual) {
+        else {
+            var doneTextFail = document.createTextNode("Такой товар уже добавлен в корзину");
+            done.appendChild(doneTextFail);
+            done.setAttribute("class", "material-icons done-fail");
+            addButton.parentNode.replaceChild(done, addButton);
+        }
+    }
+    else {
         var doneText = document.createTextNode("done");
 
         done.appendChild(doneText);
@@ -233,11 +258,5 @@ function addToCart(item) {
             items.push(item);
             localStorage.setItem("items", JSON.stringify(items));
         }
-    }
-    else {
-        var doneTextFail = document.createTextNode("Такой товар уже добавлен в корзину");
-        done.appendChild(doneTextFail);
-        done.setAttribute("class", "material-icons done-fail");
-        addButton.parentNode.replaceChild(done, addButton);
     }
 }

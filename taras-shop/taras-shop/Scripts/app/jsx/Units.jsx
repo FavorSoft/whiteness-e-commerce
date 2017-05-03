@@ -24,7 +24,7 @@ export default class Units extends Component {
         return unitList = this.props.units.map((unit) => {
             return (
                 <Unit link={ "/Home/ItemPage/" + unit.Id } key={ Math.random() } imgLink={{ backgroundImage: "url('../Content/images/Units/" + unit.Image + "')" }} 
-                 companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice) } priceNow={ (unit.Price/100).toFixed(2) + " грн" } />
+                 companyMaker={ unit.Title} itemType={ unit.Category} priceWas={ this.priceCheck(unit.OldPrice) } priceNow={ this.priceCheck(unit.Price) } />
             );
         });
     }

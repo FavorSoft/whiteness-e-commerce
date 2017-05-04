@@ -39,11 +39,10 @@ namespace taras_shop.Models
         public string Number { get; set; }
 
         [Required]
-        public bool Male { get; set; }
+        public string Female { get; set; }
 
         [Required]
-        public bool Female { get; set; }
-
+        public string Male { get; set; }
         //public Gender Sex{ get; set; }
 
         [Required]

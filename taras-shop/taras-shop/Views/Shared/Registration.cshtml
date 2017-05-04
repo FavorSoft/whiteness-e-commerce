@@ -37,17 +37,20 @@
             @Html.ValidationMessageFor(model => model.Number)
         </div>
         <ul class="radio-list">
+            
+            
             <li class="man-li">
-
-                <input type="radio" checked id="Male" name="Male">
-                <label for="Male">Мужчина</label>
-                <div class="check"><div class="inside"></div></div>
+                @*<input type="radio" id="Male" name="selector">*@
+                @Html.RadioButtonFor(model => model.Male, "male", new { @Name = "selector", @Value = "male" })
+                @*<label for="Male">Мужчина</label>
+                <div class="check"></div>*@
             </li>
 
             <li class="woman-li">
-                <input type="radio" id="Female" name="Female">
-                <label for="Female">Женщина</label>
-                <div class="check"><div class="inside"></div></div>
+                @*<input type="radio" id="Female" name="selector">*@
+                @Html.RadioButtonFor(model => model.Female, "female", new { @Name = "selector", @Value = "female" })
+                @*<label for="Female">Женщина</label>
+                <div class="check"><div class="inside"></div></div>*@
             </li>
         </ul>
             @*<ul class="radio-list">

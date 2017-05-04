@@ -545,6 +545,15 @@ a.search
 
 /* Main modal styles */
 
+
+#registration-modal [for=Female],
+#registration-modal label[for=Male] {
+    padding: 10px 5px 10px 45px;
+    margin: 13px;
+    height: 40px;
+    float: right;
+}
+
 #registration-modal,
 #basket-modal,
 #item-preview-modal

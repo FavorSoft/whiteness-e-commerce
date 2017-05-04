@@ -36,37 +36,19 @@
             @Html.EditorFor(model => model.Number, new { @class = "reg-phone-input" })
             @Html.ValidationMessageFor(model => model.Number)
         </div>
+        @Html.Hidden("Sex", new { @value="male"})
         <ul class="radio-list">
-            
-            
             <li class="man-li">
-                @*<input type="radio" id="Male" name="selector">*@
-                @Html.RadioButtonFor(model => model.Male, "male", new { @Name = "selector", @Value = "male" })
-                @*<label for="Male">Мужчина</label>
-                <div class="check"></div>*@
+                <input type="radio" checked id="Male" name="selector">
+                <label id="male-radio" for="Male">Мужчина</label>
+                <div class="check"></div>
             </li>
-
             <li class="woman-li">
-                @*<input type="radio" id="Female" name="selector">*@
-                @Html.RadioButtonFor(model => model.Female, "female", new { @Name = "selector", @Value = "female" })
-                @*<label for="Female">Женщина</label>
-                <div class="check"><div class="inside"></div></div>*@
+                <input type="radio" id="Female" name="selector">
+                <label id="female-radio" for="Female">Женщина</label>
+                <div class="check"><div class="inside"></div></div>
             </li>
         </ul>
-            @*<ul class="radio-list">
-                    <li class="man-li">
-
-                        <input type="radio" checked id="man-option" name="selector">
-                        <label for="man-option">Мужчина</label>
-                        <div class="check"><div class="inside"></div></div>
-                    </li>
-
-                    <li class="woman-li">
-                        <input type="radio" id="woman-option" name="selector">
-                        <label for="woman-option">Женщина</label>
-                        <div class="check"><div class="inside"></div></div>
-                    </li>
-                </ul>*@
             <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
             <div class="line"></div>
             <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>

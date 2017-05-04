@@ -71,6 +71,15 @@
     /*
      * Contain accordion condition check and provide fucntionality or delete.
      */
+
+    $("#male-radio").click(function () {
+        $("#Sex").val($("#male-radio").attr("for"));
+    });
+
+    $("#female-radio").click(function () {
+        $("#Sex").val($("#female-radio").attr("for"));
+    });
+
     function accordionCondition(width) {
         if (width < 975) {
             $(".sidebar-mobile-accordion").accordion(

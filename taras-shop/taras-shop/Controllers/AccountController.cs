@@ -148,6 +148,19 @@ namespace taras_shop.Controllers
                 {
                     using (var transact = facade.UnitOfWork.BeginTransaction())
                     {
+                        bool isMan;
+                        if (model.Sex == "Male")
+                        {
+                            isMan = true;
+                        }
+                        else if (model.Sex == "Female")
+                        {
+                            isMan = false;
+                        }
+                        else
+                        {
+                            return View("AuthError");
+                        }
                         string hash = HashPassword(model.Password);
                         facade.UnitOfWork.getUser.AddItem(new UsersDto()
                         {
@@ -158,7 +171,7 @@ namespace taras_shop.Controllers
                             Password = hash,
                             RegDate = DateTime.Now,
                             RoleId = 3, 
-                            IsMan = (model.Male == "") ? false : true
+                            IsMan = isMan
                         });
 
                         transact.Commit();

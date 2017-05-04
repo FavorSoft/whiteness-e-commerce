@@ -8,7 +8,7 @@ export default class SideFiltersPrice extends Component {
             toPrice: 5000
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleGo = this.handleGo.bind(this)
+        this.handleGo = this.handleGo.bind(this);
     }
     
     handleChange(event) {

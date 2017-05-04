@@ -18,7 +18,8 @@ namespace taras_shop
                 "~/Scripts/js/jQueryForm.js",
                 "~/Scripts/js/main.js",
                 "~/Scripts/js/slick.min.js",
-                "~/Scripts/js/jquery.unobtrusive-ajax.min.js"
+                "~/Scripts/js/jquery.unobtrusive-ajax.min.js",
+                "~/Scripts/js/Lodash.js"
             ));
 
             bundles.Add(new StyleBundle("~/bundles/styles").Include(

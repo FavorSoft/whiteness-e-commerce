@@ -60,11 +60,15 @@
 
 	var _reactPaginate2 = _interopRequireDefault(_reactPaginate);
 
-	var _Sidebar = __webpack_require__(188);
+	var _ShoppingCart = __webpack_require__(188);
+
+	var _ShoppingCart2 = _interopRequireDefault(_ShoppingCart);
+
+	var _Sidebar = __webpack_require__(189);
 
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-	var _Units = __webpack_require__(191);
+	var _Units = __webpack_require__(192);
 
 	var _Units2 = _interopRequireDefault(_Units);
 
@@ -233,7 +237,13 @@
 	    return IndexComponent;
 	}(_react.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(IndexComponent, null), document.getElementById('index-component'));
+	if (window.location.pathname === "/Home/ShoppingCart") {
+	    console.log("Shopping Cart");
+	    _reactDom2.default.render(_react2.default.createElement(_ShoppingCart2.default, null), document.getElementById('shopping-cart-component'));
+	} else if (window.location.pathname === "/") {
+	    console.log("Index");
+	    _reactDom2.default.render(_react2.default.createElement(IndexComponent, null), document.getElementById('index-component'));
+	}
 
 /***/ }),
 /* 1 */
@@ -22795,6 +22805,295 @@
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ShoppingCart = function (_Component) {
+	    _inherits(ShoppingCart, _Component);
+
+	    function ShoppingCart(props) {
+	        _classCallCheck(this, ShoppingCart);
+
+	        var _this = _possibleConstructorReturn(this, (ShoppingCart.__proto__ || Object.getPrototypeOf(ShoppingCart)).call(this, props));
+
+	        _this.state = {
+	            emptyLocalStorage: false,
+	            cartUnits: null
+	        };
+	        _this.renderCartUnits = _this.renderCartUnits.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(ShoppingCart, [{
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            console.log(localStorage.units);
+	            var cartUnits = JSON.parse(localStorage.getItem("items"));
+	            console.log(cartUnits);
+	            if (cartUnits) {
+	                this.setState({ cartUnits: cartUnits });
+	            } else {
+	                this.setState({ emptyLocalStorage: true });
+	            }
+	        }
+	    }, {
+	        key: "renderCartUnits",
+	        value: function renderCartUnits() {
+	            if (!this.state.emptyLocalStorage && this.state.cartUnits) {
+	                var unitList = void 0;
+	                return unitList = this.state.cartUnits.map(function (unit) {
+	                    return _react2.default.createElement(CartUnit, { key: Math.random(), title: unit.Title, color: unit.Color, price: unit.Price });
+	                });
+	            } else {
+	                return null;
+	            }
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "container" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "row" },
+	                    _react2.default.createElement(
+	                        "h2",
+	                        { className: "admin-header" },
+	                        "\u0412\u0430\u0448\u0430 \u041A\u043E\u0440\u0437\u0438\u043D\u0430"
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "table-responsive" },
+	                        _react2.default.createElement(
+	                            "table",
+	                            { className: "table cart-table" },
+	                            _react2.default.createElement(
+	                                "thead",
+	                                null,
+	                                _react2.default.createElement(
+	                                    "tr",
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        "th",
+	                                        null,
+	                                        "\u0422\u043E\u0432\u0430\u0440"
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "th",
+	                                        null,
+	                                        "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0441\u0442\u0438"
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "th",
+	                                        null,
+	                                        "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "th",
+	                                        null,
+	                                        "\u0426\u0435\u043D\u0430"
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "th",
+	                                        null,
+	                                        "\u0421\u0443\u043C\u043C\u0430"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "tbody",
+	                                null,
+	                                this.renderCartUnits()
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(Summary, null)
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ShoppingCart;
+	}(_react.Component);
+
+	exports.default = ShoppingCart;
+
+
+	var CartUnit = function CartUnit(title, color, price) {
+
+	    var priceCheck = function priceCheck(price) {
+	        price = parseInt(price);
+	        if (price) {
+	            var formatedPrice = (price / 100).toFixed(2) + " грн";
+	            return formatedPrice;
+	        } else {
+	            return "";
+	        }
+	    };
+
+	    return _react2.default.createElement(
+	        "tr",
+	        null,
+	        _react2.default.createElement(
+	            "td",
+	            { className: "image-td" },
+	            _react2.default.createElement(
+	                "a",
+	                { className: "material-icons" },
+	                "clear"
+	            ),
+	            _react2.default.createElement("img", { src: "../../Content/images/woman.png" })
+	        ),
+	        _react2.default.createElement(
+	            "td",
+	            null,
+	            _react2.default.createElement(
+	                "div",
+	                { className: "text-basket-preview" },
+	                _react2.default.createElement(
+	                    "h4",
+	                    null,
+	                    title.toString()
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    null,
+	                    "\u0426\u0432\u0435\u0442: ",
+	                    color.toString()
+	                ),
+	                _react2.default.createElement(
+	                    "a",
+	                    null,
+	                    "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C"
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    null,
+	                    "\u0420\u0430\u0437\u043C\u0435\u0440:"
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    null,
+	                    "S"
+	                ),
+	                _react2.default.createElement(
+	                    "a",
+	                    null,
+	                    "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C"
+	                )
+	            )
+	        ),
+	        _react2.default.createElement(
+	            "td",
+	            null,
+	            _react2.default.createElement("input", { type: "number", className: "form-control cart-number-input", min: "1", value: "1" })
+	        ),
+	        _react2.default.createElement(
+	            "td",
+	            null,
+	            _react2.default.createElement(
+	                "p",
+	                { className: "cart-price-p" },
+	                priceCheck(price.toString())
+	            )
+	        ),
+	        _react2.default.createElement(
+	            "td",
+	            null,
+	            _react2.default.createElement(
+	                "p",
+	                { className: "cart-sum-p" },
+	                "223.00 \u0433\u0440\u043D"
+	            )
+	        )
+	    );
+	};
+
+	var Summary = function Summary(summaryCost, deliveryPrice) {
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "text-basket-preview-right" },
+	        _react2.default.createElement(
+	            "div",
+	            { className: "col-md-4 col-md-offset-4 cart-sum-block" },
+	            _react2.default.createElement(
+	                "div",
+	                { className: "overall-cost" },
+	                _react2.default.createElement(
+	                    "span",
+	                    null,
+	                    "\u041E\u0431\u0449\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u043E\u0432: "
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "basket-preview-prices" },
+	                    "234.85 \u0433\u0440\u043D"
+	                )
+	            ),
+	            _react2.default.createElement(
+	                "div",
+	                { className: "delivery-cost" },
+	                _react2.default.createElement(
+	                    "span",
+	                    null,
+	                    "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430: "
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "basket-preview-prices" },
+	                    "30.00 \u0433\u0440\u043D"
+	                )
+	            ),
+	            _react2.default.createElement(
+	                "div",
+	                { className: "main-prices" },
+	                _react2.default.createElement(
+	                    "h4",
+	                    { className: "basket-sum" },
+	                    "\u0421\u0443\u043C\u043C\u0430: "
+	                ),
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "basket-preview-prices" },
+	                    "264.85 \u0433\u0440\u043D"
+	                )
+	            ),
+	            _react2.default.createElement(
+	                "button",
+	                { className: "frequent-button buy-button" },
+	                "\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437"
+	            ),
+	            _react2.default.createElement(
+	                "button",
+	                { className: "frequent-button" },
+	                "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438"
+	            )
+	        )
+	    );
+	};
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -22807,11 +23106,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SideFiltersPrice = __webpack_require__(189);
+	var _SideFiltersPrice = __webpack_require__(190);
 
 	var _SideFiltersPrice2 = _interopRequireDefault(_SideFiltersPrice);
 
-	var _SideFiltersSize = __webpack_require__(190);
+	var _SideFiltersSize = __webpack_require__(191);
 
 	var _SideFiltersSize2 = _interopRequireDefault(_SideFiltersSize);
 
@@ -23051,7 +23350,7 @@
 	;
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23166,7 +23465,7 @@
 	exports.default = SideFiltersPrice;
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23248,7 +23547,7 @@
 	exports.default = SideFiltersSize;
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23263,7 +23562,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Unit = __webpack_require__(192);
+	var _Unit = __webpack_require__(193);
 
 	var _Unit2 = _interopRequireDefault(_Unit);
 
@@ -23306,7 +23605,7 @@
 	            var unitList = void 0;
 	            return unitList = this.props.units.map(function (unit) {
 	                return _react2.default.createElement(_Unit2.default, { link: "/Home/ItemPage/" + unit.Id, key: Math.random(), imgLink: { backgroundImage: "url('../Content/images/Units/" + unit.Image + "')" },
-	                    companyMaker: unit.Title, itemType: unit.Category, priceWas: _this2.priceCheck(unit.OldPrice), priceNow: (unit.Price / 100).toFixed(2) + " грн" });
+	                    companyMaker: unit.Title, itemType: unit.Category, priceWas: _this2.priceCheck(unit.OldPrice), priceNow: _this2.priceCheck(unit.Price) });
 	            });
 	        }
 	    }, {
@@ -23326,7 +23625,7 @@
 	exports.default = Units;
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";

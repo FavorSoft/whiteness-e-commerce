@@ -1,8 +1,9 @@
 ﻿@model taras_shop.Models.RegisterModel
 
 <div id="reg-tab" class="tab-pane fade">
+    @using reCAPTCHA.MVC
     @using (Html.BeginForm("Registration", "Account",
-                                        FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
+        FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -36,7 +37,7 @@
             @Html.EditorFor(model => model.Number, new { @class = "reg-phone-input" })
             @Html.ValidationMessageFor(model => model.Number)
         </div>
-        @Html.Hidden("Sex", new { @value="male"})
+        @Html.Hidden("Sex", new { @value = "male" })
         <ul class="radio-list">
             <li class="man-li">
                 <input type="radio" checked id="Male" name="selector">
@@ -49,9 +50,11 @@
                 <div class="check"><div class="inside"></div></div>
             </li>
         </ul>
-            <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
-            <div class="line"></div>
-            <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
-            <a href="#" class="forgot-pass">Забыли пароль?</a>
+        @Html.Recaptcha(publicKey: "6LdhDSAUAAAAAJMWnuIWU7v3hhUxNlrs7PZgnngP", theme: CaptchaTheme.Dark)
+        @Html.ValidationMessage("ReCaptcha")
+        <button type="submit" class="frequent-button submit-reg">Создать аккаунт</button>
+        <div class="line"></div>
+        <button type="submit" class="frequent-button facebook-reg">Регистрация с помощью Facebook</button>
+        <a href="#" class="forgot-pass">Забыли пароль?</a>
     }
 </div>

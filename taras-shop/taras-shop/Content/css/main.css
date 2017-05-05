@@ -1178,6 +1178,10 @@ input[type=radio]:checked ~ label {
     color: #000;
 }
 
+#reg-tab form .radio-list{
+    height: 100px;
+}
+
 #registration-modal input[type=radio]:checked ~ .check {
     border: 2px solid #fff;
 }

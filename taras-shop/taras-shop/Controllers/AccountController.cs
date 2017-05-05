@@ -1,6 +1,7 @@
 ﻿using BLL.Facade;
 using BLL.UnitOfWork;
 using DTO;
+using reCAPTCHA.MVC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,6 +135,7 @@ namespace taras_shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidator(PrivateKey = "1359")]
         [ValidateAntiForgeryToken]
         public ActionResult Registration(RegisterModel model)
         {

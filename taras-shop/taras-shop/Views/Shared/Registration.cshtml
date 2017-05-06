@@ -37,10 +37,10 @@
             @Html.EditorFor(model => model.Number, new { @class = "reg-phone-input" })
             @Html.ValidationMessageFor(model => model.Number)
         </div>
-        @Html.Hidden("Sex", new { @value = "male" })
+        @Html.Hidden("Sex")
         <ul class="radio-list">
             <li class="man-li">
-                <input type="radio" checked id="Male" name="selector">
+                <input type="radio" id="Male" name="selector">
                 <label id="male-radio" for="Male">Мужчина</label>
                 <div class="check"></div>
             </li>

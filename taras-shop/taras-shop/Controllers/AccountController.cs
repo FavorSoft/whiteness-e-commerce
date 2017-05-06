@@ -135,7 +135,7 @@ namespace taras_shop.Controllers
         }
 
         [HttpPost]
-        [CaptchaValidator(PrivateKey = "1359")]
+        [CaptchaValidator(PrivateKey = "6LdhDSAUAAAAAD3VI-m8aDG2KXbn1ooki0vKmUf3")]
         [ValidateAntiForgeryToken]
         public ActionResult Registration(RegisterModel model)
         {

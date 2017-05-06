@@ -151,7 +151,7 @@ namespace BLL.Providers
                 x.Price <= endPrice &&
                 x.CategoryId == categoryId);
             }
-            var third = second.GroupBy(g => g.Id);
+            var third = second.GroupBy(g => g.Id).Skip(skipItems);
             var fourth = third.Select(unit => new UnitDto()
             {
                 Id = unit.FirstOrDefault().Id,
@@ -199,7 +199,7 @@ namespace BLL.Providers
                 x.Price <= endPrice &&
                 x.CategoryId == categoryId);
             }
-            var third = second.GroupBy(g => g.Id);
+            var third = second.GroupBy(g => g.Id).Skip(skipItems);
             var fourth = third.Select(unit => new UnitDto()
             {
                 Id = unit.FirstOrDefault().Id,

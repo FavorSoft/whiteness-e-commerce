@@ -143,15 +143,15 @@ namespace BLL.Providers
             }).AsQueryable();
             var second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
-                x.Price <= endPrice);
+                x.Price <= endPrice).GroupBy(g => g.Id);
             if (categoryId != 0)
             {
                 second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
-                x.CategoryId == categoryId);
+                x.CategoryId == categoryId).GroupBy(g => g.Id);
             }
-            var third = second.GroupBy(g => g.Id).Skip(skipItems);
+            var third = second.OrderBy(x => x.FirstOrDefault().AddUnitDate).Skip(skipItems);
             var fourth = third.Select(unit => new UnitDto()
             {
                 Id = unit.FirstOrDefault().Id,
@@ -165,8 +165,10 @@ namespace BLL.Providers
                 Producer = unit.FirstOrDefault().Producer,
                 Title = unit.FirstOrDefault().Title,
                 AddUnitDate = unit.FirstOrDefault().AddUnitDate
-            }).Take(amount).ToList();
-            return fourth;
+            });
+
+            var sixth = fourth.Take(amount);
+            return sixth.ToList();
         }
         public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
         {
@@ -191,15 +193,15 @@ namespace BLL.Providers
             });
             var second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
-                x.Price <= endPrice);
+                x.Price <= endPrice).GroupBy(g => g.Id);
             if (categoryId != 0)
             {
                 second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
-                x.CategoryId == categoryId);
+                x.CategoryId == categoryId).GroupBy(g => g.Id);
             }
-            var third = second.GroupBy(g => g.Id).Skip(skipItems);
+            var third = second.OrderBy(x => x.FirstOrDefault().AddUnitDate).Skip(skipItems);
             var fourth = third.Select(unit => new UnitDto()
             {
                 Id = unit.FirstOrDefault().Id,
@@ -213,8 +215,10 @@ namespace BLL.Providers
                 Producer = unit.FirstOrDefault().Producer,
                 Title = unit.FirstOrDefault().Title,
                 AddUnitDate = unit.FirstOrDefault().AddUnitDate
-            }).Take(amount).ToList();
-            return fourth;
+            });
+
+            var sixth = fourth.Take(amount);
+            return sixth.ToList();
         }
 
 

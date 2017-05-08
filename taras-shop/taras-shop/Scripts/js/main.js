@@ -154,6 +154,7 @@
                 alert("Data Saved: " + msg);
             });
     }
+    
 
     //$.ajax({
     //    method: "GET",
@@ -162,9 +163,9 @@
     //        console.log(data);
     //    }
     //})
-    //  .done(function (msg) {
-    //      alert("Data Saved: " + msg);
-    //  });
+    //    .done(function (msg) {
+    //        alert("Data Saved: " + msg);
+    //    });
 
 
     // I'll be back. okay?
@@ -213,6 +214,22 @@
     //    $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
     //});
 });
+
+function addToBasket() {
+    var id = $("#unitId").val();
+    var size = $("#sizes-radio input:checked").val();
+    $.ajax({
+        method: "GET",
+        url: "/Home/AddToBasket",
+        data: { Id: id, size: size },
+        success: function (data) {
+            console.log(data);
+        }
+    })
+        .done(function (msg) {
+            alert("Data Saved: " + msg);
+        });
+}
 
 function addToCart(item) {
     var items = JSON.parse(localStorage.getItem("items"));

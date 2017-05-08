@@ -11,6 +11,7 @@ using BLL.Facade;
 using BLL.IFacade;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using taras_shop.Controllers.Identity;
 
 namespace taras_shop.Controllers
 {
@@ -152,10 +153,14 @@ namespace taras_shop.Controllers
             return Json(facade.getByFilter(typeId, category, 8), JsonRequestBehavior.AllowGet);
         }
 
+
+        //, string xs_option2, string s_option2, string m_option2, string l_option2, string xl_option2
         [HttpGet]
-        public string AddToBasket()
+        [CustomAuthorizeAttribute]
+        public string AddToBasket(int Id, string size)
         {
-            return "true";
+            int id = Id;
+            return size;
         }
 
         [HttpGet]

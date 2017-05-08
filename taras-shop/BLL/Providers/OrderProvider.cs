@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new OrderRepository(db);
         }
-        public void AddItem(OrderDto order)
+        public int AddItem(OrderDto order)
         {
-            _repo.AddItem(new Order()
+            return _repo.AddItem(new Order()
             {
                 order_date = order.OrderDate,
                 user_id = order.UserId

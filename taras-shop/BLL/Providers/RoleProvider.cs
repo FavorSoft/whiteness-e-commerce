@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new RoleRepository(db);
         }
-        public void AddItem(RolesDto role)
+        public int AddItem(RolesDto role)
         {
-            _repo.AddItem(new Roles()
+            return _repo.AddItem(new Roles()
             {
                 role = role.Role
             });

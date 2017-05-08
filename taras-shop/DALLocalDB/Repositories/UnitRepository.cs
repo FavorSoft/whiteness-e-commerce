@@ -10,10 +10,9 @@ namespace DALLocalDB.Repository
 
         }
 
-        public override void AddItem(Unit item)
+        public override int AddItem(Unit item)
         {
-            entities.Unit.Add(item);
-            entities.Entry(item).State = System.Data.Entity.EntityState.Added;
+            return entities.Unit.Add(item).id;
         }
 
         public override void DeleteItem(int id)

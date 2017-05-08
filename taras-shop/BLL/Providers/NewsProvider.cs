@@ -16,9 +16,9 @@ namespace BLL.Providers
             _repo = new NewsRepository(db);
         }
 
-        public void AddItem(NewsDto category)
+        public int AddItem(NewsDto category)
         {
-            _repo.AddItem(new News()
+            return _repo.AddItem(new News()
             {
                 data_create = category.DataCreate,
                 description = category.Description,

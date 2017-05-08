@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new OrderItemsRepository(db);
         }
-        public void AddItem(OrderItemsDto orderItems)
+        public int AddItem(OrderItemsDto orderItems)
         {
-            _repo.AddItem(new Order_items()
+            return _repo.AddItem(new Order_items()
             {
                 amount = orderItems.Amount,
                 price = orderItems.Price,

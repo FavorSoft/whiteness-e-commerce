@@ -16,9 +16,9 @@ namespace BLL.Providers
             _repo = new SizesRepository(db);
         }
 
-        public void AddItem(SizesDto item)
+        public int AddItem(SizesDto item)
         {
-            _repo.AddItem(new Sizes()
+            return _repo.AddItem(new Sizes()
             {
                 size = item.Size
             });

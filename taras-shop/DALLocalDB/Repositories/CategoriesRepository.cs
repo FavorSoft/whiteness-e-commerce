@@ -9,9 +9,9 @@ namespace DALLocalDB.Repository
         {
         }
 
-        public override void AddItem(Categories item)
+        public override int AddItem(Categories item)
         {
-            entities.Categories.Add(item);
+            return entities.Categories.Add(item).id;
         }
 
         public override void DeleteItem(int id)

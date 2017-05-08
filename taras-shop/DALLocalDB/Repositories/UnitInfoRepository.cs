@@ -8,9 +8,9 @@ namespace DALLocalDB.Repositories
         {
         }
 
-        public override void AddItem(UnitInfo item)
+        public override int AddItem(UnitInfo item)
         {
-            entities.UnitInfo.Add(item);
+            return entities.UnitInfo.Add(item).id;
         }
 
         public override void DeleteItem(int id)

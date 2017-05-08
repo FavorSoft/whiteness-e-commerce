@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new CategoryTypeRepository(db);
         }
-        public void AddItem(CategoryTypeDto category)
+        public int AddItem(CategoryTypeDto category)
         {
-            _repo.AddItem(new Category_type()
+            return _repo.AddItem(new Category_type()
             {
                 type = category.Type
             });

@@ -17,9 +17,9 @@ namespace BLL.Providers
         {
             _repo = new UnitRepository(db);
         }
-        public void AddItem(UnitDto unit)
+        public int AddItem(UnitDto unit)
         {
-            _repo.AddItem(new Unit()
+            return _repo.AddItem(new Unit()
             {
                 category_id = unit.CategoryId,
                 color = unit.Color,

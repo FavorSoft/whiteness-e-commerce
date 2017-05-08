@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new UserRepository(context);
         }
-        public void AddItem(UsersDto user)
+        public int AddItem(UsersDto user)
         {
-            _repo.AddItem(new Users()
+            return _repo.AddItem(new Users()
             {
                 email = user.Email,
                 name = user.Name,

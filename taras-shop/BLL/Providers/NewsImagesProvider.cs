@@ -14,9 +14,9 @@ namespace BLL.IProviders
         {
             _repo = new NewsImageRepository(db);
         }
-        public void AddItem(NewsImagesDto images)
+        public int AddItem(NewsImagesDto images)
         {
-            _repo.AddItem(new News_image()
+            return _repo.AddItem(new News_image()
             {
                 image = images.Image,
                 owner_id = images.OwnerId

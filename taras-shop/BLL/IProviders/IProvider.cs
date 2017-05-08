@@ -4,7 +4,7 @@ namespace BLL.IProviders
 {
     public interface IProvider<T>
     {
-        void AddItem(T item);
+        int AddItem(T item);
         IEnumerable<T> GetAll();
         T GetById(int id);
         void DeleteItem(int id);

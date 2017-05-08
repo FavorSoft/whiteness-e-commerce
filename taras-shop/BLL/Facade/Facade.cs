@@ -104,35 +104,7 @@ namespace BLL.Facade
 
             return res;
         }
-
-        public object getByFilter(int typeId, string category, int amountItems)
-        {
-            //int categoryId = UnitOfWork.getCategory.
-
-            //List<UnitDto> units = UnitOfWork.getUnit.GetByFilter(categoryId, amountItems).ToList();
-
-            //List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
-            //
-            //IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
-            //
-            //JavaScriptSerializer s = new JavaScriptSerializer();
-            //
-            //int pages = UnitOfWork.getUnit.GetAmountByFilter(categoryId, startPrice, endPrice) / amountItems;
-            //
-            //var res = new
-            //{
-            //    units = s.Serialize(articles.Select(x => x.unit).ToList()),
-            //    images = s.Serialize(articles.Select(x => x.images).ToList()),
-            //    sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
-            //    unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),
-            //    categories = s.Serialize(articles.Select(x => x.category).ToList()),
-            //    page = (pages - skipItems) / amountItems,
-            //    pages = pages
-            //};
-
-            return null;
-        }
-
+        
         public IEnumerable<Article> getRecommendsArticles(int count)
         {
             List<Article> res = new List<Article>();
@@ -156,7 +128,6 @@ namespace BLL.Facade
             return UnitOfWork.getRole.GetById(userRole).Role;
         }
 
-
         public void changeRole(int userId, string role)
         {
             int roleId = UnitOfWork.getRole.GetIdByRole(role);
@@ -166,6 +137,44 @@ namespace BLL.Facade
                 UnitOfWork.getUser.SaveChanges();
                 transact.Commit();
             }
+        }
+
+        public bool addItemToBasket(int unitId, string size, int userId)
+        {
+            UnitInfoDto unitInfo = UnitOfWork.getUnitInfo.GetByIdAndSize(unitId, size);
+            using (var transact = UnitOfWork.BeginTransaction())
+            {
+                int basketId = UnitOfWork.getBasket.AddItem(new BasketDto()
+                {
+                    UserId = userId
+                });
+
+                UnitOfWork.getBasketItems.AddItem(new BasketItemsDto()
+                {
+                    UnitInfoId = unitInfo.Id,
+                    Amount = 1,
+                    BasketId = basketId,
+                    WasAdded = DateTime.Now
+                });
+
+                transact.Commit();
+            }
+
+                /*
+                 public int id { get; set; }
+                 public int basket_id { get; set; }
+                 public int unit_info_id { get; set; }
+                 public int amount { get; set; }
+                 public System.DateTime was_added { get; set; }
+                      */
+
+                /*
+            public int id { get; set; }
+            public int user_id { get; set; }
+            */
+
+
+                return false;
         }
 
         public IUnitOfWork UnitOfWork { get; private set; }

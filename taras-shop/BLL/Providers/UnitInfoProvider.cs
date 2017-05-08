@@ -5,6 +5,7 @@ using DALLocalDB.Repositories;
 using DTO;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace BLL.Providers
 {
@@ -15,9 +16,9 @@ namespace BLL.Providers
         {
             _repo = new UnitInfoRepository(db);
         }
-        public void AddItem(UnitInfoDto item)
+        public int AddItem(UnitInfoDto item)
         {
-            _repo.AddItem(new UnitInfo()
+            return _repo.AddItem(new UnitInfo()
             {
                 amount = item.Amount,
                 size_id = item.SizeId,
@@ -59,6 +60,19 @@ namespace BLL.Providers
             {
                 Amount = res.amount,
                 Id = res.id,
+                SizeId = res.size_id,
+                UnitId = res.unit_id
+            };
+        }
+
+        public UnitInfoDto GetByIdAndSize(int id, string size)
+        {
+            int sizeId = _repo.GetEntities().Sizes.Where(x => x.size == size).FirstOrDefault().id;
+            var res = _repo.GetEntities().UnitInfo.Where(x => x.unit_id == id && x.size_id == sizeId).FirstOrDefault();
+            return new UnitInfoDto()
+            {
+                Id = res.id,
+                Amount = res.amount,
                 SizeId = res.size_id,
                 UnitId = res.unit_id
             };

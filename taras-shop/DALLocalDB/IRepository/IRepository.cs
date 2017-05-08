@@ -13,7 +13,7 @@ namespace DALLocalDB.IRepository
         public LocalEntities GetEntities() {
             return entities;
         }
-        public abstract void AddItem(T item);
+        public abstract int AddItem(T item);
         public abstract IQueryable<T> GetAll();
         public abstract T GetById(int id);
         public abstract void EditItem(T item);

@@ -7,5 +7,6 @@ namespace BLL.IProviders
     {
         IEnumerable<UnitInfoDto> GetByOwners(int[] ids);
         IEnumerable<UnitInfoDto> GetByOwner(int id);
+        UnitInfoDto GetByIdAndSize(int id, string size);
     }
 }

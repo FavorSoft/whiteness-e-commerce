@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new ImagesRepository(db);
         }
-        public void AddItem(ImagesDto images)
+        public int AddItem(ImagesDto images)
         {
-            _repo.AddItem(new Images()
+            return _repo.AddItem(new Images()
             {
                 image = images.Image,
                 owner_id = images.OwnerId

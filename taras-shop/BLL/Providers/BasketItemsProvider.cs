@@ -16,9 +16,9 @@ namespace BLL.Providers
             _repo = new BasketItemsRepository(db);
         }
 
-        public void AddItem(BasketItemsDto basketItems)
+        public int AddItem(BasketItemsDto basketItems)
         {
-            _repo.AddItem(new Basket_items()
+            return _repo.AddItem(new Basket_items()
             {
                 unit_info_id = basketItems.UnitInfoId,
                 amount = basketItems.Amount,

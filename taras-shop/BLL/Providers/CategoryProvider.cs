@@ -15,9 +15,9 @@ namespace BLL.Providers
         {
             _repo = new CategoriesRepository(db);
         }
-        public void AddItem(CategoriesDto category)
+        public int AddItem(CategoriesDto category)
         {
-            _repo.AddItem(new Categories()
+            return _repo.AddItem(new Categories()
             {
                 category = category.Category,
                 category_img = category.CategoryImg,

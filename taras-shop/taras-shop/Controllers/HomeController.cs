@@ -146,20 +146,16 @@ namespace taras_shop.Controllers
             
             return model;
         }
-
-        [HttpGet]
-        public JsonResult GetItemsByCategory(int typeId, string category)
-        {
-            return Json(facade.getByFilter(typeId, category, 8), JsonRequestBehavior.AllowGet);
-        }
-
-
+        
         //, string xs_option2, string s_option2, string m_option2, string l_option2, string xl_option2
         [HttpGet]
         [CustomAuthorizeAttribute]
-        public string AddToBasket(int Id, string size)
+        public string AddToBasket(int unitId, string size)
         {
-            int id = Id;
+            facade.addItemToBasket(unitId, size, User.Id);
+            
+
+
             return size;
         }
 

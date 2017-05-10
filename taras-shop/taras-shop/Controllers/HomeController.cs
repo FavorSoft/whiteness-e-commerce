@@ -36,8 +36,8 @@ namespace taras_shop.Controllers
             {
                 categories = facade.UnitOfWork.getCategory.GetAll(),
                 categoryTypes = facade.UnitOfWork.getCategoryType.GetAll(),
-                popular = facade.getPopularArticles(4),
-                recommended = facade.getRecommendsArticles(3)
+                popular = facade.GetPopularArticles(4),
+                recommended = facade.GetRecommendsArticles(3)
             };
 
             return View(model);
@@ -148,21 +148,19 @@ namespace taras_shop.Controllers
         }
         
         //, string xs_option2, string s_option2, string m_option2, string l_option2, string xl_option2
-        [HttpGet]
+        [HttpPost]
         [CustomAuthorizeAttribute]
-        public string AddToBasket(int unitId, string size)
+        public string AddToBasket(int Id, string size)
         {
-            facade.addItemToBasket(unitId, size, User.Id);
+            string res = facade.AddItemToBasket(Id, size, User.Id);
             
-
-
-            return size;
+            return res;
         }
 
         [HttpGet]
         public async Task<JsonResult> LoadIndex()
         {
-            var res = new { popular = facade.getPopularArticles(4), recommends = facade.getRecommendsArticles(4) };
+            var res = new { popular = facade.GetPopularArticles(4), recommends = facade.GetRecommendsArticles(4) };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
         
@@ -192,7 +190,7 @@ namespace taras_shop.Controllers
 
         public async Task<ActionResult> ItemPage(int id)
         {
-            var res = new ItemPageModels(facade.getArticleById(id));
+            var res = new ItemPageModels(facade.GetArticleById(id));
 
             res.CategoryType = facade.UnitOfWork.getCategoryType.GetById(res.category.TypeId).Type;
             

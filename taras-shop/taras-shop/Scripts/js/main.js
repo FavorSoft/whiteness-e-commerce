@@ -215,20 +215,19 @@
     //});
 });
 
+
+
 function addToBasket() {
     var id = $("#unitId").val();
     var size = $("#sizes-radio input:checked").val();
     $.ajax({
-        method: "GET",
+        method: "POST",
         url: "/Home/AddToBasket",
         data: { Id: id, size: size },
         success: function (data) {
-            console.log(data);
+            $("#basket-result").html(data);
         }
-    })
-        .done(function (msg) {
-            alert("Data Saved: " + msg);
-        });
+    });
 }
 
 function addToCart(item) {

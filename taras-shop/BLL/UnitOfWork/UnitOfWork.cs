@@ -10,7 +10,7 @@ namespace BLL.UnitOfWork
     {
         #region PARAMETERS
         IProvider<BasketItemsDto> _basketItems;
-        IProvider<BasketDto> _basket;
+        IBasketProvider _basket;
         ICategoryProvider _category;
         IProvider<CategoryTypeDto> _categoryType;
         IImagesProvider _images;
@@ -34,7 +34,7 @@ namespace BLL.UnitOfWork
         }
         #endregion
 
-        public IProvider<BasketDto> getBasket{
+        public IBasketProvider getBasket{
             get
             {
                 if (_basket == null)

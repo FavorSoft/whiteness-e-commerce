@@ -22,7 +22,7 @@ namespace BLL.Facade
             for (int i = 0; i < units.Count; i++)
             {
                 int id = units[i].Id;
-                
+
                 List<UnitInfoDto> unitsInfo = new List<UnitInfoDto>();
                 foreach (var k in UnitOfWork.getUnitInfo.GetByOwner(id))
                 {
@@ -60,13 +60,13 @@ namespace BLL.Facade
             return article;
         }
 
-        public IEnumerable<Article> getPopularArticles(int count)
+        public IEnumerable<Article> GetPopularArticles(int count)
         {
             var units = UnitOfWork.getUnit.GetPopular(count);
             return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
 
-        public object getByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
+        public object GetByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
         {
             int categoryId = UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
 
@@ -104,8 +104,8 @@ namespace BLL.Facade
 
             return res;
         }
-        
-        public IEnumerable<Article> getRecommendsArticles(int count)
+
+        public IEnumerable<Article> GetRecommendsArticles(int count)
         {
             List<Article> res = new List<Article>();
             var units = UnitOfWork.getUnit.GetPopular(count);
@@ -113,12 +113,12 @@ namespace BLL.Facade
             return res;
         }
 
-        public Article getArticleById(int id)
+        public Article GetArticleById(int id)
         {
             return ConvertUnitToArticle(UnitOfWork.getUnit.GetById(id), UnitOfWork.getImages.GetByOwner(id).ToList());
         }
 
-        public string getUserRole(string username)
+        public string GetUserRole(string username)
         {
             int userRole = UnitOfWork.getUser.GetByInfo(new UsersDto()
             {
@@ -128,7 +128,7 @@ namespace BLL.Facade
             return UnitOfWork.getRole.GetById(userRole).Role;
         }
 
-        public void changeRole(int userId, string role)
+        public void ChangeRole(int userId, string role)
         {
             int roleId = UnitOfWork.getRole.GetIdByRole(role);
             using (var transact = UnitOfWork.BeginTransaction())
@@ -139,42 +139,47 @@ namespace BLL.Facade
             }
         }
 
-        public bool addItemToBasket(int unitId, string size, int userId)
+        public string AddItemToBasket(int unitId, string size, int userId)
         {
-            UnitInfoDto unitInfo = UnitOfWork.getUnitInfo.GetByIdAndSize(unitId, size);
+            string res = "";
+            UnitInfoDto unitInfo = new UnitInfoDto();
+            try
+            {
+                unitInfo = UnitOfWork.getUnitInfo.GetByIdAndSize(unitId, size);
+            }
+            catch (Exception)
+            {
+                res = "Выбранного размера нету в наличии";
+            }
+
             using (var transact = UnitOfWork.BeginTransaction())
             {
-                int basketId = UnitOfWork.getBasket.AddItem(new BasketDto()
-                {
-                    UserId = userId
-                });
+                int? basketId = null;
 
+                try
+                {
+                    basketId = UnitOfWork.getBasket.GetByOwner(userId).Id;
+                }
+                catch (Exception)
+                {
+                    basketId = UnitOfWork.getBasket.AddItem(new BasketDto()
+                    {
+                        UserId = userId
+                    });
+                }
+                
                 UnitOfWork.getBasketItems.AddItem(new BasketItemsDto()
                 {
                     UnitInfoId = unitInfo.Id,
                     Amount = 1,
-                    BasketId = basketId,
+                    BasketId = basketId.Value,
                     WasAdded = DateTime.Now
                 });
 
                 transact.Commit();
+                res = "Товар добавлен в корзину";
             }
-
-                /*
-                 public int id { get; set; }
-                 public int basket_id { get; set; }
-                 public int unit_info_id { get; set; }
-                 public int amount { get; set; }
-                 public System.DateTime was_added { get; set; }
-                      */
-
-                /*
-            public int id { get; set; }
-            public int user_id { get; set; }
-            */
-
-
-                return false;
+            return res;
         }
 
         public IUnitOfWork UnitOfWork { get; private set; }

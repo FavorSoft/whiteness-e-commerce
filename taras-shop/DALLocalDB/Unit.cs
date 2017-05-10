@@ -17,9 +17,9 @@ namespace DALLocalDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unit()
         {
-            this.Images = new HashSet<Images>();
+            this.Images = new HashSet<Image>();
             this.Order_items = new HashSet<Order_items>();
-            this.UnitInfo = new HashSet<UnitInfo>();
+            this.UnitInfoes = new HashSet<UnitInfo>();
         }
     
         public int id { get; set; }
@@ -34,12 +34,12 @@ namespace DALLocalDB
         public System.DateTime add_date { get; set; }
         public string description { get; set; }
     
-        public virtual Categories Categories { get; set; }
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Images> Images { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_items> Order_items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UnitInfo> UnitInfo { get; set; }
+        public virtual ICollection<UnitInfo> UnitInfoes { get; set; }
     }
 }

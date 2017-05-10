@@ -9,7 +9,7 @@ namespace BLL.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         #region PARAMETERS
-        IProvider<BasketItemsDto> _basketItems;
+        IBasketItemsProvider _basketItems;
         IBasketProvider _basket;
         ICategoryProvider _category;
         IProvider<CategoryTypeDto> _categoryType;
@@ -23,14 +23,14 @@ namespace BLL.UnitOfWork
         IUnitProvider _unit;
         IUserProvider _user;
         IUnitInfoProvider _unitInfo;
-        LocalEntities context;
+        AzureEntities context;
         #endregion
 
         #region CTOR
         public UnitOfWork(
             )
         {
-            context = new LocalEntities();
+            context = new AzureEntities();
         }
         #endregion
 
@@ -57,7 +57,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<BasketItemsDto> getBasketItems
+        public IBasketItemsProvider getBasketItems
         {
             get
             {

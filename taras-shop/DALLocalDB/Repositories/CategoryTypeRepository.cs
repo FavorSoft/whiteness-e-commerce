@@ -5,7 +5,7 @@ namespace DALLocalDB.Repository
 {
     public class CategoryTypeRepository : IRepository<Category_type>
     {
-        public CategoryTypeRepository(LocalEntities db) : base(db)
+        public CategoryTypeRepository(AzureEntities db) : base(db)
         {
         }
 

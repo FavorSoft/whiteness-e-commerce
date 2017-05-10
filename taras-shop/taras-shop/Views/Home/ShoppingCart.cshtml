@@ -1,5 +1,7 @@
-﻿@{
+﻿@model String
+@{
     ViewBag.Title = "ShoppingCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="shopping-cart-component"></div>
+
+<div id="shopping-cart-component" auth="@Model.ToString()"></div>

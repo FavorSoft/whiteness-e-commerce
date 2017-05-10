@@ -42,6 +42,7 @@
     <Compile Include="Helpers\Article.cs" />
     <Compile Include="Helpers\BasketDto.cs" />
     <Compile Include="Helpers\BasketItems.cs" />
+    <Compile Include="Helpers\BasketUnit.cs" />
     <Compile Include="Helpers\Categories.cs" />
     <Compile Include="Helpers\CategoryType.cs" />
     <Compile Include="Helpers\Images.cs" />

@@ -12,7 +12,7 @@ namespace BLL.Providers
     public class BasketProvider : IBasketProvider
     {
         readonly IRepository<Basket> _repo;
-        public BasketProvider(LocalEntities db)
+        public BasketProvider(AzureEntities db)
         {
             _repo = new BasketRepository(db);
         }

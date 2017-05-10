@@ -11,7 +11,7 @@ namespace BLL.Providers
     public class OrderItemsProvider : IProvider<OrderItemsDto>
     {
         readonly IRepository<Order_items> _repo;
-        public OrderItemsProvider(LocalEntities db)
+        public OrderItemsProvider(AzureEntities db)
         {
             _repo = new OrderItemsRepository(db);
         }

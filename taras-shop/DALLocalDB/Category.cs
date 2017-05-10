@@ -12,29 +12,22 @@ namespace DALLocalDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Category()
         {
-            this.Basket = new HashSet<Basket>();
-            this.Order = new HashSet<Order>();
+            this.Units = new HashSet<Unit>();
         }
     
         public int id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string number { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public int role_id { get; set; }
-        public System.DateTime reg_date { get; set; }
-        public bool is_man { get; set; }
+        public string category { get; set; }
+        public int type_id { get; set; }
+        public string category_img { get; set; }
+        public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Basket> Basket { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
-        public virtual Roles Roles { get; set; }
+        public virtual ICollection<Unit> Units { get; set; }
+        public virtual Category_type Category_type { get; set; }
     }
 }

@@ -3,39 +3,39 @@ using System.Linq;
 
 namespace DALLocalDB.Repository
 {
-    public class RoleRepository : IRepository<Roles>
+    public class RoleRepository : IRepository<Role>
     {
-        public RoleRepository(LocalEntities db) : base(db)
+        public RoleRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override int AddItem(Roles item)
+        public override int AddItem(Role item)
         {
-            return entities.Roles.Add(item).id;
+            return entities.Role.Add(item).id;
         }
 
         public override void DeleteItem(int id)
         {
-            var item = entities.Roles.FirstOrDefault(x => x.id == id);
-            entities.Roles.Remove(item);
+            var item = entities.Role.FirstOrDefault(x => x.id == id);
+            entities.Role.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public override void EditItem(Roles item)
+        public override void EditItem(Role item)
         {
-            entities.Roles.Attach(item);
+            entities.Role.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
 
         }
 
-        public override IQueryable<Roles> GetAll()
+        public override IQueryable<Role> GetAll()
         {
-            return entities.Roles;
+            return entities.Role;
         }
 
-        public override Roles GetById(int id)
+        public override Role GetById(int id)
         {
-            return entities.Roles.Where(x => x.id == id).FirstOrDefault();
+            return entities.Role.Where(x => x.id == id).FirstOrDefault();
         }
     }
 }

@@ -10,14 +10,14 @@ namespace BLL.Providers
 {
     public class ImagesProvider : IImagesProvider
     {
-        readonly IRepository<Images> _repo;
-        public ImagesProvider(LocalEntities db)
+        readonly IRepository<Image> _repo;
+        public ImagesProvider(AzureEntities db)
         {
             _repo = new ImagesRepository(db);
         }
         public int AddItem(ImagesDto images)
         {
-            return _repo.AddItem(new Images()
+            return _repo.AddItem(new Image()
             {
                 image = images.Image,
                 owner_id = images.OwnerId
@@ -34,7 +34,7 @@ namespace BLL.Providers
             });
         }
 
-        IEnumerable<ImagesDto> ConvertModeltoDTO(IQueryable<Images> repo)
+        IEnumerable<ImagesDto> ConvertModeltoDTO(IQueryable<Image> repo)
         {
             IEnumerable<ImagesDto> res = repo.Select(i => new ImagesDto()
                 {
@@ -86,7 +86,7 @@ namespace BLL.Providers
 
         public void EditItem(ImagesDto item)
         {
-            _repo.EditItem(new Images()
+            _repo.EditItem(new Image()
             {
                 id = item.Id,
                 image = item.Image,

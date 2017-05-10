@@ -1,5 +1,6 @@
 ﻿using BLL.UnitOfWork;
 using DTO;
+using DTO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -170,7 +171,7 @@ namespace BLL.Facade
                 
                 UnitOfWork.getBasketItems.AddItem(new BasketItemsDto()
                 {
-                    UnitInfoId = unitInfo.Id,
+                    Size = size,
                     Amount = 1,
                     BasketId = basketId.Value,
                     WasAdded = DateTime.Now
@@ -179,6 +180,18 @@ namespace BLL.Facade
                 transact.Commit();
                 res = "Товар добавлен в корзину";
             }
+            return res;
+        }
+
+        public IEnumerable<BasketUnit> GetFromBasket(int id)
+        {
+            List<BasketUnit> res = new List<BasketUnit>();
+
+            var basket = UnitOfWork.getBasket.GetByOwner(id);
+            var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket);
+            //i have to do it
+
+
             return res;
         }
 

@@ -15,12 +15,11 @@ namespace DALLocalDB
     public partial class Basket_items
     {
         public int id { get; set; }
-        public int basket_id { get; set; }
-        public int unit_info_id { get; set; }
-        public int amount { get; set; }
         public System.DateTime was_added { get; set; }
+        public int basket_id { get; set; }
+        public string size { get; set; }
+        public int amount { get; set; }
     
         public virtual Basket Basket { get; set; }
-        public virtual UnitInfo UnitInfo { get; set; }
     }
 }

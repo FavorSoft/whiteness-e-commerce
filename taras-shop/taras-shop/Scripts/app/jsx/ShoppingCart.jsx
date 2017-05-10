@@ -2,19 +2,33 @@ import React, { Component } from 'react';
 
 export default class ShoppingCart extends Component {
     constructor(props) {
+        console.log(props["auth"]);
         super(props);
         this.state = {
+            auth: props["auth"],
             emptyLocalStorage: false,
             cartUnits: null
         };
         this.renderCartUnits = this.renderCartUnits.bind(this);
     }
-
+    
     componentDidMount() {
-        console.log(localStorage.units);
-        let cartUnits = JSON.parse(localStorage.getItem("items"));
+        
+        let cartUnits;
+
+        if (this.state.auth == "true") {
+            var request;
+            $.get("/Home/GetItemsFromBasket", request, (response) => {
+                console.log(response);
+            });
+        }
+        else
+        {
+            cartUnits = JSON.parse(localStorage.getItem("items"));
+        }
+
         console.log(cartUnits);
-        if(cartUnits) {
+        if (cartUnits) {
             this.setState({ cartUnits });
         }
         else {
@@ -25,9 +39,11 @@ export default class ShoppingCart extends Component {
     renderCartUnits() {
         if(!this.state.emptyLocalStorage && this.state.cartUnits) {
             let unitList;
+            
             return unitList = this.state.cartUnits.map((unit) => {
+                console.log(unit.Price);
                 return (
-                    <CartUnit key={ Math.random() } title={ unit.Title } color={ unit.Color } price={ unit.Price }/>
+                    <CartUnit key={unit.Id} props={unit} title={unit.Title} color={unit.Color} price={unit.Price} />
                 );
             });
         }
@@ -56,16 +72,16 @@ export default class ShoppingCart extends Component {
                                 { this.renderCartUnits() }
                             </tbody>
                         </table>
-                    </div> 
-                    <Summary/>
+                    </div>
+                    <Summary />
                 </div>
             </div>
         );
     }
 }
 
-const CartUnit = (title, color, price) => {
-
+const CartUnit = (title, props, color, price) => {
+    
     const priceCheck = (price) => {
         price = parseInt(price);
         if (price) {
@@ -85,8 +101,8 @@ const CartUnit = (title, color, price) => {
             </td>
             <td>
                 <div className="text-basket-preview">
-                    <h4>{ title.toString() }</h4>
-                    <span>Цвет: { color.toString() }</span>
+                    <h4> {title.toString()}</h4>
+                    <span>Цвет: {color.toString()}</span>
                     <a>Изменить</a>
                     <span>Размер:</span>
                     <span>S</span>
@@ -97,7 +113,7 @@ const CartUnit = (title, color, price) => {
                 <input type="number" className="form-control cart-number-input" min="1" value="1" />
             </td>
             <td>
-                <p className="cart-price-p">{ priceCheck(price.toString()) }</p>
+                <p className="cart-price-p">{ priceCheck(price) }</p>
             </td>
             <td>
                 <p className="cart-sum-p">223.00 грн</p>

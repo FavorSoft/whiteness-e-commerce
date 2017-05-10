@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace DALLocalDB.Repository
 {
-    public class CategoriesRepository : IRepository<Categories>
+    public class CategoriesRepository : IRepository<Category>
     {
-        public CategoriesRepository(LocalEntities db) : base(db)
+        public CategoriesRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override int AddItem(Categories item)
+        public override int AddItem(Category item)
         {
             return entities.Categories.Add(item).id;
         }
@@ -21,18 +21,18 @@ namespace DALLocalDB.Repository
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public override void EditItem(Categories item)
+        public override void EditItem(Category item)
         {
             entities.Categories.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public override IQueryable<Categories> GetAll()
+        public override IQueryable<Category> GetAll()
         {
             return entities.Categories.AsQueryable();
         }
 
-        public override Categories GetById(int id)
+        public override Category GetById(int id)
         {
             return entities.Categories.Where(x => x.id == id).FirstOrDefault();
         }

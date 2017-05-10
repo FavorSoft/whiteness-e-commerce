@@ -4,34 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="39e12f6ae58142d689bce1ee18dcea43" Name="Diagram1">
-        <EntityTypeShape EntityType="EntitiesModel.Basket" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Basket_items" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Categories" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Category_type" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Images" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.News" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.News_image" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Order" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Order_items" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Roles" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Sizes" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Unit" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.UnitInfo" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModel.Users" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <AssociationConnector Association="EntitiesModel.fk_basket_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_user_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_unit_info_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_category_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_category_type_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_owner_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_news_image_owner_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_o_user_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_order_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_o_unit_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_role_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_sizes_table_id" ManuallyRouted="false" />
-        <AssociationConnector Association="EntitiesModel.fk_unit_table_id" ManuallyRouted="false" />
+      <Diagram DiagramId="b9ff6e862b134096aa7ed7f4e8df3323" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Basket_items" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category_type" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Image" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.News" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.News_image" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order_items" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Size" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Unit" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UnitInfo" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="Model.fk_basket_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_category_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_category_type_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_owner_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_news_image_owner_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_o_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_order_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_o_unit_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_role_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_sizes_table_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_unit_table_id" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

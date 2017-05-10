@@ -12,22 +12,18 @@ namespace DALLocalDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class Size
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public Size()
         {
-            this.Unit = new HashSet<Unit>();
+            this.UnitInfoes = new HashSet<UnitInfo>();
         }
     
         public int id { get; set; }
-        public string category { get; set; }
-        public int type_id { get; set; }
-        public string category_img { get; set; }
-        public string description { get; set; }
+        public string size { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unit> Unit { get; set; }
-        public virtual Category_type Category_type { get; set; }
+        public virtual ICollection<UnitInfo> UnitInfoes { get; set; }
     }
 }

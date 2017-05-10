@@ -10,14 +10,14 @@ namespace BLL.Providers
 {
     public class RoleProvider : IRolesProvider
     {
-        readonly IRepository<Roles> _repo;
-        public RoleProvider(LocalEntities db)
+        readonly IRepository<Role> _repo;
+        public RoleProvider(AzureEntities db)
         {
             _repo = new RoleRepository(db);
         }
         public int AddItem(RolesDto role)
         {
-            return _repo.AddItem(new Roles()
+            return _repo.AddItem(new Role()
             {
                 role = role.Role
             });
@@ -30,7 +30,7 @@ namespace BLL.Providers
 
         public void EditItem(RolesDto item)
         {
-            _repo.EditItem(new Roles()
+            _repo.EditItem(new Role()
             {
                 id = item.Id,
                 role = item.Role
@@ -58,7 +58,7 @@ namespace BLL.Providers
 
         public int GetIdByRole(string role)
         {
-            return _repo.GetEntities().Roles.Where(x => x.role == role).Select(x => x.id).FirstOrDefault();
+            return _repo.GetEntities().Role.Where(x => x.role == role).Select(x => x.id).FirstOrDefault();
         }
     }
 }

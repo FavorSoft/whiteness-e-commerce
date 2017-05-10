@@ -5,7 +5,7 @@ namespace DALLocalDB.Repository
 {
     public class OrderItemsRepository : IRepository<Order_items>
     {
-        public OrderItemsRepository(LocalEntities db) : base(db)
+        public OrderItemsRepository(AzureEntities db) : base(db)
         {
         }
 

@@ -27,7 +27,7 @@
                         <p class="item-type">@Model.category.Category</p>
                     </div>
                     <div class="price-unit-part">
-                        @if (!@Model.unit.Price.Equals(null))
+                        @if (!Model.unit.Price.Equals(null))
                         {
                             <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(Model.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
                         }

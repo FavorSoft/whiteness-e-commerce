@@ -3,38 +3,38 @@ using System.Linq;
 
 namespace DALLocalDB.Repository
 {
-    public class UserRepository : IRepository<Users>
+    public class UserRepository : IRepository<User>
     {
-        public UserRepository(LocalEntities db) : base(db)
+        public UserRepository(AzureEntities db) : base(db)
         {
         }
         
-        public override int AddItem(Users item)
+        public override int AddItem(User item)
         {
-            return entities.Users.Add(item).id;
+            return entities.User.Add(item).id;
         }
 
         public override void DeleteItem(int id)
         {
-            var item = entities.Users.FirstOrDefault(x => x.id == id);
-            entities.Users.Remove(item);
+            var item = entities.User.FirstOrDefault(x => x.id == id);
+            entities.User.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public override void EditItem(Users item)
+        public override void EditItem(User item)
         {
-            var tmp = entities.Users.Where(x => x.id == item.id);
+            var tmp = entities.User.Where(x => x.id == item.id);
             entities.Entry(tmp).CurrentValues.SetValues(item);
         }
 
-        public override IQueryable<Users> GetAll()
+        public override IQueryable<User> GetAll()
         {
-            return entities.Users;
+            return entities.User;
         }
 
-        public override Users GetById(int id)
+        public override User GetById(int id)
         {
-            return entities.Users.Where(x => x.id == id).FirstOrDefault();
+            return entities.User.Where(x => x.id == id).FirstOrDefault();
         }
     }
 }

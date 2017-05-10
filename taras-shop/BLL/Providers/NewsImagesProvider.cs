@@ -10,7 +10,7 @@ namespace BLL.IProviders
     public class NewsImagesProvider : IProvider<NewsImagesDto>
     {
         readonly IRepository<News_image> _repo;
-        public NewsImagesProvider(LocalEntities db)
+        public NewsImagesProvider(AzureEntities db)
         {
             _repo = new NewsImageRepository(db);
         }

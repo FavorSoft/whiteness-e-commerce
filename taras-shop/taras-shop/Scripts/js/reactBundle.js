@@ -238,8 +238,13 @@
 	}(_react.Component);
 
 	if (window.location.pathname === "/Home/ShoppingCart") {
-	    console.log("Shopping Cart");
-	    _reactDom2.default.render(_react2.default.createElement(_ShoppingCart2.default, null), document.getElementById('shopping-cart-component'));
+	    //console.log("Shopping Cart");
+	    var cart = document.getElementById('shopping-cart-component');
+	    if (cart.getAttribute("auth") == "false") {
+	        _reactDom2.default.render(_react2.default.createElement(_ShoppingCart2.default, { auth: 'false' }), document.getElementById('shopping-cart-component'));
+	    } else {
+	        _reactDom2.default.render(_react2.default.createElement(_ShoppingCart2.default, { auth: 'true' }), document.getElementById('shopping-cart-component'));
+	    }
 	} else if (window.location.pathname === "/") {
 	    console.log("Index");
 	    _reactDom2.default.render(_react2.default.createElement(IndexComponent, null), document.getElementById('index-component'));
@@ -537,6 +542,10 @@
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
+	process.prependListener = noop;
+	process.prependOnceListener = noop;
+
+	process.listeners = function (name) { return [] }
 
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
@@ -22831,9 +22840,12 @@
 	    function ShoppingCart(props) {
 	        _classCallCheck(this, ShoppingCart);
 
+	        console.log(props["auth"]);
+
 	        var _this = _possibleConstructorReturn(this, (ShoppingCart.__proto__ || Object.getPrototypeOf(ShoppingCart)).call(this, props));
 
 	        _this.state = {
+	            auth: props["auth"],
 	            emptyLocalStorage: false,
 	            cartUnits: null
 	        };
@@ -22844,8 +22856,18 @@
 	    _createClass(ShoppingCart, [{
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
-	            console.log(localStorage.units);
-	            var cartUnits = JSON.parse(localStorage.getItem("items"));
+
+	            var cartUnits = void 0;
+
+	            if (this.state.auth == "true") {
+	                var request;
+	                $.get("/Home/GetItemsFromBasket", request, function (response) {
+	                    console.log(response);
+	                });
+	            } else {
+	                cartUnits = JSON.parse(localStorage.getItem("items"));
+	            }
+
 	            console.log(cartUnits);
 	            if (cartUnits) {
 	                this.setState({ cartUnits: cartUnits });
@@ -22858,8 +22880,10 @@
 	        value: function renderCartUnits() {
 	            if (!this.state.emptyLocalStorage && this.state.cartUnits) {
 	                var unitList = void 0;
+
 	                return unitList = this.state.cartUnits.map(function (unit) {
-	                    return _react2.default.createElement(CartUnit, { key: Math.random(), title: unit.Title, color: unit.Color, price: unit.Price });
+	                    console.log(unit.Price);
+	                    return _react2.default.createElement(CartUnit, { key: unit.Id, props: unit, title: unit.Title, color: unit.Color, price: unit.Price });
 	                });
 	            } else {
 	                return null;
@@ -22937,7 +22961,7 @@
 	exports.default = ShoppingCart;
 
 
-	var CartUnit = function CartUnit(title, color, price) {
+	var CartUnit = function CartUnit(title, props, color, price) {
 
 	    var priceCheck = function priceCheck(price) {
 	        price = parseInt(price);
@@ -22971,6 +22995,7 @@
 	                _react2.default.createElement(
 	                    "h4",
 	                    null,
+	                    " ",
 	                    title.toString()
 	                ),
 	                _react2.default.createElement(
@@ -23012,7 +23037,7 @@
 	            _react2.default.createElement(
 	                "p",
 	                { className: "cart-price-p" },
-	                priceCheck(price.toString())
+	                priceCheck(price)
 	            )
 	        ),
 	        _react2.default.createElement(

@@ -9,13 +9,14 @@
 
 namespace DALLocalDB
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class LocalEntities : DbContext
+    
+    public partial class AzureEntities : DbContext
     {
-        public LocalEntities()
-            : base("name=EntitiesAzure")
+        public AzureEntities()
+            : base("name=AzureEntities")
         {
         }
     
@@ -26,17 +27,17 @@ namespace DALLocalDB
     
         public virtual DbSet<Basket> Basket { get; set; }
         public virtual DbSet<Basket_items> Basket_items { get; set; }
-        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Category_type> Category_type { get; set; }
-        public virtual DbSet<Images> Images { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<News_image> News_image { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Order_items> Order_items { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Sizes> Sizes { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<UnitInfo> UnitInfo { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

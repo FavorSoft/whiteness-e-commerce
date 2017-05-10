@@ -199,7 +199,25 @@ namespace taras_shop.Controllers
 
         public ActionResult ShoppingCart()
         {
-            return View();
+            string res = "false";
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    res = "true";
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return View(res as object);
+        }
+        [HttpGet]
+        public string GetItemsFromBasket()
+        {
+
+            return User.Id.ToString();
         }
 
         public ActionResult Search()

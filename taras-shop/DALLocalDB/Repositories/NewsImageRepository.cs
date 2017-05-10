@@ -5,7 +5,7 @@ namespace DALLocalDB.Repository
 {
     public class NewsImageRepository : IRepository<News_image>
     {
-        public NewsImageRepository(LocalEntities db) : base(db)
+        public NewsImageRepository(AzureEntities db) : base(db)
         {
         }
 

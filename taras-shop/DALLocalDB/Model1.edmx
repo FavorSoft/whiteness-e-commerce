@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -19,7 +19,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="was_added" Type="date" Nullable="false" />
           <Property Name="basket_id" Type="int" Nullable="false" />
-          <Property Name="unit_info_id" Type="int" Nullable="false" />
+          <Property Name="size" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Categories">
@@ -79,6 +79,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="unit_id" Type="int" Nullable="false" />
+          <Property Name="size" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
         </EntityType>
@@ -255,18 +256,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_unit_info_id">
-          <End Role="UnitInfo" Type="Self.UnitInfo" Multiplicity="1" />
-          <End Role="Basket_items" Type="Self.Basket_items" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitInfo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Basket_items">
-              <PropertyRef Name="unit_info_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_unit_table_id">
           <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
           <End Role="UnitInfo" Type="Self.UnitInfo" Multiplicity="*" />
@@ -291,7 +280,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EntitiesModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Basket_items" EntityType="Self.Basket_items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
@@ -346,10 +335,6 @@
             <End Role="Sizes" EntitySet="Sizes" />
             <End Role="UnitInfo" EntitySet="UnitInfo" />
           </AssociationSet>
-          <AssociationSet Name="fk_unit_info_id" Association="Self.fk_unit_info_id">
-            <End Role="UnitInfo" EntitySet="UnitInfo" />
-            <End Role="Basket_items" EntitySet="Basket_items" />
-          </AssociationSet>
           <AssociationSet Name="fk_unit_table_id" Association="Self.fk_unit_table_id">
             <End Role="Unit" EntitySet="Unit" />
             <End Role="UnitInfo" EntitySet="UnitInfo" />
@@ -359,10 +344,11 @@
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -370,21 +356,20 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket_items" Relationship="Self.fk_basket_id" FromRole="Basket" ToRole="Basket_items" />
-          <NavigationProperty Name="Users" Relationship="Self.fk_user_id" FromRole="Basket" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.fk_user_id" FromRole="Basket" ToRole="Users" />
         </EntityType>
         <EntityType Name="Basket_items">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="was_added" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="basket_id" Type="Int32" Nullable="false" />
-          <Property Name="unit_info_id" Type="Int32" Nullable="false" />
+          <Property Name="size" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket" Relationship="Self.fk_basket_id" FromRole="Basket_items" ToRole="Basket" />
-          <NavigationProperty Name="UnitInfo" Relationship="Self.fk_unit_info_id" FromRole="Basket_items" ToRole="UnitInfo" />
-          <Property Name="was_added" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
-        <EntityType Name="Categories">
+        <EntityType Name="Category">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -393,7 +378,7 @@
           <Property Name="type_id" Type="Int32" Nullable="false" />
           <Property Name="category_img" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Unit" Relationship="Self.fk_category_id" FromRole="Categories" ToRole="Unit" />
+          <NavigationProperty Name="Units" Relationship="Self.fk_category_id" FromRole="Categories" ToRole="Unit" />
           <NavigationProperty Name="Category_type" Relationship="Self.fk_category_type_id" FromRole="Categories" ToRole="Category_type" />
         </EntityType>
         <EntityType Name="Category_type">
@@ -404,7 +389,7 @@
           <Property Name="type" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Categories" Relationship="Self.fk_category_type_id" FromRole="Category_type" ToRole="Categories" />
         </EntityType>
-        <EntityType Name="Images">
+        <EntityType Name="Image">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -439,7 +424,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="Self.fk_o_user_id" FromRole="Order" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.fk_o_user_id" FromRole="Order" ToRole="Users" />
           <NavigationProperty Name="Order_items" Relationship="Self.fk_order_id" FromRole="Order" ToRole="Order_items" />
         </EntityType>
         <EntityType Name="Order_items">
@@ -449,12 +434,13 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="order_id" Type="Int32" Nullable="false" />
           <Property Name="unit_id" Type="Int32" Nullable="false" />
+          <Property Name="size" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.fk_order_id" FromRole="Order_items" ToRole="Order" />
           <NavigationProperty Name="Unit" Relationship="Self.fk_o_unit_id" FromRole="Order_items" ToRole="Unit" />
         </EntityType>
-        <EntityType Name="Roles">
+        <EntityType Name="Role">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -462,13 +448,13 @@
           <Property Name="role" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.fk_role_id" FromRole="Roles" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Sizes">
+        <EntityType Name="Size">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="size" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UnitInfo" Relationship="Self.fk_sizes_table_id" FromRole="Sizes" ToRole="UnitInfo" />
+          <NavigationProperty Name="UnitInfoes" Relationship="Self.fk_sizes_table_id" FromRole="Sizes" ToRole="UnitInfo" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -485,10 +471,10 @@
           <Property Name="likes" Type="Int32" Nullable="false" />
           <Property Name="add_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Categories" Relationship="Self.fk_category_id" FromRole="Unit" ToRole="Categories" />
+          <NavigationProperty Name="Category" Relationship="Self.fk_category_id" FromRole="Unit" ToRole="Categories" />
           <NavigationProperty Name="Images" Relationship="Self.fk_owner_id" FromRole="Unit" ToRole="Images" />
           <NavigationProperty Name="Order_items" Relationship="Self.fk_o_unit_id" FromRole="Unit" ToRole="Order_items" />
-          <NavigationProperty Name="UnitInfo" Relationship="Self.fk_unit_table_id" FromRole="Unit" ToRole="UnitInfo" />
+          <NavigationProperty Name="UnitInfoes" Relationship="Self.fk_unit_table_id" FromRole="Unit" ToRole="UnitInfo" />
         </EntityType>
         <EntityType Name="UnitInfo">
           <Key>
@@ -498,11 +484,10 @@
           <Property Name="unit_id" Type="Int32" Nullable="false" />
           <Property Name="size_id" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Basket_items" Relationship="Self.fk_unit_info_id" FromRole="UnitInfo" ToRole="Basket_items" />
-          <NavigationProperty Name="Sizes" Relationship="Self.fk_sizes_table_id" FromRole="UnitInfo" ToRole="Sizes" />
+          <NavigationProperty Name="Size" Relationship="Self.fk_sizes_table_id" FromRole="UnitInfo" ToRole="Sizes" />
           <NavigationProperty Name="Unit" Relationship="Self.fk_unit_table_id" FromRole="UnitInfo" ToRole="Unit" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -515,9 +500,9 @@
           <Property Name="role_id" Type="Int32" Nullable="false" />
           <Property Name="reg_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="is_man" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Basket" Relationship="Self.fk_user_id" FromRole="Users" ToRole="Basket" />
-          <NavigationProperty Name="Order" Relationship="Self.fk_o_user_id" FromRole="Users" ToRole="Order" />
-          <NavigationProperty Name="Roles" Relationship="Self.fk_role_id" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Baskets" Relationship="Self.fk_user_id" FromRole="Users" ToRole="Basket" />
+          <NavigationProperty Name="Orders" Relationship="Self.fk_o_user_id" FromRole="Users" ToRole="Order" />
+          <NavigationProperty Name="Role" Relationship="Self.fk_role_id" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="fk_basket_id">
           <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
@@ -532,7 +517,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_user_id">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -543,20 +528,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_unit_info_id">
-          <End Role="UnitInfo" Type="Self.UnitInfo" Multiplicity="1" />
-          <End Role="Basket_items" Type="Self.Basket_items" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitInfo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Basket_items">
-              <PropertyRef Name="unit_info_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_category_id">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
           <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
@@ -569,7 +542,7 @@
         </Association>
         <Association Name="fk_category_type_id">
           <End Role="Category_type" Type="Self.Category_type" Multiplicity="1" />
-          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category_type">
               <PropertyRef Name="id" />
@@ -581,7 +554,7 @@
         </Association>
         <Association Name="fk_owner_id">
           <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
-          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <End Role="Images" Type="Self.Image" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Unit">
               <PropertyRef Name="id" />
@@ -604,7 +577,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_o_user_id">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -640,8 +613,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_role_id">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
               <PropertyRef Name="id" />
@@ -652,7 +625,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_sizes_table_id">
-          <End Role="Sizes" Type="Self.Sizes" Multiplicity="1" />
+          <End Role="Sizes" Type="Self.Size" Multiplicity="1" />
           <End Role="UnitInfo" Type="Self.UnitInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sizes">
@@ -675,43 +648,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Basket" EntityType="Self.Basket" />
+        <EntityContainer Name="AzureEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Baskets" EntityType="Self.Basket" />
           <EntitySet Name="Basket_items" EntityType="Self.Basket_items" />
-          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Category_type" EntityType="Self.Category_type" />
-          <EntitySet Name="Images" EntityType="Self.Images" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="News_image" EntityType="Self.News_image" />
-          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Order_items" EntityType="Self.Order_items" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="Sizes" EntityType="Self.Sizes" />
-          <EntitySet Name="Unit" EntityType="Self.Unit" />
-          <EntitySet Name="UnitInfo" EntityType="Self.UnitInfo" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="UnitInfoes" EntityType="Self.UnitInfo" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="fk_basket_id" Association="Self.fk_basket_id">
-            <End Role="Basket" EntitySet="Basket" />
+            <End Role="Basket" EntitySet="Baskets" />
             <End Role="Basket_items" EntitySet="Basket_items" />
           </AssociationSet>
           <AssociationSet Name="fk_user_id" Association="Self.fk_user_id">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Basket" EntitySet="Basket" />
-          </AssociationSet>
-          <AssociationSet Name="fk_unit_info_id" Association="Self.fk_unit_info_id">
-            <End Role="UnitInfo" EntitySet="UnitInfo" />
-            <End Role="Basket_items" EntitySet="Basket_items" />
+            <End Role="Basket" EntitySet="Baskets" />
           </AssociationSet>
           <AssociationSet Name="fk_category_id" Association="Self.fk_category_id">
             <End Role="Categories" EntitySet="Categories" />
-            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Unit" EntitySet="Units" />
           </AssociationSet>
           <AssociationSet Name="fk_category_type_id" Association="Self.fk_category_type_id">
             <End Role="Category_type" EntitySet="Category_type" />
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
           <AssociationSet Name="fk_owner_id" Association="Self.fk_owner_id">
-            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Unit" EntitySet="Units" />
             <End Role="Images" EntitySet="Images" />
           </AssociationSet>
           <AssociationSet Name="fk_news_image_owner_id" Association="Self.fk_news_image_owner_id">
@@ -720,14 +689,14 @@
           </AssociationSet>
           <AssociationSet Name="fk_o_user_id" Association="Self.fk_o_user_id">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Order" EntitySet="Order" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="fk_order_id" Association="Self.fk_order_id">
-            <End Role="Order" EntitySet="Order" />
+            <End Role="Order" EntitySet="Orders" />
             <End Role="Order_items" EntitySet="Order_items" />
           </AssociationSet>
           <AssociationSet Name="fk_o_unit_id" Association="Self.fk_o_unit_id">
-            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Unit" EntitySet="Units" />
             <End Role="Order_items" EntitySet="Order_items" />
           </AssociationSet>
           <AssociationSet Name="fk_role_id" Association="Self.fk_role_id">
@@ -736,11 +705,11 @@
           </AssociationSet>
           <AssociationSet Name="fk_sizes_table_id" Association="Self.fk_sizes_table_id">
             <End Role="Sizes" EntitySet="Sizes" />
-            <End Role="UnitInfo" EntitySet="UnitInfo" />
+            <End Role="UnitInfo" EntitySet="UnitInfoes" />
           </AssociationSet>
           <AssociationSet Name="fk_unit_table_id" Association="Self.fk_unit_table_id">
-            <End Role="Unit" EntitySet="Unit" />
-            <End Role="UnitInfo" EntitySet="UnitInfo" />
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="UnitInfo" EntitySet="UnitInfoes" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -748,9 +717,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EntitiesModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Basket">
-            <EntityTypeMapping TypeName="EntitiesModel.Basket">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="AzureEntities">
+          <EntitySetMapping Name="Baskets">
+            <EntityTypeMapping TypeName="Model.Basket">
               <MappingFragment StoreEntitySet="Basket">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -758,18 +727,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Basket_items">
-            <EntityTypeMapping TypeName="EntitiesModel.Basket_items">
+            <EntityTypeMapping TypeName="Model.Basket_items">
               <MappingFragment StoreEntitySet="Basket_items">
-                <ScalarProperty Name="was_added" ColumnName="was_added" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="was_added" ColumnName="was_added" />
                 <ScalarProperty Name="basket_id" ColumnName="basket_id" />
-                <ScalarProperty Name="unit_info_id" ColumnName="unit_info_id" />
+                <ScalarProperty Name="size" ColumnName="size" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="EntitiesModel.Categories">
+            <EntityTypeMapping TypeName="Model.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="category" ColumnName="category" />
@@ -780,7 +749,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category_type">
-            <EntityTypeMapping TypeName="EntitiesModel.Category_type">
+            <EntityTypeMapping TypeName="Model.Category_type">
               <MappingFragment StoreEntitySet="Category_type">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -788,7 +757,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="EntitiesModel.Images">
+            <EntityTypeMapping TypeName="Model.Image">
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="image" ColumnName="image" />
@@ -797,7 +766,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="EntitiesModel.News">
+            <EntityTypeMapping TypeName="Model.News">
               <MappingFragment StoreEntitySet="News">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -807,7 +776,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="News_image">
-            <EntityTypeMapping TypeName="EntitiesModel.News_image">
+            <EntityTypeMapping TypeName="Model.News_image">
               <MappingFragment StoreEntitySet="News_image">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="image" ColumnName="image" />
@@ -815,8 +784,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="EntitiesModel.Order">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Model.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -825,18 +794,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order_items">
-            <EntityTypeMapping TypeName="EntitiesModel.Order_items">
+            <EntityTypeMapping TypeName="Model.Order_items">
               <MappingFragment StoreEntitySet="Order_items">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="size" ColumnName="size" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="price" ColumnName="price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="EntitiesModel.Roles">
+            <EntityTypeMapping TypeName="Model.Role">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="role" ColumnName="role" />
@@ -844,15 +814,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sizes">
-            <EntityTypeMapping TypeName="EntitiesModel.Sizes">
+            <EntityTypeMapping TypeName="Model.Size">
               <MappingFragment StoreEntitySet="Sizes">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="size" ColumnName="size" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Unit">
-            <EntityTypeMapping TypeName="EntitiesModel.Unit">
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="Model.Unit">
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -868,8 +838,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UnitInfo">
-            <EntityTypeMapping TypeName="EntitiesModel.UnitInfo">
+          <EntitySetMapping Name="UnitInfoes">
+            <EntityTypeMapping TypeName="Model.UnitInfo">
               <MappingFragment StoreEntitySet="UnitInfo">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="unit_id" ColumnName="unit_id" />
@@ -879,7 +849,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="EntitiesModel.Users">
+            <EntityTypeMapping TypeName="Model.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -907,7 +877,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

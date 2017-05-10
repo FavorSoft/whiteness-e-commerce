@@ -4,7 +4,7 @@ namespace DALLocalDB.Repository
 {
     public class BasketItemsRepository : IRepository<Basket_items>
     {
-        public BasketItemsRepository(LocalEntities db) : base(db)
+        public BasketItemsRepository(AzureEntities db) : base(db)
         {
         }
 

@@ -11,7 +11,7 @@ namespace BLL.Providers
     public class NewsProvider : IProvider<NewsDto>
     {
         readonly IRepository<News> _repo;
-        public NewsProvider(LocalEntities db)
+        public NewsProvider(AzureEntities db)
         {
             _repo = new NewsRepository(db);
         }

@@ -12,7 +12,7 @@ namespace BLL.Providers
     public class UnitInfoProvider : IUnitInfoProvider
     {
         readonly IRepository<UnitInfo> _repo;
-        public UnitInfoProvider(LocalEntities db)
+        public UnitInfoProvider(AzureEntities db)
         {
             _repo = new UnitInfoRepository(db);
         }
@@ -67,7 +67,7 @@ namespace BLL.Providers
 
         public UnitInfoDto GetByIdAndSize(int id, string size)
         {
-            int sizeId = _repo.GetEntities().Sizes.Where(x => x.size == size).FirstOrDefault().id;
+            int sizeId = _repo.GetEntities().Size.Where(x => x.size == size).FirstOrDefault().id;
             var res = _repo.GetEntities().UnitInfo.Where(x => x.unit_id == id && x.size_id == sizeId).FirstOrDefault();
             return new UnitInfoDto()
             {

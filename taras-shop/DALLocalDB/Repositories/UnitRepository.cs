@@ -5,7 +5,7 @@ namespace DALLocalDB.Repository
 {
     public class UnitRepository : IRepository<Unit>
     {
-        public UnitRepository(LocalEntities db) : base(db)
+        public UnitRepository(AzureEntities db) : base(db)
         {
 
         }

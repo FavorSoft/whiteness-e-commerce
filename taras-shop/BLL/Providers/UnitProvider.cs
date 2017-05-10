@@ -13,7 +13,7 @@ namespace BLL.Providers
     public class UnitProvider : IUnitProvider
     {
         readonly IRepository<Unit> _repo;
-        public UnitProvider(LocalEntities db)
+        public UnitProvider(AzureEntities db)
         {
             _repo = new UnitRepository(db);
         }

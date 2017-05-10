@@ -11,7 +11,7 @@ namespace BLL.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IProvider<BasketItemsDto> getBasketItems { get; }
+        IBasketItemsProvider getBasketItems { get; }
         IBasketProvider getBasket { get; }
         ICategoryProvider getCategory { get; }
         IProvider<CategoryTypeDto> getCategoryType { get; }

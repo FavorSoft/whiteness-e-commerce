@@ -162,6 +162,7 @@
     <Content Include="Scripts\app\jsx\IndexComponent.jsx" />
     <Content Include="Scripts\app\jsx\ItemPreviewModal.jsx" />
     <Content Include="Scripts\app\jsx\Pagination.jsx" />
+    <Content Include="Scripts\app\jsx\ShoppingCart.jsx" />
     <Content Include="Scripts\app\jsx\Sidebar.jsx" />
     <Content Include="Scripts\app\jsx\SideFiltersPrice.jsx" />
     <Content Include="Scripts\app\jsx\SideFiltersSize.jsx" />

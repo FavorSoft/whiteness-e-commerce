@@ -2,38 +2,38 @@
 
 namespace DALLocalDB.Repositories
 {
-    public class SizesRepository : IRepository.IRepository<Sizes>
+    public class SizesRepository : IRepository.IRepository<Size>
     {
-        public SizesRepository(LocalEntities db) : base(db)
+        public SizesRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override int AddItem(Sizes item)
+        public override int AddItem(Size item)
         {
-            return entities.Sizes.Add(item).id;
+            return entities.Size.Add(item).id;
         }
 
         public override void DeleteItem(int id)
         {
-            var item = entities.Sizes.FirstOrDefault(x => x.id == id);
-            entities.Sizes.Remove(item);
+            var item = entities.Size.FirstOrDefault(x => x.id == id);
+            entities.Size.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public override void EditItem(Sizes item)
+        public override void EditItem(Size item)
         {
-            entities.Sizes.Attach(item);
+            entities.Size.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public override IQueryable<Sizes> GetAll()
+        public override IQueryable<Size> GetAll()
         {
-            return entities.Sizes;
+            return entities.Size;
         }
 
-        public override Sizes GetById(int id)
+        public override Size GetById(int id)
         {
-            return entities.Sizes.Where(x => x.id == id).FirstOrDefault();
+            return entities.Size.Where(x => x.id == id).FirstOrDefault();
         }
     }
 }

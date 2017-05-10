@@ -11,7 +11,7 @@ namespace BLL.Providers
     public class CategoryTypeProvider : IProvider<CategoryTypeDto>
     {
         readonly IRepository<Category_type> _repo;
-        public CategoryTypeProvider(LocalEntities db)
+        public CategoryTypeProvider(AzureEntities db)
         {
             _repo = new CategoryTypeRepository(db);
         }

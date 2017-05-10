@@ -12,12 +12,18 @@ namespace DALLocalDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Images
+    public partial class Role
     {
-        public int id { get; set; }
-        public string image { get; set; }
-        public int owner_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual Unit Unit { get; set; }
+        public int id { get; set; }
+        public string role { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

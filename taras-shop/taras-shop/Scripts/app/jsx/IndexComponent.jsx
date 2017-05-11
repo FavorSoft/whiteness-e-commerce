@@ -67,6 +67,7 @@ class IndexComponent extends Component {
                     page: resList[5]
                 };
 
+                console.log("------req");
                 console.log(request);
                 
                 let deleteChild = document.querySelector("#to-be-deleted");
@@ -75,6 +76,8 @@ class IndexComponent extends Component {
                 }
 
                 $.get("/Home/GetItemsByFilter", request, (response) => {
+                    console.log("-------res");
+                    console.log(response);
                     this.setState({
                         units: response.Units,
                         pageInfo: response.PageInfo

@@ -64,12 +64,20 @@ export default class ShoppingCart extends Component {
     }
 }
 
-const CartUnit = (title, color, price) => {
+class CartUnit extends React.Component  {
+    constructor(props) {
+        super(props);
+        this.state = {
+            number: 1
+        }
+        this.priceCheck = this.priceCheck.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-    const priceCheck = (price) => {
+    priceCheck(price) {
         price = parseInt(price);
         if (price) {
-            let formatedPrice = (price / 100).toFixed(2) + " грн";
+            let formatedPrice = parseFloat(price / 100).toFixed(2);
             return formatedPrice;
         }
         else {
@@ -77,33 +85,41 @@ const CartUnit = (title, color, price) => {
         }
     }
 
-    return (
-        <tr>
-            <td className="image-td">
-                <a className="material-icons">clear</a>
-                <img src="../../Content/images/woman.png" />
-            </td>
-            <td>
-                <div className="text-basket-preview">
-                    <h4>{ title.toString() }</h4>
-                    <span>Цвет: { color.toString() }</span>
-                    <a>Изменить</a>
-                    <span>Размер:</span>
-                    <span>S</span>
-                    <a>Изменить</a>
-                </div>
-            </td>
-            <td>
-                <input type="number" className="form-control cart-number-input" min="1" value="1" />
-            </td>
-            <td>
-                <p className="cart-price-p">{ priceCheck(price.toString()) }</p>
-            </td>
-            <td>
-                <p className="cart-sum-p">223.00 грн</p>
-            </td>
-        </tr>
-    );
+    handleChange(event) {
+        this.setState({
+            number: parseInt(event.target.value)
+        });
+    }
+
+    render() {
+        return (
+            <tr>
+                <td className="image-td">
+                    <a className="material-icons">clear</a>
+                    <img src="../../Content/images/woman.png" />
+                </td>
+                <td>
+                    <div className="text-basket-preview">
+                        <h4>{ this.props.title }</h4>
+                        <span>Цвет: { this.props.color }</span>
+                        {/*<a>Изменить</a>*/}
+                        <span>Размер:</span>
+                        <span>S</span>
+                        {/*<a>Изменить</a>*/}
+                    </div>
+                </td>
+                <td>
+                    <input onChange={ this.handleChange } type="number" className="form-control cart-number-input" min="1" value={ this.state.number } />
+                </td>
+                <td>
+                    <p className="cart-price-p">{ this.priceCheck(this.props.price) } грн</p>
+                </td>
+                <td>
+                    <p className="cart-sum-p">{ (this.state.number * this.priceCheck(this.props.price)).toFixed(2) } грн</p>
+                </td>
+            </tr>
+        );
+    }
 }
 
 const Summary = (summaryCost, deliveryPrice) => {

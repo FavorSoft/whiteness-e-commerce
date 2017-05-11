@@ -152,6 +152,7 @@
 	                        page: resList[5]
 	                    };
 
+	                    console.log("------req");
 	                    console.log(request);
 
 	                    var deleteChild = document.querySelector("#to-be-deleted");
@@ -160,6 +161,8 @@
 	                    }
 
 	                    $.get("/Home/GetItemsByFilter", request, function (response) {
+	                        console.log("-------res");
+	                        console.log(response);
 	                        _this3.setState({
 	                            units: response.Units,
 	                            pageInfo: response.PageInfo
@@ -22936,96 +22939,116 @@
 
 	exports.default = ShoppingCart;
 
+	var CartUnit = function (_React$Component) {
+	    _inherits(CartUnit, _React$Component);
 
-	var CartUnit = function CartUnit(title, color, price) {
+	    function CartUnit(props) {
+	        _classCallCheck(this, CartUnit);
 
-	    var priceCheck = function priceCheck(price) {
-	        price = parseInt(price);
-	        if (price) {
-	            var formatedPrice = (price / 100).toFixed(2) + " грн";
-	            return formatedPrice;
-	        } else {
-	            return "";
+	        var _this2 = _possibleConstructorReturn(this, (CartUnit.__proto__ || Object.getPrototypeOf(CartUnit)).call(this, props));
+
+	        _this2.state = {
+	            number: 1
+	        };
+	        _this2.priceCheck = _this2.priceCheck.bind(_this2);
+	        _this2.handleChange = _this2.handleChange.bind(_this2);
+	        return _this2;
+	    }
+
+	    _createClass(CartUnit, [{
+	        key: "priceCheck",
+	        value: function priceCheck(price) {
+	            price = parseInt(price);
+	            if (price) {
+	                var formatedPrice = parseFloat(price / 100).toFixed(2);
+	                return formatedPrice;
+	            } else {
+	                return "";
+	            }
 	        }
-	    };
-
-	    return _react2.default.createElement(
-	        "tr",
-	        null,
-	        _react2.default.createElement(
-	            "td",
-	            { className: "image-td" },
-	            _react2.default.createElement(
-	                "a",
-	                { className: "material-icons" },
-	                "clear"
-	            ),
-	            _react2.default.createElement("img", { src: "../../Content/images/woman.png" })
-	        ),
-	        _react2.default.createElement(
-	            "td",
-	            null,
-	            _react2.default.createElement(
-	                "div",
-	                { className: "text-basket-preview" },
+	    }, {
+	        key: "handleChange",
+	        value: function handleChange(event) {
+	            this.setState({
+	                number: parseInt(event.target.value)
+	            });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "tr",
+	                null,
 	                _react2.default.createElement(
-	                    "h4",
-	                    null,
-	                    title.toString()
+	                    "td",
+	                    { className: "image-td" },
+	                    _react2.default.createElement(
+	                        "a",
+	                        { className: "material-icons" },
+	                        "clear"
+	                    ),
+	                    _react2.default.createElement("img", { src: "../../Content/images/woman.png" })
 	                ),
 	                _react2.default.createElement(
-	                    "span",
+	                    "td",
 	                    null,
-	                    "\u0426\u0432\u0435\u0442: ",
-	                    color.toString()
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "text-basket-preview" },
+	                        _react2.default.createElement(
+	                            "h4",
+	                            null,
+	                            this.props.title
+	                        ),
+	                        _react2.default.createElement(
+	                            "span",
+	                            null,
+	                            "\u0426\u0432\u0435\u0442: ",
+	                            this.props.color
+	                        ),
+	                        _react2.default.createElement(
+	                            "span",
+	                            null,
+	                            "\u0420\u0430\u0437\u043C\u0435\u0440:"
+	                        ),
+	                        _react2.default.createElement(
+	                            "span",
+	                            null,
+	                            "S"
+	                        )
+	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "a",
+	                    "td",
 	                    null,
-	                    "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C"
+	                    _react2.default.createElement("input", { onChange: this.handleChange, type: "number", className: "form-control cart-number-input", min: "1", value: this.state.number })
 	                ),
 	                _react2.default.createElement(
-	                    "span",
+	                    "td",
 	                    null,
-	                    "\u0420\u0430\u0437\u043C\u0435\u0440:"
+	                    _react2.default.createElement(
+	                        "p",
+	                        { className: "cart-price-p" },
+	                        this.priceCheck(this.props.price),
+	                        " \u0433\u0440\u043D"
+	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "span",
+	                    "td",
 	                    null,
-	                    "S"
-	                ),
-	                _react2.default.createElement(
-	                    "a",
-	                    null,
-	                    "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C"
+	                    _react2.default.createElement(
+	                        "p",
+	                        { className: "cart-sum-p" },
+	                        (this.state.number * this.priceCheck(this.props.price)).toFixed(2),
+	                        " \u0433\u0440\u043D"
+	                    )
 	                )
-	            )
-	        ),
-	        _react2.default.createElement(
-	            "td",
-	            null,
-	            _react2.default.createElement("input", { type: "number", className: "form-control cart-number-input", min: "1", value: "1" })
-	        ),
-	        _react2.default.createElement(
-	            "td",
-	            null,
-	            _react2.default.createElement(
-	                "p",
-	                { className: "cart-price-p" },
-	                priceCheck(price.toString())
-	            )
-	        ),
-	        _react2.default.createElement(
-	            "td",
-	            null,
-	            _react2.default.createElement(
-	                "p",
-	                { className: "cart-sum-p" },
-	                "223.00 \u0433\u0440\u043D"
-	            )
-	        )
-	    );
-	};
+	            );
+	        }
+	    }]);
+
+	    return CartUnit;
+	}(_react2.default.Component);
 
 	var Summary = function Summary(summaryCost, deliveryPrice) {
 	    return _react2.default.createElement(

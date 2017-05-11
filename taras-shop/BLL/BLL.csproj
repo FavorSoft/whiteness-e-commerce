@@ -60,6 +60,8 @@
     <Compile Include="DI\DataModule.cs" />
     <Compile Include="Facade\Facade.cs" />
     <Compile Include="Facade\IFacade.cs" />
+    <Compile Include="IProviders\IBasketItemsProvider.cs" />
+    <Compile Include="IProviders\IBasketProvider.cs" />
     <Compile Include="IProviders\ICategoryProvider.cs" />
     <Compile Include="IProviders\IImagesProvider.cs" />
     <Compile Include="IProviders\IProvider.cs" />

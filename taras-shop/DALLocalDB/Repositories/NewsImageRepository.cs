@@ -5,13 +5,13 @@ namespace DALLocalDB.Repository
 {
     public class NewsImageRepository : IRepository<News_image>
     {
-        public NewsImageRepository(LocalEntities db) : base(db)
+        public NewsImageRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override void AddItem(News_image item)
+        public override int AddItem(News_image item)
         {
-            entities.News_image.Add(item);
+            return entities.News_image.Add(item).id;
         }
 
         public override void DeleteItem(int id)

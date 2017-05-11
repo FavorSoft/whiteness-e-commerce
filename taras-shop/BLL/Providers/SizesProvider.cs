@@ -10,15 +10,15 @@ namespace BLL.Providers
 {
     public class SizesProvider : ISizesProvider
     {
-        readonly IRepository<Sizes> _repo;
-        public SizesProvider(LocalEntities db)
+        readonly IRepository<Size> _repo;
+        public SizesProvider(AzureEntities db)
         {
             _repo = new SizesRepository(db);
         }
 
-        public void AddItem(SizesDto item)
+        public int AddItem(SizesDto item)
         {
-            _repo.AddItem(new Sizes()
+            return _repo.AddItem(new Size()
             {
                 size = item.Size
             });
@@ -31,7 +31,7 @@ namespace BLL.Providers
 
         public void EditItem(SizesDto item)
         {
-            _repo.EditItem(new Sizes()
+            _repo.EditItem(new Size()
             {
                 id = item.Id,
                 size = item.Size

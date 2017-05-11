@@ -10,15 +10,16 @@ namespace BLL.Providers
 {
     public class CategoryProvider : ICategoryProvider
     {
-        readonly IRepository<Categories> _repo;
-        public CategoryProvider(LocalEntities db)
+        readonly IRepository<Category> _repo;
+        public CategoryProvider(AzureEntities db)
         {
             _repo = new CategoriesRepository(db);
         }
-        public void AddItem(CategoriesDto category)
+        public int AddItem(CategoriesDto category)
         {
-            _repo.AddItem(new Categories()
+            return _repo.AddItem(new Category()
             {
+                
                 category = category.Category,
                 category_img = category.CategoryImg,
                 type_id = category.TypeId,
@@ -31,7 +32,7 @@ namespace BLL.Providers
             return ConvertModeltoDTO(_repo.GetAll());
         }
 
-        IEnumerable<CategoriesDto> ConvertModeltoDTO(IQueryable<Categories> repo)
+        IEnumerable<CategoriesDto> ConvertModeltoDTO(IQueryable<Category> repo)
         {
             IEnumerable<CategoriesDto> res = repo.Select(i => new CategoriesDto()
             {
@@ -65,7 +66,7 @@ namespace BLL.Providers
 
         public void EditItem(CategoriesDto item)
         {
-            _repo.EditItem(new Categories()
+            _repo.EditItem(new Category()
             {
                 category = item.Category,
                 category_img = item.CategoryImg,

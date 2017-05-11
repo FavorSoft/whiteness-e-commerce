@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -55,13 +56,13 @@
     <Compile Include="Basket_items.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Categories.cs">
+    <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Category_type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Images.cs">
+    <Compile Include="Image.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="IRepository\IRepository.cs" />
@@ -107,10 +108,10 @@
     <Compile Include="Repositories\UnitInfoRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Roles.cs">
+    <Compile Include="Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sizes.cs">
+    <Compile Include="Size.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Unit.cs">
@@ -119,7 +120,7 @@
     <Compile Include="UnitInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Users.cs">
+    <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>

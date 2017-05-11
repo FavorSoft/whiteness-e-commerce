@@ -5,13 +5,13 @@ namespace DALLocalDB.Repository
 {
     public class BasketRepository : IRepository<Basket>
     {
-        public BasketRepository(LocalEntities db) : base(db)
+        public BasketRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override void AddItem(Basket item)
+        public override int AddItem(Basket item)
         {
-            entities.Basket.Add(item);
+            return entities.Basket.Add(item).id;
         }
 
         public override void DeleteItem(int id)

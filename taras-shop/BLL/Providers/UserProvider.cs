@@ -10,14 +10,14 @@ namespace BLL.Providers
 {
     public class UserProvider : IUserProvider
     {
-        readonly IRepository<Users> _repo;
-        public UserProvider(LocalEntities context)
+        readonly IRepository<User> _repo;
+        public UserProvider(AzureEntities context)
         {
             _repo = new UserRepository(context);
         }
-        public void AddItem(UsersDto user)
+        public int AddItem(UsersDto user)
         {
-            _repo.AddItem(new Users()
+            return _repo.AddItem(new User()
             {
                 email = user.Email,
                 name = user.Name,
@@ -40,7 +40,7 @@ namespace BLL.Providers
             return ConvertModeltoDTO(_repo.GetAll().OrderByDescending(x => x.email).Skip(skip).Take(amount));
         }
 
-        IEnumerable<UsersDto> ConvertModeltoDTO(IQueryable<Users> repo)
+        IEnumerable<UsersDto> ConvertModeltoDTO(IQueryable<User> repo)
         {
             List<UsersDto> res = repo.Select(i => new UsersDto()
                 {
@@ -97,7 +97,7 @@ namespace BLL.Providers
 
         public void EditItem(UsersDto item)
         {
-            _repo.EditItem(new Users()
+            _repo.EditItem(new User()
             {
                 id = item.Id,
                 email = item.Email,
@@ -115,7 +115,7 @@ namespace BLL.Providers
         {
             bool flag = false;
 
-            int roleId = _repo.GetEntities().Roles.Where(x => x.role == role).FirstOrDefault().id;
+            int roleId = _repo.GetEntities().Role.Where(x => x.role == role).FirstOrDefault().id;
             if (roleId == GetById(id).RoleId)
             {
                 flag = true;

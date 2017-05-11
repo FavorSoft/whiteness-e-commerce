@@ -5,22 +5,23 @@ using DTO;
 using DALLocalDB;
 using DALLocalDB.IRepository;
 using DALLocalDB.Repository;
+using System;
 
 namespace BLL.Providers
 {
-    public class BasketItemsProvider : IProvider<BasketItemsDto>
+    public class BasketItemsProvider : IBasketItemsProvider
     {
         readonly IRepository<Basket_items> _repo;
-        public BasketItemsProvider(LocalEntities db)
+        public BasketItemsProvider(AzureEntities db)
         {   
             _repo = new BasketItemsRepository(db);
         }
 
-        public void AddItem(BasketItemsDto basketItems)
+        public int AddItem(BasketItemsDto basketItems)
         {
-            _repo.AddItem(new Basket_items()
+            return _repo.AddItem(new Basket_items()
             {
-                unit_info_id = basketItems.UnitInfoId,
+                size = basketItems.Size,
                 amount = basketItems.Amount,
                 was_added = basketItems.WasAdded,
                 basket_id = basketItems.BasketId
@@ -40,7 +41,7 @@ namespace BLL.Providers
                     Amount = i.amount,
                     BasketId = i.basket_id,
                     WasAdded = i.was_added,
-                    UnitInfoId = i.unit_info_id
+                    Size = i.size
                 });
             return res;
         }
@@ -54,7 +55,7 @@ namespace BLL.Providers
                 Amount = tmp.amount,
                 BasketId = tmp.basket_id,
                 WasAdded = tmp.was_added,
-                UnitInfoId = tmp.unit_info_id
+                Size = tmp.size
             };
         }
 
@@ -71,7 +72,19 @@ namespace BLL.Providers
                 basket_id = item.BasketId,
                 was_added = item.WasAdded,
                 id = item.Id,
-                unit_info_id = item.UnitInfoId
+                size = item.Size
+            });
+        }
+
+        public IEnumerable<BasketItemsDto> GetByBasket(BasketDto basket)
+        {
+            return _repo.GetEntities().Basket_items.Where(x => x.basket_id == basket.Id).Select(z => new BasketItemsDto()
+            {
+                Id = z.id,
+                Amount = z.amount,
+                BasketId = z.basket_id, 
+                WasAdded = z.was_added,
+                Size = z.size
             });
         }
     }

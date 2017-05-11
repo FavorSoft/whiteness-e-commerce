@@ -150,11 +150,22 @@ class IndexComponent extends Component {
 }
 
 if(window.location.pathname === "/Home/ShoppingCart") { 
-    console.log("Shopping Cart");
-    ReactDOM.render(
-        <ShoppingCart />,
-        document.getElementById('shopping-cart-component')
-    );
+    //console.log("Shopping Cart");
+    var cart = document.getElementById('shopping-cart-component');
+    if (cart.getAttribute("auth") == "false") {
+        ReactDOM.render(
+            <ShoppingCart auth="false"/>,
+            document.getElementById('shopping-cart-component')
+        );
+    }
+    else
+    {
+        ReactDOM.render(
+            <ShoppingCart auth="true"/>,
+            document.getElementById('shopping-cart-component')
+        );
+    }
+    
 }
 else if(window.location.pathname === "/") {
     console.log("Index");

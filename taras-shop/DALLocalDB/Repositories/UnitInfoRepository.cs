@@ -4,13 +4,13 @@ namespace DALLocalDB.Repositories
 {
     public class UnitInfoRepository : IRepository.IRepository<UnitInfo>
     {
-        public UnitInfoRepository(LocalEntities db) : base(db)
+        public UnitInfoRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override void AddItem(UnitInfo item)
+        public override int AddItem(UnitInfo item)
         {
-            entities.UnitInfo.Add(item);
+            return entities.UnitInfo.Add(item).id;
         }
 
         public override void DeleteItem(int id)

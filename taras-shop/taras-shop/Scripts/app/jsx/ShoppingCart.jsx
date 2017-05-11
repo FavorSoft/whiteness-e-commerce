@@ -2,19 +2,33 @@ import React, { Component } from 'react';
 
 export default class ShoppingCart extends Component {
     constructor(props) {
+        console.log(props["auth"]);
         super(props);
         this.state = {
+            auth: props["auth"],
             emptyLocalStorage: false,
             cartUnits: null
         };
         this.renderCartUnits = this.renderCartUnits.bind(this);
     }
-
+    
     componentDidMount() {
-        console.log(localStorage.units);
-        let cartUnits = JSON.parse(localStorage.getItem("items"));
+        
+        let cartUnits;
+
+        if (this.state.auth == "true") {
+            var request;
+            $.get("/Home/GetItemsFromBasket", request, (response) => {
+                console.log(response);
+            });
+        }
+        else
+        {
+            cartUnits = JSON.parse(localStorage.getItem("items"));
+        }
+
         console.log(cartUnits);
-        if(cartUnits) {
+        if (cartUnits) {
             this.setState({ cartUnits });
         }
         else {
@@ -25,9 +39,11 @@ export default class ShoppingCart extends Component {
     renderCartUnits() {
         if(!this.state.emptyLocalStorage && this.state.cartUnits) {
             let unitList;
+            
             return unitList = this.state.cartUnits.map((unit) => {
+                console.log(unit.Price);
                 return (
-                    <CartUnit key={ Math.random() } title={ unit.Title } color={ unit.Color } price={ unit.Price }/>
+                    <CartUnit key={unit.Id} props={unit} title={unit.Title} color={unit.Color} price={unit.Price} />
                 );
             });
         }
@@ -56,8 +72,8 @@ export default class ShoppingCart extends Component {
                                 { this.renderCartUnits() }
                             </tbody>
                         </table>
-                    </div> 
-                    <Summary/>
+                    </div>
+                    <Summary />
                 </div>
             </div>
         );

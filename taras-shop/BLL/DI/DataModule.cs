@@ -30,16 +30,16 @@ namespace BLL.DI
             #region Repositories
             builder.RegisterType<BasketItemsRepository>().As<IRepository<Basket_items>>().InstancePerRequest();
             builder.RegisterType<BasketRepository>().As<IRepository<Basket>>().InstancePerRequest();
-            builder.RegisterType<CategoriesRepository>().As<IRepository<Categories>>().InstancePerRequest();
+            builder.RegisterType<CategoriesRepository>().As<IRepository<Category>>().InstancePerRequest();
             builder.RegisterType<CategoryTypeRepository>().As<IRepository<Category_type>>().InstancePerRequest();
-            builder.RegisterType<ImagesRepository>().As<IRepository<Images>>().InstancePerRequest();
+            builder.RegisterType<ImagesRepository>().As<IRepository<Image>>().InstancePerRequest();
             builder.RegisterType<NewsImageRepository>().As<IRepository<News_image>>().InstancePerRequest();
             builder.RegisterType<NewsRepository>().As<IRepository<News>>().InstancePerRequest();
             builder.RegisterType<OrderItemsRepository>().As<IRepository<Order_items>>().InstancePerRequest();
             builder.RegisterType<OrderRepository>().As<IRepository<Order>>().InstancePerRequest();
-            builder.RegisterType<RoleRepository>().As<IRepository<Roles>>().InstancePerRequest();
+            builder.RegisterType<RoleRepository>().As<IRepository<Role>>().InstancePerRequest();
             builder.RegisterType<UnitRepository>().As<IRepository<Unit>>().InstancePerRequest();
-            builder.RegisterType<UserRepository>().As<IRepository<Users>>().InstancePerRequest();
+            builder.RegisterType<UserRepository>().As<IRepository<User>>().InstancePerRequest();
             #endregion
 
             //builder.RegisterType<Facade.Facade>().As<IFacade.IFacade>().InstancePerRequest();

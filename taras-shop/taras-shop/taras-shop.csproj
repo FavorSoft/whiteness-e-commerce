@@ -51,6 +51,9 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -159,6 +162,7 @@
     <Content Include="Scripts\app\jsx\IndexComponent.jsx" />
     <Content Include="Scripts\app\jsx\ItemPreviewModal.jsx" />
     <Content Include="Scripts\app\jsx\Pagination.jsx" />
+    <Content Include="Scripts\app\jsx\ShoppingCart.jsx" />
     <Content Include="Scripts\app\jsx\Sidebar.jsx" />
     <Content Include="Scripts\app\jsx\SideFiltersPrice.jsx" />
     <Content Include="Scripts\app\jsx\SideFiltersSize.jsx" />
@@ -172,7 +176,10 @@
     <Content Include="Scripts\js\lightslider.min.js" />
     <Content Include="Scripts\js\Lodash.js" />
     <Content Include="Scripts\js\main.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\js\reactBundle.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -183,7 +190,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\fonts\baron\" />
-    <Folder Include="Content\fonts\bebas_neue\" />
     <Folder Include="Content\fonts\bully\" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +197,11 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+    <Content Include="Content\fonts\bebas_neue\BebasNeue Book.otf" />
+    <Content Include="Content\fonts\bebas_neue\BebasNeue Light.otf" />
+    <Content Include="Content\fonts\bebas_neue\BebasNeue Thin.otf" />
+    <Content Include="Content\fonts\bebas_neue\BebasNeueBold.otf" />
+    <Content Include="Content\fonts\bebas_neue\BebasNeueRegular.otf" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -220,6 +231,7 @@
     <Content Include="Views\Admin\ItemPage.cshtml" />
     <Content Include="Views\Admin\EditItem.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\release-shop - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\taras-shop20170403095344 - Web Deploy.pubxml" />
     <Content Include="Views\Shared\NotAuth.cshtml" />

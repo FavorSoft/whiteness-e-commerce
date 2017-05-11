@@ -17,6 +17,7 @@ namespace DALLocalDB
         public int id { get; set; }
         public int order_id { get; set; }
         public int unit_id { get; set; }
+        public string size { get; set; }
         public int amount { get; set; }
         public int price { get; set; }
     

@@ -5,13 +5,13 @@ namespace DALLocalDB.Repository
 {
     public class OrderItemsRepository : IRepository<Order_items>
     {
-        public OrderItemsRepository(LocalEntities db) : base(db)
+        public OrderItemsRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override void AddItem(Order_items item)
+        public override int AddItem(Order_items item)
         {
-            entities.Order_items.Add(item);
+            return entities.Order_items.Add(item).id;
         }
 
         public override void DeleteItem(int id)

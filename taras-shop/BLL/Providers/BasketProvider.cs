@@ -5,19 +5,20 @@ using DTO;
 using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
+using System;
 
 namespace BLL.Providers
 {
-    public class BasketProvider : IProvider<BasketDto>
+    public class BasketProvider : IBasketProvider
     {
         readonly IRepository<Basket> _repo;
-        public BasketProvider(LocalEntities db)
+        public BasketProvider(AzureEntities db)
         {
             _repo = new BasketRepository(db);
         }
-        public void AddItem(BasketDto basket)
+        public int AddItem(BasketDto basket)
         {
-            _repo.AddItem(new Basket()
+            return _repo.AddItem(new Basket()
             {
                 user_id = basket.UserId
             });
@@ -60,6 +61,16 @@ namespace BLL.Providers
                 id = item.Id,
                 user_id = item.UserId
             });
+        }
+
+        public BasketDto GetByOwner(int id)
+        {
+            var res = _repo.GetEntities().Basket.Where(x => x.user_id == id).FirstOrDefault();
+            return new BasketDto()
+            {
+                Id = res.id,
+                UserId = res.user_id
+            };
         }
     }
 }

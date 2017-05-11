@@ -1,6 +1,7 @@
 ﻿using BLL.Facade;
 using BLL.UnitOfWork;
 using DTO;
+using reCAPTCHA.MVC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,6 +135,7 @@ namespace taras_shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidator(PrivateKey = "6LdhDSAUAAAAAD3VI-m8aDG2KXbn1ooki0vKmUf3")]
         [ValidateAntiForgeryToken]
         public ActionResult Registration(RegisterModel model)
         {
@@ -148,6 +150,19 @@ namespace taras_shop.Controllers
                 {
                     using (var transact = facade.UnitOfWork.BeginTransaction())
                     {
+                        bool isMan;
+                        if (model.Sex == "Male")
+                        {
+                            isMan = true;
+                        }
+                        else if (model.Sex == "Female")
+                        {
+                            isMan = false;
+                        }
+                        else
+                        {
+                            return View("AuthError");
+                        }
                         string hash = HashPassword(model.Password);
                         facade.UnitOfWork.getUser.AddItem(new UsersDto()
                         {
@@ -158,7 +173,7 @@ namespace taras_shop.Controllers
                             Password = hash,
                             RegDate = DateTime.Now,
                             RoleId = 3, 
-                            IsMan = (model.Sex == Gender.Male) ? true : false
+                            IsMan = isMan
                         });
 
                         transact.Commit();

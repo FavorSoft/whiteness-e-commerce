@@ -24,7 +24,7 @@ namespace DALLocalDB
         public int user_id { get; set; }
         public System.DateTime order_date { get; set; }
     
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_items> Order_items { get; set; }
     }

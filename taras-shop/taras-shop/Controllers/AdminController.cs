@@ -206,7 +206,7 @@ namespace taras_shop.Controllers
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult BanUser(int id)
         {
-            facade.changeRole(id, "Banned");
+            facade.ChangeRole(id, "Banned");
             return View("AllUsers", GetUsersModels(1));
         }
 
@@ -214,7 +214,7 @@ namespace taras_shop.Controllers
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsAdmin(int id)
         {
-            facade.changeRole(id, "Admin");
+            facade.ChangeRole(id, "Admin");
             return View("AllUsers", GetUsersModels(1));
         }
 
@@ -222,7 +222,7 @@ namespace taras_shop.Controllers
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsUser(int id)
         {
-            facade.changeRole(id, "User");
+            facade.ChangeRole(id, "User");
             return View("AllUsers", GetUsersModels(1));
         }
 
@@ -230,14 +230,14 @@ namespace taras_shop.Controllers
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult SetAsModerator(int id)
         {
-            facade.changeRole(id, "Moderator");
+            facade.ChangeRole(id, "Moderator");
             return View("AllUsers", GetUsersModels(1));
         }
 
         [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
         public ActionResult ItemPage(int id)
         {
-            var res = new Models.ItemPageModels(facade.getArticleById(id));
+            var res = new Models.ItemPageModels(facade.GetArticleById(id));
 
             res.CategoryType = facade.UnitOfWork.getCategoryType.GetById(res.category.TypeId).Type;
 

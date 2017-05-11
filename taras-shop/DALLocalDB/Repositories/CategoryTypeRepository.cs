@@ -5,13 +5,13 @@ namespace DALLocalDB.Repository
 {
     public class CategoryTypeRepository : IRepository<Category_type>
     {
-        public CategoryTypeRepository(LocalEntities db) : base(db)
+        public CategoryTypeRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override void AddItem(Category_type item)
+        public override int AddItem(Category_type item)
         {
-            entities.Category_type.Add(item);
+            return entities.Category_type.Add(item).id;
         }
 
         public override void DeleteItem(int id)

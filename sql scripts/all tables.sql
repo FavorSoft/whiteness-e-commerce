@@ -183,20 +183,15 @@ create table Basket_items
 	id int not null identity(1,1),
 	was_added date not null,
 	basket_id int not null,
-	unit_info_id int not null,
+	size nvarchar(2) not null,
 	amount int not null
 )
 /**/
 
-/* alter Images table*/
+/* alter Basket_items table*/
 alter table Basket_items
 add constraint pk_basket_items_id
 primary key (id)
- 
-alter table Basket_items
-add constraint fk_unit_info_id
-foreign key (unit_info_id)
-references UnitInfo(id)
 
 alter table Basket_items
 add constraint fk_basket_id
@@ -228,6 +223,7 @@ create table [Order_items]
     id int not null identity(1,1),
 	order_id int not null,
     unit_id int not null,
+	size nvarchar(2) not null,
 	amount int not null,
 	price int not null
 );

@@ -3,16 +3,15 @@ using System.Linq;
 
 namespace DALLocalDB.Repository
 {
-    public class ImagesRepository : IRepository<Images>
+    public class ImagesRepository : IRepository<Image>
     {
-        public ImagesRepository(LocalEntities db) : base(db)
+        public ImagesRepository(AzureEntities db) : base(db)
         {
         }
 
-        public override void AddItem(Images item)
+        public override int AddItem(Image item)
         {
-            entities.Images.Add(item);
-            entities.Entry(item).State = System.Data.Entity.EntityState.Added;
+            return entities.Images.Add(item).id;
         }
 
         public override void DeleteItem(int id)
@@ -22,18 +21,18 @@ namespace DALLocalDB.Repository
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
-        public override void EditItem(Images item)
+        public override void EditItem(Image item)
         {
             entities.Images.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public override IQueryable<Images> GetAll()
+        public override IQueryable<Image> GetAll()
         {
             return entities.Images;
         }
 
-        public override Images GetById(int id)
+        public override Image GetById(int id)
         {
             return entities.Images.Where(x => x.id == id).FirstOrDefault();
         }

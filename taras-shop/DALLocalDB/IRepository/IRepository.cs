@@ -4,16 +4,16 @@ namespace DALLocalDB.IRepository
 {
     public abstract class IRepository<T>
     {
-        protected LocalEntities entities;
-        public IRepository(LocalEntities db)
+        protected AzureEntities entities;
+        public IRepository(AzureEntities db)
         {
             entities = db;
         }
 
-        public LocalEntities GetEntities() {
+        public AzureEntities GetEntities() {
             return entities;
         }
-        public abstract void AddItem(T item);
+        public abstract int AddItem(T item);
         public abstract IQueryable<T> GetAll();
         public abstract T GetById(int id);
         public abstract void EditItem(T item);

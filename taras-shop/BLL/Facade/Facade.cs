@@ -67,44 +67,44 @@ namespace BLL.Facade
             return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
 
-        public object GetByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
-        {
-            int categoryId = UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
+        //public object GetByFilter(int categoryTypeId, string category, List<string> sizes, int startPrice, int endPrice, int skipItems, int amountItems)
+        //{
+        //    int categoryId = UnitOfWork.getCategory.getCategoryByInfo(categoryTypeId, category).Id;
 
-            List<int> sizeIds = new List<int>();
-            sizeIds = UnitOfWork.getSizes.GetIdsBySizes(sizes);
+        //    List<int> sizeIds = new List<int>();
+        //    sizeIds = UnitOfWork.getSizes.GetIdsBySizes(sizes);
 
-            List<UnitDto> units;
-            if (sizeIds != null && sizeIds.Count > 0)
-            {
-                units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
-            }
-            else
-            {
-                units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, skipItems, amountItems).ToList();
-            }
+        //    List<UnitDto> units;
+        //    if (sizeIds != null && sizeIds.Count > 0)
+        //    {
+        //        units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, sizeIds, skipItems, amountItems).ToList();
+        //    }
+        //    else
+        //    {
+        //        units = UnitOfWork.getUnit.GetByFilter(categoryId, startPrice, endPrice, skipItems, amountItems).ToList();
+        //    }
 
-            List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
+        //    List<ImagesDto> images = UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
 
-            IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
+        //    IEnumerable<Article> articles = ConvertUnitsToArticles(units, images);
 
-            JavaScriptSerializer s = new JavaScriptSerializer();
+        //    JavaScriptSerializer s = new JavaScriptSerializer();
 
-            int pages = articles.Count() / amountItems;
+        //    int pages = articles.Count() / amountItems;
 
-            var res = new
-            {
-                units = s.Serialize(articles.Select(x => x.unit).ToList()),
-                images = s.Serialize(articles.Select(x => x.images).ToList()),
-                sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
-                unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),
-                categories = s.Serialize(articles.Select(x => x.category).ToList()),
-                page = (pages - skipItems) / amountItems,
-                pages = pages
-            };
+        //    var res = new
+        //    {
+        //        units = s.Serialize(articles.Select(x => x.unit).ToList()),
+        //        images = s.Serialize(articles.Select(x => x.images).ToList()),
+        //        sizes = s.Serialize(articles.Select(x => x.sizes).ToList()),
+        //        unitDtos = s.Serialize(articles.Select(x => x.unitsInfo).ToList()),
+        //        categories = s.Serialize(articles.Select(x => x.category).ToList()),
+        //        page = (pages - skipItems) / amountItems,
+        //        pages = pages
+        //    };
 
-            return res;
-        }
+        //    return res;
+        //}
 
         public IEnumerable<Article> GetRecommendsArticles(int count)
         {

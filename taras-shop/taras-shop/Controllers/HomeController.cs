@@ -54,14 +54,6 @@ namespace taras_shop.Controllers
             };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
-        
-        [HttpGet]
-        public JsonResult GetItemsByFilter(int? typeId, string category, string sizes, int fromPrice, int toPrice, int page = 1)
-        {
-            int skipItems = 0;
-            int amountItems = 8;
-            return Json(getByFilter(typeId, category, sizes.Split(',').ToList(), fromPrice*100, toPrice*100, skipItems, amountItems, page), JsonRequestBehavior.AllowGet);
-        }
 
         [HttpGet]
         public ViewResult ItemOnBasket(int personId)
@@ -70,60 +62,85 @@ namespace taras_shop.Controllers
             {
                 return View("NoAuth");
             }
-            
+
             return View("NullItemOnBasket");
         }
 
-        SearchModels getByFilter(int? categoryTypeId, string category, List<string> sizes, int fromPrice, int toPrice, int skipItems, int amountItems, int page)
+
+        #region GetItemsByFilter
+        [HttpGet]
+        public JsonResult GetItemsByFilter(int? typeId, string category, string sizes, int fromPrice, int toPrice, int page = 1)
         {
-            //it is very important!
+            int amountItems = 8;
+
+            List<int> categories = ChoiceCategory(typeId, category);
+
+            List<int> sizeIds = ChoiceSizes(sizes.Split(',').ToList());
+
+            SearchModels model = GetArticles(categories, sizeIds, fromPrice*100, toPrice*100, page, amountItems);
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<int> ChoiceCategory(int? categoryTypeId, string category)
+        {
+            List<int> res = new List<int>();
+
             int typeId = 0;
             if (categoryTypeId != null)
             {
                 typeId = categoryTypeId.Value;
             }
-            
-            SearchModels model = new SearchModels();
 
-            CategoriesDto categoryDto = facade.UnitOfWork.getCategory.getCategoryByInfo(typeId, category);
+            List<CategoriesDto> categoryDtos = facade.UnitOfWork.getCategory.getCategoryByInfo(typeId, category);
 
-            int categoryId = 0;
-            if(categoryDto != null)
+            foreach (var i in categoryDtos)
             {
-                categoryId = categoryDto.Id;
+                res.Add(i.Id);
             }
 
-            List<int> sizeIds = new List<int>();
+            return res;
+        }
+
+        private List<int> ChoiceSizes(List<string> sizes)
+        {
+            List<int> res = new List<int>();
+
             if (sizes != null)
             {
-                sizeIds = facade.UnitOfWork.getSizes.GetIdsBySizes(sizes);
+                res = facade.UnitOfWork.getSizes.GetIdsBySizes(sizes);
             }
+
+            return res;
+        }
+        
+        private SearchModels GetArticles(List<int> categoryIds, List<int> sizeIds, int fromPrice, int toPrice, int page, int amountItems)
+        {
+            SearchModels model = new SearchModels();
+            List<Article> res = new List<Article>();
 
             int amount = 0;
             List<UnitDto> units;
             if (sizeIds != null && sizeIds.Count > 0)
             {
-                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, fromPrice, toPrice, sizeIds, (page - 1) * amountItems, amountItems).ToList();
-                amount = facade.UnitOfWork.getUnit.GetAmountUnit(categoryId, fromPrice, toPrice, sizeIds, (page - 1) * amountItems, amountItems);
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryIds, fromPrice, toPrice, sizeIds, (page - 1) * amountItems, amountItems).ToList();
+                amount = facade.UnitOfWork.getUnit.GetAmountUnit(categoryIds, fromPrice, toPrice, sizeIds, (page - 1) * amountItems, amountItems);
             }
             else
             {
-                units = facade.UnitOfWork.getUnit.GetByFilter(categoryId, fromPrice, toPrice, (page - 1) * amountItems, amountItems).ToList();
-                amount = facade.UnitOfWork.getUnit.GetAmountUnit(categoryId, fromPrice, toPrice, (page - 1) * amountItems, amountItems);
+                units = facade.UnitOfWork.getUnit.GetByFilter(categoryIds, fromPrice, toPrice, (page - 1) * amountItems, amountItems).ToList();
+                amount = facade.UnitOfWork.getUnit.GetAmountUnit(categoryIds, fromPrice, toPrice, (page - 1) * amountItems, amountItems);
             }
 
             List<ImagesDto> images = facade.UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList();
 
-            IEnumerable<Article> articles = facade.ConvertUnitsToArticles(units, images);
-
-            int pages = articles.Count() / amountItems;
+            res = facade.ConvertUnitsToArticles(units, images);
 
             model.Units = new List<Item>();
 
-            //i have to change this method, because not all units have images
-            model.Units = articles.Select(x => new Item()
+            model.Units = res.Select(x => new Item()
             {
-                Image = x.images.FirstOrDefault().Image,
+                Image = (x.images.FirstOrDefault().Image ?? "womant.jpg"),
                 AddUnitDate = x.unit.AddUnitDate,
                 CategoryId = x.unit.CategoryId,
                 Color = x.unit.Color,
@@ -146,7 +163,8 @@ namespace taras_shop.Controllers
             
             return model;
         }
-        
+        #endregion
+
         //, string xs_option2, string s_option2, string m_option2, string l_option2, string xl_option2
         [HttpPost]
         [CustomAuthorizeAttribute]

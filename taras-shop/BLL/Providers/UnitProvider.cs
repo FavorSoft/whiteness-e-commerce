@@ -139,7 +139,7 @@ namespace BLL.Providers
             });
         }
 
-        public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
+        public IEnumerable<UnitDto> GetByFilter(List<int> categoryIds, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
             var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
@@ -164,12 +164,12 @@ namespace BLL.Providers
                 x.Price >= startPrice &&
                 x.Price <= endPrice && 
                 sizeIds.Contains(x.SizeId)).GroupBy(g => g.Id);
-            if (categoryId != 0)
+            if (categoryIds.Count != 0)
             {
                 second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
-                x.CategoryId == categoryId &&
+                categoryIds.Contains(x.CategoryId) &&
                 sizeIds.Contains(x.SizeId)).GroupBy(g => g.Id);
             }
             var third = second.OrderBy(x => x.FirstOrDefault().AddUnitDate).Skip(skipItems);
@@ -191,7 +191,7 @@ namespace BLL.Providers
             var sixth = fourth.Take(amount);
             return sixth.ToList();
         }
-        public IEnumerable<UnitDto> GetByFilter(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
+        public IEnumerable<UnitDto> GetByFilter(List<int> categoryIds, int startPrice, int endPrice, int skipItems, int amount)
         {
             var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
@@ -215,12 +215,12 @@ namespace BLL.Providers
             var second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice).GroupBy(g => g.Id);
-            if (categoryId != 0)
+            if (categoryIds.Count != 0)
             {
                 second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
-                x.CategoryId == categoryId).GroupBy(g => g.Id);
+                categoryIds.Contains(x.CategoryId)).GroupBy(g => g.Id);
             }
             var third = second.OrderBy(x => x.FirstOrDefault().AddUnitDate).Skip(skipItems);
             var fourth = third.Select(unit => new UnitDto()
@@ -243,7 +243,7 @@ namespace BLL.Providers
         }
 
 
-        public int GetAmountUnit(int categoryId, int startPrice, int endPrice, int skipItems, int amount)
+        public int GetAmountUnit(List<int> categoryIds, int startPrice, int endPrice, int skipItems, int amount)
         {
             var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
@@ -267,12 +267,12 @@ namespace BLL.Providers
             var second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice);
-            if (categoryId != 0)
+            if (categoryIds.Count != 0)
             {
                 second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
-                x.CategoryId == categoryId);
+                categoryIds.Contains(x.CategoryId));
             }
             var third = second.GroupBy(g => g.Id);
             var fourth = third.Select(unit => new UnitDto()
@@ -291,7 +291,7 @@ namespace BLL.Providers
             }).Count();
             return fourth;
         }
-        public int GetAmountUnit(int categoryId, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
+        public int GetAmountUnit(List<int> categoryIds, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
             var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
             a => a.id,
@@ -316,12 +316,12 @@ namespace BLL.Providers
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
                 sizeIds.Contains(x.SizeId));
-            if (categoryId != 0)
+            if (categoryIds.Count != 0)
             {
                 second = first.Where(x => x.Amount > 0 &&
                 x.Price >= startPrice &&
                 x.Price <= endPrice &&
-                x.CategoryId == categoryId &&
+                categoryIds.Contains(x.CategoryId) &&
                 sizeIds.Contains(x.SizeId));
             }
             var third = second.GroupBy(g => g.Id);

@@ -76,12 +76,12 @@ namespace BLL.Providers
             });
         }
 
-        public CategoriesDto getCategoryByInfo(int typeId, string category)
+        public List<CategoriesDto> getCategoryByInfo(int typeId, string category)
         {
-            CategoriesDto res = null;
-            if (typeId!= 0)
+            List<CategoriesDto> res = new List<CategoriesDto>();
+            if (typeId != 0 && !category.Equals(""))
             {
-                res = (from categories in _repo.GetEntities().Categories
+                res.Add((from categories in _repo.GetEntities().Categories
                            join s in _repo.GetEntities().Category_type on categories.type_id equals s.id
                            where s.id == typeId && categories.category == category
                            select new
@@ -99,10 +99,51 @@ namespace BLL.Providers
                           Description = x.Description,
                           Id = x.Id,
                           TypeId = x.TypeId
-                      }).FirstOrDefault();
+                      }).FirstOrDefault());
             }
-            
-
+            else if (typeId != 0)
+            {
+                res = (from categories in _repo.GetEntities().Categories
+                       join s in _repo.GetEntities().Category_type on categories.type_id equals s.id
+                       where s.id == typeId
+                       select new
+                       {
+                           Id = categories.id,
+                           Category = categories.category,
+                           CategoryImg = categories.category_img,
+                           Description = categories.description,
+                           TypeId = categories.type_id
+                       }
+                         ).Select(x => new CategoriesDto()
+                         {
+                             Category = x.Category,
+                             CategoryImg = x.CategoryImg,
+                             Description = x.Description,
+                             Id = x.Id,
+                             TypeId = x.TypeId
+                         }).ToList();
+            }
+            else
+            {
+                res = (from categories in _repo.GetEntities().Categories
+                       join s in _repo.GetEntities().Category_type on categories.type_id equals s.id
+                       select new
+                       {
+                           Id = categories.id,
+                           Category = categories.category,
+                           CategoryImg = categories.category_img,
+                           Description = categories.description,
+                           TypeId = categories.type_id
+                       }
+                         ).Select(x => new CategoriesDto()
+                         {
+                             Category = x.Category,
+                             CategoryImg = x.CategoryImg,
+                             Description = x.Description,
+                             Id = x.Id,
+                             TypeId = x.TypeId
+                         }).ToList();
+            }
             return res;
         }
     }

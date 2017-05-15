@@ -151,6 +151,7 @@ namespace BLL.Facade
             catch (Exception)
             {
                 res = "Выбранного размера нету в наличии";
+                return res;
             }
 
             using (var transact = UnitOfWork.BeginTransaction())
@@ -186,13 +187,39 @@ namespace BLL.Facade
         public IEnumerable<BasketUnit> GetFromBasket(int id)
         {
             List<BasketUnit> res = new List<BasketUnit>();
+            try
+            {
+                var basket = UnitOfWork.getBasket.GetByOwner(id);
+                var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket);
+                var units = UnitOfWork.getUnit.GetByIds(basketItems.Select(x => x.UnitId).ToList());
 
-            var basket = UnitOfWork.getBasket.GetByOwner(id);
-            var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket);
-            //i have to do it
+                foreach (var i in basketItems)
+                {
+                    var unit = units.Where(x => x.Id == i.UnitId).FirstOrDefault();
+                    res.Add(new BasketUnit()
+                    {
+                        Id = unit.Id,
+                        AddUnitDate = i.WasAdded,
+                        Amount = i.Amount,
+                        CategoryId = unit.CategoryId,
+                        Color = unit.Color,
+                        Description = unit.Description,
+                        Likes = unit.Likes,
+                        Material = unit.Material,
+                        OldPrice = unit.OldPrice,
+                        Price = unit.Price,
+                        Producer = unit.Producer,
+                        Size = i.Size,
+                        Title = unit.Title
+                    });
+                }
 
-
-            return res;
+                return res;
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         public IUnitOfWork UnitOfWork { get; private set; }

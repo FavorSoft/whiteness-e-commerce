@@ -10,6 +10,7 @@ namespace DTO
     {
         public int Id { get; set; }
         public int BasketId { get; set; }
+        public int UnitId { get; set; }
         public string Size { get; set; }
         public DateTime WasAdded { get; set; }
         public int Amount { get; set; }

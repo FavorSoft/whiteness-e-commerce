@@ -14,10 +14,12 @@ export default class ShoppingCart extends Component {
     
     componentDidMount() {
         
-        let cartUnits;
+        let cartUnits = JSON.parse(localStorage.getItem("items"));
 
+        console.log("Auth = " + this.state.auth);
         if (this.state.auth == "true") {
             var request;
+            console.log("start get");
             $.get("/Home/GetItemsFromBasket", request, (response) => {
                 console.log(response);
             });

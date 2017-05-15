@@ -20,6 +20,7 @@ namespace DALLocalDB
             this.Images = new HashSet<Image>();
             this.Order_items = new HashSet<Order_items>();
             this.UnitInfoes = new HashSet<UnitInfo>();
+            this.Basket_items = new HashSet<Basket_items>();
         }
     
         public int id { get; set; }
@@ -41,5 +42,7 @@ namespace DALLocalDB
         public virtual ICollection<Order_items> Order_items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UnitInfo> UnitInfoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Basket_items> Basket_items { get; set; }
     }
 }

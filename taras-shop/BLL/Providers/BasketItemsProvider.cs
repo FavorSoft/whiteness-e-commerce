@@ -23,6 +23,7 @@ namespace BLL.Providers
             {
                 size = basketItems.Size,
                 amount = basketItems.Amount,
+                unit_id = basketItems.UnitId,
                 was_added = basketItems.WasAdded,
                 basket_id = basketItems.BasketId
             });
@@ -39,6 +40,7 @@ namespace BLL.Providers
                 {
                     Id = i.id,
                     Amount = i.amount,
+                    UnitId = i.unit_id,
                     BasketId = i.basket_id,
                     WasAdded = i.was_added,
                     Size = i.size
@@ -54,6 +56,7 @@ namespace BLL.Providers
                 Id = tmp.id,
                 Amount = tmp.amount,
                 BasketId = tmp.basket_id,
+                UnitId = tmp.unit_id,
                 WasAdded = tmp.was_added,
                 Size = tmp.size
             };
@@ -70,6 +73,7 @@ namespace BLL.Providers
             {
                 amount = item.Amount,
                 basket_id = item.BasketId,
+                unit_id = item.UnitId,
                 was_added = item.WasAdded,
                 id = item.Id,
                 size = item.Size
@@ -83,6 +87,7 @@ namespace BLL.Providers
                 Id = z.id,
                 Amount = z.amount,
                 BasketId = z.basket_id, 
+                UnitId = z.unit_id,
                 WasAdded = z.was_added,
                 Size = z.size
             });

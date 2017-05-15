@@ -183,6 +183,7 @@ create table Basket_items
 	id int not null identity(1,1),
 	was_added date not null,
 	basket_id int not null,
+	unit_id int not null,
 	size nvarchar(2) not null,
 	amount int not null
 )
@@ -197,6 +198,11 @@ alter table Basket_items
 add constraint fk_basket_id
 foreign key (basket_id)
 references Basket(id)
+
+alter table [Basket_items]
+add constraint fk_b_unit_id
+foreign key (unit_id)
+references Unit(id)
 
 /* create Order table*/
 create table [Order]

@@ -1,4 +1,4 @@
-using BLL;
+﻿using BLL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -209,15 +209,23 @@ namespace taras_shop.Controllers
             }
             catch (Exception)
             {
-
+                
             }
             return View(res as object);
         }
         [HttpGet]
-        public string GetItemsFromBasket()
+        public ActionResult GetItemsFromBasket()
         {
-
-            return User.Id.ToString();
+            JsonResult res;
+            try{
+                var items = facade.GetFromBasket(User.Id);
+                res = Json(items, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                res = Json("Ваша корзина пустая", JsonRequestBehavior.AllowGet);
+            }
+            return res;
         }
 
         public ActionResult Search()

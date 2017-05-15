@@ -31,6 +31,7 @@
         <AssociationConnector Association="Model.fk_role_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_sizes_table_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_unit_table_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_b_unit_id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -19,6 +19,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="was_added" Type="date" Nullable="false" />
           <Property Name="basket_id" Type="int" Nullable="false" />
+          <Property Name="unit_id" Type="int" Nullable="false" />
           <Property Name="size" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
         </EntityType>
@@ -136,6 +137,18 @@
           <Property Name="reg_date" Type="date" Nullable="false" />
           <Property Name="is_man" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="fk_b_unit_id">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="Basket_items" Type="Self.Basket_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Basket_items">
+              <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_basket_id">
           <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
           <End Role="Basket_items" Type="Self.Basket_items" Multiplicity="*" />
@@ -295,6 +308,10 @@
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitInfo" EntityType="Self.UnitInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_b_unit_id" Association="Self.fk_b_unit_id">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Basket_items" EntitySet="Basket_items" />
+          </AssociationSet>
           <AssociationSet Name="fk_basket_id" Association="Self.fk_basket_id">
             <End Role="Basket" EntitySet="Basket" />
             <End Role="Basket_items" EntitySet="Basket_items" />
@@ -344,8 +361,7 @@
             <End Role="Basket" EntitySet="Basket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -368,6 +384,8 @@
           <Property Name="size" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket" Relationship="Self.fk_basket_id" FromRole="Basket_items" ToRole="Basket" />
+          <Property Name="unit_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Unit" Relationship="Model.fk_b_unit_id" FromRole="Basket_items" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -475,6 +493,7 @@
           <NavigationProperty Name="Images" Relationship="Self.fk_owner_id" FromRole="Unit" ToRole="Images" />
           <NavigationProperty Name="Order_items" Relationship="Self.fk_o_unit_id" FromRole="Unit" ToRole="Order_items" />
           <NavigationProperty Name="UnitInfoes" Relationship="Self.fk_unit_table_id" FromRole="Unit" ToRole="UnitInfo" />
+          <NavigationProperty Name="Basket_items" Relationship="Model.fk_b_unit_id" FromRole="Unit" ToRole="Basket_items" />
         </EntityType>
         <EntityType Name="UnitInfo">
           <Key>
@@ -711,7 +730,23 @@
             <End Role="Unit" EntitySet="Units" />
             <End Role="UnitInfo" EntitySet="UnitInfoes" />
           </AssociationSet>
+          <AssociationSet Name="fk_b_unit_id" Association="Model.fk_b_unit_id">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="Basket_items" EntitySet="Basket_items" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="fk_b_unit_id">
+          <End Type="Model.Unit" Role="Unit" Multiplicity="1" />
+          <End Type="Model.Basket_items" Role="Basket_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Basket_items">
+              <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -729,6 +764,7 @@
           <EntitySetMapping Name="Basket_items">
             <EntityTypeMapping TypeName="Model.Basket_items">
               <MappingFragment StoreEntitySet="Basket_items">
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="was_added" ColumnName="was_added" />
                 <ScalarProperty Name="basket_id" ColumnName="basket_id" />

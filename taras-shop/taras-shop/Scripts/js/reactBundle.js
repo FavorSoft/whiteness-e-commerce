@@ -545,6 +545,10 @@
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
+	process.prependListener = noop;
+	process.prependOnceListener = noop;
+
+	process.listeners = function (name) { return [] }
 
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
@@ -22856,10 +22860,12 @@
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
 
-	            var cartUnits = void 0;
+	            var cartUnits = JSON.parse(localStorage.getItem("items"));
 
+	            console.log("Auth = " + this.state.auth);
 	            if (this.state.auth == "true") {
 	                var request;
+	                console.log("start get");
 	                $.get("/Home/GetItemsFromBasket", request, function (response) {
 	                    console.log(response);
 	                });

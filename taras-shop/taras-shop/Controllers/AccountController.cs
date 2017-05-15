@@ -79,7 +79,7 @@ namespace taras_shop.Controllers
                     return PartialView("LoginFailed");
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return PartialView("LoginFailed");
         }
 
         public string HashPassword(string password)

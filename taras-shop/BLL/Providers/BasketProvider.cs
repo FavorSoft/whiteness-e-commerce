@@ -66,11 +66,19 @@ namespace BLL.Providers
         public BasketDto GetByOwner(int id)
         {
             var res = _repo.GetEntities().Basket.Where(x => x.user_id == id).FirstOrDefault();
-            return new BasketDto()
+            if (res != null)
             {
-                Id = res.id,
-                UserId = res.user_id
-            };
+                return new BasketDto()
+                {
+                    Id = res.id,
+                    UserId = res.user_id
+                };
+            }
+            else
+            {
+                throw new ItemNotFoundException();
+            }
         }
+        public class ItemNotFoundException : Exception { };
     }
 }

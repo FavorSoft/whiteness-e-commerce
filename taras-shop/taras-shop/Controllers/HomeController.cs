@@ -66,7 +66,6 @@ namespace taras_shop.Controllers
             return View("NullItemOnBasket");
         }
 
-
         #region GetItemsByFilter
         [HttpGet]
         public JsonResult GetItemsByFilter(int? typeId, string category, string sizes, int fromPrice, int toPrice, int page = 1)

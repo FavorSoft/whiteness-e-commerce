@@ -36,10 +36,17 @@ namespace taras_shop
 
                 CustomPrincipal newUser = new CustomPrincipal(authTicket.Name);
 
-                newUser.Id = serializeModel.Id;
-                newUser.Role = serializeModel.Role;
+                if (serializeModel != null)
+                {
+                    newUser.Id = serializeModel.Id;
+                    newUser.Role = serializeModel.Role;
 
-                HttpContext.Current.User = newUser;
+                    HttpContext.Current.User = newUser;
+                }
+                else
+                {
+                    Request.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(-1);
+                }   
             }
         }
     }

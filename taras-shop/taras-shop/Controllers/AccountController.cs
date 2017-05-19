@@ -51,7 +51,7 @@ namespace taras_shop.Controllers
                 if (user != null && VerifyHashedPassword(user.Password, model.Password))
                 {
                     UserModel userModel = new UserModel();
-
+                    
                     userModel.Id = user.Id;
                     userModel.Email = user.Email;
                     userModel.Role = facade.UnitOfWork.getRole.GetById(user.RoleId).Role;

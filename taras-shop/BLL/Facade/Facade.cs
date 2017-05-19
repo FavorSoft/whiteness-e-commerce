@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using static BLL.Providers.BasketProvider;
 
 namespace BLL.Facade
 {
@@ -123,7 +124,7 @@ namespace BLL.Facade
                 {
                     basketId = UnitOfWork.getBasket.GetByOwner(userId).Id;
                 }
-                catch (Exception)
+                catch (ItemNotFoundException e)
                 {
                     basketId = UnitOfWork.getBasket.AddItem(new BasketDto()
                     {

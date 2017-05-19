@@ -3,13 +3,13 @@
 {
     <ul class="nav navbar-nav navbar-right">
         @{
-            if ((User as CustomPrincipal).Role == "Admin")
+            if ((User as CustomPrincipal).IsInRole("Admin"))
             {
                 <li><a href="@Url.Action("AddUnitPage", "Admin")">Додати товар</a></li>
                 <li><a href="@Url.Action("AllUsers", "Admin")">Переглянути користувачів</a></li>
                 <li><a href="#">Переглянути замовлення</a></li>
             }
-            else if ((User as CustomPrincipal).Role == "Moderator")
+            else if ((User as CustomPrincipal).IsInRole("Moderator"))
             {
                 <li><a href="@Url.Action("AddUnitPage", "Admin")">Додати товар</a></li>
                 <li><a href="#">Переглянути замовлення</a></li>

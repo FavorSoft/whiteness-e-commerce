@@ -126,21 +126,31 @@ namespace BLL.Facade
                 }
                 catch (ItemNotFoundException e)
                 {
-                    basketId = UnitOfWork.getBasket.AddItem(new BasketDto()
+                    UnitOfWork.getBasket.AddItem(new BasketDto()
                     {
                         UserId = userId
                     });
+                    transact.Commit();
+                    UnitOfWork.SaveChanges();
+                    basketId = UnitOfWork.getBasket.GetByOwner(userId).Id;
+
+                }   
+                catch(Exception e)
+                {
+                    res = "Что то пошло не так.";
                 }
-                
-                UnitOfWork.getBasketItems.AddItem(new BasketItemsDto()
+
+                var basketItem = new BasketItemsDto()
                 {
                     Size = size,
                     Amount = 1,
                     BasketId = basketId.Value,
+                    UnitId = unitId,
                     WasAdded = DateTime.Now
-                });
-
+                };
+                UnitOfWork.getBasketItems.AddItem(basketItem);
                 transact.Commit();
+                UnitOfWork.SaveChanges();
                 res = "Товар добавлен в корзину";
             }
             return res;
@@ -152,7 +162,7 @@ namespace BLL.Facade
             try
             {
                 var basket = UnitOfWork.getBasket.GetByOwner(id);
-                var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket);
+                var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket).ToList();
                 var units = UnitOfWork.getUnit.GetByIds(basketItems.Select(x => x.UnitId).ToList());
 
                 foreach (var i in basketItems)

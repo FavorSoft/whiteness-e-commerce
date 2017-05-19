@@ -83,7 +83,7 @@ namespace taras_shop.Controllers
                         Color = "default",
                         Likes = 0
                     };
-                    int res = facade.UnitOfWork.getUnit.AddItem(unit);
+                    facade.UnitOfWork.getUnit.AddItem(unit);
                     foreach (string img in guidImages)
                     {
                         facade.UnitOfWork.getImages.AddItem(new ImagesDto()

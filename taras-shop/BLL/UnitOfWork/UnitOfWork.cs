@@ -16,8 +16,8 @@ namespace BLL.UnitOfWork
         IImagesProvider _images;
         IProvider<NewsImagesDto> _newsImages;
         IProvider<NewsDto> _news;
-        IProvider<OrderItemsDto> _orderItems;
-        IProvider<OrderDto> _order;
+        IOrderItemsProvider _orderItems;
+        IOrderProvider _order;
         IRolesProvider _role;
         ISizesProvider _sizes;
         IUnitProvider _unit;
@@ -129,7 +129,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<OrderDto> getOrder
+        public IOrderProvider getOrder
         {
             get
             {
@@ -141,7 +141,7 @@ namespace BLL.UnitOfWork
             }
         }
 
-        public IProvider<OrderItemsDto> getOrderItems
+        public IOrderItemsProvider getOrderItems
         {
             get
             {

@@ -17,19 +17,8 @@ namespace taras_shop.Controllers
 {
     public class HomeController : BaseController
     {
-
-
-        #region PARAMETERS
-        readonly Facade facade;
-        #endregion
-
-        #region CTOR
-        public HomeController(IUnitOfWork uow)
-        {
-            facade = new Facade(uow);
-        }
-        #endregion
-
+        public HomeController(IUnitOfWork uow):base(uow) { }
+     
         public async Task<ActionResult> Index()
         {
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
@@ -236,13 +225,64 @@ namespace taras_shop.Controllers
             JsonResult res;
             try{
                 var items = facade.GetFromBasket(User.Id);
+
+                IEnumerable<int> unitIds = items.Select(x => x.Id);
+                
                 res = Json(items, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-                res = Json("Ваша корзина пустая", JsonRequestBehavior.AllowGet);
+                res = Json(false, JsonRequestBehavior.AllowGet);
             }
             return res;
+        }
+
+        public ActionResult ToOrder()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                int userId = User.Id;
+
+                var basket = facade.UnitOfWork.getBasket.GetByOwner(userId);
+                var basketItems = facade.UnitOfWork.getBasketItems.GetByBasket(basket);
+
+                if (basketItems.Count() > 0)
+                {
+                    using (var transact = facade.UnitOfWork.BeginTransaction())
+                    {
+                        facade.UnitOfWork.getOrder.AddItem(new OrderDto()
+                        {
+                            OrderDate = DateTime.Now,
+                            UserId = userId
+                        });
+
+                        facade.UnitOfWork.SaveChanges();
+
+                        var order = facade.UnitOfWork.getOrder.GetById(userId);
+
+                        foreach (var item in basketItems)
+                        {
+                            int? unitPrice = facade.UnitOfWork.getUnit.GetById(item.UnitId).Price;
+                            facade.UnitOfWork.getOrderItems.AddItem(new OrderItemsDto()
+                            {
+                                UnitId = item.UnitId,
+                                Amount = item.Amount,
+                                OrderId = order.Id,
+                                Price = unitPrice ?? 0,
+                                
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    return Json("Ваша корзина пуста.", JsonRequestBehavior.AllowGet);
+                }
+
+                
+            }
+            
+            return Json("Ошибка транзакции", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Search()

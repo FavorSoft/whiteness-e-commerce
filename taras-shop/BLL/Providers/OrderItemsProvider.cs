@@ -5,10 +5,11 @@ using DTO;
 using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
+using System;
 
 namespace BLL.Providers
 {
-    public class OrderItemsProvider : IProvider<OrderItemsDto>
+    public class OrderItemsProvider : IOrderItemsProvider
     {
         readonly IRepository<Order_items> _repo;
         public OrderItemsProvider(AzureEntities db)
@@ -71,6 +72,19 @@ namespace BLL.Providers
                 order_id = item.OrderId,
                 price = item.Price,
                 unit_id = item.UnitId
+            });
+        }
+
+        public IEnumerable<OrderItemsDto> GetByOrder(OrderDto order)
+        {
+            return _repo.GetEntities().Order_items.Where(x => x.order_id == order.Id).Select(z => new OrderItemsDto()
+            {
+                Id = z.id,
+                Amount = z.amount,
+                OrderId = z.order_id,
+                UnitId = z.unit_id,
+                Price = z.price,
+                Size = z.size
             });
         }
     }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\ItemNotFoundException.cs" />
     <Compile Include="Helpers\Article.cs" />
     <Compile Include="Helpers\BasketDto.cs" />
     <Compile Include="Helpers\BasketItems.cs" />

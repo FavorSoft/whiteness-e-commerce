@@ -94,7 +94,7 @@ namespace BLL.Providers
             List<UnitInfoDto> res = new List<UnitInfoDto>();
             foreach(int id in ids)
             {
-                var i = _repo.GetById(id);
+                var i = _repo.GetAll().Where(x => x.unit_id == id).FirstOrDefault();
                 res.Add(new UnitInfoDto()
                 { 
                     Amount = i.amount,

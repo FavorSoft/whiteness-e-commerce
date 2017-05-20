@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DTO;
+using DTO.Exceptions;
 using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
@@ -79,6 +80,6 @@ namespace BLL.Providers
                 throw new ItemNotFoundException();
             }
         }
-        public class ItemNotFoundException : Exception { };
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BLL.UnitOfWork;
 using DTO;
+using DTO.Exceptions;
 using DTO.Helpers;
 using System;
 using System.Collections.Generic;
@@ -137,7 +138,7 @@ namespace BLL.Facade
                 }   
                 catch(Exception e)
                 {
-                    res = "Что то пошло не так.";
+                    res = "Что-то пошло не так.";
                 }
 
                 var basketItem = new BasketItemsDto()
@@ -164,15 +165,25 @@ namespace BLL.Facade
                 var basket = UnitOfWork.getBasket.GetByOwner(id);
                 var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket).ToList();
                 var units = UnitOfWork.getUnit.GetByIds(basketItems.Select(x => x.UnitId).ToList());
-
+                var unitInfoes = UnitOfWork.getUnitInfo.GetByOwners(units.Select(x => x.Id).ToArray());
+                
                 foreach (var i in basketItems)
                 {
                     var unit = units.Where(x => x.Id == i.UnitId).FirstOrDefault();
+                    var unitInfoesToCurrentItem = unitInfoes.Where(x => x.UnitId == unit.Id);
+                    List<string> size = new List<string>();
+                    size.Add(i.Size);
+                    var sizeId = UnitOfWork.getSizes.GetIdsBySizes(size);
+
+                    int amountFromItemFromDB = unitInfoesToCurrentItem.Where(x => x.SizeId == sizeId.FirstOrDefault()).FirstOrDefault().Amount;
+                    int amountFromBasketItems = i.Amount;
+
                     res.Add(new BasketUnit()
                     {
                         Id = unit.Id,
                         AddUnitDate = i.WasAdded,
-                        Amount = i.Amount,
+                        AmountOnBasket = amountFromBasketItems,
+                        AmountOnStorage = amountFromItemFromDB,
                         CategoryId = unit.CategoryId,
                         Color = unit.Color,
                         Description = unit.Description,

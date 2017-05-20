@@ -17,16 +17,7 @@ namespace taras_shop.Controllers
 {
     public class AdminController : BaseController
     {
-        #region PARAMETERS
-        readonly Facade facade;
-        #endregion
-
-        #region CTOR
-        public AdminController(IUnitOfWork uow)
-        {
-            facade = new Facade(uow);
-        }
-        #endregion
+        public AdminController(IUnitOfWork uow) : base(uow) { }
 
         // GET: Admin
         public ActionResult Index()

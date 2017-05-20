@@ -18,8 +18,8 @@ namespace BLL.UnitOfWork
         IImagesProvider getImages { get; }
         IProvider<NewsImagesDto> getNewsImages { get; }
         IProvider<NewsDto> getNews { get; }
-        IProvider<OrderItemsDto> getOrderItems { get; }
-        IProvider<OrderDto> getOrder { get; }
+        IOrderItemsProvider getOrderItems { get; }
+        IOrderProvider getOrder { get; }
         IRolesProvider getRole { get; }
         ISizesProvider getSizes { get; }
         IUnitInfoProvider getUnitInfo { get; }

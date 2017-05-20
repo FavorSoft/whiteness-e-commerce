@@ -64,6 +64,8 @@
     <Compile Include="IProviders\IBasketProvider.cs" />
     <Compile Include="IProviders\ICategoryProvider.cs" />
     <Compile Include="IProviders\IImagesProvider.cs" />
+    <Compile Include="IProviders\IOrderItemsProvider.cs" />
+    <Compile Include="IProviders\IOrderProvider.cs" />
     <Compile Include="IProviders\IProvider.cs" />
     <Compile Include="IProviders\IRolesProvider.cs" />
     <Compile Include="IProviders\ISizesProvider.cs" />

@@ -5,10 +5,12 @@ using DTO;
 using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
+using System;
+using DTO.Exceptions;
 
 namespace BLL.Providers
 {
-    public class OrderProvider : IProvider<OrderDto>
+    public class OrderProvider : IOrderProvider
     {
         readonly IRepository<Order> _repo;
         public OrderProvider(AzureEntities db)
@@ -32,11 +34,11 @@ namespace BLL.Providers
         IEnumerable<OrderDto> ConvertModeltoDTO(IQueryable<Order> repo)
         {
             IEnumerable<OrderDto> res = repo.Select(i => new OrderDto()
-                {
-                    Id = i.id,
-                    UserId = i.user_id,
-                    OrderDate = i.order_date
-                }).ToList();
+            {
+                Id = i.id,
+                UserId = i.user_id,
+                OrderDate = i.order_date
+            }).ToList();
             return res;
         }
 
@@ -64,6 +66,24 @@ namespace BLL.Providers
                 order_date = item.OrderDate,
                 user_id = item.UserId
             });
+        }
+
+        public OrderDto GetByOwner(int id)
+        {
+            var res = _repo.GetEntities().Order.Where(x => x.user_id == id).FirstOrDefault();
+            if (res != null)
+            {
+                return new OrderDto()
+                {
+                    Id = res.id,
+                    OrderDate = res.order_date,
+                    UserId = res.user_id
+                };
+            }
+            else
+            {
+                throw new ItemNotFoundException();
+            }
         }
     }
 }

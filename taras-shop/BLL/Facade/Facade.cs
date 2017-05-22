@@ -134,25 +134,32 @@ namespace BLL.Facade
                     transact.Commit();
                     UnitOfWork.SaveChanges();
                     basketId = UnitOfWork.getBasket.GetByOwner(userId).Id;
-
                 }   
                 catch(Exception e)
                 {
                     res = "Что-то пошло не так.";
                 }
-
-                var basketItem = new BasketItemsDto()
+                
+                if (UnitOfWork.getBasketItems.GetByInfo(unitId, size, basketId.Value).Count() == 0)
                 {
-                    Size = size,
-                    Amount = 1,
-                    BasketId = basketId.Value,
-                    UnitId = unitId,
-                    WasAdded = DateTime.Now
-                };
-                UnitOfWork.getBasketItems.AddItem(basketItem);
-                transact.Commit();
-                UnitOfWork.SaveChanges();
-                res = "Товар добавлен в корзину";
+                    var basketItem = new BasketItemsDto()
+                    {
+                        Size = size,
+                        Amount = 1,
+                        BasketId = basketId.Value,
+                        UnitId = unitId,
+                        WasAdded = DateTime.Now
+                    };
+                    UnitOfWork.getBasketItems.AddItem(basketItem);
+                    transact.Commit();
+
+                    UnitOfWork.SaveChanges();
+                    res = "Товар добавлен в корзину";
+                }
+                else
+                {
+                    res = "Такой товар уже добавлен. Смотрите в корзине.";
+                }
             }
             return res;
         }
@@ -197,6 +204,8 @@ namespace BLL.Facade
                     });
                 }
 
+                
+                
                 return res;
             }
             catch (Exception e)
@@ -204,6 +213,8 @@ namespace BLL.Facade
                 throw new ArgumentNullException();
             }
         }
+        
+        
 
         public IUnitOfWork UnitOfWork { get; private set; }
     }

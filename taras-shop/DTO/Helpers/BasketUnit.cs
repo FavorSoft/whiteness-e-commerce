@@ -11,6 +11,5 @@ namespace DTO.Helpers
         public int AmountOnBasket { get; set; }
         public int AmountOnStorage { get; set; }
         public string Size { get; set; }
-        public bool isExist { get; set; }
     }
 }

@@ -272,6 +272,7 @@ namespace taras_shop.Controllers
                                 
                             });
                         }
+                        
                     }
                 }
                 else

@@ -82,11 +82,24 @@ namespace BLL.Providers
 
         public IEnumerable<BasketItemsDto> GetByBasket(BasketDto basket)
         {
-            return _repo.GetEntities().Basket_items.Where(x => x.basket_id == basket.Id).Select(z => new BasketItemsDto()
+            return _repo.GetAll().Where(x => x.basket_id == basket.Id).Select(z => new BasketItemsDto()
             {
                 Id = z.id,
                 Amount = z.amount,
                 BasketId = z.basket_id, 
+                UnitId = z.unit_id,
+                WasAdded = z.was_added,
+                Size = z.size
+            });
+        }
+
+        public IEnumerable<BasketItemsDto> GetByInfo(int unitId, string size, int basketId)
+        {
+            return _repo.GetAll().Where(x => x.unit_id == unitId && x.size == size && x.basket_id == basketId).Select(z => new BasketItemsDto()
+            {
+                Id = z.id,
+                Amount = z.amount,
+                BasketId = z.basket_id,
                 UnitId = z.unit_id,
                 WasAdded = z.was_added,
                 Size = z.size

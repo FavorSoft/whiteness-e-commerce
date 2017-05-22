@@ -1,10 +1,11 @@
-﻿@{
+﻿@model IEnumerable<DTO.Helpers.BasketUnit>
+@{
     ViewBag.Title = "Ordering";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="container">
     <div class="row ordering">
-        <h5 class="routing-h"><a>Главная страница</a> > <a>Женское белье</a> > <a>Трусы</a> > <a>Anabel Arto</a></h5>
+        <h5 class="routing-h"><a>Главная страница</a> > <a>оформление заказа</a></h5>
         <h2 class="admin-header">Оформление заказа</h2>
         <form>
 
@@ -56,7 +57,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        @foreach (var i in Model)
+                        {
+                            <tr>
+                                <td class="image-td">
+                                    <a class="material-icons">clear</a>
+                                    <img src="~/Content/images/Units/womant.jpg" />
+                                </td>
+                                <td>
+                                    <div class="text-basket-preview">
+                                        <h4>Anabel Arto</h4>
+                                        <span>Цвет: бежевый</span>
+                                        <a>Изменить</a>
+                                        <span>Размер:</span>
+                                        <span>S</span>
+                                        <a>Изменить</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control cart-number-input" min="1" value="1" />
+                                </td>
+                                <td>
+                                    <p class="cart-price-p">223.00 грн</p>
+                                </td>
+                                <td>
+                                    <p class="cart-sum-p">223.00 грн</p>
+                                </td>
+                            </tr>
+
+                        }
+                        @*<tr>
                             <td class="image-td">
                                 <a class="material-icons">clear</a>
                                 <img src="~/Content/images/woman.png" />
@@ -80,32 +110,7 @@
                             <td>
                                 <p class="cart-sum-p">223.00 грн</p>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="image-td">
-                                <a class="material-icons">clear</a>
-                                <img src="~/Content/images/woman.png" />
-                            </td>
-                            <td>
-                                <div class="text-basket-preview">
-                                    <h4>Anabel Arto</h4>
-                                    <span>Цвет: бежевый</span>
-                                    <a>Изменить</a>
-                                    <span>Размер:</span>
-                                    <span>S</span>
-                                    <a>Изменить</a>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="number" class="form-control cart-number-input" min="1" value="1" />
-                            </td>
-                            <td>
-                                <p class="cart-price-p">223.00 грн</p>
-                            </td>
-                            <td>
-                                <p class="cart-sum-p">223.00 грн</p>
-                            </td>
-                        </tr>
+                        </tr>*@
                     </tbody>
                 </table>
             </div>

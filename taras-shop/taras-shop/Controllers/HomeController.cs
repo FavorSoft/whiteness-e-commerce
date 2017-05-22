@@ -12,6 +12,7 @@ using BLL.IFacade;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using taras_shop.Controllers.Identity;
+using DTO.Helpers;
 
 namespace taras_shop.Controllers
 {
@@ -186,7 +187,17 @@ namespace taras_shop.Controllers
 
         public ActionResult Ordering()
         {
-            return View();
+            IEnumerable<BasketUnit> res = new List<BasketUnit>();
+            try
+            {
+                res = facade.GetFromBasket(User.Id);
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
+            return View(res);
         }
 
         public ActionResult Page404()
@@ -225,8 +236,6 @@ namespace taras_shop.Controllers
             JsonResult res;
             try{
                 var items = facade.GetFromBasket(User.Id);
-
-                IEnumerable<int> unitIds = items.Select(x => x.Id);
                 
                 res = Json(items, JsonRequestBehavior.AllowGet);
             }

@@ -182,6 +182,8 @@ namespace BLL.Facade
                     size.Add(i.Size);
                     var sizeId = UnitOfWork.getSizes.GetIdsBySizes(size);
 
+                    List<ImagesDto> images = UnitOfWork.getImages.GetByOwner(i.UnitId).ToList();
+
                     int amountFromItemFromDB = unitInfoesToCurrentItem.Where(x => x.SizeId == sizeId.FirstOrDefault()).FirstOrDefault().Amount;
                     int amountFromBasketItems = i.Amount;
 
@@ -200,11 +202,10 @@ namespace BLL.Facade
                         Price = unit.Price,
                         Producer = unit.Producer,
                         Size = i.Size,
-                        Title = unit.Title
+                        Title = unit.Title,
+                        Images = images
                     });
                 }
-
-                
                 
                 return res;
             }
@@ -214,8 +215,6 @@ namespace BLL.Facade
             }
         }
         
-        
-
         public IUnitOfWork UnitOfWork { get; private set; }
     }
 }

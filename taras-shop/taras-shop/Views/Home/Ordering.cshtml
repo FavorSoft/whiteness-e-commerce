@@ -62,11 +62,12 @@
                             <tr>
                                 <td class="image-td">
                                     @*<a class="material-icons">clear</a>*@
-                                    <img src="../../Content/images/@i.Images.FirstOrDefault().Image" />
+                                    <img src="@Url.Content("~/Content/images/Units/" + i.Images.FirstOrDefault().Image)" />
                                 </td>
                                 <td>
                                     <div class="text-basket-preview">
                                         <h4>@i.Title</h4>
+                                        <span>Цвет:</span>
                                         <span>@i.Color</span>
                                         <span>Размер:</span>
                                         <span>@i.Size</span>
@@ -94,31 +95,6 @@
                                 </td>
                             </tr>
                         }
-                        @*<tr>
-                            <td class="image-td">
-                                <a class="material-icons">clear</a>
-                                <img src="~/Content/images/woman.png" />
-                            </td>
-                            <td>
-                                <div class="text-basket-preview">
-                                    <h4>Anabel Arto</h4>
-                                    <span>Цвет: бежевый</span>
-                                    <a>Изменить</a>
-                                    <span>Размер:</span>
-                                    <span>S</span>
-                                    <a>Изменить</a>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="number" class="form-control cart-number-input" min="1" value="1" />
-                            </td>
-                            <td>
-                                <p class="cart-price-p">223.00 грн</p>
-                            </td>
-                            <td>
-                                <p class="cart-sum-p">223.00 грн</p>
-                            </td>
-                        </tr>*@
                     </tbody>
                 </table>
             </div>

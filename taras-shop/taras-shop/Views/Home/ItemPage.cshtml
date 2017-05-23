@@ -6,15 +6,18 @@
 
 <div class="container">
     <div class="row">
-        <h5 class="routing-h"><a>Главная страница</a> > <a>@Model.CategoryType </a> > <a>@Model.category.Category </a> > <a>@Model.unit.Title</a></h5>
+        <h5 class="routing-h"><a href="@Url.Action("Index", "Home")">Главная страница</a> > 
+        <a href="@Url.Action("Index", "Home")#/@Model.category.TypeId/null/null/0/5000/1">@Model.CategoryType </a>
+        > <a href="@Url.Action("Index", "Home")#/@Model.category.TypeId/@Model.category.Category/null/0/5000/1">@Model.category.Category </a>
+        > <a href="#">@Model.unit.Title</a></h5>
         <div id="item-page-block">
             <div class="slider-block col-md-7">
                 <ul class="custom-gallery col-md-12" id="imageGallery">
                     @{
                         foreach (var i in Model.images)
                         {
-                            <li data-thumb="../../Content/images/@i.Image" data-src="../../Content/images/@i.Image">
-                                <img src="../../Content/images/@i.Image" />
+                            <li data-thumb="@Url.Content("~/Content/images/Units/" + i.Image)" data-src="@Url.Content("~/Content/images/Units/" + i.Image)">
+                                <img src="@Url.Content("~/Content/images/Units/" + i.Image)" />
                             </li>
                         }
                     }

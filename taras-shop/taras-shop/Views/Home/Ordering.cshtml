@@ -61,30 +61,38 @@
                         {
                             <tr>
                                 <td class="image-td">
-                                    <a class="material-icons">clear</a>
-                                    <img src="~/Content/images/Units/womant.jpg" />
+                                    @*<a class="material-icons">clear</a>*@
+                                    <img src="../../Content/images/@i.Images.FirstOrDefault().Image" />
                                 </td>
                                 <td>
                                     <div class="text-basket-preview">
-                                        <h4>Anabel Arto</h4>
-                                        <span>Цвет: бежевый</span>
-                                        <a>Изменить</a>
+                                        <h4>@i.Title</h4>
+                                        <span>@i.Color</span>
                                         <span>Размер:</span>
-                                        <span>S</span>
-                                        <a>Изменить</a>
+                                        <span>@i.Size</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control cart-number-input" min="1" value="1" />
+                                    <p class="cart-price-p">@i.AmountOnStorage</p>
                                 </td>
                                 <td>
-                                    <p class="cart-price-p">223.00 грн</p>
+                                    <p class="cart-price-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</p>
                                 </td>
                                 <td>
-                                    <p class="cart-sum-p">223.00 грн</p>
+                                    @if (i.AmountOnBasket < i.AmountOnStorage)
+                                    {
+                                        <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * i.AmountOnBasket) / 100))(@String.Format("{0:F2}", Convert.ToDouble(i.Price)/100) * @i.AmountOnBasket)</p>
+                                    }
+                                    else if (i.AmountOnStorage > 0)
+                                    {
+                                        <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * i.AmountOnStorage) / 100))(@String.Format("{0:F2}", Convert.ToDouble(i.Price)/100) * @i.AmountOnStorage)</p>
+                                    }
+                                    else
+                                    {
+                                        <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * 0)))(@String.Format("{0:F2}", Convert.ToDouble(i.Price)/100) * 0)</p>
+                                    }
                                 </td>
                             </tr>
-
                         }
                         @*<tr>
                             <td class="image-td">

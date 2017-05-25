@@ -13,13 +13,14 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using taras_shop.Controllers.Identity;
 using DTO.Helpers;
+using Newtonsoft.Json;
 
 namespace taras_shop.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(IUnitOfWork uow):base(uow) { }
-     
+        public HomeController(IUnitOfWork uow) : base(uow) { }
+
         public async Task<ActionResult> Index()
         {
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
@@ -66,7 +67,7 @@ namespace taras_shop.Controllers
 
             List<int> sizeIds = ChoiceSizes(sizes.Split(',').ToList());
 
-            SearchModels model = GetArticles(categories, sizeIds, fromPrice*100, toPrice*100, page, amountItems);
+            SearchModels model = GetArticles(categories, sizeIds, fromPrice * 100, toPrice * 100, page, amountItems);
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -102,7 +103,7 @@ namespace taras_shop.Controllers
 
             return res;
         }
-        
+
         private SearchModels GetArticles(List<int> categoryIds, List<int> sizeIds, int fromPrice, int toPrice, int page, int amountItems)
         {
             SearchModels model = new SearchModels();
@@ -144,12 +145,12 @@ namespace taras_shop.Controllers
                 Category = x.category.Category
 
             }).ToList();
-            
+
             model.PageInfo = new PageInfo();
             model.PageInfo.PageNumber = page;
             model.PageInfo.PageSize = 8;
             model.PageInfo.TotalItems = amount;
-            
+
             return model;
         }
         #endregion
@@ -160,7 +161,7 @@ namespace taras_shop.Controllers
         public string AddToBasket(int Id, string size)
         {
             string res = facade.AddItemToBasket(Id, size, User.Id);
-            
+
             return res;
         }
 
@@ -170,7 +171,7 @@ namespace taras_shop.Controllers
             var res = new { popular = facade.GetPopularArticles(4), recommends = facade.GetRecommendsArticles(4) };
             return Json(res, JsonRequestBehavior.AllowGet);
         }
-        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -194,9 +195,9 @@ namespace taras_shop.Controllers
             }
             catch (Exception e)
             {
-                
+
             }
-            
+
             return View(res);
         }
 
@@ -210,7 +211,7 @@ namespace taras_shop.Controllers
             var res = new ItemPageModels(facade.GetArticleById(id));
 
             res.CategoryType = facade.UnitOfWork.getCategoryType.GetById(res.category.TypeId).Type;
-            
+
             return View(res);
         }
 
@@ -226,24 +227,39 @@ namespace taras_shop.Controllers
             }
             catch (Exception)
             {
-                
+
             }
             return View(res as object);
         }
         [HttpGet]
         public ActionResult GetItemsFromBasket()
         {
-            JsonResult res;
-            try{
-                var items = facade.GetFromBasket(User.Id);
-                
-                res = Json(items, JsonRequestBehavior.AllowGet);
+            IEnumerable<BasketUnit> list = new List<BasketUnit>();
+            try
+            {
+                list = facade.GetFromBasket(User.Id);
             }
             catch (Exception e)
             {
-                res = Json(false, JsonRequestBehavior.AllowGet);
+
             }
-            return res;
+            return PartialView("ShoppingItem", list);
+        }
+
+        [HttpGet]//We will have info from local storage
+        public ActionResult GetItemsByBasket(String json)
+        {
+            IEnumerable<BasketUnit> list = new List<BasketUnit>();
+            try
+            {
+                List<ItemInLocalStorage> items = JsonConvert.DeserializeObject<List<ItemInLocalStorage>>(json);
+                list = facade.GetFromBasket(items);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return PartialView("ShoppingItem", list);
         }
 
         public ActionResult ToOrder()
@@ -278,21 +294,21 @@ namespace taras_shop.Controllers
                                 Amount = item.Amount,
                                 OrderId = order.Id,
                                 Price = unitPrice ?? 0,
-                                
+
                             });
                         }
-                        
+
                     }
                 }
                 else
                 {
-                    return Json("Ваша корзина пуста.", JsonRequestBehavior.AllowGet);
+                    return Json("???? ??????? ?????.", JsonRequestBehavior.AllowGet);
                 }
 
-                
+
             }
-            
-            return Json("Ошибка транзакции", JsonRequestBehavior.AllowGet);
+
+            return Json("?????? ??????????", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Search()

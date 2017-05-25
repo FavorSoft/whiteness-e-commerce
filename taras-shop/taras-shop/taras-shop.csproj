@@ -237,6 +237,7 @@
     <Content Include="Views\Shared\NotAuth.cshtml" />
     <Content Include="Scripts\app\.babelrc" />
     <Content Include="Scripts\app\package.json" />
+    <Content Include="Views\Home\ShoppingItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

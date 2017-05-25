@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 
 export default class ShoppingCart extends Component {
     constructor(props) {
-        console.log(props["auth"]);
         super(props);
         this.state = {
             auth: props["auth"],
@@ -11,43 +10,47 @@ export default class ShoppingCart extends Component {
         };
         this.renderCartUnits = this.renderCartUnits.bind(this);
     }
-    
-    componentDidMount() {
-        
-        let cartUnits = JSON.parse(localStorage.getItem("items"));
 
-        console.log("Auth = " + this.state.auth);
+    componentDidMount() {
+        let cartUnits;
         if (this.state.auth == "true") {
             var request;
-            console.log("start get");
             $.get("/Home/GetItemsFromBasket", request, (response) => {
-                console.log(response);
+                cartUnits = response;
+                if (cartUnits) {
+                    this.setState({ cartUnits });
+                }
+                else {
+                    this.setState({ emptyLocalStorage: true });
+                }
             });
         }
-        else
-        {
-            cartUnits = JSON.parse(localStorage.getItem("items"));
-        }
-
-        console.log(cartUnits);
-        if (cartUnits) {
-            this.setState({ cartUnits });
-        }
         else {
-            this.setState({ emptyLocalStorage: true });
+            let tmp = localStorage.getItem("items");
+
+            $.get("/Home/GetItemsByBasket", { json: tmp }, (response) => {
+                cartUnits = response;
+                if (cartUnits) {
+                    this.setState({ cartUnits });
+                }
+                else {
+                    this.setState({ emptyLocalStorage: true });
+                }
+            });
         }
     }
 
     renderCartUnits() {
-        if(!this.state.emptyLocalStorage && this.state.cartUnits) {
+        if (!this.state.emptyLocalStorage && this.state.cartUnits) {
             let unitList;
-            
-            return unitList = this.state.cartUnits.map((unit) => {
-                console.log(unit.Price);
-                return (
-                    <CartUnit key={unit.Id} props={unit} title={unit.Title} color={unit.Color} price={unit.Price} />
-                );
-            });
+            let res = this.state.cartUnits.slice(1, -1);
+            return this.state.cartUnits;
+            //unitList = this.state.cartUnits.map((unit) => {
+            //    console.log(unit.Price);
+            //    return (
+            //        <CartUnit key={unit.Id} props={unit} title={unit.Title} color={unit.Color} price={unit.Price} />
+            //    );
+            //});
         }
         else {
             return null;
@@ -58,31 +61,19 @@ export default class ShoppingCart extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h2 className="admin-header">Ваша Корзина</h2>
-                    <div className="table-responsive">
-                        <table className="table cart-table">
-                            <thead>
-                                <tr>
-                                    <th>Товар</th>
-                                    <th>Подробности</th>
-                                    <th>Количество</th>
-                                    <th>Цена</th>
-                                    <th>Сумма</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                { this.renderCartUnits() }
-                            </tbody>
-                        </table>
+                    <h2 className="admin-header">Ваша корзина</h2>
+                    <div className="table-responsive" dangerouslySetInnerHTML={{
+                        __html: this.renderCartUnits()
+                    }}>
+
                     </div>
-                    <Summary />
                 </div>
             </div>
         );
     }
 }
 
-class CartUnit extends React.Component  {
+class CartUnit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -118,22 +109,20 @@ class CartUnit extends React.Component  {
                 </td>
                 <td>
                     <div className="text-basket-preview">
-                        <h4>{ this.props.title }</h4>
-                        <span>Цвет: { this.props.color }</span>
-                        {/*<a>Изменить</a>*/}
-                        <span>Размер:</span>
+                        <h4>{this.props.title}</h4>
+                        <span>????: {this.props.color}</span>
+                        <span>??????:</span>
                         <span>S</span>
-                        {/*<a>Изменить</a>*/}
                     </div>
                 </td>
                 <td>
-                    <input onChange={ this.handleChange } type="number" className="form-control cart-number-input" min="1" value={ this.state.number } />
+                    <input onChange={this.handleChange} type="number" className="form-control cart-number-input" min="1" value={this.state.number} />
                 </td>
                 <td>
-                    <p className="cart-price-p">{ this.priceCheck(this.props.price) } грн</p>
+                    <p className="cart-price-p">{this.priceCheck(this.props.price)} ???</p>
                 </td>
                 <td>
-                    <p className="cart-sum-p">{ (this.state.number * this.priceCheck(this.props.price)).toFixed(2) } грн</p>
+                    <p className="cart-sum-p">{(this.state.number * this.priceCheck(this.props.price)).toFixed(2)} ???</p>
                 </td>
             </tr>
         );
@@ -141,24 +130,24 @@ class CartUnit extends React.Component  {
 }
 
 const Summary = (summaryCost, deliveryPrice) => {
-    return (
-        <div className="text-basket-preview-right">
-            <div className="col-md-4 col-md-offset-4 cart-sum-block">
-                <div className="overall-cost">
-                    <span>Общая стоимость товаров: </span>
-                    <span className="basket-preview-prices">234.85 грн</span>
-                </div>
-                <div className="delivery-cost">
-                    <span>Доставка: </span>
-                    <span className="basket-preview-prices">30.00 грн</span>
-                </div>
-                <div className="main-prices">
-                    <h4 className="basket-sum">Сумма: </h4>
-                    <span className="basket-preview-prices">264.85 грн</span>
-                </div>
-                <button className="frequent-button buy-button">Оформить заказ</button>
-                <button className="frequent-button">Продолжить покупки</button>
-            </div>
-        </div>
+    return (""
+        //<div className="text-basket-preview-right">
+        //    <div className="col-md-4 col-md-offset-4 cart-sum-block">
+        //        <div className="overall-cost">
+        //            <span>????? ????????? ???????: </span>
+        //            <span className="basket-preview-prices">234.85 ???</span>
+        //        </div>
+        //        <div className="delivery-cost">
+        //            <span>????????: </span>
+        //            <span className="basket-preview-prices">30.00 ???</span>
+        //        </div>
+        //        <div className="main-prices">
+        //            <h4 className="basket-sum">?????: </h4>
+        //            <span className="basket-preview-prices">264.85 ???</span>
+        //        </div>
+        //        <button className="frequent-button buy-button">???????? ?????</button>
+        //        <button className="frequent-button">?????????? ???????</button>
+        //    </div>
+        //</div>
     );
 }

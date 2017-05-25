@@ -68,7 +68,7 @@ namespace BLL.Facade
             var units = UnitOfWork.getUnit.GetPopular(count);
             return ConvertUnitsToArticles(units.ToList(), UnitOfWork.getImages.GetByOwners(units.Select(x => x.Id).ToArray()).ToList());
         }
-        
+
         public IEnumerable<Article> GetRecommendsArticles(int count)
         {
             List<Article> res = new List<Article>();
@@ -113,7 +113,7 @@ namespace BLL.Facade
             }
             catch (Exception)
             {
-                res = "Выбранного размера нету в наличии";
+                res = "?????????? ??????? ???? ? ???????";
                 return res;
             }
 
@@ -134,12 +134,12 @@ namespace BLL.Facade
                     transact.Commit();
                     UnitOfWork.SaveChanges();
                     basketId = UnitOfWork.getBasket.GetByOwner(userId).Id;
-                }   
-                catch(Exception e)
-                {
-                    res = "Что-то пошло не так.";
                 }
-                
+                catch (Exception e)
+                {
+                    res = "???-?? ????? ?? ???.";
+                }
+
                 if (UnitOfWork.getBasketItems.GetByInfo(unitId, size, basketId.Value).Count() == 0)
                 {
                     var basketItem = new BasketItemsDto()
@@ -154,11 +154,11 @@ namespace BLL.Facade
                     transact.Commit();
 
                     UnitOfWork.SaveChanges();
-                    res = "Товар добавлен в корзину";
+                    res = "????? ???????? ? ???????";
                 }
                 else
                 {
-                    res = "Такой товар уже добавлен. Смотрите в корзине.";
+                    res = "????? ????? ??? ????????. ???????? ? ???????.";
                 }
             }
             return res;
@@ -173,7 +173,7 @@ namespace BLL.Facade
                 var basketItems = UnitOfWork.getBasketItems.GetByBasket(basket).ToList();
                 var units = UnitOfWork.getUnit.GetByIds(basketItems.Select(x => x.UnitId).ToList());
                 var unitInfoes = UnitOfWork.getUnitInfo.GetByOwners(units.Select(x => x.Id).ToArray());
-                
+
                 foreach (var i in basketItems)
                 {
                     var unit = units.Where(x => x.Id == i.UnitId).FirstOrDefault();
@@ -203,10 +203,10 @@ namespace BLL.Facade
                         Producer = unit.Producer,
                         Size = i.Size,
                         Title = unit.Title,
-                        Images = images
+                        Image = images.FirstOrDefault()
                     });
                 }
-                
+
                 return res;
             }
             catch (Exception e)
@@ -214,7 +214,56 @@ namespace BLL.Facade
                 throw new ArgumentNullException();
             }
         }
-        
+
+        public IEnumerable<BasketUnit> GetFromBasket(List<ItemInLocalStorage> items)
+        {
+            List<BasketUnit> res = new List<BasketUnit>();
+            try
+            {
+                List<UnitDto> units = UnitOfWork.getUnit.GetByIds(items.Select(x => x.Id).ToList()).ToList();
+                List<UnitInfoDto> unitsInfo = UnitOfWork.getUnitInfo.GetByOwners(items.Select(x => x.Id).ToArray()).ToList();
+                List<SizesDto> sizes = UnitOfWork.getSizes.GetAll().ToList();
+                foreach (var i in items)
+                {
+                    int sizeId = sizes.Where(x => x.Size == i.Size).Select(x => x.Id).FirstOrDefault();
+                    UnitDto unit = units.Where(x => x.Id == i.Id).FirstOrDefault();
+                    int storageAmount = 0;
+                    try
+                    {
+                        UnitInfoDto unitInfo = unitsInfo.Where(x => x.UnitId == i.Id && x.SizeId == sizeId).FirstOrDefault();
+                        storageAmount = unitInfo.Amount;
+                    }
+                    catch (NullReferenceException e)
+                    {
+                    }
+                    res.Add(new BasketUnit()
+                    {
+                        Id = unit.Id,
+                        Title = unit.Title,
+                        Size = i.Size,
+                        AddUnitDate = unit.AddUnitDate,
+                        AmountOnBasket = i.Amount,
+                        AmountOnStorage = storageAmount,
+                        CategoryId = unit.CategoryId,
+                        Color = unit.Color,
+                        Description = unit.Description,
+                        Image = UnitOfWork.getImages.GetByOwner(unit.Id).FirstOrDefault(),
+                        Likes = unit.Likes,
+                        Material = unit.Material,
+                        OldPrice = unit.OldPrice,
+                        Price = unit.Price,
+                        Producer = unit.Producer
+                    });
+                }
+
+                return res;
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
         public IUnitOfWork UnitOfWork { get; private set; }
     }
 }

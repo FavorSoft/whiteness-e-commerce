@@ -230,8 +230,13 @@ function addToBasket() {
     });
 }
 
-function addToCart(item) {
+function addToCart(unitId) {
     var items = JSON.parse(localStorage.getItem("items"));
+    var id = unitId;
+    var size = $("#sizes-radio input:checked").val();
+    var amount = 1;
+    var item = { Id: id, Size: size, Amount: amount };
+
     var done = document.createElement("div");
     var addButton = document.querySelector("#add-to-cart");
     var isEqual = true;

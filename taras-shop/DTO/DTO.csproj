@@ -47,6 +47,7 @@
     <Compile Include="Helpers\Categories.cs" />
     <Compile Include="Helpers\CategoryType.cs" />
     <Compile Include="Helpers\Images.cs" />
+    <Compile Include="Helpers\ItemInLocalStorage.cs" />
     <Compile Include="Helpers\News.cs" />
     <Compile Include="Helpers\NewsImages.cs" />
     <Compile Include="Helpers\Order.cs" />

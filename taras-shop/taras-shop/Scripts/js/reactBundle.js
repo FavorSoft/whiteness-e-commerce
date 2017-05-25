@@ -22843,8 +22843,6 @@
 	    function ShoppingCart(props) {
 	        _classCallCheck(this, ShoppingCart);
 
-	        console.log(props["auth"]);
-
 	        var _this = _possibleConstructorReturn(this, (ShoppingCart.__proto__ || Object.getPrototypeOf(ShoppingCart)).call(this, props));
 
 	        _this.state = {
@@ -22859,25 +22857,30 @@
 	    _createClass(ShoppingCart, [{
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
+	            var _this2 = this;
 
-	            var cartUnits = JSON.parse(localStorage.getItem("items"));
-
-	            console.log("Auth = " + this.state.auth);
+	            var cartUnits = void 0;
 	            if (this.state.auth == "true") {
 	                var request;
-	                console.log("start get");
 	                $.get("/Home/GetItemsFromBasket", request, function (response) {
-	                    console.log(response);
+	                    cartUnits = response;
+	                    if (cartUnits) {
+	                        _this2.setState({ cartUnits: cartUnits });
+	                    } else {
+	                        _this2.setState({ emptyLocalStorage: true });
+	                    }
 	                });
 	            } else {
-	                cartUnits = JSON.parse(localStorage.getItem("items"));
-	            }
+	                var tmp = localStorage.getItem("items");
 
-	            console.log(cartUnits);
-	            if (cartUnits) {
-	                this.setState({ cartUnits: cartUnits });
-	            } else {
-	                this.setState({ emptyLocalStorage: true });
+	                $.get("/Home/GetItemsByBasket", { json: tmp }, function (response) {
+	                    cartUnits = response;
+	                    if (cartUnits) {
+	                        _this2.setState({ cartUnits: cartUnits });
+	                    } else {
+	                        _this2.setState({ emptyLocalStorage: true });
+	                    }
+	                });
 	            }
 	        }
 	    }, {
@@ -22885,11 +22888,14 @@
 	        value: function renderCartUnits() {
 	            if (!this.state.emptyLocalStorage && this.state.cartUnits) {
 	                var unitList = void 0;
-
-	                return unitList = this.state.cartUnits.map(function (unit) {
-	                    console.log(unit.Price);
-	                    return _react2.default.createElement(CartUnit, { key: unit.Id, props: unit, title: unit.Title, color: unit.Color, price: unit.Price });
-	                });
+	                var res = this.state.cartUnits.slice(1, -1);
+	                return this.state.cartUnits;
+	                //unitList = this.state.cartUnits.map((unit) => {
+	                //    console.log(unit.Price);
+	                //    return (
+	                //        <CartUnit key={unit.Id} props={unit} title={unit.Title} color={unit.Color} price={unit.Price} />
+	                //    );
+	                //});
 	            } else {
 	                return null;
 	            }
@@ -22906,55 +22912,11 @@
 	                    _react2.default.createElement(
 	                        "h2",
 	                        { className: "admin-header" },
-	                        "\u0412\u0430\u0448\u0430 \u041A\u043E\u0440\u0437\u0438\u043D\u0430"
+	                        "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430"
 	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "table-responsive" },
-	                        _react2.default.createElement(
-	                            "table",
-	                            { className: "table cart-table" },
-	                            _react2.default.createElement(
-	                                "thead",
-	                                null,
-	                                _react2.default.createElement(
-	                                    "tr",
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        "th",
-	                                        null,
-	                                        "\u0422\u043E\u0432\u0430\u0440"
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        "th",
-	                                        null,
-	                                        "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0441\u0442\u0438"
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        "th",
-	                                        null,
-	                                        "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        "th",
-	                                        null,
-	                                        "\u0426\u0435\u043D\u0430"
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        "th",
-	                                        null,
-	                                        "\u0421\u0443\u043C\u043C\u0430"
-	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                "tbody",
-	                                null,
-	                                this.renderCartUnits()
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(Summary, null)
+	                    _react2.default.createElement("div", { className: "table-responsive", dangerouslySetInnerHTML: {
+	                            __html: this.renderCartUnits()
+	                        } })
 	                )
 	            );
 	        }
@@ -22971,14 +22933,14 @@
 	    function CartUnit(props) {
 	        _classCallCheck(this, CartUnit);
 
-	        var _this2 = _possibleConstructorReturn(this, (CartUnit.__proto__ || Object.getPrototypeOf(CartUnit)).call(this, props));
+	        var _this3 = _possibleConstructorReturn(this, (CartUnit.__proto__ || Object.getPrototypeOf(CartUnit)).call(this, props));
 
-	        _this2.state = {
+	        _this3.state = {
 	            number: 1
 	        };
-	        _this2.priceCheck = _this2.priceCheck.bind(_this2);
-	        _this2.handleChange = _this2.handleChange.bind(_this2);
-	        return _this2;
+	        _this3.priceCheck = _this3.priceCheck.bind(_this3);
+	        _this3.handleChange = _this3.handleChange.bind(_this3);
+	        return _this3;
 	    }
 
 	    _createClass(CartUnit, [{
@@ -23029,13 +22991,13 @@
 	                        _react2.default.createElement(
 	                            "span",
 	                            null,
-	                            "\u0426\u0432\u0435\u0442: ",
+	                            "????: ",
 	                            this.props.color
 	                        ),
 	                        _react2.default.createElement(
 	                            "span",
 	                            null,
-	                            "\u0420\u0430\u0437\u043C\u0435\u0440:"
+	                            "??????:"
 	                        ),
 	                        _react2.default.createElement(
 	                            "span",
@@ -23056,7 +23018,7 @@
 	                        "p",
 	                        { className: "cart-price-p" },
 	                        this.priceCheck(this.props.price),
-	                        " \u0433\u0440\u043D"
+	                        " ???"
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -23066,7 +23028,7 @@
 	                        "p",
 	                        { className: "cart-sum-p" },
 	                        (this.state.number * this.priceCheck(this.props.price)).toFixed(2),
-	                        " \u0433\u0440\u043D"
+	                        " ???"
 	                    )
 	                )
 	            );
@@ -23077,66 +23039,26 @@
 	}(_react2.default.Component);
 
 	var Summary = function Summary(summaryCost, deliveryPrice) {
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "text-basket-preview-right" },
-	        _react2.default.createElement(
-	            "div",
-	            { className: "col-md-4 col-md-offset-4 cart-sum-block" },
-	            _react2.default.createElement(
-	                "div",
-	                { className: "overall-cost" },
-	                _react2.default.createElement(
-	                    "span",
-	                    null,
-	                    "\u041E\u0431\u0449\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u043E\u0432: "
-	                ),
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "basket-preview-prices" },
-	                    "234.85 \u0433\u0440\u043D"
-	                )
-	            ),
-	            _react2.default.createElement(
-	                "div",
-	                { className: "delivery-cost" },
-	                _react2.default.createElement(
-	                    "span",
-	                    null,
-	                    "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430: "
-	                ),
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "basket-preview-prices" },
-	                    "30.00 \u0433\u0440\u043D"
-	                )
-	            ),
-	            _react2.default.createElement(
-	                "div",
-	                { className: "main-prices" },
-	                _react2.default.createElement(
-	                    "h4",
-	                    { className: "basket-sum" },
-	                    "\u0421\u0443\u043C\u043C\u0430: "
-	                ),
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "basket-preview-prices" },
-	                    "264.85 \u0433\u0440\u043D"
-	                )
-	            ),
-	            _react2.default.createElement(
-	                "button",
-	                { className: "frequent-button buy-button" },
-	                "\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437"
-	            ),
-	            _react2.default.createElement(
-	                "button",
-	                { className: "frequent-button" },
-	                "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438"
-	            )
-	        )
-	    );
+	    return ""
+	    //<div className="text-basket-preview-right">
+	    //    <div className="col-md-4 col-md-offset-4 cart-sum-block">
+	    //        <div className="overall-cost">
+	    //            <span>????? ????????? ???????: </span>
+	    //            <span className="basket-preview-prices">234.85 ???</span>
+	    //        </div>
+	    //        <div className="delivery-cost">
+	    //            <span>????????: </span>
+	    //            <span className="basket-preview-prices">30.00 ???</span>
+	    //        </div>
+	    //        <div className="main-prices">
+	    //            <h4 className="basket-sum">?????: </h4>
+	    //            <span className="basket-preview-prices">264.85 ???</span>
+	    //        </div>
+	    //        <button className="frequent-button buy-button">???????? ?????</button>
+	    //        <button className="frequent-button">?????????? ???????</button>
+	    //    </div>
+	    //</div>
+	    ;
 	};
 
 /***/ }),

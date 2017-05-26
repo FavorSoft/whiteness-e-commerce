@@ -205,23 +205,40 @@ foreign key (unit_id)
 references Unit(id)
 
 /* create Order table*/
-create table [Order]
-(
-    id int not null identity(1,1),
-    user_id int not null,
-	order_date datetime not null
+
+CREATE TABLE [dbo].[Order] (
+    [id]         INT      IDENTITY (1, 1) NOT NULL,
+    [user_id]    INT      NULL,
+    [order_date] DATETIME NOT NULL,
+	[country] nvarchar(128) NOT NULL,
+	[region] nvarchar(128) NOT NULL,
+	[city] nvarchar(128) NOT NULL,
+	[name] nvarchar(128) NULL,
+	[surname] nvarchar(128) NULL,
+	[email] nvarchar(128) NULL,
+	[phone] nvarchar(128) NULL,
+    CONSTRAINT [pk_order_id] PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [fk_o_user_id] FOREIGN KEY ([user_id]) REFERENCES [dbo].[Users] ([id])
 );
-/*  */
 
-/* alter Order table*/
-alter table [Order]
-add constraint pk_order_id
-primary key (id)
 
-alter table [Order]
-add constraint fk_o_user_id
-foreign key (user_id)
-references Users(id)
+--create table [Order]
+--(
+--    id int not null identity(1,1),
+--    user_id int not null,
+--	order_date datetime not null
+--);
+--/*  */
+
+--/* alter Order table*/
+--alter table [Order]
+--add constraint pk_order_id
+--primary key (id)
+
+--alter table [Order]
+--add constraint fk_o_user_id
+--foreign key (user_id)
+--references Users(id)
 
 /* create [Order_items] table*/
 create table [Order_items]

@@ -1,47 +1,24 @@
-﻿@model IEnumerable<DTO.Helpers.BasketUnit>
+﻿@model taras_shop.Models.OrderingModels
 @{
     ViewBag.Title = "Ordering";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="container">
     <div class="row ordering">
-        <h5 class="routing-h"><a>Главная страница</a> > <a>оформление заказа</a></h5>
+        <h5 class="routing-h"><a href="@Url.Action("Index", "Home")">Главная страница</a> > <a>оформление заказа</a></h5>
         <h2 class="admin-header">Оформление заказа</h2>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Partial("OrderDataAuth", Model.UserData)
+            
+        }
+        else
+        {
+            @Html.Partial("_LoginPartial")
+        }
         <form>
 
-            <h4 class="ordering-subheader">Личные данные</h4>
-
-            <div class="form-group">
-                <label for="ordering-name">Имя:</label>
-                <input id="ordering-name" class="ordering-input" />
-            </div>
-            <div class="form-group">
-                <label for="ordering-surname">Фамилия:</label>
-                <input id="ordering-surname" class="ordering-input" />
-            </div>
-            <div class="form-group">
-                <label for="ordering-email">E-Mail:</label>
-                <input id="ordering-email" class="ordering-input" />
-            </div>
-            <div class="form-group">
-                <label for="ordering-phone">Телефон:</label>
-                <input id="ordering-phone" class="ordering-input" />
-            </div>
-
-            <h4 class="ordering-subheader">Адрес доставки</h4>
-
-            <div class="form-group">
-                <label for="ordering-region">Область:</label>
-                <input id="ordering-region" class="ordering-input" />
-            </div>
-            <div class="form-group">
-                <label for="ordering-city">Город:</label>
-                <input id="ordering-city" class="ordering-input" />
-            </div>
-            <div class="form-group">
-                <label for="ordering-delivery">Отделение Новой Почты:</label>
-                <input id="ordering-delievery" class="ordering-input" />
-            </div>
+            
 
             <h2 class="admin-header">Ваша Корзина</h2>
 
@@ -57,12 +34,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var i in Model)
+                        @foreach (var i in Model.Units)
                         {
                             <tr>
                                 <td class="image-td">
                                     @*<a class="material-icons">clear</a>*@
-                                    <img src="@Url.Content("~/Content/images/Units/" + i.Images.FirstOrDefault().Image)" />
+                                    <img src="@Url.Content("~/Content/images/Units/" + i.Image.Image)" />
                                 </td>
                                 <td>
                                     <div class="text-basket-preview">
@@ -102,7 +79,7 @@
                 <div class="col-md-4 col-md-offset-4 cart-sum-block">
                     <div class="overall-cost">
                         <span>Общая стоимость товаров: </span>
-                        <span class="basket-preview-prices">234.85 грн</span>
+                        <span class="basket-preview-prices">@(String.Format("{0:F2}", Convert.ToDouble(Model.SumPrice) / 100)) грн</span>
                     </div>
                     <div class="delivery-cost">
                         <span>Доставка: </span>
@@ -110,7 +87,7 @@
                     </div>
                     <div class="main-prices">
                         <h4 class="basket-sum">Сумма: </h4>
-                        <span class="basket-preview-prices">264.85 грн</span>
+                        <span class="basket-preview-prices">@(String.Format("{0:F2}", Convert.ToDouble(Model.SumPrice + 3000) / 100)) грн</span>
                     </div>
                 </div>
             </div>

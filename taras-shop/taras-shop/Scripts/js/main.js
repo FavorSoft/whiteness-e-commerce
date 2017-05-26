@@ -169,11 +169,11 @@ $(document).ready(function () {
     });
     
     $("#basket-result").bind("DOMSubtreeModified", function () {
-        if ($("#successAuth").length != 0) {
-            window.location.reload();
+        if ($("#successOrder").length != 0) {
+            
         }
     });
-    
+
     function getBasketInfo() {
         $.ajax({
             method: "GET",

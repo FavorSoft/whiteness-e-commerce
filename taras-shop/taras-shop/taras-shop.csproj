@@ -239,6 +239,8 @@
     <Content Include="Scripts\app\.babelrc" />
     <Content Include="Scripts\app\package.json" />
     <Content Include="Views\Home\ShoppingItem.cshtml" />
+    <Content Include="Views\Shared\OrderSuccess.cshtml" />
+    <Content Include="Views\Shared\OrderDataAuth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

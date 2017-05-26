@@ -1195,7 +1195,7 @@ body .modal-content .modal-body .frequent-button:hover {
         font-size: 21px;
         text-transform: uppercase;
         padding: 0px 25px 25px 45px;
-        margin: 10px auto;/*point*/
+        margin: 10px auto; /*point*/
         height: 0px;
         z-index: 9;
         cursor: pointer;
@@ -1251,7 +1251,7 @@ input[type=radio]:checked ~ label {
     color: #000;
 }
 
-#reg-tab form .radio-list{
+#reg-tab form .radio-list {
     height: 100px;
 }
 
@@ -1632,10 +1632,14 @@ td .cart-number-input {
         margin-bottom: 50px;
     }
 
-.cart-sum-block .basket-sum + span {
-    padding-top: 7px;
-    font-weight: bold;
+.cart-sum-block {
+    margin-bottom: 7px;
 }
+
+    .cart-sum-block .basket-sum + span {
+        padding-top: 7px;
+        font-weight: bold;
+    }
 
 /* Shopping Cart block end */
 

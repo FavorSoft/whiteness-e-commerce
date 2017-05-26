@@ -188,17 +188,32 @@ namespace taras_shop.Controllers
 
         public ActionResult Ordering()
         {
-            IEnumerable<BasketUnit> res = new List<BasketUnit>();
-            try
+            OrderingModels model = new OrderingModels()
             {
-                res = facade.GetFromBasket(User.Id);
-            }
-            catch (Exception e)
+                Units = new List<BasketUnit>(),
+                SumPrice = 0
+            };
+
+            if (User.Identity.IsAuthenticated)
             {
+                try
+                {
+                    model.Units = facade.GetFromBasket(User.Id);
+                    int sum = model.Units.Select(x => x.Price * x.AmountOnBasket).Sum().Value;
+                    model.SumPrice = sum;
+                }
+                catch (Exception e)
+                {
 
+                }
+            }
+            else
+            {
+                string json = Request.Form["request"];
+                JsonConvert.DeserializeObject<List<ItemInLocalStorage>>(json);
             }
 
-            return View(res);
+            return View(model);
         }
 
         public ActionResult Page404()
@@ -255,7 +270,6 @@ namespace taras_shop.Controllers
         [HttpGet]//We will have info from local storage
         public ActionResult GetItemsByBasket(String json)
         {
-            
             ShoppingModel model = new ShoppingModel()
             {
                 Units = new List<BasketUnit>(),
@@ -316,21 +330,21 @@ namespace taras_shop.Controllers
                                 Amount = item.Amount,
                                 OrderId = order.Id,
                                 Price = unitPrice ?? 0,
-
+                                Size = item.Size
                             });
                         }
-
+                        transact.Commit();
+                        facade.UnitOfWork.SaveChanges();
+                        return Json(true, JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
                 {
-                    return Json("???? ??????? ?????.", JsonRequestBehavior.AllowGet);
+                    return Json("Ваша корзина пустая.", JsonRequestBehavior.AllowGet);
                 }
-
-
             }
 
-            return Json("?????? ??????????", JsonRequestBehavior.AllowGet);
+            return Json("error", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Search()

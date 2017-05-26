@@ -234,32 +234,54 @@ namespace taras_shop.Controllers
         [HttpGet]
         public ActionResult GetItemsFromBasket()
         {
-            IEnumerable<BasketUnit> list = new List<BasketUnit>();
+            ShoppingModel model = new ShoppingModel()
+            {
+                SumPrice = 0,
+                Units = new List<BasketUnit>()
+            };
             try
             {
-                list = facade.GetFromBasket(User.Id);
+                model.Units = facade.GetFromBasket(User.Id);
+                int sum = model.Units.Select(x => x.Price * x.AmountOnBasket).Sum().Value;
+                model.SumPrice = sum;
             }
             catch (Exception e)
             {
 
             }
-            return PartialView("ShoppingItem", list);
+            return PartialView("ShoppingItem", model);
         }
 
         [HttpGet]//We will have info from local storage
         public ActionResult GetItemsByBasket(String json)
         {
-            IEnumerable<BasketUnit> list = new List<BasketUnit>();
+            
+            ShoppingModel model = new ShoppingModel()
+            {
+                Units = new List<BasketUnit>(),
+                SumPrice = 0
+            };
             try
             {
                 List<ItemInLocalStorage> items = JsonConvert.DeserializeObject<List<ItemInLocalStorage>>(json);
-                list = facade.GetFromBasket(items);
+                model.Units = facade.GetFromBasket(items);
+                int sum = model.Units.Select(x => x.Price * x.AmountOnBasket).Sum().Value;
+                model.SumPrice = sum;
             }
             catch (Exception e)
             {
 
             }
-            return PartialView("ShoppingItem", list);
+            return PartialView("ShoppingItem", model);
+        }
+
+        public ActionResult DeleteItemFromBasket(int id, string size)
+        {
+            int userId = User.Id;
+
+            facade.DeleteFromBasket(id, size, userId);
+            
+            return View("Index");
         }
 
         public ActionResult ToOrder()

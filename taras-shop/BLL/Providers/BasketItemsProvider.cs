@@ -105,5 +105,12 @@ namespace BLL.Providers
                 Size = z.size
             });
         }
+        public void DeleteByInfo(int unitId, string size, int basketId)
+        {
+            _repo.DeleteItem(
+                _repo.GetAll().Where(x => x.basket_id == basketId 
+                && x.size == size 
+                && x.unit_id == unitId).FirstOrDefault().id);
+        }
     }
 }

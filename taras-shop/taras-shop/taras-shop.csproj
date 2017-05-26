@@ -113,6 +113,7 @@
     <Compile Include="Models\ItemPageModels.cs" />
     <Compile Include="Models\OrderingModels.cs" />
     <Compile Include="Models\SearchModels.cs" />
+    <Compile Include="Models\ShoppingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,5 +11,6 @@ namespace BLL.IProviders
     {
         IEnumerable<BasketItemsDto> GetByBasket(BasketDto basket);
         IEnumerable<BasketItemsDto> GetByInfo(int unitId, string size, int basketId);
+        void DeleteByInfo(int unitId, string size, int basketId);
     }
 }

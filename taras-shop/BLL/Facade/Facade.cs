@@ -113,7 +113,7 @@ namespace BLL.Facade
             }
             catch (Exception)
             {
-                res = "?????????? ??????? ???? ? ???????";
+                res = "Выбранного размера нету в наличиию";
                 return res;
             }
 
@@ -137,7 +137,7 @@ namespace BLL.Facade
                 }
                 catch (Exception e)
                 {
-                    res = "???-?? ????? ?? ???.";
+                    res = "Что-то пошло не так.";
                 }
 
                 if (UnitOfWork.getBasketItems.GetByInfo(unitId, size, basketId.Value).Count() == 0)
@@ -154,11 +154,11 @@ namespace BLL.Facade
                     transact.Commit();
 
                     UnitOfWork.SaveChanges();
-                    res = "????? ???????? ? ???????";
+                    res = "Товар добавлен в корзину.";
                 }
                 else
                 {
-                    res = "????? ????? ??? ????????. ???????? ? ???????.";
+                    res = "Такой товар уже добавлен. Смотрите в корзине.";
                 }
             }
             return res;
@@ -262,6 +262,12 @@ namespace BLL.Facade
             {
                 throw new ArgumentNullException();
             }
+        }
+
+        public void DeleteFromBasket(int unitId, string Size, int userId)
+        {
+            int baskedId = UnitOfWork.getBasket.GetByOwner(unitId).Id;
+            UnitOfWork.getBasketItems.DeleteByInfo(unitId, Size, baskedId);
         }
 
         public IUnitOfWork UnitOfWork { get; private set; }

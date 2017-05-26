@@ -7,21 +7,18 @@
     <div class="row ordering">
         <h5 class="routing-h"><a href="@Url.Action("Index", "Home")">Главная страница</a> > <a>оформление заказа</a></h5>
         <h2 class="admin-header">Оформление заказа</h2>
-        @if (User.Identity.IsAuthenticated)
+        @using (@Html.BeginForm("ToOrder", "Home"))
         {
-            @Html.Partial("OrderDataAuth", Model.UserData)
             
-        }
-        else
-        {
-            @Html.Partial("_LoginPartial")
-        }
-        <form>
-
-            
+            if (!User.Equals(null) && User.Identity.IsAuthenticated)
+            {
+                Html.RenderPartial("OrderDataAuth", Model.UserData);
+            } else
+            {
+                Html.RenderPartial("OrderDataWithoutAuth");
+            }
 
             <h2 class="admin-header">Ваша Корзина</h2>
-
             <div class="table-responsive">
                 <table class="table cart-table">
                     <thead>
@@ -36,6 +33,7 @@
                     <tbody>
                         @foreach (var i in Model.Units)
                         {
+
                             <tr>
                                 <td class="image-td">
                                     @*<a class="material-icons">clear</a>*@
@@ -43,32 +41,22 @@
                                 </td>
                                 <td>
                                     <div class="text-basket-preview">
+                                        @Html.HiddenFor(x => i.Id)
                                         <h4>@i.Title</h4>
                                         <span>Цвет:</span>
                                         <span>@i.Color</span>
                                         <span>Размер:</span>
-                                        <span>@i.Size</span>
+                                        @Html.EditorFor(x => i.Size, new { htmlAttributes = new { @class = "hidden-input", @disabled = "disabled" } })
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="cart-price-p">@i.AmountOnStorage</p>
+                                    @Html.EditorFor(x => i.AmountOnBasket, new { htmlAttributes = new { @class = "hidden-input cart-count-p", @disabled = "disabled" } })
                                 </td>
                                 <td>
                                     <p class="cart-price-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</p>
                                 </td>
                                 <td>
-                                    @if (i.AmountOnBasket < i.AmountOnStorage)
-                                    {
-                                        <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * i.AmountOnBasket) / 100))(@String.Format("{0:F2}", Convert.ToDouble(i.Price)/100) * @i.AmountOnBasket)</p>
-                                    }
-                                    else if (i.AmountOnStorage > 0)
-                                    {
-                                        <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * i.AmountOnStorage) / 100))(@String.Format("{0:F2}", Convert.ToDouble(i.Price)/100) * @i.AmountOnStorage)</p>
-                                    }
-                                    else
-                                    {
-                                        <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * 0)))(@String.Format("{0:F2}", Convert.ToDouble(i.Price)/100) * 0)</p>
-                                    }
+                                    <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * i.AmountOnBasket) / 100)) грн</p>
                                 </td>
                             </tr>
                         }
@@ -92,8 +80,8 @@
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4">
-                <button class="frequent-button buy-button">Оформить заказ</button>
+                <button type="submit" class="frequent-button buy-button">Оформить заказ</button>
             </div>
-        </form>
+        }
     </div>
 </section>

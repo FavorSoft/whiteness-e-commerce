@@ -3,36 +3,43 @@
 
 <div class="form-group">
     <label for="ordering-name">Имя:</label>
-    <input id="ordering-name" class="ordering-input" value="@Model.Name" />
+    @Html.EditorFor(x => Model.Name)
+    @*<input id="ordering-name" class="ordering-input" value="@Model.Name" disabled />*@
 </div>
 <div class="form-group">
     <label for="ordering-surname">Фамилия:</label>
-    <input id="ordering-surname" class="ordering-input" value="@Model.SurnName" />
+    @Html.EditorFor(x => Model.Surname)
+    @*<input id="ordering-surname" class="ordering-input" value="@Model.Surname" disabled/>*@
 </div>
 <div class="form-group">
     <label for="ordering-email">E-Mail:</label>
-    <input id="ordering-email" class="ordering-input" />
+    @Html.EditorFor(x => Model.Email)
+    @*<input id="ordering-email" class="ordering-input" value="@Model.Email" disabled/>*@
 </div>
 <div class="form-group">
     <label for="ordering-phone">Телефон:</label>
-    <input id="ordering-phone" class="ordering-input" />
+    @Html.EditorFor(x => Model.Phone)
+    @*<input id="ordering-phone" class="ordering-input" value="@Model.Phone"/>*@
 </div>
 
 <h4 class="ordering-subheader">Адрес доставки</h4>
 
 <div class="form-group">
     <label for="ordering-country">Страна:</label>
-    <input id="ordering-country" class="ordering-input" />
+    @Html.EditorFor(x => Model.Country)
+    @*<input id="ordering-country" class="ordering-input" value=""/>*@
 </div>
 <div class="form-group">
     <label for="ordering-region">Область:</label>
-    <input id="ordering-region" class="ordering-input" />
+    @Html.EditorFor(x => Model.Region)
+    @*<input id="ordering-region" class="ordering-input" value=""/>*@
 </div>
 <div class="form-group">
     <label for="ordering-city">Город:</label>
-    <input id="ordering-city" class="ordering-input" />
+    @Html.EditorFor(x => Model.City)
+    @*<input id="ordering-city" class="ordering-input" value=""/>*@
 </div>
-<div class="form-group">
+@*<div class="form-group">
     <label for="ordering-delivery">Отделение Новой Почты:</label>
     <input id="ordering-delievery" class="ordering-input" />
-</div>
+</div>*@

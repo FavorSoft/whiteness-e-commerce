@@ -21,7 +21,7 @@ create table Users
     id int not null identity(1,1),
     email nvarchar(256) not null,
     [password] nvarchar(256) not null,
-    [number] nvarchar(64) null,
+    [number] nvarchar(64) not null,
     name nvarchar(256) not null,
     surname nvarchar(256) not null,
     role_id int not null,

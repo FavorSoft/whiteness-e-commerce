@@ -241,6 +241,7 @@
     <Content Include="Views\Home\ShoppingItem.cshtml" />
     <Content Include="Views\Shared\OrderSuccess.cshtml" />
     <Content Include="Views\Shared\OrderDataAuth.cshtml" />
+    <Content Include="Views\Shared\OrderDataWithoutAuth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

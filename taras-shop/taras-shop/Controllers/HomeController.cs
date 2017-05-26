@@ -201,6 +201,14 @@ namespace taras_shop.Controllers
                     model.Units = facade.GetFromBasket(User.Id);
                     int sum = model.Units.Select(x => x.Price * x.AmountOnBasket).Sum().Value;
                     model.SumPrice = sum;
+                    UsersDto userData = facade.UnitOfWork.getUser.GetById(User.Id);
+                    model.UserData = new UserData()
+                    {
+                        Name = userData.Name,
+                        Surname = userData.Surname,
+                        Email = userData.Email,
+                        Phone = userData.Number
+                    };
                 }
                 catch (Exception e)
                 {
@@ -298,8 +306,9 @@ namespace taras_shop.Controllers
             return View("Index");
         }
 
-        public ActionResult ToOrder()
+        public ActionResult ToOrder(OrderingDataModel model)
         {
+            
             if (User.Identity.IsAuthenticated)
             {
                 int userId = User.Id;

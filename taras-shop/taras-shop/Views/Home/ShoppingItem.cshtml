@@ -43,11 +43,11 @@
                 <td>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <input id="@String.Format(i.Size + i.Id)" onchange="changeAmount(@i.Id, @String.Format("\"{0}\"", i.Size))" class="inputs" type="number" min="1" max="999" step="1" value="@i.AmountOnBasket">
+                        <input id="@String.Format(i.Size + i.Id)" onblur="changeAmount(@i.Id, @String.Format("\"{0}\"", i.Size))" class="inputs" type="number" min="1" max="999" step="1" value="@i.AmountOnBasket">
                     }
                     else
                     {
-                        <input id="@String.Format(i.Size + i.Id)" onchange="changeLocalAmount(@i.Id, @String.Format("\"{0}\"", i.Size))" class="inputs" type="number" min="1" max="999" step="1" value="@i.AmountOnBasket">
+                        <input id="@String.Format(i.Size + i.Id)" onblur="changeLocalAmount(@i.Id, @String.Format("\"{0}\"", i.Size))" class="inputs" type="number" min="1" max="999" step="1" value="@i.AmountOnBasket">
                     }
 
                 </td>

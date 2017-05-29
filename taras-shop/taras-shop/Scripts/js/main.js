@@ -254,6 +254,7 @@ $(document).ready(function () {
 
 function changeAmount(unitId, size) {
     var str = "#" + size + unitId;
+    var input = $(str);
     var amount = input.val();
     $.get("/Home/ChangeAmount", { unitId: unitId, size: size, amount: amount }, (response) => {
         input.val(response);

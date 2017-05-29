@@ -275,6 +275,13 @@ function addToBasket() {
         }
     });
 }
+function deleteFromCart(id, size) {
+    var items = JSON.parse(localStorage.getItem("items"));
+    
+    items = items.filter(x => x.Id !== id || x.Size !== size);
+    
+    localStorage.setItem("items", JSON.stringify(items));
+}
 
 function addToCart(unitId) {
     var items = JSON.parse(localStorage.getItem("items"));

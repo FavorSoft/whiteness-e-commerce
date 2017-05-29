@@ -111,6 +111,7 @@ namespace BLL.Providers
                 _repo.GetAll().Where(x => x.basket_id == basketId
                 && x.size == size
                 && x.unit_id == unitId).FirstOrDefault().id);
+            _repo.GetEntities().SaveChanges();
         }
 
         public int ChangeAmount(int unitId, string size, int basketId, int amount)

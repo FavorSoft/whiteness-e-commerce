@@ -303,7 +303,7 @@ namespace taras_shop.Controllers
 
             facade.DeleteFromBasket(id, size, userId);
             
-            return View("Index");
+            return RedirectToAction("ShoppingCart");
         }
 
         public ActionResult ToOrder(OrderingDataModel model)

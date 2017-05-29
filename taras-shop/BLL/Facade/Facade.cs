@@ -264,10 +264,16 @@ namespace BLL.Facade
             }
         }
 
-        public void DeleteFromBasket(int unitId, string Size, int userId)
+        public void DeleteFromBasket(int unitId, string size, int userId)
         {
-            int baskedId = UnitOfWork.getBasket.GetByOwner(unitId).Id;
-            UnitOfWork.getBasketItems.DeleteByInfo(unitId, Size, baskedId);
+            int baskedId = UnitOfWork.getBasket.GetByOwner(userId).Id;
+            UnitOfWork.getBasketItems.DeleteByInfo(unitId, size, baskedId);
+        }
+
+        public int ChangeAmount(int unitId, string size, int userId, int amount)
+        {
+            int basketId = UnitOfWork.getBasket.GetByOwner(userId).Id;
+            return UnitOfWork.getBasketItems.ChangeAmount(unitId, size, basketId, amount);
         }
 
         public IUnitOfWork UnitOfWork { get; private set; }

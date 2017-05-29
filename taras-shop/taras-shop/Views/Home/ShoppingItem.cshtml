@@ -1,9 +1,7 @@
 ﻿@model taras_shop.Models.ShoppingModel
 
 <script>
-    function hi() {
-        alert('hi');
-    }
+    
 </script>
 <div class="table-responsive">
     <table class="table cart-table">
@@ -33,7 +31,7 @@
                     </div>
                 </td>
                 <td>
-                    <input onchange="hi()" class="inputs" type="number" min="1" max="9" step="1" value="1">
+                    <input id="@String.Format(i.Size + i.Id)" onchange="changeAmount(@i.Id, @String.Format("\"{0}\"", i.Size))" class="inputs" type="number" min="1" max="999" step="1" value="@i.AmountOnBasket">
                 </td>
                 <td>
                     <p class="cart-price-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</p>

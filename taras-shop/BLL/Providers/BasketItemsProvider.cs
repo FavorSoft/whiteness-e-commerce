@@ -108,9 +108,20 @@ namespace BLL.Providers
         public void DeleteByInfo(int unitId, string size, int basketId)
         {
             _repo.DeleteItem(
-                _repo.GetAll().Where(x => x.basket_id == basketId 
-                && x.size == size 
+                _repo.GetAll().Where(x => x.basket_id == basketId
+                && x.size == size
                 && x.unit_id == unitId).FirstOrDefault().id);
+        }
+
+        public int ChangeAmount(int unitId, string size, int basketId, int amount)
+        {
+            var item = _repo.GetAll().Where(x => x.basket_id == basketId
+                            && x.size == size
+                            && x.unit_id == unitId).FirstOrDefault();
+            item.amount = amount;
+            _repo.EditItem(item);
+            _repo.GetEntities().SaveChanges();
+            return item.amount;
         }
     }
 }

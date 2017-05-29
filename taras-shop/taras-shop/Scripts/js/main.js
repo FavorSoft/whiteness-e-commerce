@@ -29,6 +29,16 @@ jQuery('.quantity').each(function () {
         spinner.find("input").trigger("change");
     });
 });
+function changeAmount(unitId, size) {
+    var unitId = unitId;
+    var size = size;
+    var str = "#" + size + unitId;
+    var input = $(str);
+    var amount = input.val();
+    $.get("/Home/ChangeAmount", { unitId: unitId, size: size, amount: amount }, (response) => {
+        input.val(response);
+    });
+}
 $(document).ready(function () {
     
     /*

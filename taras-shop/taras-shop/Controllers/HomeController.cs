@@ -361,6 +361,13 @@ namespace taras_shop.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ChangeAmount(int unitId, string size, int amount)
+        {
+            int res = facade.ChangeAmount(unitId, size, User.Id, amount);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             facade.UnitOfWork.Dispose();

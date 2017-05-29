@@ -5,66 +5,95 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-<h2>AllUsers</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().Surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().Role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.First().RegDate)
-        </th>
-        <th></th>
-    </tr>
+    <h2>AllUsers</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().RegDate)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model.Users) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegDate)
-        </td>
-        <td>
-            @Html.ActionLink("Ban user", "BanUser", new { id=item.Id }) |
-            @Html.ActionLink("Set as admin", "SetAsAdmin", new { id=item.Id }) |
-            @Html.ActionLink("Set as moderator", "SetAsModerator", new { id = item.Id }) |
-            @Html.ActionLink("Set as user", "SetAsUser", new { id = item.Id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegDate)
+                </td>
+                <td>
+                    @using(Html.BeginForm("BanUser", "Admin"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(id => item.Id)
+                        <input type="submit" value="Ban user" />
+                    }
+                    @Html.ActionLink("Ban user", "BanUser", new { id = item.Id }) |
 
-</table>
+                    @using (Html.BeginForm("SetAsAdmin", "Admin"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(id => item.Id)
+                        <input type="submit" value="Set as admin" />
+                    }
+                    @Html.ActionLink("Set as admin", "SetAsAdmin", new { id = item.Id }) |
+
+                    @using (Html.BeginForm("SetAsModerator", "Admin"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(id => item.Id)
+                        <input type="submit" value="Set as moderator" />
+                    }
+                    @Html.ActionLink("Set as moderator", "", new { id = item.Id }) |
+
+                    @using (Html.BeginForm("SetAsUser", "Admin", FormMethod.Get))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Id", new { id = item.Id})
+                        <input type="submit" value="Set as user" />
+                    }
+
+                    @Html.ActionLink("Set as user", "SetAsUser", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
     <div class="btn-group">
         @Html.PageLinks(Model.PageInfo, x => Url.Action("AllUsers", "Admin", new { page = x }))
     </div>

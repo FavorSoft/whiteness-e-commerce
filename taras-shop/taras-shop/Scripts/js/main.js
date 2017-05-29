@@ -29,16 +29,7 @@ jQuery('.quantity').each(function () {
         spinner.find("input").trigger("change");
     });
 });
-function changeAmount(unitId, size) {
-    var unitId = unitId;
-    var size = size;
-    var str = "#" + size + unitId;
-    var input = $(str);
-    var amount = input.val();
-    $.get("/Home/ChangeAmount", { unitId: unitId, size: size, amount: amount }, (response) => {
-        input.val(response);
-    });
-}
+
 $(document).ready(function () {
     
     /*
@@ -261,7 +252,29 @@ $(document).ready(function () {
     //});
 });
 
+function changeAmount(unitId, size) {
+    var str = "#" + size + unitId;
+    var amount = input.val();
+    $.get("/Home/ChangeAmount", { unitId: unitId, size: size, amount: amount }, (response) => {
+        input.val(response);
+    });
+}
+function changeLocalAmount(unitId, size) {
+    var items = JSON.parse(localStorage.getItem("items"));
+    var str = "#" + size + unitId;
+    var input = $(str);
+    var amount = input.val();
 
+    for (var i = 0; i < items.length; i++)
+    {
+        if (items[i].Id === unitId && items[i].Size === size)
+        {
+            items[i].Amount = amount;
+        }
+    }
+
+    localStorage.setItem("items", JSON.stringify(items));
+}
 
 function addToBasket() {
     var id = $("#unitId").val();

@@ -9,76 +9,25 @@
         <h2 class="admin-header">Оформление заказа</h2>
         @using (@Html.BeginForm("ToOrder", "Home"))
         {
-            
+
             if (!User.Equals(null) && User.Identity.IsAuthenticated)
             {
                 Html.RenderPartial("OrderDataAuth", Model.UserData);
-            } else
+            }
+            else
             {
-                Html.RenderPartial("OrderDataWithoutAuth");
+                Html.RenderPartial("OrderDataWithoutAuth", Model.UserData);
             }
 
             <h2 class="admin-header">Ваша Корзина</h2>
-            <div class="table-responsive">
-                <table class="table cart-table">
-                    <thead>
-                        <tr>
-                            <th>Товар</th>
-                            <th>Подробности</th>
-                            <th>Количество</th>
-                            <th>Цена</th>
-                            <th>Сумма</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var i in Model.Units)
-                        {
-
-                            <tr>
-                                <td class="image-td">
-                                    @*<a class="material-icons">clear</a>*@
-                                    <img src="@Url.Content("~/Content/images/Units/" + i.Image.Image)" />
-                                </td>
-                                <td>
-                                    <div class="text-basket-preview">
-                                        @Html.HiddenFor(x => i.Id)
-                                        <h4>@i.Title</h4>
-                                        <span>Цвет:</span>
-                                        <span>@i.Color</span>
-                                        <span>Размер:</span>
-                                        @Html.EditorFor(x => i.Size, new { htmlAttributes = new { @class = "hidden-input", @disabled = "disabled" } })
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.EditorFor(x => i.AmountOnBasket, new { htmlAttributes = new { @class = "hidden-input cart-count-p", @disabled = "disabled" } })
-                                </td>
-                                <td>
-                                    <p class="cart-price-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0)) / 100)) грн</p>
-                                </td>
-                                <td>
-                                    <p id="cart-sum-p" class="cart-sum-p">@(String.Format("{0:F2}", Convert.ToDouble(i.Price.GetValueOrDefault(0) * i.AmountOnBasket) / 100)) грн</p>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="text-basket-preview-right">
-                <div class="col-md-4 col-md-offset-4 cart-sum-block">
-                    <div class="overall-cost">
-                        <span>Общая стоимость товаров: </span>
-                        <span class="basket-preview-prices">@(String.Format("{0:F2}", Convert.ToDouble(Model.SumPrice) / 100)) грн</span>
-                    </div>
-                    <div class="delivery-cost">
-                        <span>Доставка: </span>
-                        <span class="basket-preview-prices">30.00 грн</span>
-                    </div>
-                    <div class="main-prices">
-                        <h4 class="basket-sum">Сумма: </h4>
-                        <span class="basket-preview-prices">@(String.Format("{0:F2}", Convert.ToDouble(Model.SumPrice + 3000) / 100)) грн</span>
-                    </div>
-                </div>
-            </div>
+            if (!User.Identity.IsAuthenticated)
+            {
+                <div id="shopping-local-items"></div>
+            }
+            else
+            {
+                <div id="shopping-global-items"></div>
+            }
             <div class="col-md-4 col-md-offset-4">
                 <button type="submit" class="frequent-button buy-button">Оформить заказ</button>
             </div>

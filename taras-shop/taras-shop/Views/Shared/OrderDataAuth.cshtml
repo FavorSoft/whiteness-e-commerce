@@ -3,43 +3,32 @@
 
 <div class="form-group">
     <label for="ordering-name">Имя:</label>
-    @Html.EditorFor(x => Model.Name)
-    @*<input id="ordering-name" class="ordering-input" value="@Model.Name" disabled />*@
+    @Html.EditorFor(x => Model.Name, new { htmlAttributes = new { @class = "ordering-input", @disabled = "disabled" } })
 </div>
 <div class="form-group">
     <label for="ordering-surname">Фамилия:</label>
-    @Html.EditorFor(x => Model.Surname)
-    @*<input id="ordering-surname" class="ordering-input" value="@Model.Surname" disabled/>*@
+    @Html.EditorFor(x => Model.Surname, new { htmlAttributes = new { @class = "ordering-input", @disabled = "disabled" } })
 </div>
 <div class="form-group">
     <label for="ordering-email">E-Mail:</label>
-    @Html.EditorFor(x => Model.Email)
-    @*<input id="ordering-email" class="ordering-input" value="@Model.Email" disabled/>*@
+    @Html.EditorFor(x => Model.Email, new { htmlAttributes = new { @class = "ordering-input", @disabled = "disabled" } })
 </div>
 <div class="form-group">
     <label for="ordering-phone">Телефон:</label>
-    @Html.EditorFor(x => Model.Phone)
-    @*<input id="ordering-phone" class="ordering-input" value="@Model.Phone"/>*@
+    @Html.EditorFor(x => Model.Phone, new { htmlAttributes = new { @class = "ordering-input" } })
 </div>
 
 <h4 class="ordering-subheader">Адрес доставки</h4>
 
 <div class="form-group">
     <label for="ordering-country">Страна:</label>
-    @Html.EditorFor(x => Model.Country)
-    @*<input id="ordering-country" class="ordering-input" value=""/>*@
+    @Html.EditorFor(x => Model.Country, new { htmlAttributes = new { @class = "ordering-input" } })
 </div>
 <div class="form-group">
     <label for="ordering-region">Область:</label>
-    @Html.EditorFor(x => Model.Region)
-    @*<input id="ordering-region" class="ordering-input" value=""/>*@
+    @Html.EditorFor(x => Model.Region, new { htmlAttributes = new { @class = "ordering-input" } })
 </div>
 <div class="form-group">
     <label for="ordering-city">Город:</label>
-    @Html.EditorFor(x => Model.City)
-    @*<input id="ordering-city" class="ordering-input" value=""/>*@
+    @Html.EditorFor(x => Model.City, new { htmlAttributes = new { @class = "ordering-input" } })
 </div>
-@*<div class="form-group">
-    <label for="ordering-delivery">Отделение Новой Почты:</label>
-    <input id="ordering-delievery" class="ordering-input" />
-</div>*@

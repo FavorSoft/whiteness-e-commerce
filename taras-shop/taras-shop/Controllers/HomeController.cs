@@ -190,17 +190,13 @@ namespace taras_shop.Controllers
         {
             OrderingModels model = new OrderingModels()
             {
-                Units = new List<BasketUnit>(),
-                SumPrice = 0
+                UserData = new UserData()
             };
 
-            if (User.Identity.IsAuthenticated)
+            try
             {
-                try
+                if (!User.Equals(null) && User.Identity.IsAuthenticated)
                 {
-                    model.Units = facade.GetFromBasket(User.Id);
-                    int sum = model.Units.Select(x => x.Price * x.AmountOnBasket).Sum().Value;
-                    model.SumPrice = sum;
                     UsersDto userData = facade.UnitOfWork.getUser.GetById(User.Id);
                     model.UserData = new UserData()
                     {
@@ -210,15 +206,10 @@ namespace taras_shop.Controllers
                         Phone = userData.Number
                     };
                 }
-                catch (Exception e)
-                {
-
-                }
             }
-            else
+            catch (Exception e)
             {
-                string json = Request.Form["request"];
-                JsonConvert.DeserializeObject<List<ItemInLocalStorage>>(json);
+
             }
 
             return View(model);
@@ -291,13 +282,13 @@ namespace taras_shop.Controllers
             int userId = User.Id;
 
             facade.DeleteFromBasket(id, size, userId);
-            
+
             return RedirectToAction("ShoppingCart");
         }
 
         public ActionResult ToOrder(OrderingDataModel model)
         {
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 int userId = User.Id;

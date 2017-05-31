@@ -20,8 +20,6 @@ namespace taras_shop.Models
     }
     public class OrderingModels
     {
-        public IEnumerable<BasketUnit> Units { get; set; }
-        public int SumPrice { get; set; }
         public UserData UserData { get; set; }
     }
     public class UserData

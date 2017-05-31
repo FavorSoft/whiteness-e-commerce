@@ -22887,8 +22887,7 @@
 	        key: "renderCartUnits",
 	        value: function renderCartUnits() {
 	            if (!this.state.emptyLocalStorage && this.state.cartUnits) {
-	                var unitList = void 0;
-	                var res = this.state.cartUnits.slice(1, -1);
+
 	                return this.state.cartUnits;
 	                //unitList = this.state.cartUnits.map((unit) => {
 	                //    console.log(unit.Price);
@@ -22916,7 +22915,34 @@
 	                    ),
 	                    _react2.default.createElement("div", { className: "table-responsive", dangerouslySetInnerHTML: {
 	                            __html: this.renderCartUnits()
-	                        } })
+	                        } }),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "col-md-4 col-md-offset-4" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            null,
+	                            _react2.default.createElement("div", { id: "basket-result" }),
+	                            _react2.default.createElement(
+	                                "form",
+	                                { action: "/Home/ToOrder", "data-ajax": "true", "data-ajax-method": "Post", "data-ajax-mode": "replace", "data-ajax-update": "#basket-result", id: "form0", method: "post" },
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "frequent-button buy-button" },
+	                                    "\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437"
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "/" },
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "frequent-button" },
+	                                    "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438"
+	                                )
+	                            )
+	                        )
+	                    )
 	                )
 	            );
 	        }

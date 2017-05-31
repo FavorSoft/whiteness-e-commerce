@@ -187,78 +187,40 @@ $(document).ready(function () {
                 alert("Data Saved: " + msg);
             });
     }
-
-    
-    
-
-    
-
-    //$.ajax({
-    //    method: "GET",
-    //    url: "Home/GetItemsByFilter",
-    //    success: function (data) {
-    //        console.log(data);
-    //    }
-    //})
-    //    .done(function (msg) {
-    //        alert("Data Saved: " + msg);
-    //    });
-
-
-    // I'll be back. okay?
-    //$("#create1").click(function (event) {
-    //    event.preventDefault();
-    //    var title = $("#title").val();
-    //    var producer = $("#producer").val();
-    //    var categoryType = $('#category-type option:selected').val();
-    //    var price = $("#price").val();
-    //    var sizeXs = $("#size-xs:checked").val();
-    //    var countXs = $("#count-xs").val();
-    //    var sizeS = $("#size-s:checked").val();
-    //    var countS = $("#count-s").val();
-    //    var sizeM = $("#size-m:checked").val();
-    //    var countM = $("#count-m").val();
-    //    var sizeL = $("#size-l:checked").val();
-    //    var countL = $("#count-l").val();
-    //    var sizeXl = $("#size-xl:checked").val();
-    //    var counXl = $("#count-xl").val();
-    //    var material = $("#material").val();
-    //    var description = $("#description").val();
-
-    //    var sizes = [{exist: sizeXs, name: "XS"}, {exist: sizeS, name: "S"},
-    //        {exist: sizeM, name: "M"}, {exist: sizeL, name: "L"},
-    //        {exist: sizeXl, name: "XL"}];
-
-    //    $('#item-preview-modal').modal();
-
-    //    $("#title-on-modal").text(title);
-    //    $("#item-type-on-modal").text($('#category option:selected').text());
-    //    $("#price-now-on-modal").text(price + " грн");
-    //    $("#modal-radio").html(function () {
-    //        console.log(sizes);
-    //        return sizes.map(function (size) {
-    //            if (size.exist === "true") {
-    //                return (
-    //                      "<li>"
-    //                    + "    <input type='checkbox' id="+(size.name+"-option")+" name='selector' />"
-    //                    + "    <label htmlFor=" + (size.name + "-option") + ">"+size.name+"</label>"
-    //                    + "    <div class='check'></div>"
-    //                    + "</li>"
-    //                );
-    //            }
-    //        }.bind(this)); 
-    //    });
-    //    $(".details-modal-part").html("<button id='apply-posting' class='frequent-button'>Запустить товар</button>");
-    //});
 });
+
+$("#shopping-local-items").ready(function () {
+    renderLocalShoppingItems();
+});
+
+$("#shopping-global-items").ready(function () {
+    renderGlobalShoppingItems();
+});
+
+function renderLocalShoppingItems() {
+    $("#shopping-local-items").html("");
+    var tmp = localStorage.getItem("items");
+
+    $.get("/Home/GetItemsByBasket", { json: tmp }, (response) => {
+        $("#shopping-local-items").html(response);
+    });
+}
+function renderGlobalShoppingItems() {
+    $("#shopping-global-items").html("");
+    $.get("/Home/GetItemsFromBasket", { }, (response) => {
+        $("#shopping-global-items").html(response);
+    });
+}
+
 
 function changeAmount(unitId, size) {
     var str = "#" + size + unitId;
     var input = $(str);
     var amount = input.val();
     $.get("/Home/ChangeAmount", { unitId: unitId, size: size, amount: amount }, (response) => {
-        input.val(response);
+        renderGlobalShoppingItems();
     });
+
 }
 function changeLocalAmount(unitId, size) {
     var items = JSON.parse(localStorage.getItem("items"));
@@ -266,15 +228,14 @@ function changeLocalAmount(unitId, size) {
     var input = $(str);
     var amount = input.val();
 
-    for (var i = 0; i < items.length; i++)
-    {
-        if (items[i].Id === unitId && items[i].Size === size)
-        {
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].Id === unitId && items[i].Size === size) {
             items[i].Amount = amount;
         }
     }
-
     localStorage.setItem("items", JSON.stringify(items));
+
+    renderLocalShoppingItems();
 }
 
 function addToBasket() {
@@ -295,6 +256,8 @@ function deleteFromCart(id, size) {
     items = items.filter(x => x.Id !== id || x.Size !== size);
     
     localStorage.setItem("items", JSON.stringify(items));
+
+    renderLocalShoppingItems();
 }
 
 function addToCart(unitId) {

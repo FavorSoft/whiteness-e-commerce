@@ -74,16 +74,7 @@
         </div>
         <div class="main-prices">
             <h4 class="basket-sum">Сумма: </h4>
-            <span class="basket-preview-prices">264.85 грн</span>
+            <span class="basket-preview-prices">@(String.Format("{0:F2}", Convert.ToDouble(Model.SumPrice) / 100)) грн</span>
         </div>
-        
-        <div id="basket-result"></div>
-        @using (Ajax.BeginForm("ToOrder", "Home", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "basket-result" }))
-        {
-            <button class="frequent-button buy-button">Оформить заказ</button>
-        }
-        
-        
-        <a href="@Url.Action("Index" ,"Home")"><button class="frequent-button">Продолжить покупки</button></a>
     </div>
 </div>

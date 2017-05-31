@@ -1,7 +1,32 @@
-﻿@model String
+﻿
 @{
     ViewBag.Title = "ShoppingCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="shopping-cart-component" auth="@Model.ToString()"></div>
+<div class="container">
+    <div class="row">
+        <h2 class="admin-header">Ваша корзина</h2>
+        <div class="table-responsive">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div id="shopping-local-items"></div>
+            }
+            else
+            {
+                <div id="shopping-global-items"></div>
+            }
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+            <div>
+                <div id="basket-result"></div>
+                <form action="/Home/ToOrder" data-ajax="true" data-ajax-method="Post" data-ajax-mode="replace" data-ajax-update="#basket-result" id="form0" method="post">
+                    <button class="frequent-button buy-button">Оформить заказ</button>
+                </form>
+                <a href="/">
+                    <button class="frequent-button">Продолжить покупки</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

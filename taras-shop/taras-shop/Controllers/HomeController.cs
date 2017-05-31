@@ -240,20 +240,9 @@ namespace taras_shop.Controllers
 
         public ActionResult ShoppingCart()
         {
-            string res = "false";
-            try
-            {
-                if (User.Identity.IsAuthenticated)
-                {
-                    res = "true";
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-            return View(res as object);
+            return View();
         }
+
         [HttpGet]
         public ActionResult GetItemsFromBasket()
         {

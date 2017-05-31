@@ -42,8 +42,7 @@ export default class ShoppingCart extends Component {
 
     renderCartUnits() {
         if (!this.state.emptyLocalStorage && this.state.cartUnits) {
-            let unitList;
-            let res = this.state.cartUnits.slice(1, -1);
+
             return this.state.cartUnits;
             //unitList = this.state.cartUnits.map((unit) => {
             //    console.log(unit.Price);
@@ -65,7 +64,17 @@ export default class ShoppingCart extends Component {
                     <div className="table-responsive" dangerouslySetInnerHTML={{
                         __html: this.renderCartUnits()
                     }}>
-
+                    </div>
+                    <div className="col-md-4 col-md-offset-4">
+                        <div >
+                            <div id="basket-result" ></div>
+                            <form action="/Home/ToOrder" data-ajax="true" data-ajax-method="Post" data-ajax-mode="replace" data-ajax-update="#basket-result" id="form0" method="post">
+                                <button className="frequent-button buy-button">Оформить заказ</button>
+                            </form>
+                            <a href="/">
+                                <button className="frequent-button">Продолжить покупки</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

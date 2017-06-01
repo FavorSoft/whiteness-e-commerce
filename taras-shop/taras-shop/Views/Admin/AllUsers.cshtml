@@ -59,7 +59,7 @@
                 <td>
                     @using(Html.BeginForm("BanUser", "Admin"))
                     {
-                        @Html.AntiForgeryToken()
+                        
                         @Html.HiddenFor(id => item.Id)
                         <input type="submit" value="Ban user" />
                     }
@@ -67,7 +67,7 @@
 
                     @using (Html.BeginForm("SetAsAdmin", "Admin"))
                     {
-                        @Html.AntiForgeryToken()
+                        
                         @Html.HiddenFor(id => item.Id)
                         <input type="submit" value="Set as admin" />
                     }
@@ -75,7 +75,7 @@
 
                     @using (Html.BeginForm("SetAsModerator", "Admin"))
                     {
-                        @Html.AntiForgeryToken()
+                        
                         @Html.HiddenFor(id => item.Id)
                         <input type="submit" value="Set as moderator" />
                     }
@@ -83,7 +83,7 @@
 
                     @using (Html.BeginForm("SetAsUser", "Admin", FormMethod.Get))
                     {
-                        @Html.AntiForgeryToken()
+                        
                         @Html.Hidden("Id", new { id = item.Id})
                         <input type="submit" value="Set as user" />
                     }

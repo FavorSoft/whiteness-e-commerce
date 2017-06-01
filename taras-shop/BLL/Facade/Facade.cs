@@ -276,6 +276,23 @@ namespace BLL.Facade
             return UnitOfWork.getBasketItems.ChangeAmount(unitId, size, basketId, amount);
         }
 
+        public void DeleteSliderImage(int id)
+        {
+            var item = UnitOfWork.getSliderImages.GetById(id);
+            UnitOfWork.getSliderImages.DeleteItem(id);
+            //WorkImage.WorkImage 
+            UnitOfWork.SaveChanges();
+
+        }
+
+        public void AddSliderImage(string name)
+        {
+            UnitOfWork.getSliderImages.AddItem(new SliderImagesDto()
+            {
+                Image = name
+            });
+        }
+
         public IUnitOfWork UnitOfWork { get; private set; }
     }
 }

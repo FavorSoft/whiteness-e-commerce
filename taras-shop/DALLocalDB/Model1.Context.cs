@@ -25,19 +25,20 @@ namespace DALLocalDB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Basket> Basket { get; set; }
+        public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<Basket_items> Basket_items { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Category_type> Category_type { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<News_image> News_image { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Order_items> Order_items { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Size> Size { get; set; }
-        public virtual DbSet<Unit> Unit { get; set; }
-        public virtual DbSet<UnitInfo> UnitInfo { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<UnitInfo> UnitInfoes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Slider_images> Slider_images { get; set; }
     }
 }

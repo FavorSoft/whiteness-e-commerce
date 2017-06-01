@@ -141,7 +141,7 @@ namespace BLL.Providers
 
         public IEnumerable<UnitDto> GetByFilter(List<int> categoryIds, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
-            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            var first = _repo.GetEntities().Units.Join(_repo.GetEntities().UnitInfoes,
             a => a.id,
             b => b.unit_id,
             (a, b) => new
@@ -193,7 +193,7 @@ namespace BLL.Providers
         }
         public IEnumerable<UnitDto> GetByFilter(List<int> categoryIds, int startPrice, int endPrice, int skipItems, int amount)
         {
-            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            var first = _repo.GetEntities().Units.Join(_repo.GetEntities().UnitInfoes,
             a => a.id,
             b => b.unit_id,
             (a, b) => new
@@ -245,7 +245,7 @@ namespace BLL.Providers
 
         public int GetAmountUnit(List<int> categoryIds, int startPrice, int endPrice, int skipItems, int amount)
         {
-            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            var first = _repo.GetEntities().Units.Join(_repo.GetEntities().UnitInfoes,
             a => a.id,
             b => b.unit_id,
             (a, b) => new
@@ -293,7 +293,7 @@ namespace BLL.Providers
         }
         public int GetAmountUnit(List<int> categoryIds, int startPrice, int endPrice, List<int> sizeIds, int skipItems, int amount)
         {
-            var first = _repo.GetEntities().Unit.Join(_repo.GetEntities().UnitInfo,
+            var first = _repo.GetEntities().Units.Join(_repo.GetEntities().UnitInfoes,
             a => a.id,
             b => b.unit_id,
             (a, b) => new

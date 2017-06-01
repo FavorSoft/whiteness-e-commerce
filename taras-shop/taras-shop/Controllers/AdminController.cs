@@ -1,5 +1,4 @@
-﻿  using BLL.Facade;
-using BLL.IFacade;
+﻿using BLL.Facade;
 using BLL.UnitOfWork;
 using DTO;
 using System;
@@ -17,6 +16,7 @@ namespace taras_shop.Controllers
 {
     public class AdminController : BaseController
     {
+        public enum ImageType { Slider = 0, Item };
         public AdminController(IUnitOfWork uow) : base(uow) { }
 
         // GET: Admin
@@ -62,7 +62,7 @@ namespace taras_shop.Controllers
                 List<string> guidImages = new List<string>();
                 try
                 {
-                    guidImages = await UploadPhotoAsync(images);
+                    guidImages = await UploadPhotoAsync(images, ImageType.Item);
                     var unit = new UnitDto()
                     {
                         Title = title,
@@ -104,7 +104,8 @@ namespace taras_shop.Controllers
                 {
                     transact.Rollback();
                     string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
-                    string fileName = path + "Units\\";
+                    string date = DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString();
+                    string fileName = path + "Units\\" + date + "\\";
                     for (int i = 0; i < guidImages.Count; i++)
                     {
                         guidImages[i] += System.IO.Path.GetExtension(images[i].FileName);
@@ -171,22 +172,42 @@ namespace taras_shop.Controllers
             return res;
         }
 
-        public async Task<List<string>> UploadPhotoAsync(List<HttpPostedFileBase> imgs)
+        public async Task<List<string>> UploadPhotoAsync(List<HttpPostedFileBase> imgs, ImageType t)
         {
+
             List<string> images = new List<string>();
             foreach (var file in imgs)
             {
                 if (file != null && file.ContentLength > 0)
                 {
-                    Bitmap imageSave = await WorkImage.WorkImage.CropImageAsync(file, 600, 400);
-                    if (imageSave != null)
+                    switch (t)
                     {
-                        string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
-                        Guid imageName = Guid.NewGuid();
+                        case ImageType.Item:
+                            Bitmap imageSave = await WorkImage.WorkImage.CropImageAsync(file, 600, 400);
+                            if (imageSave != null)
+                            {
+                                string path = Server.MapPath(ConfigurationManager.AppSettings["ImageFolder"]);
+                                Guid imageName = Guid.NewGuid();
+                                
+                                string date = DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString();
+                                
+                                string fileName = path + "Units\\" + date + "\\" + imageName + System.IO.Path.GetExtension(file.FileName);
+                                imageSave.Save(fileName, ImageFormat.Jpeg);
+                                images.Add(imageName.ToString());
+                            }
+                            break;
+                        case ImageType.Slider:
+                            Bitmap sliderImageSave = WorkImage.WorkImage.MakeBitmap(file);
+                            if (sliderImageSave != null)
+                            {
+                                string path = Server.MapPath(ConfigurationManager.AppSettings["SliderImagesFolder"]);
+                                Guid imageName = Guid.NewGuid();
 
-                        string fileName = path + "Units\\" + imageName + System.IO.Path.GetExtension(file.FileName);
-                        imageSave.Save(fileName, ImageFormat.Jpeg);
-                        images.Add(imageName.ToString());
+                                string fileName = path + imageName + System.IO.Path.GetExtension(file.FileName);
+                                sliderImageSave.Save(fileName, ImageFormat.Jpeg);
+                                images.Add(imageName.ToString());
+                            }
+                            break;
                     }
                 }
             }
@@ -225,7 +246,7 @@ namespace taras_shop.Controllers
             return View("AllUsers", GetUsersModels(1));
         }
 
-        [CustomAuthorizeAttribute(Roles = "Admin, Moderator")]
+        [CustomAuthorize(Roles = "Admin, Moderator")]
         public ActionResult ItemPage(int id)
         {
             var res = new Models.ItemPageModels(facade.GetArticleById(id));
@@ -234,17 +255,50 @@ namespace taras_shop.Controllers
 
             return View(res);
         }
-
-        public void Edit(int id)
-        {
-
-        }
-
-        public void Delete(int id)
-        {
-
-        }
         
+        [CustomAuthorize(Roles = "Admin, Moderator")]
+        public ActionResult SliderImages()
+        {
+            var res = facade.UnitOfWork.getSliderImages.GetAll();
+            return View(res);
+        }
+
+        [CustomAuthorize(Roles = "Admin, Moderator")]
+        public ActionResult DeleteSliderImage(int id)
+        {
+            facade.DeleteSliderImage(id);
+            return RedirectToAction("SliderImages");
+        }
+
+        [CustomAuthorize(Roles = "Admin, Moderator")]
+        public async Task<ActionResult> AddSliderImageAsync(HttpPostedFileBase image)
+        {
+            List<HttpPostedFileBase> images = new List<HttpPostedFileBase>();
+            images.Add(image);
+            List<string> names = new List<string>();
+            using (var transact = facade.UnitOfWork.BeginTransaction())
+            {
+                Bitmap img = WorkImage.WorkImage.MakeBitmap(image);
+                try
+                {
+                    names = await UploadPhotoAsync(images, ImageType.Slider);
+                    facade.AddSliderImage(names.FirstOrDefault());
+                    transact.Commit();
+                }
+                catch (Exception)
+                {
+                    string path = Server.MapPath(ConfigurationManager.AppSettings["SliderImagesFolder"]);
+
+                    WorkImage.WorkImage.DeleteImages(path, names);
+                    transact.Rollback();
+                }
+            }
+            
+
+            return View();
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             facade.UnitOfWork.Dispose();

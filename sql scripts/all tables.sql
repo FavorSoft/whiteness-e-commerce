@@ -303,6 +303,19 @@ add constraint fk_news_image_owner_id
 foreign key (owner_id)
 references News(id)
 
+/* create Slider_images table */
+create table Slider_images
+(
+	id int not null identity(1,1),
+	[image] nvarchar(2048) not null
+)
+
+/* alter Slider_images table*/
+alter table Slider_images
+add constraint pk_slider_images_id
+primary key (id)
+
+
 create procedure DropDatabase
 as
 	drop table News_image
@@ -319,9 +332,17 @@ as
 	drop table Category_type
 	drop table Users
 	drop table Roles
+	drop table Slider_images
 	
 create procedure FillDatabase
 as
+
+/* fill Slider_images table*/
+insert into Slider_images(image)
+values
+('slider.jpg'),
+('slider.jpg'),
+('slider.jpg')
 
 /* fill Roles table */
 insert into Roles(role)

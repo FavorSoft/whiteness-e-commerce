@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using BLL.UnitOfWork;
 using taras_shop.Models;
 using BLL.Facade;
-using BLL.IFacade;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using taras_shop.Controllers.Identity;
@@ -25,10 +24,11 @@ namespace taras_shop.Controllers
         {
             Models.HomeIndexViewModels model = new Models.HomeIndexViewModels()
             {
-                categories = facade.UnitOfWork.getCategory.GetAll(),
-                categoryTypes = facade.UnitOfWork.getCategoryType.GetAll(),
-                popular = facade.GetPopularArticles(4),
-                recommended = facade.GetRecommendsArticles(3)
+                Categories = facade.UnitOfWork.getCategory.GetAll(),
+                CategoryTypes = facade.UnitOfWork.getCategoryType.GetAll(),
+                Popular = facade.GetPopularArticles(4),
+                Recommended = facade.GetRecommendsArticles(3),
+                SliderImages = facade.UnitOfWork.getSliderImages.GetAll()
             };
 
             return View(model);

@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My ASP.NET Application</title>
+    <title>Secret Island</title>
     @Styles.Render("~/bundles/styles")
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
+    @Html.AntiForgeryToken()
     <section class="header">
         <nav class="navbar navbar-default">
             <div class="container">

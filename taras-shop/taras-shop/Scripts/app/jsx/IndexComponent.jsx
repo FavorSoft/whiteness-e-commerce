@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import ReactPaginate from 'react-paginate';
 
-import ShoppingCart from './ShoppingCart.jsx';
+//import ShoppingCart from './ShoppingCart.jsx';
 import Sidebar from './Sidebar.jsx';
 import Units from './Units.jsx';
 
@@ -149,25 +149,7 @@ class IndexComponent extends Component {
     }
 }
 
-if(window.location.pathname === "/Home/ShoppingCart") { 
-    //console.log("Shopping Cart");
-    var cart = document.getElementById('shopping-cart-component');
-    if (cart.getAttribute("auth") == "false") {
-        ReactDOM.render(
-            <ShoppingCart auth="false"/>,
-            document.getElementById('shopping-cart-component')
-        );
-    }
-    else
-    {
-        ReactDOM.render(
-            <ShoppingCart auth="true"/>,
-            document.getElementById('shopping-cart-component')
-        );
-    }
-    
-}
-else if(window.location.pathname === "/") {
+if(window.location.pathname === "/") {
     console.log("Index");
     ReactDOM.render(
         <IndexComponent />,

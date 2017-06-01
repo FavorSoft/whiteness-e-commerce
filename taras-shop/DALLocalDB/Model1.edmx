@@ -70,8 +70,15 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
           <Property Name="order_date" Type="datetime" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="region" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="surname" Type="nvarchar" MaxLength="128" />
+          <Property Name="email" Type="nvarchar" MaxLength="128" />
+          <Property Name="phone" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Order_items">
           <Key>
@@ -97,6 +104,13 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="size" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slider_images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="2048" Nullable="false" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -210,7 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_o_user_id">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -305,6 +319,7 @@
           <EntitySet Name="Order_items" EntityType="Self.Order_items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sizes" EntityType="Self.Sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slider_images" EntityType="Self.Slider_images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitInfo" EntityType="Self.UnitInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -440,10 +455,18 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
           <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.fk_o_user_id" FromRole="Order" ToRole="Users" />
+          <!--<NavigationProperty Name="User" Relationship="Self.fk_o_user_id" FromRole="Order" ToRole="Users" />-->
           <NavigationProperty Name="Order_items" Relationship="Self.fk_order_id" FromRole="Order" ToRole="Order_items" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="region" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Model.fk_o_user_id" FromRole="Order" ToRole="User" />
         </EntityType>
         <EntityType Name="Order_items">
           <Key>
@@ -520,8 +543,9 @@
           <Property Name="reg_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="is_man" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Baskets" Relationship="Self.fk_user_id" FromRole="Users" ToRole="Basket" />
-          <NavigationProperty Name="Orders" Relationship="Self.fk_o_user_id" FromRole="Users" ToRole="Order" />
+          <!--<NavigationProperty Name="Orders" Relationship="Self.fk_o_user_id" FromRole="Users" ToRole="Order" />-->
           <NavigationProperty Name="Role" Relationship="Self.fk_role_id" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Orders" Relationship="Model.fk_o_user_id" FromRole="User" ToRole="Order" />
         </EntityType>
         <Association Name="fk_basket_id">
           <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
@@ -595,7 +619,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_o_user_id">
+        <!--<Association Name="fk_o_user_id">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -606,7 +630,7 @@
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="fk_order_id">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Order_items" Type="Self.Order_items" Multiplicity="*" />
@@ -706,10 +730,10 @@
             <End Role="News" EntitySet="News" />
             <End Role="News_image" EntitySet="News_image" />
           </AssociationSet>
-          <AssociationSet Name="fk_o_user_id" Association="Self.fk_o_user_id">
+          <!--<AssociationSet Name="fk_o_user_id" Association="Self.fk_o_user_id">
             <End Role="Users" EntitySet="Users" />
             <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
+          </AssociationSet>-->
           <AssociationSet Name="fk_order_id" Association="Self.fk_order_id">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Order_items" EntitySet="Order_items" />
@@ -734,6 +758,11 @@
             <End Role="Unit" EntitySet="Units" />
             <End Role="Basket_items" EntitySet="Basket_items" />
           </AssociationSet>
+          <EntitySet Name="Slider_images" EntityType="Model.Slider_images" />
+          <AssociationSet Name="fk_o_user_id" Association="Model.fk_o_user_id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="fk_b_unit_id">
           <End Type="Model.Unit" Role="Unit" Multiplicity="1" />
@@ -744,6 +773,25 @@
             </Principal>
             <Dependent Role="Basket_items">
               <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Slider_images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_o_user_id">
+          <End Type="Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -823,6 +871,13 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="Model.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
@@ -896,6 +951,14 @@
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="reg_date" ColumnName="reg_date" />
                 <ScalarProperty Name="is_man" ColumnName="is_man" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slider_images">
+            <EntityTypeMapping TypeName="Model.Slider_images">
+              <MappingFragment StoreEntitySet="Slider_images">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

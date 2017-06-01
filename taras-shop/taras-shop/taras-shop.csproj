@@ -138,6 +138,7 @@
     <Content Include="Content\images\sale.png" />
     <Content Include="Content\images\search.jpg" />
     <Content Include="Content\images\slider.jpg" />
+    <Content Include="Content\images\slider\slider.jpg" />
     <Content Include="Content\images\small-womant.jpg" />
     <Content Include="Content\images\topsale.jpg" />
     <Content Include="Content\images\topsale.png" />
@@ -242,6 +243,8 @@
     <Content Include="Views\Shared\OrderSuccess.cshtml" />
     <Content Include="Views\Shared\OrderDataAuth.cshtml" />
     <Content Include="Views\Shared\OrderDataWithoutAuth.cshtml" />
+    <Content Include="Views\Admin\SliderImages.cshtml" />
+    <Content Include="Views\Admin\AddSliderImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -5,6 +5,8 @@ using DALLocalDB;
 using DALLocalDB.Repository;
 using DALLocalDB.IRepository;
 using DTO;
+using DTO.Helpers;
+
 namespace BLL.DI
 {
     public class DataModule : Module
@@ -25,6 +27,7 @@ namespace BLL.DI
             builder.RegisterType<RoleProvider>().As<IRolesProvider>().InstancePerRequest();
             builder.RegisterType<UnitProvider>().As<IProvider<UnitDto>>().InstancePerRequest();
             builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();
+            builder.RegisterType<SliderImagesProvider>().As<IProvider<SliderImagesDto>>().InstancePerRequest();
             #endregion
 
             #region Repositories
@@ -40,6 +43,7 @@ namespace BLL.DI
             builder.RegisterType<RoleRepository>().As<IRepository<Role>>().InstancePerRequest();
             builder.RegisterType<UnitRepository>().As<IRepository<Unit>>().InstancePerRequest();
             builder.RegisterType<UserRepository>().As<IRepository<User>>().InstancePerRequest();
+            builder.RegisterType<SliderImagesRepository>().As<IRepository<Slider_images>>().InstancePerRequest();
             #endregion
 
             //builder.RegisterType<Facade.Facade>().As<IFacade.IFacade>().InstancePerRequest();

@@ -34,17 +34,6 @@ namespace BLL.Providers
             });
         }
 
-        IEnumerable<ImagesDto> ConvertModeltoDTO(IQueryable<Image> repo)
-        {
-            IEnumerable<ImagesDto> res = repo.Select(i => new ImagesDto()
-                {
-                    Id = i.id,
-                    Image = i.image,
-                    OwnerId = i.owner_id
-                });
-            return res;
-        }
-
         public ImagesDto GetById(int id)
         {
             var tmp = _repo.GetById(id);

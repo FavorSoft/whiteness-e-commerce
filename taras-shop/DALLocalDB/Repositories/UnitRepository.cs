@@ -12,30 +12,30 @@ namespace DALLocalDB.Repository
 
         public override int AddItem(Unit item)
         {
-            return entities.Unit.Add(item).id;
+            return entities.Units.Add(item).id;
         }
 
         public override void DeleteItem(int id)
         {
-            var item = entities.Unit.FirstOrDefault(x => x.id == id);
-            entities.Unit.Remove(item);
+            var item = entities.Units.FirstOrDefault(x => x.id == id);
+            entities.Units.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public override void EditItem(Unit item)
         {
-            entities.Unit.Attach(item);
+            entities.Units.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public override IQueryable<Unit> GetAll()
         {
-            return entities.Unit;
+            return entities.Units;
         }
 
         public override Unit GetById(int id)
         {
-            return entities.Unit.Where(x => x.id == id).FirstOrDefault();
+            return entities.Units.Where(x => x.id == id).FirstOrDefault();
         }
     }
 }

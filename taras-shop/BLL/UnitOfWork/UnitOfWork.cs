@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using BLL.IProviders;
 using BLL.Providers;
 using DALLocalDB;
 using DTO;
+using DTO.Helpers;
 
 namespace BLL.UnitOfWork
 {
@@ -23,18 +25,18 @@ namespace BLL.UnitOfWork
         IUnitProvider _unit;
         IUserProvider _user;
         IUnitInfoProvider _unitInfo;
+        IProvider<SliderImagesDto> _sliderImages;
         AzureEntities context;
         #endregion
 
         #region CTOR
-        public UnitOfWork(
-            )
+        public UnitOfWork()
         {
             context = new AzureEntities();
         }
         #endregion
 
-        public IBasketProvider getBasket{
+        public IBasketProvider getBasket {
             get
             {
                 if (_basket == null)
@@ -201,6 +203,17 @@ namespace BLL.UnitOfWork
             }
         }
 
+        public IProvider<SliderImagesDto> getSliderImages
+        {
+            get
+            {
+                if (_sliderImages == null)
+                {
+                    _sliderImages = new SliderImagesProvider(context);
+                }
+                return _sliderImages;
+            }
+        }
         public void Dispose()
         {
             context.Dispose();

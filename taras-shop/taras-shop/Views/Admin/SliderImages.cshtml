@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DTO.Helpers.SliderImagesDto>
+
+@{
+    ViewBag.Title = "SliderImages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SliderImages</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img class="img-responsive" src="~/Content/images/slider/@item.Image"/>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "  ", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteSliderImage", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

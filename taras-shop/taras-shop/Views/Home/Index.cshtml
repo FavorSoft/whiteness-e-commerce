@@ -6,24 +6,45 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        @{
+            int count = 0;
+            foreach (var i in Model.SliderImages)
+            {
+                if (count == 0)
+                {
+                    <li data-target="#myCarousel" data-slide-to="@count" class="active"></li>
+                }
+                else
+                {
+                    <li data-target="#myCarousel" data-slide-to="@count"></li>
+                }
+                count++;
+            }
+        }
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/Content/images/slider.jpg" alt="Chania">
-        </div>
+        @{
+            int counter = 0;
+            foreach (var i in Model.SliderImages)
+            {
 
-        <div class="item">
-            <img src="~/Content/images/slider.jpg" alt="Chania">
-        </div>
-
-        <div class="item">
-            <img src="~/Content/images/slider.jpg" alt="Chania">
-        </div>
+                if (counter == 0)
+                {
+                    <div class="item active">
+                        <img src="~/Content/images/slider/@i.Image" alt="Chania">
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                        <img src="~/Content/images/slider/@i.Image" alt="Chania">
+                    </div>
+                }
+                counter++;
+            }
+        }
     </div>
 
     <!-- Left and right controls -->
@@ -77,7 +98,7 @@
                         <div class="col-md-4 right-line"></div>
                     </div>
                     @{
-                        foreach (var i in Model.popular)
+                        foreach (var i in Model.Popular)
                         {
                             bool isSale = false;
                             if (!i.unit.OldPrice.Equals(null) && i.unit.OldPrice > i.unit.Price)
@@ -95,7 +116,7 @@
                                     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                                         <div class="title-unit-part">
                                             <p class="company-maker">@i.unit.Title</p>
-                                            <p class="item-type">@Model.categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
+                                            <p class="item-type">@Model.Categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
                                         </div>
                                         <div class="price-unit-part">
                                             <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>
@@ -115,7 +136,7 @@
                             <h4 class="title-lines-h">Рекомендуем</h4>
                             <div class="col-md-4 right-line"></div>
                         </div>
-                        @foreach (var i in Model.recommended)
+                        @foreach (var i in Model.Recommended)
                         {
                             bool isSale = false;
                             if (!i.unit.OldPrice.Equals(null) && i.unit.OldPrice > i.unit.Price)
@@ -133,7 +154,7 @@
                                     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 text-unit-part">
                                         <div class="title-unit-part">
                                             <p class="company-maker">@i.unit.Title</p>
-                                            <p class="item-type">@Model.categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
+                                            <p class="item-type">@Model.Categories.Where(x => x.Id == i.unit.CategoryId).SingleOrDefault().Category</p>
                                         </div>
                                         <div class="price-unit-part">
                                             <span class="price-now">@(String.Format("{0:F2}", Convert.ToDouble(i.unit.Price.GetValueOrDefault(0)) / 100)) грн</span>

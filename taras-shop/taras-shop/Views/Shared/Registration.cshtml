@@ -5,7 +5,7 @@
     @using (Html.BeginForm("Registration", "Account",
         FormMethod.Post, new { @class = "col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3 login-block" }))
     {
-        @Html.AntiForgeryToken()
+        
         @Html.ValidationSummary(true)
         <div class="form-group">
             @Html.LabelFor(model => model.Email)

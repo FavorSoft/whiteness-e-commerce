@@ -200,7 +200,7 @@ $("#shopping-global-items").ready(function () {
 function renderLocalShoppingItems() {
     $("#shopping-local-items").html("");
     var tmp = localStorage.getItem("items");
-
+    
     $.get("/Home/GetItemsByBasket", { json: tmp }, (response) => {
         $("#shopping-local-items").html(response);
     });

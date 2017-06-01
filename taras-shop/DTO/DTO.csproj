@@ -54,6 +54,7 @@
     <Compile Include="Helpers\OrderItems.cs" />
     <Compile Include="Helpers\Roles.cs" />
     <Compile Include="Helpers\SizesDto.cs" />
+    <Compile Include="Helpers\SliderImagesDto.cs" />
     <Compile Include="Helpers\Unit.cs" />
     <Compile Include="Helpers\UnitInfoDto.cs" />
     <Compile Include="Helpers\Users.cs" />

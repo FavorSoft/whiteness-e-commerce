@@ -67,8 +67,8 @@ namespace BLL.Providers
 
         public UnitInfoDto GetByIdAndSize(int id, string size)
         {
-            int sizeId = _repo.GetEntities().Size.Where(x => x.size == size).FirstOrDefault().id;
-            var res = _repo.GetEntities().UnitInfo.Where(x => x.unit_id == id && x.size_id == sizeId).FirstOrDefault();
+            int sizeId = _repo.GetEntities().Sizes.Where(x => x.size == size).FirstOrDefault().id;
+            var res = _repo.GetEntities().UnitInfoes.Where(x => x.unit_id == id && x.size_id == sizeId).FirstOrDefault();
             return new UnitInfoDto()
             {
                 Id = res.id,

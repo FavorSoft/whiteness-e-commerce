@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using DALLocalDB.IRepository;
+using System.Linq;
 
 namespace DALLocalDB.Repositories
 {
-    public class SizesRepository : IRepository.IRepository<Size>
+    public class SizesRepository : IRepository<Size>
     {
         public SizesRepository(AzureEntities db) : base(db)
         {
@@ -10,30 +11,30 @@ namespace DALLocalDB.Repositories
 
         public override int AddItem(Size item)
         {
-            return entities.Size.Add(item).id;
+            return entities.Sizes.Add(item).id;
         }
 
         public override void DeleteItem(int id)
         {
-            var item = entities.Size.FirstOrDefault(x => x.id == id);
-            entities.Size.Remove(item);
+            var item = entities.Sizes.FirstOrDefault(x => x.id == id);
+            entities.Sizes.Remove(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public override void EditItem(Size item)
         {
-            entities.Size.Attach(item);
+            entities.Sizes.Attach(item);
             entities.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
 
         public override IQueryable<Size> GetAll()
         {
-            return entities.Size;
+            return entities.Sizes;
         }
 
         public override Size GetById(int id)
         {
-            return entities.Size.Where(x => x.id == id).FirstOrDefault();
+            return entities.Sizes.Where(x => x.id == id).FirstOrDefault();
         }
     }
 }

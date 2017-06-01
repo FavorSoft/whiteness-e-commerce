@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b9ff6e862b134096aa7ed7f4e8df3323" Name="Diagram1">
+      <Diagram DiagramId="b9ff6e862b134096aa7ed7f4e8df3323" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Basket_items" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
@@ -32,6 +32,7 @@
         <AssociationConnector Association="Model.fk_sizes_table_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_unit_table_id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.fk_b_unit_id" />
+        <EntityTypeShape EntityType="Model.Slider_images" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -58,7 +58,7 @@ namespace BLL.Providers
 
         public int GetIdByRole(string role)
         {
-            return _repo.GetEntities().Role.Where(x => x.role == role).Select(x => x.id).FirstOrDefault();
+            return _repo.GetEntities().Roles.Where(x => x.role == role).Select(x => x.id).FirstOrDefault();
         }
     }
 }

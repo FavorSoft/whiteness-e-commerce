@@ -1,5 +1,6 @@
 ﻿using BLL.IProviders;
 using DTO;
+using DTO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,6 +26,7 @@ namespace BLL.UnitOfWork
         IUnitInfoProvider getUnitInfo { get; }
         IUnitProvider getUnit { get; }
         IUserProvider getUser { get; }
+        IProvider<SliderImagesDto> getSliderImages { get; }
         DbContextTransaction BeginTransaction();
         int SaveChanges();
         void Dispose();

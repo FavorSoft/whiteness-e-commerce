@@ -66,7 +66,7 @@ namespace BLL.Providers
 
         public BasketDto GetByOwner(int id)
         {
-            var res = _repo.GetEntities().Basket.Where(x => x.user_id == id).FirstOrDefault();
+            var res = _repo.GetEntities().Baskets.Where(x => x.user_id == id).FirstOrDefault();
             if (res != null)
             {
                 return new BasketDto()

@@ -115,7 +115,7 @@ namespace BLL.Providers
         {
             bool flag = false;
 
-            int roleId = _repo.GetEntities().Role.Where(x => x.role == role).FirstOrDefault().id;
+            int roleId = _repo.GetEntities().Roles.Where(x => x.role == role).FirstOrDefault().id;
             if (roleId == GetById(id).RoleId)
             {
                 flag = true;

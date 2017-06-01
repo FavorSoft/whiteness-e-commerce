@@ -21,6 +21,14 @@ namespace WorkImage
             return CropImage(upload, maxHeight, maxWidth);
         }
 
+        public static Bitmap MakeBitmap(HttpPostedFileBase upload)
+        {
+            using(Bitmap tmp = new Bitmap(upload.InputStream, true))
+            {
+                return tmp;
+            }
+        }
+
         public static Bitmap CropImage(HttpPostedFileBase upload, int maxHeight, int maxWidth)
         {
             if (upload != null && upload.ContentLength > 0 && upload.ContentLength <= 10000000)

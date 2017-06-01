@@ -36,7 +36,7 @@ namespace BLL.Providers
             IEnumerable<OrderDto> res = repo.Select(i => new OrderDto()
             {
                 Id = i.id,
-                UserId = i.user_id,
+                UserId = i.user_id.Value,
                 OrderDate = i.order_date
             }).ToList();
             return res;
@@ -49,7 +49,7 @@ namespace BLL.Providers
             {
                 Id = tmp.id,
                 OrderDate = tmp.order_date,
-                UserId = tmp.user_id
+                UserId = tmp.user_id.Value
             };
         }
 
@@ -70,14 +70,14 @@ namespace BLL.Providers
 
         public OrderDto GetByOwner(int id)
         {
-            var res = _repo.GetEntities().Order.Where(x => x.user_id == id).FirstOrDefault();
+            var res = _repo.GetEntities().Orders.Where(x => x.user_id == id).FirstOrDefault();
             if (res != null)
             {
                 return new OrderDto()
                 {
                     Id = res.id,
                     OrderDate = res.order_date,
-                    UserId = res.user_id
+                    UserId = res.user_id.Value
                 };
             }
             else

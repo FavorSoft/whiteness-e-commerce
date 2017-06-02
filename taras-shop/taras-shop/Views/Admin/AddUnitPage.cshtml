@@ -4,6 +4,7 @@
     <div class="col-lg-4 col-md-4">
         @using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <label for="images">Фото:</label>

@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using taras_shop.Controllers.Identity;
+
 
 namespace taras_shop.Controllers
 {
@@ -108,7 +110,7 @@ namespace taras_shop.Controllers
                     string fileName = path + "Units\\" + date + "\\";
                     for (int i = 0; i < guidImages.Count; i++)
                     {
-                        guidImages[i] += System.IO.Path.GetExtension(images[i].FileName);
+                        guidImages[i] += Path.GetExtension(images[i].FileName);
                     }
                     WorkImage.WorkImage.DeleteImages(fileName, guidImages);
                 }
@@ -190,10 +192,14 @@ namespace taras_shop.Controllers
                                 Guid imageName = Guid.NewGuid();
                                 
                                 string date = DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString();
-                                
+
+                                if (!Directory.Exists(path + "Units\\" + date)){
+                                    Directory.CreateDirectory(path + date);
+                                }
+                            
                                 string fileName = path + "Units\\" + date + "\\" + imageName + System.IO.Path.GetExtension(file.FileName);
                                 imageSave.Save(fileName, ImageFormat.Jpeg);
-                                images.Add(imageName.ToString());
+                                images.Add(date + "/" + imageName.ToString());
                             }
                             break;
                         case ImageType.Slider:
@@ -266,23 +272,29 @@ namespace taras_shop.Controllers
         [CustomAuthorize(Roles = "Admin, Moderator")]
         public ActionResult DeleteSliderImage(int id)
         {
-            facade.DeleteSliderImage(id);
+            string path = Server.MapPath(ConfigurationManager.AppSettings["SliderImagesFolder"]);
+            facade.DeleteSliderImage(path, id);
             return RedirectToAction("SliderImages");
         }
 
         [CustomAuthorize(Roles = "Admin, Moderator")]
-        public async Task<ActionResult> AddSliderImageAsync(HttpPostedFileBase image)
+        public ActionResult AddSliderImage()
         {
-            List<HttpPostedFileBase> images = new List<HttpPostedFileBase>();
-            images.Add(image);
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "Admin, Moderator")]
+        public async Task<ActionResult> AddSliderImageAsync(List<HttpPostedFileBase> image)
+        {
             List<string> names = new List<string>();
             using (var transact = facade.UnitOfWork.BeginTransaction())
             {
-                Bitmap img = WorkImage.WorkImage.MakeBitmap(image);
                 try
                 {
-                    names = await UploadPhotoAsync(images, ImageType.Slider);
-                    facade.AddSliderImage(names.FirstOrDefault());
+                    names = await UploadPhotoAsync(image, ImageType.Slider);
+                    facade.AddSliderImage(names);
+                    facade.UnitOfWork.SaveChanges();
                     transact.Commit();
                 }
                 catch (Exception)
@@ -295,7 +307,7 @@ namespace taras_shop.Controllers
             }
             
 
-            return View();
+            return View("AddSliderImage");
 
         }
 

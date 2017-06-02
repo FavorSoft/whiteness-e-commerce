@@ -7,7 +7,7 @@
 
 <h2>AddSliderImage</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("AddSliderImageAsync", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -19,7 +19,7 @@
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <label for="image">Фото:</label>
-                <input id="image" name="image" type="file" class="form-control" />
+                <input id="image" name="image" type="file" multiple class="form-control" />
             </div>
         </div>
 
